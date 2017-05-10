@@ -1,0 +1,31 @@
+<div class="container">
+
+  <!-- Photo de la tenue -->
+  <h1>Page show d'une tenue</h1>
+  <% if @outfit.photo? %>
+    <%= cl_image_tag @outfit.photo.path, width: 200, height: 300, crop: :fill %>
+  <% end %>
+
+  <p>Je cherche : </p>
+  <!-- Formulaire pour demander accessoire -->
+  <%= form_tag do %>
+    <select multiple>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Chapeau</option>
+      <option value="2">Pochette</option>
+      <option value="3">Bandeau</option>
+    </select>
+    <label>Materialize Select</label>
+    <%= submit_tag("Create") %>
+  <% end %>
+</div>
+
+
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      $('select').material_select();
+    });
+  <% end %>
+<% end %>

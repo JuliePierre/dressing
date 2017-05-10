@@ -1,5 +1,6 @@
 class OutfitsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :new, :create]
+  before_action :set_params, only: [:show]
 
   def show
   end
@@ -20,6 +21,10 @@ class OutfitsController < ApplicationController
   end
 
   private
+
+  def set_params
+    @outfit = Outfit.find(params[:id])
+  end
 
   def outfit_params
     params.require(:outfit).permit(:name, :photo)
