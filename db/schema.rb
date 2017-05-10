@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510084040) do
+ActiveRecord::Schema.define(version: 20170510160549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,12 +30,26 @@ ActiveRecord::Schema.define(version: 20170510084040) do
     t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
   end
 
+  create_table "missing_items", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "missing_items_outfits", id: false, force: :cascade do |t|
+    t.integer "outfit_id"
+    t.integer "missing_item_id"
+    t.index ["missing_item_id"], name: "index_missing_items_outfits_on_missing_item_id", using: :btree
+    t.index ["outfit_id"], name: "index_missing_items_outfits_on_outfit_id", using: :btree
+  end
+
   create_table "outfits", force: :cascade do |t|
     t.string   "name"
     t.string   "occasion"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.text     "missing_item",              array: true
     t.index ["user_id"], name: "index_outfits_on_user_id", using: :btree
   end
 

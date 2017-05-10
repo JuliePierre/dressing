@@ -1,6 +1,6 @@
 class OutfitsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show, :new, :create]
-  before_action :set_params, only: [:show]
+  skip_before_action :authenticate_user!, only: [:show, :new, :create, :update]
+  before_action :set_params, only: [:show, :update]
 
   def show
   end
@@ -20,6 +20,17 @@ class OutfitsController < ApplicationController
     end
   end
 
+  def update
+    params[:outfit][:missing_item_ids].delete_at(0)
+    @outfit.missing_item_ids = params[:outfit][:missing_item_ids]
+    if @outfit.update(outfit_params)
+      redirect_to outfit_path(@outfit)
+    else
+      redirect_to root_path
+    end
+
+  end
+
   private
 
   def set_params
@@ -27,7 +38,7 @@ class OutfitsController < ApplicationController
   end
 
   def outfit_params
-    params.require(:outfit).permit(:name, :photo)
+    params.require(:outfit).permit(:name, :occasion, :photo)
   end
 
 end

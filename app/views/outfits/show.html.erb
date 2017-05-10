@@ -20,6 +20,21 @@
   <% end %>
 </div>
 
+<div class="container">
+  <p>Je cherche avec simple_form : </p>
+    <%= simple_form_for(@outfit) do |f| %>
+    <%= f.error_notification %>
+
+    <%= f.input :name %>
+    <%= f.input :occasion %>
+    <%= f.association :missing_items, as: :check_boxes, value_method: :id, prompt: "Choose Items" %>
+
+    <%= f.button :submit %>
+  <% end %>
+</div>
+
+
+
 
 
 <% content_for(:after_js) do %>

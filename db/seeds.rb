@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+a = MissingItem.create(name: "Chapeau")
+b = MissingItem.create(name: "Foulard")
+c = MissingItem.create(name: "Pochette")
+d = MissingItem.create(name: "Collier")
+e = MissingItem.create(name: "Bracelet")
+
