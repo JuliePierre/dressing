@@ -2,38 +2,33 @@
 
   <!-- Photo de la tenue -->
   <h1>Page show d'une tenue</h1>
+  <p>Tenue : <%= @outfit.name %></p>
   <% if @outfit.photo? %>
     <%= cl_image_tag @outfit.photo.path, width: 200, height: 300, crop: :fill %>
   <% end %>
 
+</div>
+
+<div class="container">
   <p>Je cherche : </p>
-  <!-- Formulaire pour demander accessoire -->
-  <%= form_tag do %>
-    <select multiple>
-      <option value="" disabled selected>Choose your option</option>
-      <option value="1">Chapeau</option>
-      <option value="2">Pochette</option>
-      <option value="3">Bandeau</option>
-    </select>
-    <label>Materialize Select</label>
-    <%= submit_tag("Create") %>
+    <%= simple_form_for(@outfit) do |f| %>
+      <%= f.error_notification %>
+
+      <%= f.association :missing_items, as: :check_boxes, value_method: :id, prompt: "Choose Items" %>
+
+      <%= f.input :occasion %>
+
+      <%= f.button :submit %>
   <% end %>
 </div>
 
 <div class="container">
-  <p>Je cherche avec simple_form : </p>
-    <%= simple_form_for(@outfit) do |f| %>
-    <%= f.error_notification %>
-
-    <%= f.input :name %>
-    <%= f.input :occasion %>
-    <%= f.association :missing_items, as: :check_boxes, value_method: :id, prompt: "Choose Items" %>
-
-    <%= f.button :submit %>
+  <p>Nombre de likes : <%= @outfit.votes_for.size %></p>
+  <p>Et vous, qu'en pensez-vous ?</p>
+  <%= link_to(upvote_path(@outfit), html_options = { remote: true }) do %>
+    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
   <% end %>
 </div>
-
-
 
 
 

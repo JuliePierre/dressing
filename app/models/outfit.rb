@@ -1,9 +1,9 @@
 class Outfit < ApplicationRecord
-  ITEMS = %w(Chapeau Foulard Pochette Collier Bracelet)
+  has_attachment :photo
+  acts_as_votable
 
   belongs_to :user
   has_and_belongs_to_many :missing_items
-  has_attachment :photo
 
   validates :name, presence: true
 end

@@ -1,6 +1,6 @@
 class OutfitsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show, :new, :create, :update]
-  before_action :set_params, only: [:show, :update]
+  skip_before_action :authenticate_user!, only: [:show, :new, :create, :update, :upvote]
+  before_action :set_outfit, only: [:show, :update, :upvote]
 
   def show
   end
@@ -31,9 +31,23 @@ class OutfitsController < ApplicationController
 
   end
 
+  def upvote
+    @outfit.vote_by :voter => current_user
+    if @outfit.save
+      respond_to do |format|
+        format.html { redirect_to outfit_path(@outfit) }
+        format.js  # <-- will render `app/views/outfits/upvote.js.erb`
+      end
+    else
+      respond_to do |format|
+        format.js  # <-- will render `app/views/outfits/upvote.js.erb`
+      end
+    end
+  end
+
   private
 
-  def set_params
+  def set_outfit
     @outfit = Outfit.find(params[:id])
   end
 
