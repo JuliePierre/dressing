@@ -1,0 +1,12 @@
+<h1>Test</h1>
+<input type="file" name="picture" accept="image/*" capture>
+
+<!-- Test avec simple_for et attachinary -->
+<%= simple_form_for(@outfit) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :name %>
+  <%= f.input :photo, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
+
+  <%= f.button :submit %>
+<% end %>
