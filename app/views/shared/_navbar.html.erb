@@ -13,19 +13,19 @@
       <% end %>
       <li><%= link_to 'Create an outfit', new_outfit_path, class: 'waves-effect waves-light btn' %></li>
     </ul>
-    <ul class="side-nav" id="mobile-demo">
-      <li><%= link_to 'Find a friend', users_path %></li>
-      <li><%= link_to 'See outfits', outfits_path %></li>
-      <% if current_user %>
-        <li><%= link_to 'Profile', user_path(current_user) %></li>
-        <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
-      <% else %>
-        <li><%= link_to 'Log in', new_user_session_path %></li>
-      <% end %>
-      <li><%= link_to 'Create an outfit', new_outfit_path, class: 'waves-effect waves-light btn' %></li>
-    </ul>
   </div>
 </nav>
+<ul class="side-nav" id="mobile-demo">
+  <li><%= link_to 'Find a friend', users_path %></li>
+  <li><%= link_to 'See outfits', outfits_path %></li>
+  <% if current_user %>
+    <li><%= link_to 'Profile', user_path(current_user) %></li>
+    <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+  <% else %>
+    <li><%= link_to 'Log in', new_user_session_path %></li>
+  <% end %>
+  <li><%= link_to 'Create an outfit', new_outfit_path, class: 'waves-effect waves-light btn' %></li>
+</ul>
 
 
 <% content_for(:after_js) do %>
