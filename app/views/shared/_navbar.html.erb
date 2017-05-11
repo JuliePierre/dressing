@@ -1,0 +1,27 @@
+<nav>
+  <div class="nav-wrapper">
+    <%= link_to 'Wedding Dressing', root_path, class: 'brand-logo' %>
+    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><%= link_to 'Find a friend', users_path %></li>
+      <li><%= link_to 'See outfits', outfits_path %></li>
+      <li><%= link_to 'Profile', user_path(current_user) %></li>
+      <li><%= link_to 'Create an outfit', new_outfit_path, class: 'waves-effect waves-light btn' %></li>
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+      <li><%= link_to 'Find a friend', users_path %></li>
+      <li><%= link_to 'See outfits', outfits_path %></li>
+      <li><%= link_to 'Profile', user_path(current_user) %></li>
+      <li><%= link_to 'Create an outfit', new_outfit_path, class: 'waves-effect waves-light btn' %></li>
+    </ul>
+  </div>
+</nav>
+
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      $(".button-collapse").sideNav();
+    });
+  <% end %>
+<% end %>
