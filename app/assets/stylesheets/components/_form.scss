@@ -26,6 +26,9 @@ input.string {
   padding: 0 2rem;
   box-sizing: inherit;
 }
+label.optional, label.required {
+  display: none !important;
+}
 input.btn {
   width: 100% !important;
   margin-top: 2rem;
