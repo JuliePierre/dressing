@@ -1,5 +1,4 @@
 class OutfitsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show, :new, :create, :update, :upvote]
   before_action :set_outfit, only: [:show, :update, :upvote]
 
   def show

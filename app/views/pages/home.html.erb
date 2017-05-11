@@ -1,2 +1,13 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <% if current_user %>
+    <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
+  <% else %>
+    <ul>
+    <li><%= link_to 'Log In', new_user_session_path %></li>
+    <li><%= link_to 'Create An Account', new_user_registration_path %></li>
+    </ul>
+  <% end %>
+
+  <div><%= link_to "Create an outfit", new_outfit_path %></div>
+  <div><%= link_to "See all my friends' outfits", outfits_path %></div>
+</div>
