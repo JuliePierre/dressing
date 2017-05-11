@@ -1,6 +1,7 @@
 <div class="container">
   <% if current_user %>
     <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
+    <div><%= link_to "My profile", user_path(current_user) %></div>
   <% else %>
     <ul>
     <li><%= link_to 'Log In', new_user_session_path %></li>
@@ -11,5 +12,4 @@
   <div><%= link_to "Create an outfit", new_outfit_path %></div>
   <div><%= link_to "See all my friends' outfits", outfits_path %></div>
 
-  <div><%= link_to "My profile", user_path(current_user) %></div>
 </div>
