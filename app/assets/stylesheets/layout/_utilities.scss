@@ -10,7 +10,14 @@
   padding-bottom: 5em;
 }
 
-//
+//flexbox
+.flexbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
 .center-align {
   text-align: center;
 }
@@ -27,4 +34,12 @@
 }
 .bg-dark-blue {
   background: #3b5998;
+}
+
+// Width & Height
+.full-height {
+  height: 100%;
+}
+.full-screen {
+  height: calc(100vh - 64px);
 }

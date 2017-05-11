@@ -1,13 +1,25 @@
-<h1>Test</h1>
-<input type="file" name="picture" accept="image/*" capture>
+<div class="container full-screen">
+  <div class="flexbox full-height">
+    <div class="form-container">
 
-<!-- Test avec simple_for et attachinary -->
-<%= simple_form_for(@outfit) do |f| %>
-  <%= f.error_notification %>
+      <div class="form-header-container">
+        <div class="form-header-title">Create an outfit</div>
+      </div>
 
-  <%= f.input :name %>
-  <%= f.input :occasion %>
-  <%= f.input :photo, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
+      <div class="form-content-container">
+        <!-- Formulaire avec simple_for et attachinary -->
+        <%= simple_form_for(@outfit) do |f| %>
+          <%= f.error_notification %>
 
-  <%= f.button :submit %>
-<% end %>
+          <%= f.input :name, input_html: { placeholder: "Donnez-lui un nom" } %>
+          <%= f.input :occasion, input_html: { placeholder: "L'occasion" } %>
+          <%= f.input :photo, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
+
+          <%= f.button :submit %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,35 @@
+.form-container {
+  background-color: $b-blue-light;
+  border-radius: 10px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+.form-header-container {
+  background-color: $b-blue-dark;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 2rem 3rem;
+  text-align: center;
+  font-size: 1.4rem;
+}
+.form-header-title {
+  color: white;
+  text-transform: uppercase;
+}
+.form-content-container {
+  padding: 2rem 3rem;
+}
+
+// Ecraser les variables de materialize qui ne sont pas accessibles via les variables sass
+input.string {
+  background-color: #ECEBF1 !important;
+  border-bottom: none !important;
+  padding: 0 2rem;
+  box-sizing: inherit;
+}
+label {
+  display: none !important;
+}
+input.btn {
+  width: 100% !important;
+  margin-top: 2rem;
+}
