@@ -43,3 +43,12 @@
 .full-screen {
   height: calc(100vh - 64px);
 }
+
+// Cards
+.card-link {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}

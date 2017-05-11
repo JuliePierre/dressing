@@ -8,15 +8,7 @@
 
       <div class="form-content-container">
         <!-- Formulaire avec simple_for et attachinary -->
-        <%= simple_form_for(@outfit) do |f| %>
-          <%= f.error_notification %>
-
-          <%= f.input :name, input_html: { placeholder: "Donnez-lui un nom" } %>
-          <%= f.input :occasion, input_html: { placeholder: "L'occasion" } %>
-          <%= f.input :photo, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
-
-          <%= f.button :submit %>
-        <% end %>
+        <%= render 'shared/new_outfit_form', outfit: @outfit %>
       </div>
 
     </div>

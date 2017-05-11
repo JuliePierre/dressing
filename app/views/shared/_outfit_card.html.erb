@@ -1,0 +1,12 @@
+<div class="col s12 m6 l4">
+  <div class="outfit-card">
+    <%= link_to '', outfit_path(outfit), class: 'card-link' %>
+    <div class="outfit-picture">
+      <%= cl_image_tag outfit.photo.path %>
+    </div>
+    <div class="outfit-description">
+      <p><%= outfit.name %></p>
+      <p><%= outfit.occasion %></p>
+    </div>
+  </div>
+</div>
