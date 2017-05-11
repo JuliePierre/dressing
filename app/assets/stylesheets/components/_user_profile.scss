@@ -1,5 +1,8 @@
 .user-profile {
   padding-top: 6rem;
+  @media (max-width: 375px) {
+    padding: 4rem 2rem 0 2rem;
+  }
   .user-picture {
     img {
       height: 85px;
@@ -8,4 +11,14 @@
 }
 .user-outfits {
   padding-top: 6rem;
+  @media (max-width: 375px) {
+    padding: 4rem 2rem 0 2rem;
+  }
+}
+
+.user-friends {
+  @media (max-width: 375px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
