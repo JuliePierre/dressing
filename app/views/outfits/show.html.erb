@@ -1,3 +1,25 @@
+<!-- Facebook SDK for JavaScript -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1446517282313657',
+      xfbml      : true,
+      version    : 'v2.9'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<!-- *********** -->
+
+
 <div class="container">
 
   <!-- Photo de la tenue -->
@@ -31,6 +53,20 @@
     <i class="fa fa-thumbs-up" aria-hidden="true"></i>
   <% end %>
 </div>
+
+<div class="container center-align">
+  <!-- Construire ici un message type qui sera envoyé sur facebook -->
+  <!-- Exemple : voici la photo, j'ai besoin de xxx -->
+  <!-- 1ère phase : tester d'intégrer l'inbox facebook -->
+  <div class="fb-send" data-href="<%= request.original_url %>"></div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
 
 
 
