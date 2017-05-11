@@ -3,7 +3,7 @@ class OutfitsController < ApplicationController
 
   def index
     all_outfits = Outfit.all
-    user_friends = current_user.friends
+    user_friends = User.joins(:friendships).where(friendships: { is_accepted: true, friend_id: current_user.id })
     user_friends_ids = []
     user_friends.each do |friend|
       user_friends_ids << friend.id
