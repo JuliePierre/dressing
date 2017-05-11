@@ -33,3 +33,10 @@ input.btn {
   width: 100% !important;
   margin-top: 2rem;
 }
+form .form-inputs .input-field {
+  width: 100%;
+}
+input[type=password] {
+  padding: 0 2rem;
+  box-sizing: inherit;
+}
