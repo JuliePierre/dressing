@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :outfits, only: [ :new, :create, :show, :update ]
+  resources :users, only: [ :index, :show ]
+  resources :friendships
   post "outfits/:id/upvote", to: "outfits#upvote", as: :upvote
 end
