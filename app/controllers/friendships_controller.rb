@@ -17,13 +17,18 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-    @friendship = current_user.friendships.find_by_friend_id(params[:friend_id])
+    @friendship = Friendship.find(params[:friendship_id])
     @friendship.is_accepted = true
     if @friendship.save
-      flash[:notice] = "Successfully accepted the friend request"
-      redirect_to user_path(current_user)
+      respond_to do |format|
+        format.html { redirect_to user_path(current_user) }
+        format.js  # <-- will render `app/views/friendships/update.js.erb`
+      end
     else
-      redirect_to root_path
+      respond_to do |format|
+        format.html { redirect_to user_path(current_user) }
+        format.js  # <-- will render `app/views/friendships/update.js.erb`
+      end
     end
   end
 
