@@ -1,0 +1,8 @@
+<h1>Index des outfits</h1>
+<% @user_friends_outfits.each do |outfit| %>
+  <div class="outfit-card">
+    <p><%= outfit.name %></p>
+    <p><%= outfit.occasion %></p>
+    <p><%= cl_image_tag(outfit.photo.path, width: 400, height: 300, crop: :fill) %></p>
+  </div>
+<% end %>

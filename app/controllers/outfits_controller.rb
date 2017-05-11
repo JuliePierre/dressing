@@ -1,6 +1,18 @@
 class OutfitsController < ApplicationController
   before_action :set_outfit, only: [:show, :update, :upvote]
 
+  def index
+    all_outfits = Outfit.all
+    user_friends = current_user.friends
+    user_friends_ids = []
+    user_friends.each do |friend|
+      user_friends_ids << friend.id
+    end
+    @user_friends_outfits = all_outfits.select do |outfit|
+      user_friends_ids.include?(outfit.user_id)
+    end
+  end
+
   def show
     @missing_items = []
     unless @outfit.missing_item_ids == []
