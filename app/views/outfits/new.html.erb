@@ -1,17 +1,18 @@
-<div class="container full-screen">
-  <div class="flexbox full-height">
-    <div class="form-container">
+<div class="main">
+  <div class="container full-screen">
+    <div class="flexbox full-height">
+      <div class="form-container">
 
-      <div class="form-header-container">
-        <div class="form-header-title">Create an outfit</div>
+        <div class="form-header-container">
+          <div class="form-header-title">Create an outfit</div>
+        </div>
+
+        <div class="form-content-container">
+          <!-- Formulaire avec simple_for et attachinary -->
+          <%= render 'shared/new_outfit_form', outfit: @outfit %>
+        </div>
+
       </div>
-
-      <div class="form-content-container">
-        <!-- Formulaire avec simple_for et attachinary -->
-        <%= render 'shared/new_outfit_form', outfit: @outfit %>
-      </div>
-
     </div>
   </div>
 </div>
-

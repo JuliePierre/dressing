@@ -24,55 +24,48 @@
 </script>
 <!-- *********** -->
 
+<div class="main">
+  <div class="container">
 
-<div class="container">
+    <!-- Photo de la tenue -->
+    <h1>Page show d'une tenue</h1>
+    <p>Tenue : <%= @outfit.name %></p>
+    <% if @outfit.photo? %>
+      <%= cl_image_tag @outfit.photo.path, width: 200, height: 300, crop: :fill %>
+    <% end %>
 
-  <!-- Photo de la tenue -->
-  <h1>Page show d'une tenue</h1>
-  <p>Tenue : <%= @outfit.name %></p>
-  <% if @outfit.photo? %>
-    <%= cl_image_tag @outfit.photo.path, width: 200, height: 300, crop: :fill %>
-  <% end %>
-
-</div>
-
-<div class="container">
-  <p>Je cherche : </p>
-    <%= simple_form_for(@outfit) do |f| %>
-      <%= f.error_notification %>
-
-      <%= f.association :missing_items, as: :check_boxes, value_method: :id, prompt: "Choose Items" %>
-
-      <%= f.input :occasion %>
-
-      <%= f.button :submit %>
-  <% end %>
-</div>
-
-<div class="container">
-  <div id='upvotes_counter'>
-    <%= render 'outfits/upvotes_count', outfit: @outfit %>
   </div>
-  <p>Et vous, qu'en pensez-vous ?</p>
-  <%= link_to(upvote_path(@outfit), html_options = { remote: true, method: :post }) do %>
-    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-  <% end %>
+
+  <div class="container">
+    <p>Je cherche : </p>
+      <%= simple_form_for(@outfit) do |f| %>
+        <%= f.error_notification %>
+
+        <%= f.association :missing_items, as: :check_boxes, value_method: :id, prompt: "Choose Items" %>
+
+        <%= f.input :occasion %>
+
+        <%= f.button :submit %>
+    <% end %>
+  </div>
+
+  <div class="container">
+    <div id='upvotes_counter'>
+      <%= render 'outfits/upvotes_count', outfit: @outfit %>
+    </div>
+    <p>Et vous, qu'en pensez-vous ?</p>
+    <%= link_to(upvote_path(@outfit), html_options = { remote: true, method: :post }) do %>
+      <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+    <% end %>
+  </div>
+
+  <div class="container center-align">
+    <!-- Construire ici un message type qui sera envoyé sur facebook -->
+    <!-- Exemple : voici la photo, j'ai besoin de xxx -->
+    <!-- 1ère phase : tester d'intégrer l'inbox facebook -->
+    <div class="fb-send" data-href="<%= request.original_url %>"></div>
+  </div>
 </div>
-
-<div class="container center-align">
-  <!-- Construire ici un message type qui sera envoyé sur facebook -->
-  <!-- Exemple : voici la photo, j'ai besoin de xxx -->
-  <!-- 1ère phase : tester d'intégrer l'inbox facebook -->
-  <div class="fb-send" data-href="<%= request.original_url %>"></div>
-</div>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
 
 
 <% content_for(:after_js) do %>
