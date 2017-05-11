@@ -23,9 +23,11 @@
 </div>
 
 <div class="container">
-  <p>Nombre de likes : <%= @outfit.votes_for.size %></p>
+  <div id='upvotes_counter'>
+    <%= render 'outfits/upvotes_count', outfit: @outfit %>
+  </div>
   <p>Et vous, qu'en pensez-vous ?</p>
-  <%= link_to(upvote_path(@outfit), html_options = { remote: true }) do %>
+  <%= link_to(upvote_path(@outfit), html_options = { remote: true, method: :post }) do %>
     <i class="fa fa-thumbs-up" aria-hidden="true"></i>
   <% end %>
 </div>

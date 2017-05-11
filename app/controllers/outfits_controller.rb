@@ -32,7 +32,12 @@ class OutfitsController < ApplicationController
   end
 
   def upvote
-    @outfit.vote_by :voter => current_user
+    if current_user.voted_for? @outfit
+      @outfit.unliked_by current_user
+    else
+      @outfit.liked_by current_user
+    end
+
     if @outfit.save
       respond_to do |format|
         format.html { redirect_to outfit_path(@outfit) }
