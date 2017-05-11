@@ -3,6 +3,13 @@ class OutfitsController < ApplicationController
   before_action :set_outfit, only: [:show, :update, :upvote]
 
   def show
+    @missing_items = []
+    unless @outfit.missing_item_ids == []
+      @outfit.missing_item_ids.each do |id|
+        @missing_items << MissingItem.find(id).name
+      end
+    end
+    @missing_items_text = @missing_items.join(' ')
   end
 
   def new
