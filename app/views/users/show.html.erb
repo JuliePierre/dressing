@@ -14,6 +14,13 @@
 <h2>Users Who Have Befriended You</h2>
 <ul>
   <% for user in @user.inverse_friends %>
-  <li><%= h user.email %></li>
+  <% friendship = user.friendships.find_by_friend_id(current_user) %>
+  <div class="user">
+    <p>
+      <strong><%=h user.email %></strong>
+      <%= link_to "Accept friend request", friendship_path(:friendship_id => friendship.id, :friend_id => user), :method => :patch %>
+      Accepted ? <%= friendship.is_accepted %>
+    </p>
+  </div>
   <% end %>
 </ul>

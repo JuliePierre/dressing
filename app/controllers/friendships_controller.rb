@@ -16,6 +16,17 @@ class FriendshipsController < ApplicationController
     end
   end
 
+  def update
+    @friendship = current_user.friendships.find_by_friend_id(params[:friend_id])
+    @friendship.is_accepted = true
+    if @friendship.save
+      flash[:notice] = "Successfully accepted the friend request"
+      redirect_to user_path(current_user)
+    else
+      redirect_to root_path
+    end
+  end
+
   def destroy
     @friendship = current_user.friendships.find(params[:id])
     @friendship.destroy
