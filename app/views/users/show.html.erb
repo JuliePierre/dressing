@@ -1,10 +1,13 @@
 <div class="main">
+  <div class="page-title-small  bg-grey">
+    <h1>Profile</h1>
+  </div>
   <div class="container">
     <div class="row">
       <div class="col s12 m4">
         <div class="user-profile">
           <div class="user-picture">
-            <h3>Mon profil</h3>
+            <div class="subtitle"><h2>Mon profil</h2></div>
             <% avatar_url = @user.facebook_picture_url || "http://placehold.it/30x30" %>
             <%= image_tag(avatar_url, class: 'rounded') %>
           </div>
@@ -19,7 +22,7 @@
       <div class="col s12 m8">
 
         <div class="user-outfits">
-          <h3>Outfits</h3>
+          <div class="subtitle"><h2>Outfits</h2></div>
           <div class="row">
             <% @user_outfits.each do |outfit| %>
               <%= render 'shared/outfit_card', outfit: outfit %>
@@ -28,7 +31,7 @@
         </div>
 
         <div class="user-friends">
-          <h3>Friends</h3>
+          <div class="subtitle"><h2>Friends</h2></div>
           <ul>
             <% for friendship in @user_friends %>
             <li>
@@ -38,7 +41,7 @@
             </li>
             <% end %>
           </ul>
-          <h4>Friend Requests</h4>
+          <div class="subtitle"><h3>Outfits</h3></div>
           <% if @friend_requests.size == 0 %>
             <p>You don't have any friend request</p>
           <% else %>

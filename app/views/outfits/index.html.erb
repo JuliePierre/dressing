@@ -1,6 +1,8 @@
 <div class="main">
+  <div class="page-title-small  bg-grey">
+    <h1>All outfits</h1>
+  </div>
   <div class="container">
-    <h1>Tous les outfits</h1>
     <div class="row">
       <% @user_friends_outfits.each do |outfit| %>
         <%= render 'shared/outfit_card', outfit: outfit %>

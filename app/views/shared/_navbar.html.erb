@@ -1,18 +1,20 @@
 <nav>
   <div class="nav-wrapper">
-    <%= link_to 'Wedding Dressing', root_path, class: 'brand-logo' %>
-    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-    <ul class="right hide-on-med-and-down">
-      <li><%= link_to 'Find a friend', users_path %></li>
-      <li><%= link_to 'See outfits', outfits_path %></li>
-      <% if current_user %>
-        <li><%= link_to 'Profile', user_path(current_user) %></li>
-        <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
-      <% else %>
-        <li><%= link_to 'Log in', new_user_session_path %></li>
-      <% end %>
-      <li><%= link_to 'Create an outfit', new_outfit_path, class: 'btn highlight-btn' %></li>
-    </ul>
+    <div class="container">
+      <%= link_to 'Wedding Dressing', root_path, class: 'brand-logo' %>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><%= link_to 'Find a friend', users_path %></li>
+        <li><%= link_to 'See outfits', outfits_path %></li>
+        <% if current_user %>
+          <li><%= link_to 'Profile', user_path(current_user) %></li>
+          <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to 'Log in', new_user_session_path %></li>
+        <% end %>
+        <li><%= link_to 'Create an outfit', new_outfit_path, class: 'btn highlight-btn' %></li>
+      </ul>
+    </div>
   </div>
 </nav>
 <ul class="side-nav" id="mobile-demo">
