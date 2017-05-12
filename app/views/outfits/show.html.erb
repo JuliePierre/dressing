@@ -26,44 +26,59 @@
 
 <div class="main">
   <div class="page-title-small bg-grey center-align">
-    <div class="container">
+    <div class="container relative">
       <h1><%= @outfit.name %></h1>
+      <!-- Nombre de likes -->
+      <div id="upvotes-counter-container">
+        <%= link_to(upvote_path(@outfit), html_options = { remote: true, method: :post }) do %>
+          <i class="fa fa-heart" aria-hidden="true"></i>
+          <span id='upvotes-counter'>
+            <%= render 'outfits/upvotes_count', outfit: @outfit %>
+          </span>
+        <% end %>
+      </div>
     </div>
   </div>
 
-
   <div class="container">
-
     <!-- Photo de la tenue -->
-    <div class="outfit-container padded">
+    <div class="outfit-container">
       <% if @outfit.photos.size != 0 %>
-        <%= cl_image_tag(@outfit.photos[0].path, class: 'outfit-picture') %>
+        <% @outfit.photos.each do |photo| %>
+          <%= cl_image_tag(photo.path, class: 'outfit-picture') %>
+        <% end %>
       <% end %>
     </div>
-
   </div>
 
   <div class="container">
-    <p>Je cherche : </p>
-      <%= simple_form_for(@outfit) do |f| %>
-        <%= f.error_notification %>
-
-        <%= f.association :missing_items, as: :check_boxes, value_method: :id, prompt: "Choose Items" %>
-
-        <%= f.input :occasion %>
-
-        <%= f.button :submit %>
-    <% end %>
+    <div class="separation-line"></div>
   </div>
 
   <div class="container">
-    <div id='upvotes_counter'>
-      <%= render 'outfits/upvotes_count', outfit: @outfit %>
+    <div class="section-title">
+      <h2>Ce qu'il me manque</h2>
     </div>
-    <p>Et vous, qu'en pensez-vous ?</p>
-    <%= link_to(upvote_path(@outfit), html_options = { remote: true, method: :post }) do %>
-      <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-    <% end %>
+    <div id="missing_items_form">
+      <%= render 'shared/missing_items_form', outfit: @outfit %>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="separation-line"></div>
+  </div>
+
+  <div class="container">
+    <div class="section-title ">
+      <h2>Votre avis</h2>
+    </div>
+    <div id="outfit_reviews">
+
+    </div>
+  </div>
+
+  <div class="container">
+
   </div>
 
   <div class="container center-align">
@@ -73,6 +88,9 @@
     <div class="fb-send" data-href="<%= request.original_url %>"></div>
   </div>
 </div>
+<br>
+<br>
+<br>
 
 
 <% content_for(:after_js) do %>

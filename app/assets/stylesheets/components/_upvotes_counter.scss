@@ -1,0 +1,12 @@
+#upvotes-counter-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  .fa {
+    font-size: 36px;
+    color: $b-blue-dark;
+    &:hover {
+      color: $b-yellow;
+    }
+  }
+}
