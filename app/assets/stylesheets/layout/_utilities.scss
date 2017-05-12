@@ -4,6 +4,23 @@
  * Feel free to change them and create your own
  * ------------------------------------- */
 
+// Containers
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  @media (min-width: 1200px) {
+    width: 1183px;
+  }
+  @media (min-width: 992px) {
+    width: 970px;
+  }
+  @media (min-width: 768px) {
+    width: 750px;
+  }
+}
+
 // Paddings
 .padded {
   padding-top: 5em;
@@ -16,7 +33,6 @@
   align-items: center;
   justify-content: space-around;
 }
-
 
 .center-align {
   text-align: center;

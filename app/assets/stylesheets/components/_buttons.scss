@@ -1,6 +1,25 @@
 .btn {
-  background-color: $secondary-color;
-  &:hover {
-    background-color: $secondary-color;
+  display: inline-block;
+  letter-spacing: 2px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  a {
+    color: #000;
+    line-height: 23px;
   }
 }
+.highlight-btn {
+  border: 2px solid #000;
+  display: inline-block;
+  font-size: 12px;
+  color: #000;
+  background-color: transparent;
+  &:hover {
+    background-color: black;
+    color: #fff;
+    border: 2px solid #000;
+  }
+}
+
