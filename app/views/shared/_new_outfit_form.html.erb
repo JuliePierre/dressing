@@ -3,7 +3,7 @@
 
   <%= f.input :name, input_html: { placeholder: "Donnez-lui un nom" } %>
   <%= f.input :occasion, input_html: { placeholder: "L'occasion" } %>
-  <%= f.input :photo, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
+  <%= f.input :photos, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
 
   <%= f.button :submit %>
 <% end %>

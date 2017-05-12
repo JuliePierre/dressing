@@ -1,5 +1,5 @@
 class Outfit < ApplicationRecord
-  has_attachment :photo
+  has_attachments :photos, maximum: 5
   acts_as_votable
 
   belongs_to :user

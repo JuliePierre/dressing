@@ -12,9 +12,16 @@
             <div class="user-card">
               <% avatar_url = user.facebook_picture_url || image_path('fake-avatar.jpg') %>
               <%= image_tag(avatar_url, class: 'user-card-picture') %> <br>
-              <strong><%=h user.email %></strong> <br>
+              <% if user == current_user %>
+                <strong>Me</strong>
+              <% else %>
+                <strong><%=h user.email %></strong>
+              <% end %>
+              <br>
+              <% unless user == current_user %>
                 <%= link_to "Send invitation", friendships_path(:friend_id => user), :method => :post %>
-                <div class="clear"></div>
+              <% end %>
+              <div class="clear"></div>
             </div>
           </div>
         <% end %>
