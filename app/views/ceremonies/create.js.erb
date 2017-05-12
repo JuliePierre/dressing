@@ -1,5 +1,6 @@
-<% if @review.errors.any? %>
-  alert('probleme');
+<% if @ceremony.errors.any? %>
+  flash("Impossible de créer la cérémonie. Veuillez vérifier qu'elle n'existe pas déjà.");
 <% else %>
-  alert('ceremonie créée');
+  var ceremony = $('#ceremony_name').val();
+  $('#outfit_ceremony').val(ceremony);
 <% end %>

@@ -11,12 +11,12 @@
             <div class="row">
               <div class="input-field col s12">
                   <select>
-                    <option value="" disabled selected>Choose your option</option>
+                    <option value="" selected>Choose your option</option>
                       <% @ceremonies.each do |ceremony| %>
                         <option value=<%= ceremony.id %>><%= ceremony.name %></option>
                       <% end %>
                   </select>
-              <label>Materialize Select</label>
+              <label>Existing ceremonies</label>
             </div>
             <button class="btn btn-primary" id="validate-ceremony">Validate ceremony</button>
           <% end %>
