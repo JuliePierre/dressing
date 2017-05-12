@@ -86,31 +86,36 @@
     <div class="separation-line"></div>
   </div>
 
-  <div class="container">
-    <div class="section-title">
-      <h2>Ma proposition</h2>
-    </div>
 
-    <% if @current_proposals.size != 0 %>
-      <p>Je peux prêter : </p>
-      <% @current_proposals.each do |proposal| %>
-        <div class="chip chip-large">
-          <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-          <%= MissingItem.find(proposal.missing_item_id).name %>
-        </div>
-        <% unless proposal.photos.size == 0 %>
-          <% proposal.photos.each do |photo| %>
-            <%= cl_image_tag(photo.path, class: 'item-picture') %>
+  <div class="container">
+    <% if current_user.id == @outfit.user_id %>
+      <div class="section-title">
+        <h2>Les propositions reçues</h2>
+      </div>
+    <% else %>
+        <div class="section-title">
+        <h2>Ma proposition</h2>
+      </div>
+      <% if @current_proposals.size != 0 %>
+        <p>Je peux prêter : </p>
+        <% @current_proposals.each do |proposal| %>
+          <div class="chip chip-large">
+            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+            <%= MissingItem.find(proposal.missing_item_id).name %>
+          </div>
+          <% unless proposal.photos.size == 0 %>
+            <% proposal.photos.each do |photo| %>
+              <%= cl_image_tag(photo.path, class: 'item-picture') %>
+            <% end %>
           <% end %>
         <% end %>
+      <% else %>
+        <div class= "proposal-form" id="new-proposal-form">
+          <p>Je te propose : </p>
+          <%= render 'shared/new_proposal_form', proposal: @proposal %>
+        </div>
       <% end %>
-    <% else %>
-      <div class= "proposal-form" id="new-proposal-form">
-        <p>Je te propose : </p>
-        <%= render 'shared/new_proposal_form', proposal: @proposal %>
-      </div>
     <% end %>
-
   </div>
 
 
