@@ -80,7 +80,7 @@ class OutfitsController < ApplicationController
   end
 
   def outfit_params
-    params.require(:outfit).permit(:name, :occasion, photos: [])
+    params.require(:outfit).permit(:name, :occasion, :ceremony_id, photos: [])
   end
 
 end

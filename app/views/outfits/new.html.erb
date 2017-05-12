@@ -1,36 +1,49 @@
 <div class="main">
   <div class="container">
-  <div class="form-container">
-    <div class="form-header-container">
-      <div class="form-header-title">Select an occasion</div>
-    </div>
-    <div class="form-content-container">
-      <!-- Liste déroulante des cérémonies dispos : cas 1, elle est dedans -->
-      <% unless @ceremonies.size == 0 %>
-        <div class="row">
-          <div class="input-field col s12">
-            <select>
-              <option value="" disabled selected>Choose your option</option>
-                <% @ceremonies.each do |ceremony| %>
-                  <option value=<%= ceremony.id %>><%= ceremony.name %></option>
-                <% end %>
-            </select>
-            <label>Materialize Select</label>
-          </div>
-        <% end %>
+    <div class="form-container">
+      <div class="form-header-container">
+        <div class="form-header-title">Select an occasion</div>
       </div>
-      <!-- Sinon, création d'une nouvelle cérémonie -->
-      <%= render 'shared/new_ceremony_form', ceremony: @ceremony %>
-    </div>
-      <div class="form-container">
-        <div class="form-header-container">
-          <div class="form-header-title">Create an outfit</div>
+      <div class="form-content-container">
+        <div id="ceremony-choice">
+          <!-- Liste déroulante des cérémonies dispos : cas 1, elle est dedans -->
+          <% unless @ceremonies.size == 0 %>
+            <div class="row">
+              <div class="input-field col s12">
+                  <select>
+                    <option value="" disabled selected>Choose your option</option>
+                      <% @ceremonies.each do |ceremony| %>
+                        <option value=<%= ceremony.id %>><%= ceremony.name %></option>
+                      <% end %>
+                  </select>
+              <label>Materialize Select</label>
+            </div>
+            <button class="btn btn-primary" id="validate-ceremony">Validate ceremony</button>
+          <% end %>
         </div>
-
-        <div class="form-content-container">
-          <!-- Formulaire avec simple_for et attachinary -->
-          <%= render 'shared/new_outfit_form', outfit: @outfit %>
-        </div>
+        <div class="form-header-title">Or create one</div>
+        <!-- Et anyway, création d'une nouvelle cérémonie -->
+        <%= render 'shared/new_ceremony_form', ceremony: @ceremony %>
       </div>
+    </div>
+    <div class="form-container">
+      <div class="form-header-container">
+        <div class="form-header-title">Create an outfit</div>
+      </div>
+      <div class="form-content-container">
+        <!-- Formulaire avec simple_for et attachinary -->
+        <%= render 'shared/new_outfit_form', outfit: @outfit %>
+      </div>
+    </div>
   </div>
 </div>
+
+
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      $('select').material_select();
+    });
+  <% end %>
+<% end %>

@@ -4,7 +4,7 @@
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 .form-header-container {
-  background-color: $b-blue-dark;
+  background-color: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding: 2rem 3rem;
@@ -12,7 +12,7 @@
   font-size: 1.4rem;
 }
 .form-header-title {
-  color: white;
+  color: #000;
   text-transform: uppercase;
 }
 .form-content-container {
