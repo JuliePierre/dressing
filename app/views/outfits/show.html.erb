@@ -91,9 +91,9 @@
       <h2>Ma proposition</h2>
     </div>
 
-    <% if current_user.proposals.size != 0 %>
+    <% if @current_proposals.size != 0 %>
       <p>Je peux prêter : </p>
-      <% current_user.proposals.each do |proposal| %>
+      <% @current_proposals.each do |proposal| %>
         <div class="chip chip-large">
           <i class="fa fa-shopping-bag" aria-hidden="true"></i>
           <%= MissingItem.find(proposal.missing_item_id).name %>
@@ -105,7 +105,7 @@
         <% end %>
       <% end %>
     <% else %>
-      <div id="proposal-form">
+      <div class= "proposal-form" id="new-proposal-form">
         <p>Je te propose : </p>
         <%= render 'shared/new_proposal_form', proposal: @proposal %>
       </div>

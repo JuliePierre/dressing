@@ -23,10 +23,13 @@ class OutfitsController < ApplicationController
     end
     @missing_items_text = @missing_items.join(' ')
     @proposal = Proposal.new
+    @current_proposals = current_user.proposals.where('outfit_id = ?', @outfit.id)
   end
 
   def new
     @outfit = Outfit.new
+    @ceremony = Ceremony.new
+    @ceremonies = Ceremony.all
   end
 
   def create

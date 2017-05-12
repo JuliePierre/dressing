@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :outfits, only: [ :index, :new, :create, :show, :update ]
   resources :users, only: [ :index, :show ]
   resources :proposals, only: [ :new, :create ]
+  resources :ceremonies, only: [ :create ]
   resources :friendships
   post "outfits/:id/upvote", to: "outfits#upvote", as: :upvote
 end

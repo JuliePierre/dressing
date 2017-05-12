@@ -1,0 +1,7 @@
+<%= simple_form_for(ceremony) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :name, input_html: { placeholder: "Donnez-lui un nom" } %>
+
+  <%= f.button :submit, input_html: { remote: true } %>
+<% end %>
