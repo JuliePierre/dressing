@@ -94,7 +94,15 @@
     <% if current_user.proposals.size != 0 %>
       <p>Je peux prêter : </p>
       <% current_user.proposals.each do |proposal| %>
-        <p><%= MissingItem.find(proposal.missing_item_id).name %></p>
+        <div class="chip chip-large">
+          <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+          <%= MissingItem.find(proposal.missing_item_id).name %>
+        </div>
+        <% unless proposal.photos.size == 0 %>
+          <% proposal.photos.each do |photo| %>
+            <%= cl_image_tag(photo.path, class: 'item-picture') %>
+          <% end %>
+        <% end %>
       <% end %>
     <% else %>
       <div id="proposal-form">
