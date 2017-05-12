@@ -8,7 +8,7 @@
         <div class="user-profile">
           <div class="user-picture">
             <div class="subtitle"><h2>Mon profil</h2></div>
-            <% avatar_url = @user.facebook_picture_url || "http://placehold.it/30x30" %>
+            <% avatar_url = @user.facebook_picture_url || image_path('fake-avatar.jpg') %>
             <%= image_tag(avatar_url, class: 'rounded') %>
           </div>
           <div class="user-infos">

@@ -5,16 +5,20 @@
     </div>
   </div>
   <div class="container">
-    <p>Display de tous les users et possibilité de les ajouter</p>
-
-    <% for user in @users %>
-      <div class="user">
-        <p>
-          <strong><%=h user.email %></strong>
-          <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
-          <div class="clear"></div>
-        </p>
+    <div class="padded">
+      <div class="row">
+        <% for user in @users %>
+          <div class="col s6 l3">
+            <div class="user-card">
+              <% avatar_url = user.facebook_picture_url || image_path('fake-avatar.jpg') %>
+              <%= image_tag(avatar_url, class: 'user-card-picture') %> <br>
+              <strong><%=h user.email %></strong> <br>
+                <%= link_to "Send invitation", friendships_path(:friend_id => user), :method => :post %>
+                <div class="clear"></div>
+            </div>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>

@@ -11,6 +11,7 @@ class OutfitsController < ApplicationController
     @user_friends_outfits = all_outfits.select do |outfit|
       user_friends_ids.include?(outfit.user_id)
     end
+    @outfits = [@user_friends_outfits, current_user.outfits].flatten
   end
 
   def show
