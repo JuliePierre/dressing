@@ -55,14 +55,30 @@
     <div class="separation-line"></div>
   </div>
 
-  <div class="container">
-    <div class="section-title">
-      <h2>Ce qu'il me manque</h2>
+  <% if current_user.id == @outfit.user_id %>
+    <div class="container">
+      <div class="section-title">
+        <h2>Ce qu'il me manque</h2>
+      </div>
+      <div id="missing-items-form">
+        <%= render 'shared/missing_items_form', outfit: @outfit %>
+      </div>
     </div>
-    <div id="missing_items_form">
-      <%= render 'shared/missing_items_form', outfit: @outfit %>
+  <% else %>
+    <div class="container">
+      <div class="section-title">
+        <h2>Accessoires recherchés</h2>
+      </div>
+      <div id="missing-items-display">
+        <% @missing_items.each do |item| %>
+          <div class="chip">
+            <img src="images/yuna.jpg" alt="Contact Person">
+           <%= item.name %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="container">
     <div class="separation-line"></div>
