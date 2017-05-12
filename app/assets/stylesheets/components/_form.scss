@@ -1,10 +1,12 @@
 .form-container {
-  background-color: $b-blue-light;
+  background-color: transparent;
   border-radius: 10px;
+  border: 1px solid $b-blue-dark;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
 }
 .form-header-container {
-  background-color: white;
+  background-color: $b-blue-dark;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding: 2rem 3rem;
@@ -12,7 +14,7 @@
   font-size: 1.4rem;
 }
 .form-header-title {
-  color: #000;
+  color: #fff;
   text-transform: uppercase;
 }
 .form-content-container {
@@ -33,7 +35,7 @@ input.btn {
   width: 100% !important;
   margin-top: 2rem;
 }
-form .form-inputs .input-field {
+form .input-field {
   width: 100%;
 }
 input[type=password] {
