@@ -22,6 +22,7 @@ class OutfitsController < ApplicationController
       end
     end
     @missing_items_text = @missing_items.join(' ')
+    @proposal = Proposal.new
   end
 
   def new

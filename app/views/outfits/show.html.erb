@@ -77,15 +77,37 @@
           </div>
         <% end %>
       </div>
+
     </div>
-    <div class="fb-send" data-href="<%= request.original_url %>">Proposer un accessoire</div>
+    <div class="fb-send" data-href="<%= request.original_url %>">Envoyer un message</div>
   <% end %>
 
   <div class="container">
     <div class="separation-line"></div>
   </div>
 
+  <div class="container">
+    <div class="section-title">
+      <h2>Ma proposition</h2>
+    </div>
+
+    <% if current_user.proposals.size != 0 %>
+      <p>Je peux prêter : </p>
+      <% current_user.proposals.each do |proposal| %>
+        <p><%= MissingItem.find(proposal.missing_item_id).name %></p>
+      <% end %>
+    <% else %>
+      <div id="proposal-form">
+        <p>Je te propose : </p>
+        <%= render 'shared/new_proposal_form', proposal: @proposal %>
+      </div>
+    <% end %>
+
+  </div>
+
+
 <!-- Créer ici la case review -->
+
 <!--   <div class="container">
     <div class="section-title ">
       <h2>Votre avis</h2>

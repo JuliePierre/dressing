@@ -10,3 +10,13 @@
 #missing-items-display {
   margin-top: 2rem;
 }
+
+#proposal-form {
+  margin-top: 2rem;
+  .check_boxes {
+    display: flex;
+    .checkbox {
+      margin-right: 50px;
+    }
+  }
+}
