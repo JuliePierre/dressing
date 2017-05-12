@@ -17,8 +17,12 @@
 }
 
 .user-friends {
+  margin-top: 4rem;
   @media (max-width: 375px) {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+  img {
+    height: 85px;
   }
 }
