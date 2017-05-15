@@ -7,8 +7,9 @@ class Friendship < ApplicationRecord
   private
 
   def send_friendship_asking_email
-    user = User.find(self.friend_id)
-    UserMailer.ask_for_friendship(user).deliver_now
+    user = User.find(self.user_id)
+    target = User.find(self.friend_id)
+    UserMailer.ask_for_friendship(user, target).deliver_now
   end
 
 end
