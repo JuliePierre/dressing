@@ -27,6 +27,7 @@
                 <div class="col s12 l6">
                   <% avatar_url = friendship.friend.facebook_picture_url || image_path('fake-avatar.jpg') %>
                   <%= image_tag(avatar_url, class: 'rounded') %> <br>
+                  <%= friendship.friend.email %>
                   <%= link_to "Remove", friendship, :method => :delete %>
                 </div>
               <% end %>
@@ -51,17 +52,13 @@
             </ul>
           <% end %>
           <% unless @made_friend_requests.size == 0 %>
-            <p>You have asked for friendship the following people :</p>
+            <p>You have asked for friendship the following people and are waiting for approval :</p>
             <ul>
               <% for friendship in @made_friend_requests %>
               <% user = User.find(friendship.friend_id) %>
               <div class="user">
                 <p>
                   <strong><%=h user.email %></strong>
-                  <%= link_to "Accept friend request", friendship_path(:friendship_id => friendship.id, :friend_id => user), :method => :patch, remote: true %>
-                  <div id="friendship-status-display-<%= friendship.id %>">
-                    <%= render 'friendships/friendship_status_display', friendship: friendship %>
-                  </div>
                 </p>
               </div>
               <% end %>
@@ -72,7 +69,7 @@
 
       <div class="col s12 m8">
         <div class="user-outfits">
-          <div class="subtitle"><h2>Outfits</h2></div>
+          <div class="subtitle"><h2>My Outfits</h2></div>
           <div class="row">
             <% @user_outfits.each do |outfit| %>
               <%= render 'shared/outfit_card', outfit: outfit %>

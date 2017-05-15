@@ -4,27 +4,26 @@ class OutfitsController < ApplicationController
   def index
     all_outfits = Outfit.all
 
-    # Ordre de demande
-    user_friends_inverse = User.joins(:friendships).where(friendships: { is_accepted: true, user_id: current_user.id })
-    user_friends_inverse_ids = []
-    user_friends_inverse.each do |friend|
-      user_friends_inverse_ids << friend.id
-    end
-    @user_friends_inverse_outfits = all_outfits.select do |outfit|
-      user_friends_inverse_ids.include?(outfit.user_id)
-    end
-
-    # Ordre de demande
-    user_friends = User.joins(:friendships).where(friendships: { is_accepted: true, friend_id: current_user.id })
     user_friends_ids = []
-    user_friends.each do |friend|
-      user_friends_ids << friend.id
+
+    # My friends (asked for friend and accepted)
+    user_friends = current_user.friendships.where("is_accepted = ?", true)
+    user_friends.each do |friendship|
+      user_friends_ids << friendship.friend_id
     end
+    # My inverse friends (they asked my friendship and I accepted)
+    user_friends_inverse = current_user.inverse_friendships.where("is_accepted = ?", true)
+    user_friends_inverse.each do |friendship|
+      user_friends_ids << friendship.user_id
+    end
+    # all of my friends = user_friends_ids
+    # Then, choose these friends'outfits
+
     @user_friends_outfits = all_outfits.select do |outfit|
       user_friends_ids.include?(outfit.user_id)
     end
 
-    @outfits = [@user_friends_inverse_outfits, @user_friends_outfits, current_user.outfits].flatten
+    @outfits = [@user_friends_outfits, current_user.outfits].flatten
   end
 
   def show
