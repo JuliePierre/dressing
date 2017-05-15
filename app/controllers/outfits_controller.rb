@@ -56,8 +56,10 @@ class OutfitsController < ApplicationController
   end
 
   def update
-    params[:outfit][:missing_item_ids].delete_at(0)
-    @outfit.missing_item_ids = params[:outfit][:missing_item_ids]
+    unless params[:outfit][:missing_item_ids].nil?
+      params[:outfit][:missing_item_ids].delete_at(0)
+      @outfit.missing_item_ids = params[:outfit][:missing_item_ids]
+    end
     if @outfit.update(outfit_params)
       redirect_to outfit_path(@outfit)
     else

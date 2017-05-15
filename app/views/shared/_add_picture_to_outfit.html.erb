@@ -1,7 +1,7 @@
 <%= simple_form_for(outfit) do |f| %>
   <%= f.error_notification %>
 
-  <%= f.association :missing_items, as: :check_boxes, value_method: :id, prompt: "Choose Items" %>
+  <%= f.input :photos, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
 
   <%= f.button :submit, class: 'highlight-btn'  %>
 <% end %>
