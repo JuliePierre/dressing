@@ -27,7 +27,7 @@
 <!-- *********** -->
 
 <div class="main">
-  <div class="page-title-small bg-grey center-align">
+  <div class="page-title bg-grey center-align">
     <div class="container relative">
       <h1><%= @outfit.name %></h1>
       <!-- Nombre de likes -->
@@ -93,6 +93,9 @@
       <div class="section-title">
         <h2>Accessoires recherchés</h2>
       </div>
+      <% if @missing_items == [] %>
+        <p class="center-align"><%= User.find(@outfit.user_id).email %> n'a pas encore précisé ce qui lui manquait. Vous pouvez malgré tout lui proposer des accessoires pour cette tenue.</p>
+      <% end %>
       <div id="missing-items-display">
         <% @missing_items.each do |item| %>
           <div class="chip chip-large">
@@ -141,17 +144,23 @@
       </div>
       <% if @current_proposals.size != 0 %>
         <p>Je peux prêter : </p>
-        <% @current_proposals.each do |proposal| %>
-          <div class="chip chip-large">
-            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-            <%= MissingItem.find(proposal.missing_item_id).name %>
-          </div>
-          <% unless proposal.photos.size == 0 %>
-            <% proposal.photos.each do |photo| %>
-              <%= cl_image_tag(photo.path, class: 'item-picture') %>
-            <% end %>
+        <div class="row">
+          <% @current_proposals.each do |proposal| %>
+            <div class="col s12 m4">
+              <div class="user-proposition">
+                <div class="chip chip-large">
+                  <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                  <%= MissingItem.find(proposal.missing_item_id).name %>
+                </div>
+                <% unless proposal.photos.size == 0 %>
+                  <% proposal.photos.each do |photo| %>
+                    <%= cl_image_tag(photo.path, class: 'item-picture') %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
           <% end %>
-        <% end %>
+        </div>
       <% else %>
         <div class= "proposal-form" id="new-proposal-form">
           <p>Je te propose : </p>
