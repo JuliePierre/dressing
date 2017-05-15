@@ -3,8 +3,12 @@
 
 <% if @outfit.errors.any? %>
   // Render new review form with errors
-  alert('Erreur')
+  alert("Votre vote n'a pas pu être enregistré. Nous vous invitons à réessayer ultérieurement.")
 <% else %>
-  alert('ça a fonctionné ! wouhou')
   $('#upvotes-counter').html(' <%= j render "outfits/upvotes_count", outfit: @outfit %>')
+  <% if @user_vote %>
+    $('#upvotes-counter-container .fa-heart').removeClass('active');
+  <% else %>
+    $('#upvotes-counter-container .fa-heart').addClass('active');
+  <% end %>
 <% end %>

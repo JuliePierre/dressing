@@ -36,6 +36,7 @@ class OutfitsController < ApplicationController
     @missing_items_text = @missing_items.join(' ')
     @proposal = Proposal.new
     @current_proposals = current_user.proposals.where('outfit_id = ?', @outfit.id)
+    @user_vote = current_user.voted_as_when_voted_for @outfit
   end
 
   def new
@@ -69,7 +70,9 @@ class OutfitsController < ApplicationController
   end
 
   def upvote
-    if current_user.voted_for? @outfit
+    @user_vote = current_user.voted_as_when_voted_for @outfit
+
+    if @user_vote
       @outfit.unliked_by current_user
     else
       @outfit.liked_by current_user
