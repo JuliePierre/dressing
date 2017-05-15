@@ -58,7 +58,9 @@
         <% end %>
       <% end %>
     </div>
-    <div class="btn highlight-btn" id="add-picture-button">Add pictures</div>
+    <% if current_user.id == @outfit.user_id %>
+      <div class="btn highlight-btn" id="add-picture-button">Add pictures</div>
+    <% end %>
   </div>
 
   <div id="add-picture-form">
