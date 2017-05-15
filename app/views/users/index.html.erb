@@ -23,6 +23,10 @@
               <% else %>
                 <% if current_user.all_friends_ids.include?(user.id) %>
                   <i class="fa fa-check-square-o" aria-hidden="true"></i> Friend
+                <% elsif current_user.friends.include?(user) %>
+                  <span>Pending request</span>
+                <% elsif current_user.inverse_friends.include?(user) %>
+                  <span>Is waiting for your response</span>
                 <% else %>
                   <%= link_to "Send invitation", friendships_path(:friend_id => user), :method => :post %>
                 <% end %>

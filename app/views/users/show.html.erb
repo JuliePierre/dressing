@@ -31,18 +31,26 @@
                   <%= link_to "Remove", friendship, :method => :delete %>
                 </div>
               <% end %>
+              <% for friendship in @user_inverse_friends %>
+                <div class="col s12 l6">
+                  <% avatar_url = friendship.friend.facebook_picture_url || image_path('fake-avatar.jpg') %>
+                  <%= image_tag(avatar_url, class: 'rounded') %> <br>
+                  <%= friendship.friend.email %> <br>
+                  <%= link_to "Remove", friendship, :method => :delete %>
+                </div>
+              <% end %>
             </div>
           <div class="subtitle"><h3>Friend requests</h3></div>
           <% if @friend_requests.size == 0 %>
             <p>You don't have any friend request</p>
           <% else %>
             <ul>
-              <% for user in @friend_requests %>
-              <% friendship = user.friendships.find_by_friend_id(current_user) %>
+              <% for friendship in @friend_requests %>
+              <% friend = User.find(friendship.user_id) %>
               <div class="user">
                 <p>
-                  <strong><%=h user.email %></strong>
-                  <%= link_to "Accept friend request", friendship_path(:friendship_id => friendship.id, :friend_id => user), :method => :patch, remote: true %>
+                  <strong><%=h friend.email %></strong>
+                  <%= link_to "Accept friend request", friendship_path(:friendship_id => friendship.id, :friend_id => friend), :method => :patch, remote: true, class: 'accept-friend-request', "data-id" => friendship.id %>
                   <div id="friendship-status-display-<%= friendship.id %>">
                     <%= render 'friendships/friendship_status_display', friendship: friendship %>
                   </div>

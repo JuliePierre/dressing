@@ -1,1 +1,5 @@
-<p>La demande a-t-elle été acceptée ? : <%= friendship.is_accepted %></p>
+<% if friendship.is_accepted %>
+  <span>Demande acceptée</span>
+<% else %>
+  <span>Demande en attente de réponse</span>
+<% end %>

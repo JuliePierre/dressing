@@ -1,5 +1,8 @@
 <div class="col s12 m6 l4">
   <div class="outfit-card">
+    <div class="outfit-likes" style="background-image: url('<%= image_path('blue-heart.svg')%>')">
+      <%= outfit.get_likes.size %>
+    </div>
     <%= link_to '', outfit_path(outfit), class: 'card-link' %>
     <div class="outfit-picture">
       <%= cl_image_tag pictures[0].path %>
