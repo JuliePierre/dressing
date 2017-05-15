@@ -1,7 +1,7 @@
 <!-- METATAGS -->
 <% content_for :meta_title, "#{@outfit.name}" %>
 <% content_for :meta_description, "J'ai besoin de votre aide, je cherche les éléments suivants : #{@missing_items_text}" %>
-<% content_for :meta_image, cloudinary_url(@outfit.photos[0].path) %>
+<% content_for :meta_image, cloudinary_url(@outfit_pictures[0].path) %>
 
 <!-- Facebook SDK for JavaScript -->
 <script>
@@ -50,8 +50,8 @@
   <div class="container center-align">
     <!-- Photo de la tenue -->
     <div class="outfit-container">
-      <% if @outfit.photos.size != 0 %>
-        <% @outfit.photos.each do |photo| %>
+      <% if @outfit_pictures %>
+        <% @outfit_pictures.each do |photo| %>
           <%= cl_image_tag(photo.path, class: 'outfit-picture') %>
         <% end %>
       <% end %>
