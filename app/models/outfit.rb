@@ -5,7 +5,7 @@ class Outfit < ApplicationRecord
   belongs_to :user
   belongs_to :ceremony
   has_and_belongs_to_many :missing_items
-  has_many :proposals
+  has_many :proposals, dependent: :destroy
 
   validates :name, presence: true
 end

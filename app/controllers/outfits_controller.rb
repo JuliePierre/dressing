@@ -51,6 +51,7 @@ class OutfitsController < ApplicationController
   def create
     @outfit = Outfit.new(outfit_params)
     @outfit.user = current_user
+    @outfit.ceremony_id = Ceremony.find_by_name(params[:outfit][:ceremony]).id
 
     if @outfit.save
       redirect_to outfit_path(@outfit)
@@ -100,7 +101,7 @@ class OutfitsController < ApplicationController
   end
 
   def outfit_params
-    params.require(:outfit).permit(:name, :occasion, :ceremony_id, photos: [])
+    params.require(:outfit).permit(:name, :occasion, photos: [])
   end
 
 end

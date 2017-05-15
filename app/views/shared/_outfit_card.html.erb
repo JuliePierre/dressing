@@ -5,8 +5,9 @@
       <%= cl_image_tag pictures[0].path %>
     </div>
     <div class="outfit-description">
-      <p><%= outfit.name %></p>
-      <p><%= outfit.occasion %></p>
+      <p class="outfit-owner"><%= outfit.name %></p>
+      <i class="fa fa-gift" aria-hidden="true"></i>
+      <p class="outfit-occasion"><%= Ceremony.find(outfit.ceremony_id).name %></p>
     </div>
   </div>
 </div>

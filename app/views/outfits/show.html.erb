@@ -1,7 +1,9 @@
 <!-- METATAGS -->
 <% content_for :meta_title, "#{@outfit.name}" %>
 <% content_for :meta_description, "J'ai besoin de votre aide, je cherche les éléments suivants : #{@missing_items_text}" %>
-<% content_for :meta_image, cloudinary_url(@outfit_pictures[0].path) %>
+<% if @outfit_pictures %>
+  <% content_for :meta_image, cloudinary_url(@outfit_pictures[0].path) %>
+<% end %>
 
 <!-- Facebook SDK for JavaScript -->
 <script>
@@ -113,21 +115,28 @@
     <% if current_user.id == @outfit.user_id %>
       <div class="section-title">
         <h2>Les propositions reçues</h2>
+      </div>
+      <div class="propositions">
         <% if @outfit.proposals.size == 0 %>
           <p class="center-align">Vous n'avez reçu aucune proposition pour l'instant</p>
         <% else %>
           <% @outfit.proposals.each do |proposal| %>
-            <h4>Proposition reçue de <%= User.find(proposal.user_id).email %></h4>
-            <p><%= MissingItem.find(proposal.missing_item_id).name %></p>
-            <% unless proposal.photos.size == 0 %>
+            <h6>Proposition reçue de <%= User.find(proposal.user_id).email %></h6>
+            <h5><%= MissingItem.find(proposal.missing_item_id).name %></h5>
+            <% if proposal.photos.size == 0 %>
+              <p class="proposition-comment">Votre ami(e) n'a pas fourni de photo pour cette proposition</p>
+            <% else %>
               <% proposal.photos.each do |photo| %>
                 <%= cl_image_tag(photo.path, class: 'item-picture') %>
               <% end %>
             <% end %>
+              <div class="container small-container">
+                <div class="separation-line"></div>
+              </div>
           <% end %>
         <% end %>
-
       </div>
+
     <% else %>
         <div class="section-title">
         <h2>Ma proposition</h2>

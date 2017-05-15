@@ -38,4 +38,17 @@ class User < ApplicationRecord
     return user
   end
 
+  def all_friends_ids
+    user_friends_ids = []
+    user_friends = self.friendships.where("is_accepted = ?", true)
+    user_friends.each do |friendship|
+      user_friends_ids << friendship.friend_id
+    end
+    user_friends_inverse = self.inverse_friendships.where("is_accepted = ?", true)
+    user_friends_inverse.each do |friendship|
+      user_friends_ids << friendship.user_id
+    end
+    return user_friends_ids
+  end
+
 end

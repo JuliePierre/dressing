@@ -18,8 +18,14 @@
                 <strong><%=h user.email %></strong>
               <% end %>
               <br>
-              <% unless user == current_user %>
-                <%= link_to "Send invitation", friendships_path(:friend_id => user), :method => :post %>
+              <% if user == current_user %>
+                <span><%= user.email %></span>
+              <% else %>
+                <% if current_user.all_friends_ids.include?(user.id) %>
+                  <i class="fa fa-check-square-o" aria-hidden="true"></i> Friend
+                <% else %>
+                  <%= link_to "Send invitation", friendships_path(:friend_id => user), :method => :post %>
+                <% end %>
               <% end %>
               <div class="clear"></div>
             </div>
