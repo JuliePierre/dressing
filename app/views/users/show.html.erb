@@ -72,7 +72,8 @@
           <div class="subtitle"><h2>My Outfits</h2></div>
           <div class="row">
             <% @user_outfits.each do |outfit| %>
-              <%= render 'shared/outfit_card', outfit: outfit %>
+              <% pictures = outfit.photos.order(id: :asc) %>
+              <%= render 'shared/outfit_card', outfit: outfit, pictures: pictures %>
             <% end %>
           </div>
         </div>
