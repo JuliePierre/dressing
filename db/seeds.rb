@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+MissingItem.destroy_all
 a = MissingItem.create(name: "Chapeau")
 b = MissingItem.create(name: "Foulard")
 c = MissingItem.create(name: "Pochette")
