@@ -8,7 +8,9 @@
   $('#upvotes-counter').html(' <%= j render "outfits/upvotes_count", outfit: @outfit %>')
   <% if @user_vote %>
     $('#upvotes-counter-container .fa-heart').removeClass('active');
+    $('#upvotes-counter').removeClass('active');
   <% else %>
     $('#upvotes-counter-container .fa-heart').addClass('active');
+    $('#upvotes-counter').addClass('active');
   <% end %>
 <% end %>
