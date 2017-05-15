@@ -1,3 +1,6 @@
+.simple_form {
+  text-align: center;
+}
 .form-container {
   background-color: transparent;
   border: 1px solid $b-blue-dark;
@@ -29,7 +32,6 @@ label.optional, label.required {
   display: none !important;
 }
 input.btn {
-  width: 100% !important;
   margin-top: 2rem;
 }
 form .input-field {
