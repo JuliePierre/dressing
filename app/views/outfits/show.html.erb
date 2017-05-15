@@ -101,9 +101,7 @@
           </div>
         <% end %>
       </div>
-
     </div>
-    <div class="fb-send" data-href="<%= request.original_url %>">Envoyer un message</div>
   <% end %>
 
   <div class="container">
@@ -175,16 +173,20 @@
     </div>
   </div> -->
 
-  <div class="container center-align">
+  <div class="container">
+    <div class="separation-line"></div>
+  </div>
+
+  <div class="container center-align last-container">
+    <div class="section-title">
+      <h2>Partager cette page via Messenger</h2>
+    </div>
     <!-- Construire ici un message type qui sera envoyé sur facebook -->
     <!-- Exemple : voici la photo, j'ai besoin de xxx -->
     <!-- 1ère phase : tester d'intégrer l'inbox facebook -->
     <div class="fb-send" data-href="<%= request.original_url %>"></div>
   </div>
 </div>
-<br>
-<br>
-<br>
 
 
 <% content_for(:after_js) do %>

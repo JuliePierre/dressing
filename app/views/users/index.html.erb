@@ -8,7 +8,7 @@
     <div class="padded">
       <div class="row">
         <% for user in @users %>
-          <div class="col s6 l3">
+          <div class="col s12 l3">
             <div class="user-card">
               <% avatar_url = user.facebook_picture_url || image_path('fake-avatar.jpg') %>
               <%= image_tag(avatar_url, class: 'user-card-picture') %> <br>
