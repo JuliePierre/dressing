@@ -22,10 +22,16 @@ nav {
     font-size: 20px;
     font-style: italic;
     letter-spacing: 0.1rem;
+    @media (max-width: 320px) {
+      font-size: 15px;
+    }
   }
 }
 
 // Navigation mobile
 #sidenav-overlay {
   background-color: transparent;
+}
+.side-nav li > a.btn, .side-nav li > a.btn-large, .side-nav li > a.btn-large, .side-nav li > a.btn-floating {
+  color: #000;
 }
