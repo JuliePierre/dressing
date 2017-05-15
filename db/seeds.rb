@@ -11,4 +11,6 @@ b = MissingItem.create(name: "Foulard")
 c = MissingItem.create(name: "Pochette")
 d = MissingItem.create(name: "Collier")
 e = MissingItem.create(name: "Bracelet")
+e = MissingItem.create(name: "Veste")
+e = MissingItem.create(name: "Chaussures")
 
