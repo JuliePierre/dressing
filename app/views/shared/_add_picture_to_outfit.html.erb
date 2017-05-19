@@ -1,7 +1,8 @@
 <%= simple_form_for(outfit) do |f| %>
   <%= f.error_notification %>
 
-  <%= f.input :photos, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
+  <%= f.file_field :photo, :input_html => {:accept => "image/*", :capture => "capture"} %>
+  <%= f.input :photo_cache, as: :hidden %>
 
   <%= f.button :submit, class: 'highlight-btn'  %>
 <% end %>

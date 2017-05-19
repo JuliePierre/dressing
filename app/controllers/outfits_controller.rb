@@ -37,9 +37,6 @@ class OutfitsController < ApplicationController
     @proposal = Proposal.new
     @current_proposals = current_user.proposals.where('outfit_id = ?', @outfit.id)
     @user_vote = current_user.voted_as_when_voted_for @outfit
-    unless @outfit.photos.size == 0
-      @outfit_pictures = @outfit.photos.order(id: :asc)
-    end
   end
 
   def new
@@ -101,7 +98,7 @@ class OutfitsController < ApplicationController
   end
 
   def outfit_params
-    params.require(:outfit).permit(:name, :occasion, photos: [])
+    params.require(:outfit).permit(:name, :occasion, :photo, :photo_cache)
   end
 
 end

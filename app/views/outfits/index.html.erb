@@ -8,8 +8,7 @@
     <div class="padded">
       <div class="row">
         <% @outfits.each do |outfit| %>
-          <% pictures = outfit.photos.order(id: :asc) %>
-          <%= render 'shared/outfit_card', outfit: outfit, pictures: pictures %>
+          <%= render 'shared/outfit_card', outfit: outfit, picture: outfit.photo %>
         <% end %>
       </div>
     </div>

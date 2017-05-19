@@ -1,8 +1,8 @@
 <!-- METATAGS -->
 <% content_for :meta_title, "#{@outfit.name}" %>
 <% content_for :meta_description, "J'ai besoin de votre aide, je cherche les éléments suivants : #{@missing_items_text}" %>
-<% if @outfit_pictures %>
-  <% content_for :meta_image, cloudinary_url(@outfit_pictures[0].path) %>
+<% unless @outfit.photo %>
+  <% content_for :meta_image, cloudinary_url(@outfit.photo) %>
 <% end %>
 
 <!-- Facebook SDK for JavaScript -->
@@ -52,10 +52,8 @@
   <div class="container center-align">
     <!-- Photo de la tenue -->
     <div class="outfit-container">
-      <% if @outfit_pictures %>
-        <% @outfit_pictures.each do |photo| %>
-          <%= cl_image_tag(photo.path, class: 'outfit-picture') %>
-        <% end %>
+      <% if @outfit.photo %>
+        <%= cl_image_tag @outfit.photo, class: 'outfit-picture' %>
       <% end %>
     </div>
     <% if current_user.id == @outfit.user_id %>
@@ -126,12 +124,10 @@
           <% @outfit.proposals.each do |proposal| %>
             <h6>Proposition reçue de <%= User.find(proposal.user_id).email %></h6>
             <h5><%= MissingItem.find(proposal.missing_item_id).name %></h5>
-            <% if proposal.photos.size == 0 %>
+            <% if proposal.photo.nil? %>
               <p class="proposition-comment">Votre ami(e) n'a pas fourni de photo pour cette proposition</p>
             <% else %>
-              <% proposal.photos.each do |photo| %>
-                <%= cl_image_tag(photo.path, class: 'item-picture') %>
-              <% end %>
+              <%= cl_image_tag(photo, class: 'item-picture') %>
             <% end %>
               <div class="container small-container">
                 <div class="separation-line"></div>
@@ -154,10 +150,8 @@
                   <i class="fa fa-shopping-bag" aria-hidden="true"></i>
                   <%= MissingItem.find(proposal.missing_item_id).name %>
                 </div>
-                <% unless proposal.photos.size == 0 %>
-                  <% proposal.photos.each do |photo| %>
-                    <%= cl_image_tag(photo.path, class: 'item-picture') %>
-                  <% end %>
+                <% unless proposal.photo.nil? %>
+                  <%= cl_image_tag(photo, class: 'item-picture') %>
                 <% end %>
               </div>
             </div>
