@@ -8,6 +8,10 @@ class DressingItemsController < ApplicationController
     @dressing_item = DressingItem.new(dressing_items_params)
     @dressing_item.user = current_user
 
+    if params[:dressing_item][:photo].nil?
+      @dressing_item.remote_photo_url = Outfit.find(params[:dressing_item][:outfit_id]).photo.url
+    end
+
     if @dressing_item.save
       redirect_to user_dressing_items_path(current_user)
     else

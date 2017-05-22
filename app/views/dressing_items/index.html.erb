@@ -1,12 +1,15 @@
 <div class="main">
   <div class="page-title bg-grey">
     <div class="container">
-      <h1>My dressing</h1>
+      <h1>Dressing <%= @user.email %></h1>
     </div>
   </div>
   <div class="container">
     <% @user_dressing.each do |item| %>
       <%= item.name %>
+      <% unless item.photo.nil? %>
+        <%= cl_image_tag item.photo, height: 300, width: 400, crop: :fill %>
+      <% end %>
     <% end %>
   </div>
 </div>
