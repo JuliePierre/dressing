@@ -28,4 +28,8 @@ class UsersController < ApplicationController
 
     @made_friend_requests = @user.friendships.where("is_accepted": nil)
   end
+
+  def dressing
+    @dressing = current_user.dressing_items
+  end
 end

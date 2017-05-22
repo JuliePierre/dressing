@@ -5,11 +5,15 @@ Rails.application.routes.draw do
   resources :outfits, only: [ :index, :new, :create, :show, :update ]
   resources :users, only: [ :index, :show ] do
     resources :dressing_items, only: [ :new, :create, :index ]
+    member do
+      get 'dashboard', to: "users#dashboard"
+    end
+    member do
+      get 'dressing', to: "users#dressing"
+    end
   end
   resources :proposals, only: [ :new, :create ]
   resources :ceremonies, only: [ :create ]
   resources :friendships
   post "outfits/:id/upvote", to: "outfits#upvote", as: :upvote
-  get "/dashboard", to: "users#dashboard", as: :dashboard
-
 end

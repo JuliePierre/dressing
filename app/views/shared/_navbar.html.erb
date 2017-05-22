@@ -5,7 +5,7 @@
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <% if current_user %>
-          <li><%= link_to 'My dressing', user_dressing_items_path(current_user) %></li>
+          <li><%= link_to 'My dressing', dressing_user_path(current_user) %></li>
         <% end %>
         <li><%= link_to 'See outfits', outfits_path %></li>
         <li><%= link_to 'Ask for help', new_outfit_path %></li>
@@ -15,7 +15,7 @@
 
             <!-- Dropdown Structure -->
               <ul id="dropdown-navbar" class="dropdown-content">
-                <li><%= link_to 'Profile', dashboard_path %></li>
+                <li><%= link_to 'Profile', dashboard_user_path(current_user) %></li>
                 <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
               </ul>
             <!-- End of dropdown Structure -->
