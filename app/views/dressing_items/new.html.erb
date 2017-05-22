@@ -1,0 +1,10 @@
+<div class="main">
+  <div class="container">
+    <%= simple_form_for(@dressing_item) do |f| %>
+      <%= f.input :name %>
+      <%= f.file_field :photo %>
+      <%= f.hidden_field :photo_cache, as: :hidden %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>

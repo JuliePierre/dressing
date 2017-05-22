@@ -3,9 +3,13 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :outfits, only: [ :index, :new, :create, :show, :update ]
-  resources :users, only: [ :index, :show ]
+  resources :users, only: [ :index, :show ] do
+    resources :dressing_items, only: [ :new, :create, :index ]
+  end
   resources :proposals, only: [ :new, :create ]
   resources :ceremonies, only: [ :create ]
   resources :friendships
   post "outfits/:id/upvote", to: "outfits#upvote", as: :upvote
+  get "/dashboard", to: "users#dashboard", as: :dashboard
+
 end

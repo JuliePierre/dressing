@@ -37,6 +37,7 @@ class OutfitsController < ApplicationController
     @proposal = Proposal.new
     @current_proposals = current_user.proposals.where('outfit_id = ?', @outfit.id)
     @user_vote = current_user.voted_as_when_voted_for @outfit
+    @dressing_item = DressingItem.new
   end
 
   def new

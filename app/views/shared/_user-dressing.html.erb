@@ -1,0 +1,7 @@
+<div class="tab-content-container">
+  <div class="row">
+    <% user_dressing_items.each do |outfit| %>
+      <%= render 'shared/outfit_card', outfit: outfit, picture: outfit.photo %>
+    <% end %>
+  </div>
+</div>

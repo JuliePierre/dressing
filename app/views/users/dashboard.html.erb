@@ -1,0 +1,31 @@
+<div class="main">
+  <div class="page-title bg-grey">
+    <div class="container">
+      <h1>My Profile</h1>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s3"><a class="active" href="#user-outfits">My Outfits</a></li>
+          <li class="tab col s3"><a href="#user-proposals">My Offers</a></li>
+          <li class="tab col s3"><a href="#user-friends">My Friends</a></li>
+          <li class="tab col s3"><a href="#user-infos">Infos</a></li>
+        </ul>
+      </div>
+      <div id="user-outfits" class="col s12">
+        <%= render 'shared/user-outfits', user_outfits: @user_outfits %>
+      </div>
+      <div id="user-proposals" class="col s12">
+        <%= render 'shared/user-proposals', user: @user %>
+      </div>
+      <div id="user-friends" class="col s12">
+        <%= render 'shared/user-friends', user: @user, user_friends: @user_friends, user_inverse_friends: @user_inverse_friends, friend_requests: @friend_requests, made_friend_requests: @made_friend_requests %>
+      </div>
+      <div id="user-infos" class="col s12">
+        <%= render 'shared/user-infos', user: @user %>
+      </div>
+    </div>
+  </div>
+</div>
