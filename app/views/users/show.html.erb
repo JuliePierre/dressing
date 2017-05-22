@@ -6,86 +6,25 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="col s12 m4">
-        <div class="user-profile">
-          <div class="user-picture">
-            <div class="subtitle"><h2>Mon profil</h2></div>
-            <% avatar_url = @user.facebook_picture_url || image_path('fake-avatar.jpg') %>
-            <%= image_tag(avatar_url, class: 'rounded') %>
-          </div>
-          <div class="user-infos">
-            <%= @user.email %>
-          </div>
-          <div class="user-links">
-            <p><%= link_to "Find Friends", users_path %></p>
-          </div>
-        </div>
-        <% if @user == current_user %>
-          <div class="user-friends">
-            <div class="subtitle"><h2>Friends</h2></div>
-              <div class="row">
-                <% for friendship in @user_friends %>
-                  <div class="col s12 l6">
-                    <% avatar_url = friendship.friend.facebook_picture_url || image_path('fake-avatar.jpg') %>
-                    <%= image_tag(avatar_url, class: 'rounded') %> <br>
-                    <%= friendship.friend.email %>
-                    <%= link_to "Remove", friendship, :method => :delete %>
-                  </div>
-                <% end %>
-                <% for friendship in @user_inverse_friends %>
-                  <div class="col s12 l6">
-                    <% avatar_url = friendship.friend.facebook_picture_url || image_path('fake-avatar.jpg') %>
-                    <%= image_tag(avatar_url, class: 'rounded') %> <br>
-                    <%= friendship.friend.email %> <br>
-                    <%= link_to "Remove", friendship, :method => :delete %>
-                  </div>
-                <% end %>
-              </div>
-            <div class="subtitle"><h3>Friend requests</h3></div>
-            <% if @friend_requests.size == 0 %>
-              <p>You don't have any friend request</p>
-            <% else %>
-              <ul>
-                <% for friendship in @friend_requests %>
-                <% friend = User.find(friendship.user_id) %>
-                <div class="user">
-                  <p>
-                    <strong><%=h friend.email %></strong>
-                    <%= link_to "Accept friend request", friendship_path(:friendship_id => friendship.id, :friend_id => friend), :method => :patch, remote: true, class: 'accept-friend-request', "data-id" => friendship.id %>
-                    <div id="friendship-status-display-<%= friendship.id %>">
-                      <%= render 'friendships/friendship_status_display', friendship: friendship %>
-                    </div>
-                  </p>
-                </div>
-                <% end %>
-              </ul>
-            <% end %>
-            <% unless @made_friend_requests.size == 0 %>
-              <p>You have asked for friendship the following people and are waiting for approval :</p>
-              <ul>
-                <% for friendship in @made_friend_requests %>
-                <% user = User.find(friendship.friend_id) %>
-                <div class="user">
-                  <p>
-                    <strong><%=h user.email %></strong>
-                  </p>
-                </div>
-                <% end %>
-              </ul>
-            <% end %>
-          </div>
-        <% end %>
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s3"><a class="active" href="#user-outfits">Outfits</a></li>
+          <li class="tab col s3"><a href="#user-proposals">Offers</a></li>
+          <li class="tab col s3"><a href="#user-friends">Friends</a></li>
+          <li class="tab col s3"><a href="#user-infos">Infos</a></li>
+        </ul>
       </div>
-
-      <div class="col s12 m8">
-        <div class="user-outfits">
-          <div class="subtitle"><h2>My Outfits</h2></div>
-          <div class="row">
-            <% @user_outfits.each do |outfit| %>
-              <%= render 'shared/outfit_card', outfit: outfit, picture: outfit.photo %>
-            <% end %>
-          </div>
-        </div>
+      <div id="user-outfits" class="col s12">
+        <%= render 'shared/user-outfits', user_outfits: @user_outfits %>
+      </div>
+      <div id="user-proposals" class="col s12">
+        <%= render 'shared/user-proposals', user: @user %>
+      </div>
+      <div id="user-friends" class="col s12">
+        <%= render 'shared/user-friends', user: @user, user_friends: @user_friends, user_inverse_friends: @user_inverse_friends, friend_requests: @friend_requests, made_friend_requests: @made_friend_requests %>
+      </div>
+      <div id="user-infos" class="col s12">
+        <%= render 'shared/user-infos', user: @user %>
       </div>
     </div>
   </div>
