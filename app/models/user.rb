@@ -5,16 +5,18 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook]
 
   has_many :outfits, dependent: :destroy
+  has_many :proposals, dependent: :destroy
+  has_many :ceremonies
+  has_many :dressing_items, dependent: :destroy
 
   # Logique de réseau social : many to many relations entre les users, table de jointure = friendships
   has_many :friendships, dependent: :destroy
   has_many :friends, :through => :friendships
-  has_many :proposals, dependent: :destroy
-  has_many :ceremonies
-  has_many :dressing_items, dependent: :destroy
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 
   acts_as_voter
 

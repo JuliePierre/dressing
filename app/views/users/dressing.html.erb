@@ -1,4 +1,14 @@
-<p>Dressing</p>
-<% @dressing.each do |item| %>
-  <%= render 'shared/dressing-item-card', outfit: item %>
-<% end %>
+<div class="main">
+  <div class="page-title bg-grey">
+    <div class="container">
+      <h1>My dressing</h1>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <% @dressing.each do |item| %>
+        <%= render 'shared/dressing-item-card', outfit: item %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -31,5 +31,7 @@ class UsersController < ApplicationController
 
   def dressing
     @dressing = current_user.dressing_items
+    # ici c'est mon dressing perso
+    # le dressing visible par tous les autres est directement sur la show d'un user dans l'onglet dressing
   end
 end

@@ -13,7 +13,7 @@ class DressingItemsController < ApplicationController
     end
 
     if @dressing_item.save
-      redirect_to user_dressing_items_path(current_user)
+      redirect_to dressing_user_path(current_user)
     else
       render :new
     end
