@@ -8,11 +8,16 @@
 
 
 MissingItem.destroy_all
-a = MissingItem.create(name: "Chapeau")
-b = MissingItem.create(name: "Foulard")
-c = MissingItem.create(name: "Pochette")
-d = MissingItem.create(name: "Collier")
-e = MissingItem.create(name: "Bracelet")
-e = MissingItem.create(name: "Veste")
-e = MissingItem.create(name: "Chaussures")
-
+MissingItem.create(name: "Robe")
+MissingItem.create(name: "Top")
+MissingItem.create(name: "Veste")
+MissingItem.create(name: "Pantalon")
+MissingItem.create(name: "Jupe")
+MissingItem.create(name: "Combinaison")
+MissingItem.create(name: "Blouse")
+MissingItem.create(name: "Manteau")
+MissingItem.create(name: "Chaussures")
+MissingItem.create(name: "Chapeau")
+MissingItem.create(name: "Pochette")
+MissingItem.create(name: "Bandeau")
+MissingItem.create(name: "Collier")

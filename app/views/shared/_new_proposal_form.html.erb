@@ -1,6 +1,6 @@
 <%= simple_form_for(proposal) do |f| %>
   <%= f.error_notification %>
-  <%= f.input :missing_item, as: :check_boxes, collection: MissingItem::ITEMS %>
+  <%= f.input :missing_item, as: :check_boxes, collection: MissingItem::CATEGORY %>
 
   <%= f.file_field :photo, :input_html => {:accept => "image/*", :capture => "capture"} %>
   <%= f.input :photo_cache, as: :hidden %>

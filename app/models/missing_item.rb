@@ -1,5 +1,5 @@
 class MissingItem < ApplicationRecord
-  ITEMS = %w(Chapeau Foulard Pochette Collier Bracelet Veste Chaussures)
+  CATEGORY = %w(Robe Top Veste Pantalon Jupe Combinaison Blouse Manteau Chaussures Chapeau Pochette Bandeau Collier)
 
   has_and_belongs_to_many :outfits
   has_many :proposals

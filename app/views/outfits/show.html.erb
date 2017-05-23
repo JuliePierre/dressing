@@ -57,7 +57,7 @@
       <% end %>
     </div>
     <% if current_user.id == @outfit.user_id %>
-      <div class="btn highlight-btn" id="add-picture-button">Add pictures</div>
+      <div class="btn highlight-btn" id="add-picture-button">Modifier la photo</div>
       <a class="btn highlight-btn" href="#add-to-dressing">Add to my dressing</a>
       <!-- Modal Structure -->
         <div id="add-to-dressing" class="modal">
@@ -78,7 +78,7 @@
     </div>
     <div class="container">
       <div class="section-title">
-        <h2>Modifier ou ajouter des photos</h2>
+        <h2>Modifier la photo</h2>
       </div>
       <div>
         <%= render 'shared/add_picture_to_outfit', outfit: @outfit %>
