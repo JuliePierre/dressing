@@ -8,8 +8,13 @@ class DressingItemsController < ApplicationController
     @dressing_item = DressingItem.new(dressing_items_params)
     @dressing_item.user = current_user
 
-    if params[:dressing_item][:photo].nil?
-      @dressing_item.remote_photo_url = Outfit.find(params[:dressing_item][:outfit_id]).photo.url
+    if params[:dressing_item][:photos].nil?
+      urls = []
+      Outfit.find(params[:dressing_item][:outfit_id]).photos.each do |photo|
+        url = "http://res.cloudinary.com/dmx5zou5e/image/upload/" + photo.path
+        urls << url
+      end
+      @dressing_item.photo_urls = urls
     end
 
     if @dressing_item.save

@@ -5,7 +5,7 @@
     </div>
     <%= link_to '', outfit_path(outfit), class: 'card-link' %>
     <div class="outfit-picture">
-      <%= cl_image_tag outfit.photos[0] %>
+      <%= cl_image_tag outfit.photos[0].path %>
     </div>
     <div class="outfit-description">
       <p class="outfit-owner"><%= outfit.name %></p>
