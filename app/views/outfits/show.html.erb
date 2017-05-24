@@ -54,7 +54,7 @@
     <div class="outfit-container">
       <% if @outfit.photos.size != 0 %>
         <% @outfit.photos.each do |photo| %>
-          <%= cl_image_tag photo.path, class: 'outfit-picture' %>
+          <%= cl_image_tag photo.path, width: 300, height: 400, crop: :fill, class: 'outfit-picture' %>
         <% end %>
       <% end %>
     </div>
