@@ -1,7 +1,7 @@
 class DressingItem < ApplicationRecord
   CATEGORY = %w(Robe Top Veste Pantalon Jupe Combinaison Blouse Manteau Chaussures Chapeau Pochette Bandeau Collier)
 
-  mount_uploader :photo, PhotoUploader
+  has_attachments :photos, maximum: 3
   acts_as_votable
 
   belongs_to :user

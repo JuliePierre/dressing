@@ -28,6 +28,6 @@ class DressingItemsController < ApplicationController
   private
 
   def dressing_items_params
-    params.require(:dressing_item).permit(:name, :category, :photo, :photo_cache)
+    params.require(:dressing_item).permit(:name, :category, photos: [])
   end
 end

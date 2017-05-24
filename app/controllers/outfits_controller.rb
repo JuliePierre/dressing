@@ -99,7 +99,7 @@ class OutfitsController < ApplicationController
   end
 
   def outfit_params
-    params.require(:outfit).permit(:name, :occasion, :photo, :photo_cache)
+    params.require(:outfit).permit(:name, :occasion, photos: [])
   end
 
 end

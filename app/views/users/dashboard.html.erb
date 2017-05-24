@@ -21,7 +21,7 @@
         <%= render 'shared/user-proposals', user: @user %>
       </div>
       <div id="user-friends" class="col s12">
-        <%= render 'shared/user-friends', user: @user, user_friends: @user_friends, user_inverse_friends: @user_inverse_friends, friend_requests: @friend_requests, made_friend_requests: @made_friend_requests %>
+        <%= render 'shared/user-friends', user: @user, accepted_friends: @accepted_friends, pending_requests: @pending_requests, friend_invitations: @friend_invitations, friendship_requests: @friendship_requests %>
       </div>
       <div id="user-infos" class="col s12">
         <%= render 'shared/user-infos', user: @user %>

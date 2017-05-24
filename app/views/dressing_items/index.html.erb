@@ -7,8 +7,8 @@
   <div class="container">
     <% @user_dressing.each do |item| %>
       <%= item.name %>
-      <% unless item.photo.nil? %>
-        <%= cl_image_tag item.photo, height: 300, width: 400, crop: :fill %>
+      <% unless item.photos.size == 0 %>
+        <%= cl_image_tag item.photos[0].path, height: 300, width: 400, crop: :fill %>
       <% end %>
     <% end %>
   </div>

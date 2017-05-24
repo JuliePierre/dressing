@@ -2,8 +2,7 @@
   <div class="container">
     <%= simple_form_for(@dressing_item) do |f| %>
       <%= f.input :name %>
-      <%= f.file_field :photo %>
-      <%= f.hidden_field :photo_cache, as: :hidden %>
+      <%= f.input :photos, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
       <%= f.submit %>
     <% end %>
   </div>

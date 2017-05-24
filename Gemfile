@@ -10,7 +10,7 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'redis'
 gem 'cloudinary'
-gem 'carrierwave'
+gem 'attachinary', github: 'assembler/attachinary'
 
 gem 'sass-rails'
 gem 'jquery-rails'

@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170522142226) do
+ActiveRecord::Schema.define(version: 20170524103948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attachinary_files", force: :cascade do |t|
+    t.string   "attachinariable_type"
+    t.integer  "attachinariable_id"
+    t.string   "scope"
+    t.string   "public_id"
+    t.string   "version"
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "format"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
+  end
 
   create_table "ceremonies", force: :cascade do |t|
     t.string   "name"
@@ -29,7 +44,6 @@ ActiveRecord::Schema.define(version: 20170522142226) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "photo"
     t.index ["user_id"], name: "index_dressing_items_on_user_id", using: :btree
   end
 
@@ -61,7 +75,6 @@ ActiveRecord::Schema.define(version: 20170522142226) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "ceremony_id"
-    t.string   "photo"
     t.index ["user_id"], name: "index_outfits_on_user_id", using: :btree
   end
 
@@ -71,7 +84,6 @@ ActiveRecord::Schema.define(version: 20170522142226) do
     t.integer  "missing_item_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "photo"
     t.string   "name"
     t.index ["missing_item_id"], name: "index_proposals_on_missing_item_id", using: :btree
     t.index ["outfit_id"], name: "index_proposals_on_outfit_id", using: :btree

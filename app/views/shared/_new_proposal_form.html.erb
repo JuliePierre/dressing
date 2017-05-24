@@ -2,8 +2,7 @@
   <%= f.error_notification %>
   <%= f.input :missing_item, as: :check_boxes, collection: MissingItem::CATEGORY %>
 
-  <%= f.file_field :photo, :input_html => {:accept => "image/*", :capture => "capture"} %>
-  <%= f.input :photo_cache, as: :hidden %>
+  <%= f.input :photos, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
 
   <%= hidden_field_tag(:outfit_id, @outfit.id) %>
   <%= f.button :submit, class: 'highlight-btn' %>

@@ -21,12 +21,16 @@ class UsersController < ApplicationController
     @user = current_user
     @user_outfits = Outfit.where(" outfits.user_id = ? ", @user.id)
 
-    @user_friends = @user.friendships.where("is_accepted = ?", true)
-    @user_inverse_friends = @user.inverse_friendships.where("is_accepted = ?", true)
+    # pour l'affichage des friends
+    @accepted_friends = @user.accepted_friends
 
-    @friend_requests = @user.inverse_friendships.where("is_accepted": nil)
+    # pour l'affichage des friend requests : provenant d'autres users
+    @pending_requests = @user.pending_friend_requests
+    @friendship_requests = @user.friendship_requests
 
-    @made_friend_requests = @user.friendships.where("is_accepted": nil)
+    # pour l'affichage des demandes provenant du current_user encore en attente
+    @friend_invitations = @user.friend_invitations
+
   end
 
   def dressing

@@ -1,62 +1,17 @@
 <div class="tab-content-container">
-  <h5>Friends</h5>
-  <div class="row">
-    <% if user_friends.size == 0 %>
-      <p>Vous n'avez pas encore d'ami</p>
-    <% else %>
-      <% for friendship in user_friends %>
-      <div class="col s12 l6">
-        <% avatar_url = friendship.friend.facebook_picture_url || image_path('fake-avatar.jpg') %>
-        <%= image_tag(avatar_url, class: 'rounded') %> <br>
-        <%= friendship.friend.email %>
-        <%= link_to "Remove", friendship, :method => :delete %>
+  <div class="friends-display-container">
+    <div class="friends-display-header bg-grey clearfix">
+      <h5 class="friends-display-title left">Friends</h5>
+      <div class="friends-display-header-buttons right">
+        <div class="btn highlight-btn" id="friend-request-button">Requests</div>
+        <%= link_to 'Find friends', users_path, class: 'btn highlight-btn' %>
       </div>
-      <% end %>
-      <% for friendship in user_inverse_friends %>
-      <div class="col s12 l6">
-        <% avatar_url = friendship.friend.facebook_picture_url || image_path('fake-avatar.jpg') %>
-        <%= image_tag(avatar_url, class: 'rounded') %> <br>
-        <%= friendship.friend.email %> <br>
-        <%= link_to "Remove", friendship, :method => :delete %>
-      </div>
-      <% end %>
-    <% end %>
+    </div>
+    <div class="friends-display-content hidden" id="friend-request-content">
+      <%= render 'shared/friend-requests-display', friendship_requests: friendship_requests %>
+    </div>
+    <div class="friends-display-content">
+      <%= render 'shared/friends-display', accepted_friends: accepted_friends, friend_invitations: friend_invitations %>
+    </div>
   </div>
-
-  <h5>Friend requests</h5>
-  <% if friend_requests.size == 0 %>
-    <p>You don't have any friend request</p>
-  <% else %>
-    <ul>
-      <% for friendship in friend_requests %>
-      <% friend = User.find(friendship.user_id) %>
-      <div class="user">
-        <p>
-          <strong><%=h friend.email %></strong>
-          <%= link_to "Accept friend request", friendship_path(:friendship_id => friendship.id, :friend_id => friend), :method => :patch, remote: true, class: 'accept-friend-request', "data-id" => friendship.id %>
-          <div id="friendship-status-display-<%= friendship.id %>">
-            <%= render 'friendships/friendship_status_display', friendship: friendship %>
-          </div>
-        </p>
-      </div>
-      <% end %>
-    </ul>
-  <% end %>
-
-  <h5>Friends you have asked</h5>
-  <% if made_friend_requests.size == 0 %>
-    <p>Vous n'avez aucune demande en attente</p>
-  <% else %>
-    <p>You have asked for friendship the following people and are waiting for approval :</p>
-    <ul>
-      <% for friendship in made_friend_requests %>
-      <% user = User.find(friendship.friend_id) %>
-      <div class="user">
-        <p>
-          <strong><%=h user.email %></strong>
-        </p>
-      </div>
-      <% end %>
-    </ul>
-  <% end %>
 </div>

@@ -17,6 +17,6 @@ class ProposalsController < ApplicationController
   private
 
   def proposal_params
-    params.require(:proposal).permit(:user_id, :missing_item_id, :outfit_id, :photo, :photo_cache)
+    params.require(:proposal).permit(:user_id, :missing_item_id, :outfit_id, photos: [])
   end
 end

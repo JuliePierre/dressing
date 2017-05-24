@@ -54,4 +54,36 @@ class User < ApplicationRecord
     return user_friends_ids
   end
 
+  def accepted_friends
+    accepted_friends = []
+    self.all_friends_ids.each do |id|
+      accepted_friends << Friend.find(id)
+    end
+    return accepted_friends
+  end
+
+  def friendship_invitations
+    self.friendships.where("is_accepted": nil)
+  end
+
+  def friendship_requests
+    self.inverse_friendships.where("is_accepted": nil)
+  end
+
+  def friend_invitations
+    friend_invitations = []
+    self.friendship_invitations.each do |friendship|
+      friend_invitations << Friend.find(friendship.friend_id)
+    end
+    return friend_invitations
+  end
+
+  def pending_friend_requests
+    pending_friend_requests = []
+    self.friendship_requests.each do |friendship|
+      pending_friend_requests << Friend.find(friendship.friend_id)
+    end
+    return pending_friend_requests
+  end
+
 end

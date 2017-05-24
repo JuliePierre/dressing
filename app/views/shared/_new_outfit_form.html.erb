@@ -3,8 +3,7 @@
 
   <%= f.input :name, input_html: { placeholder: "Donnez-lui un nom" } %>
   <%= f.input :ceremony, input_html: { placeholder: "La cérémonie" } %>
-  <%= f.file_field :photo, :input_html => {:accept => "image/*", :capture => "capture"} %>
-  <%= f.input :photo_cache, as: :hidden %>
+  <%= f.input :photos, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
 
   <%= hidden_field_tag(:ceremony_id, "") %>
   <%= f.button :submit, class: 'highlight-btn' %>
