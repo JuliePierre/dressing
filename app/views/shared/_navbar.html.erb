@@ -1,42 +1,27 @@
 <nav>
   <div class="nav-wrapper">
     <div class="container">
-      <%= link_to 'Wedding Dressing', root_path, class: 'brand-logo' %>
+      <%= link_to 'Wedding Dressing', accueil_path, class: 'brand-logo' %>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <% if current_user %>
-          <li><%= link_to 'My dressing', dressing_user_path(current_user) %></li>
-        <% end %>
-        <li><%= link_to 'See outfits', outfits_path %></li>
-        <li><%= link_to 'Ask for help', new_outfit_path %></li>
-        <% if current_user %>
-          <!-- Dropdown Trigger -->
-          <li><a class="dropdown-button" href="#!" data-activates="dropdown-navbar">Me</a></li>
-
-            <!-- Dropdown Structure -->
-              <ul id="dropdown-navbar" class="dropdown-content">
-                <li><%= link_to 'Profile', dashboard_user_path(current_user) %></li>
-                <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
-              </ul>
-            <!-- End of dropdown Structure -->
-
+          <li><%= link_to 'Mon compte', dashboard_user_path(current_user) %></li>
+          <li><%= link_to 'Mes coups de coeur', accueil_path %></li>
         <% else %>
           <li><%= link_to 'Log in', new_user_session_path %></li>
         <% end %>
+
       </ul>
     </div>
   </div>
 </nav>
 <ul class="side-nav" id="mobile-demo">
-  <li><%= link_to 'Find a friend', users_path %></li>
-  <li><%= link_to 'See outfits', outfits_path %></li>
   <% if current_user %>
-    <li><%= link_to 'Profile', user_path(current_user) %></li>
-    <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+    <li><%= link_to 'Mon compte', dashboard_user_path(current_user) %></li>
+    <li><%= link_to 'Mes coups de coeur', accueil_path %></li>
   <% else %>
     <li><%= link_to 'Log in', new_user_session_path %></li>
   <% end %>
-  <li><%= link_to 'Create an outfit', new_outfit_path, class: 'btn highlight-btn' %></li>
 </ul>
 
 

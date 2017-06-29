@@ -1,4 +1,10 @@
 <div class="main">
-  <div id="homepage-banner" class="page-banner" style="background-image: url(<%= image_url('home-banner.jpg') %>);">
+  <div class="section">
+    <h1>Les nouveautés</h1>
+    <div class="row">
+      <% @dressing_items.each do |dressing_item| %>
+        <%= dressing_item.category %>
+      <% end %>
+    </div>
   </div>
 </div>
