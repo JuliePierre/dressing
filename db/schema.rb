@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524103948) do
+ActiveRecord::Schema.define(version: 20170918130041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,23 @@ ActiveRecord::Schema.define(version: 20170524103948) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "vide_dressing_items", force: :cascade do |t|
+    t.integer  "vide_dressing_id"
+    t.string   "name"
+    t.string   "category"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["vide_dressing_id"], name: "index_vide_dressing_items_on_vide_dressing_id", using: :btree
+  end
+
+  create_table "vide_dressings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_vide_dressings_on_user_id", using: :btree
+  end
+
   create_table "votes", force: :cascade do |t|
     t.string   "votable_type"
     t.integer  "votable_id"
@@ -134,4 +151,6 @@ ActiveRecord::Schema.define(version: 20170524103948) do
   add_foreign_key "proposals", "missing_items"
   add_foreign_key "proposals", "outfits"
   add_foreign_key "proposals", "users"
+  add_foreign_key "vide_dressing_items", "vide_dressings"
+  add_foreign_key "vide_dressings", "users"
 end

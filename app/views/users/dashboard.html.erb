@@ -1,30 +1,45 @@
-<div class="main">
+<div class="main-body">
   <div class="page-title bg-grey">
     <div class="container">
-      <h1>My Profile</h1>
+      <h1>Mon compte</h1>
+      <p>Bienvenue <%= @user.first_name %> !</p>
+      <p>Ceci est votre espace personnel. Vous pouvez modifier les paramètres de votre compte.</p>
     </div>
   </div>
   <div class="container">
-    <div class="row">
-      <div class="col s12">
-        <ul class="tabs">
-          <li class="tab col s3"><a class="active" href="#user-outfits">My Outfits</a></li>
-          <li class="tab col s3"><a href="#user-proposals">My Offers</a></li>
-          <li class="tab col s3"><a href="#user-friends">My Friends</a></li>
-          <li class="tab col s3"><a href="#user-infos">Infos</a></li>
-        </ul>
+    <div id="dashboard-introduction-container">
+      <div class="dashboard-introduction-item">
+        <p>Vous êtes membre depuis le :</p>
+        <div class="dashboard-introduction-icon">
+          <%= @user.created_at.strftime('%d/%m/%Y') %>
+        </div>
       </div>
-      <div id="user-outfits" class="col s12">
-        <%= render 'shared/user-outfits', user_outfits: @user_outfits %>
+      <div class="dashboard-introduction-item">
+        <p>Votre réseau :</p>
+        <div class="dashboard-introduction-icon">
+          <%= pluralize @actual_friends.size, "ami" %>
+        </div>
       </div>
-      <div id="user-proposals" class="col s12">
-        <%= render 'shared/user-proposals', user: @user %>
+      <div class="dashboard-introduction-item">
+        <p>Vous avez créé :</p>
+        <div class="dashboard-introduction-icon">
+          <%= pluralize @user.vide_dressings.size, "vide-dressing" %>
+        </div>
       </div>
-      <div id="user-friends" class="col s12">
-        <%= render 'shared/user-friends', user: @user, accepted_friends: @accepted_friends, pending_requests: @pending_requests, friend_invitations: @friend_invitations, friendship_requests: @friendship_requests %>
+    </div>
+  </div>
+  <div class="container">
+    <div id="dashboard-cards-container">
+      <div class="dashboard-card">
+        <h4>Mes vide dressing</h4>
+        <div><%= link_to "Vide-dressings en cours", user_vide_dressings_path(@user) %></div>
+        <div><%= link_to "Créer un nouveau vide-dressing", new_user_vide_dressing_path(@user) %></div>
       </div>
-      <div id="user-infos" class="col s12">
-        <%= render 'shared/user-infos', user: @user %>
+      <div class="dashboard-card">
+        <h4>Paramètres du compte</h4>
+        <div><%= link_to "Mes informations personnelles", user_registration_path %></div> <! devrait rediriger vers edit d'un user !>
+        <div><%= link_to "Mon profil", user_path(@user) %></div> <! devrait rediriger vers la page publique d'un user !>
+        <p>Voir mes amis</p>
       </div>
     </div>
   </div>

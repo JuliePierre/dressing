@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :proposals, dependent: :destroy
   has_many :ceremonies
   has_many :dressing_items, dependent: :destroy
+  has_many :vide_dressings, dependent: :destroy
 
   # Logique de réseau social : many to many relations entre les users, table de jointure = friendships
   has_many :friendships, dependent: :destroy

@@ -19,10 +19,12 @@ class UsersController < ApplicationController
 
   def dashboard
     @user = current_user
-    @user_outfits = Outfit.where(" outfits.user_id = ? ", @user.id)
+    #@user_outfits = Outfit.where(" outfits.user_id = ? ", @user.id)
 
-    # pour l'affichage des friends
-    @accepted_friends = @user.accepted_friends
+    #nouveau dashboard
+
+    # nombre total d'amis
+    @actual_friends = @user.accepted_friends
 
     # pour l'affichage des friend requests : provenant d'autres users
     @pending_requests = @user.pending_friend_requests

@@ -1,0 +1,28 @@
+#dashboard-introduction-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.dashboard-introduction-item {
+  flex: 0 0 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dashboard-introduction-icon {
+  background-color: $b-yellow;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  display: inline-block;
+  color: white;
+}
+#dashboard-cards-container {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: space-between;
+}
+.dashboard-card {
+  flex: 0 0 48%;
+  background-color: $b-bg-grey;
+  padding: 1rem 2rem;
+}

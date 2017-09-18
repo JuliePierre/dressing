@@ -5,8 +5,16 @@
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <% if current_user %>
-          <li><%= link_to 'Mon compte', dashboard_user_path(current_user) %></li>
-          <li><%= link_to 'Mes coups de coeur', accueil_path %></li>
+          <li>
+            <%= link_to dashboard_user_path(current_user) do %>
+              <div class='dropdown-button btn', href='#', data-activates='dropdown1'>Me</div>
+            <% end %>
+          </li>
+          <!-- Dropdown Structure -->
+            <ul id='dropdown1' class='dropdown-content'>
+              <li><%= link_to 'Mon compte', dashboard_user_path(current_user) %></li>
+              <li><%= link_to "Mes vide dressings", user_vide_dressings_path(current_user) %>
+            </ul>
         <% else %>
           <li><%= link_to 'Log in', new_user_session_path %></li>
         <% end %>
@@ -18,7 +26,6 @@
 <ul class="side-nav" id="mobile-demo">
   <% if current_user %>
     <li><%= link_to 'Mon compte', dashboard_user_path(current_user) %></li>
-    <li><%= link_to 'Mes coups de coeur', accueil_path %></li>
   <% else %>
     <li><%= link_to 'Log in', new_user_session_path %></li>
   <% end %>

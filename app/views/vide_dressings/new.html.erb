@@ -1,0 +1,23 @@
+<! Etape 1 de la création d'un vide dressing : le nom et la date de fin >
+<div class="main-body">
+  <div class="container">
+    <h1>Nouveau vide dressing</h1>
+    <p>A compléter</p>
+    <ul>
+      <li>Nom du vide dressing</li>
+      <li>Une date de fin ?</li>
+      <li>Un bouton créer qui redirige vers la page edit où l'on peut ajouter des nouveaux dressing items</li>
+    </ul>
+
+    <! formulaire de création >
+    <%= simple_form_for [@user, @vide_dressing] do |f| %>
+      <%= f.error_notification %>
+
+      <%= f.input :name %>
+
+      <%= f.button :submit %>
+    <% end %>
+
+
+  </div>
+</div>

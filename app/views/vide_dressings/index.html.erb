@@ -1,0 +1,22 @@
+<div class="main-body">
+  <div class="container">
+    <h1>Les vide-dressings de <%= @user.first_name %></h1>
+    <div id="vide-dressings-container">
+      <% @vide_dressings.each do |vide_dressing| %>
+        <% bg = ["dressing1_k4v8xj.jpg", "dressing_homme_fujdl0.jpg", "dressing2_n97toz.jpg"].sample %>
+        <div class="vide-dressing-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+         url('<%= cl_image_path bg, height: 300, width: 400, crop: :fill %>')">
+          <div class="card-description">
+            <h2><%= vide_dressing.name %></h2>
+            <p>En cours</p>
+          </div>
+          <%= link_to "", user_vide_dressing_path(@user, vide_dressing), class: "card-link" %>
+        </div>
+      <% end %>
+    </div>
+    <ul>
+
+    </ul>
+    <%= link_to "Créer un vide-dressing", new_user_vide_dressing_path(current_user) %>
+  </div>
+</div>

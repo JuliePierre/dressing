@@ -1,0 +1,2 @@
+module VideDressingsHelper
+end
