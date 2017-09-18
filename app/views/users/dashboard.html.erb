@@ -37,9 +37,9 @@
       </div>
       <div class="dashboard-card">
         <h4>Paramètres du compte</h4>
-        <div><%= link_to "Mes informations personnelles", user_registration_path %></div> <! devrait rediriger vers edit d'un user !>
+        <div><%= link_to "Mes informations personnelles", edit_user_registration_path %></div> <! devrait rediriger vers edit d'un user !>
         <div><%= link_to "Mon profil", user_path(@user) %></div> <! devrait rediriger vers la page publique d'un user !>
-        <p>Voir mes amis</p>
+        <div><%= link_to "Voir mes amis", users_path %></div>
       </div>
     </div>
   </div>
