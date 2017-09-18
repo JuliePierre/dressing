@@ -1,15 +1,4 @@
 Rails.application.routes.draw do
-  get 'vide_dressing_items/new'
-
-  get 'vide_dressing_items/create'
-
-  get 'vide_dressings/new'
-
-  get 'vide_dressings/create'
-
-  get 'vide_dressings/index'
-
-  get 'vide_dressings/show'
 
   mount Attachinary::Engine => "/attachinary"
 

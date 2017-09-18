@@ -1,7 +1,20 @@
 <div class="main-body">
+  <!-- Sous-navigation -->
+  <div class="sub-nav">
+    <div class="sub-nav-container">
+      <div class="sub-nav-menu">
+        <span class="sub-nav-item"><%= link_to 'Accueil', accueil_path %></span>
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        <span class="sub-nav-item">Vide-dressings</span>
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        <span class="sub-nav-item"><%= @user.first_name %></span>
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        <span class="sub-nav-item"><%= @vide_dressing.name %></span>
+      </div>
+    </div>
+  </div>
+  <!-- Sous-navigation -->
   <div class="container">
-    <h1><%= @vide_dressing.name %> de <%= @user.first_name %></h1>
-
     <div id="vide-dressing-elements-container">
       <% unless @vide_dressing.vide_dressing_items.size == 0 %>
         <% @vide_dressing.vide_dressing_items.each do |item| %>
