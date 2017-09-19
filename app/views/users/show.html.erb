@@ -3,23 +3,9 @@
     <div class="container">
       <% avatar_url = @user.facebook_picture_url || image_path('fake-avatar.jpg') %>
       <%= image_tag(avatar_url, class: 'rounded small-avatar') %>
-      <h1><%= @user.email %></h1>
+      <h1><%= @user.first_name %></h1>
     </div>
   </div>
   <div class="container">
-    <div class="row">
-      <div class="col s12">
-        <ul class="tabs">
-          <li class="tab col s3"><a class="active" href="#user-dressing">Dressing</a></li>
-          <li class="tab col s3"><a href="#user-outfits">Requests</a></li>
-        </ul>
-      </div>
-      <div id="user-dressing" class="col s12">
-        <%= render 'shared/user-dressing', user_dressing_items: @user_dressing_items %>
-      </div>
-      <div id="user-outfits" class="col s12">
-        <%= render 'shared/user-outfits', user_outfits: @user_outfits %>
-      </div>
-    </div>
   </div>
 </div>

@@ -5,9 +5,7 @@
       <div class="sub-nav-menu">
         <span class="sub-nav-item"><%= link_to 'Accueil', root_path %></span>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        <span class="sub-nav-item">Vide-dressings</span>
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        <span class="sub-nav-item"><%= @user.first_name %></span>
+        <span class="sub-nav-item"><%= link_to @user.first_name, user_path(@user) %></span>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
         <span class="sub-nav-item"><%= @vide_dressing.name %></span>
       </div>
