@@ -71,18 +71,20 @@ class User < ApplicationRecord
     self.inverse_friendships.where("is_accepted": nil)
   end
 
+  # user.friend_invitations = les requêtes que ce user là fait ==> le user est le user et le friend est l'autre
   def friend_invitations
     friend_invitations = []
     self.friendship_invitations.each do |friendship|
-      friend_invitations << Friend.find(friendship.friend_id)
+      friend_invitations << User.find(friendship.friend_id)
     end
     return friend_invitations
   end
 
+  # user.pending_friend_requests = les requêtes faites par d'autres ==> le user est l'autre et le friend est le user
   def pending_friend_requests
     pending_friend_requests = []
     self.friendship_requests.each do |friendship|
-      pending_friend_requests << Friend.find(friendship.friend_id)
+      pending_friend_requests << User.find(friendship.user_id)
     end
     return pending_friend_requests
   end

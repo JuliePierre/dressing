@@ -1,3 +1,0 @@
-// Here you will write *javascript* that would be executed by the browser
-$('#friendship-status-display-<%= @friendship.id %>').html("<%= j render 'friendships/friendship_status_display', friendship: @friendship %>")
-$('.accept-friend-request[data-id="<%= @friendship.id %>"]').addClass("hidden");

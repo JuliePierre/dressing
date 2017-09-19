@@ -11,22 +11,23 @@
           <div class="col s12 l3">
             <div class="user-card">
               <% avatar_url = user.facebook_picture_url || image_path('fake-avatar.jpg') %>
-              <%= image_tag(avatar_url, class: 'user-card-picture') %> <br>
+              <%= image_tag(avatar_url, class: 'user-card-picture') %>
               <% if user == current_user %>
-                <strong>Me</strong>
+                <p>Me</p>
               <% else %>
-                <strong><%=h user.email %></strong>
+                <p><%= user.email %></p>
               <% end %>
-              <br>
               <% if user == current_user %>
                 <span><%= user.email %></span>
               <% else %>
-                <% if current_user.all_friends_ids.include?(user.id) %>
+                <% if current_user.is_friend_with?(user) %>
                   <i class="fa fa-check-square-o" aria-hidden="true"></i> Friend
-                <% elsif current_user.friends.include?(user) %>
-                  <span>Pending request</span>
-                <% elsif current_user.inverse_friends.include?(user) %>
-                  <span>Is waiting for your response</span>
+                <% elsif current_user.friend_invitations.include?(user) %>
+                  <span>Invitation envoyée</span>
+                <% elsif current_user.pending_friend_requests.include?(user) %>
+                  <span>Attend votre réponse</span>
+                  <% friendship = Friendship.where('user_id = ? AND friend_id = ?', user.id, current_user.id).first %>
+                  <%= link_to "Accepter", friendship_path(friendship), method: :patch %>
                 <% else %>
                   <%= link_to "Send invitation", friendships_path(:friend_id => user), :method => :post %>
                 <% end %>

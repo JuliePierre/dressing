@@ -17,19 +17,24 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-    @friendship = Friendship.find(params[:friendship_id])
+    @friendship = Friendship.find(params[:id])
     @friendship.is_accepted = true
     if @friendship.save
-      respond_to do |format|
-        format.html { redirect_to user_path(current_user) }
-        format.js  # <-- will render `app/views/friendships/update.js.erb`
-      end
+      redirect_to users_path
     else
-      respond_to do |format|
-        format.html { redirect_to user_path(current_user) }
-        format.js  # <-- will render `app/views/friendships/update.js.erb`
-      end
+      alert("Nous n'avons pas pu accepter")
     end
+    # if @friendship.save
+    #   respond_to do |format|
+    #     format.html { redirect_to user_path(current_user) }
+    #     format.js  # <-- will render `app/views/friendships/update.js.erb`
+    #   end
+    # else
+    #   respond_to do |format|
+    #     format.html { redirect_to user_path(current_user) }
+    #     format.js  # <-- will render `app/views/friendships/update.js.erb`
+    #   end
+    # end
   end
 
   def destroy
