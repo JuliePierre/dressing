@@ -58,7 +58,7 @@ class User < ApplicationRecord
   def accepted_friends
     accepted_friends = []
     self.all_friends_ids.each do |id|
-      accepted_friends << Friend.find(id)
+      accepted_friends << User.find(id)
     end
     return accepted_friends
   end
