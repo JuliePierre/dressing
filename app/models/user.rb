@@ -87,4 +87,9 @@ class User < ApplicationRecord
     return pending_friend_requests
   end
 
+  # méthode pour déterminer si un user est ami avec un autre user
+  def is_friend_with?(user)
+    return self.all_friends_ids.include?(user.id)
+  end
+
 end

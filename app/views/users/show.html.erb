@@ -1,11 +1,61 @@
 <div class="main-body">
-  <div class="page-title bg-grey">
-    <div class="container">
+  <div class="container">
+    <div id="user-presentation-container">
+      <div class="user-infos">
+        <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+      </div>
+      <div class="user-metrics">
+        <div class="user-metrics-item">
+          <div class="user-metrics-icon">
+            <%= @user_friends.size %>
+          </div>
+          <p>amis</p>
+        </div>
+        <div class="user-metrics-item">
+          <div class="user-metrics-icon">
+            <%= @user.vide_dressings.size %>
+          </div>
+          <p>vide-dressings</p>
+        </div>
+      </div>
       <% avatar_url = @user.facebook_picture_url || image_path('fake-avatar.jpg') %>
-      <%= image_tag(avatar_url, class: 'rounded small-avatar') %>
-      <h1><%= @user.first_name %></h1>
+      <%= image_tag(avatar_url, class: 'user_avatar') %>
     </div>
   </div>
+
   <div class="container">
+    <h2>Les vide-dressings de <%= @user.first_name %></h2>
+    <div class="vide-dressings-container">
+      <% @public_vide_dressings.each do |vide_dressing| %>
+        <% bg = ["dressing1_k4v8xj.jpg", "dressing_homme_fujdl0.jpg", "dressing2_n97toz.jpg"].sample %>
+        <div class="vide-dressing-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+         url('<%= cl_image_path bg, height: 300, width: 400, crop: :fill %>')">
+          <div class="card-description">
+            <h2><%= vide_dressing.name %></h2>
+            <p>En cours</p>
+          </div>
+          <%= link_to "", user_vide_dressing_path(@user, vide_dressing), class: "card-link" %>
+        </div>
+      <% end %>
+    </div>
+    <% if current_user %>
+      <% if (current_user == @user) | current_user.is_friend_with?(@user) %>
+        <h2>Vide-dressings privés</h2>
+        <div class="vide-dressings-container">
+          <% @private_vide_dressings.each do |vide_dressing| %>
+            <% bg = ["dressing1_k4v8xj.jpg", "dressing_homme_fujdl0.jpg", "dressing2_n97toz.jpg"].sample %>
+            <div class="vide-dressing-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+             url('<%= cl_image_path bg, height: 300, width: 400, crop: :fill %>')">
+              <div class="card-description">
+                <h2><%= vide_dressing.name %></h2>
+                <p>En cours</p>
+              </div>
+              <%= link_to "", user_vide_dressing_path(@user, vide_dressing), class: "card-link" %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
+
 </div>

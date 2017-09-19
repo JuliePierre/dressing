@@ -1,0 +1,24 @@
+#user-presentation-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.user-metrics {
+  display: flex;
+  justify-content: space-around;
+  flex: 0 0 30%;
+}
+.user-metrics-item {
+  flex: 0 0 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.user-metrics-icon {
+  background-color: $b-yellow;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  display: inline-block;
+  color: white;
+}
