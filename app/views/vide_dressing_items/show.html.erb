@@ -11,6 +11,15 @@
               <%= cl_image_tag photo.path %>
             <% end %>
           <% end %>
+          <% unless current_user.nil? %>
+            <% if current_user == @item.vide_dressing.user %>
+              <div class="add-item-card">
+                <%= link_to "#" do %>
+                  <i class="material-icons">add_box</i>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
         </div>
         <div class="item-infos">
           <h2><%= @item.name %></h2>

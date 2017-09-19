@@ -60,16 +60,20 @@
   justify-content: space-between;
   .item-main-picture {
     flex: 0 0 50%;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
   }
   .item-infos-container {
     flex: 0 0 50%;
     display: flex;
     justify-content: space-between;
     .item-other-pictures {
-      flex: 0 0 20%;
+      flex: 0 0 25%;
     }
     .item-infos {
-      flex: 0 0 80%;
+      flex: 0 0 75%;
     }
   }
 }
