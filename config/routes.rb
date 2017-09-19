@@ -2,12 +2,10 @@ Rails.application.routes.draw do
 
   mount Attachinary::Engine => "/attachinary"
 
+  root to: 'pages#home'
+
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', sessions: 'users/sessions', registrations: 'users/registrations' }
 
-  root to: 'pages#landing'
-  get 'accueil', to: 'pages#home'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :outfits, only: [ :index, :new, :create, :show, :update ]
   resources :users, only: [:index, :show] do
     resources :dressing_items, only: [ :new, :create, :index ]
     resources :vide_dressings, only: [ :new, :create, :index, :show, :update ] do
@@ -20,8 +18,13 @@ Rails.application.routes.draw do
       get 'dressing', to: "users#dressing"
     end
   end
+  namespace :all do
+    resources :vide_dressings, only: :index
+  end
+  resources :friendships
+
+  resources :outfits, only: [ :index, :new, :create, :show, :update ]
   resources :proposals, only: [ :new, :create ]
   resources :ceremonies, only: [ :create ]
-  resources :friendships
   post "outfits/:id/upvote", to: "outfits#upvote", as: :upvote
 end

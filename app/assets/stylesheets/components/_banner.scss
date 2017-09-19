@@ -4,4 +4,11 @@
   background-position: center right;
   height: calc(100vh - 80px);
   width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.banner-content {
+  text-align: center;
+  color: white;
 }

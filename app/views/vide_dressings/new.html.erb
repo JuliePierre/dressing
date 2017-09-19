@@ -14,6 +14,7 @@
       <%= f.error_notification %>
 
       <%= f.input :name %>
+      <%= f.input :status, collection: VideDressing::STATUS %>
 
       <%= f.button :submit %>
     <% end %>
@@ -21,3 +22,11 @@
 
   </div>
 </div>
+
+<%= content_for(:after_js) do %>
+  <script>
+    $(document).ready(function() {
+        $('select').material_select();
+      });
+  </script>
+<% end %>

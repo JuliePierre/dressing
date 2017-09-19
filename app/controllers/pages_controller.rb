@@ -6,6 +6,6 @@ class PagesController < ApplicationController
   end
 
   def home
-    @dressing_items = DressingItem.order(:id).first(3)
+    @nouveautes = VideDressing.where('status = ?', "Public").order('created_at DESC').first(6)
   end
 end
