@@ -1,19 +1,14 @@
 <div class="main-body">
   <div class="container">
-    <h1>VideDressingItems#new</h1>
-    <p>Ajouter un formulaire pour créer une fringue à ajouter au vide-dressing :</p>
-    <ul>
-      <li>Un nom</li>
-      <li>Une catégorie</li>
-      <li>Des photos</li>
-      <li>Un statut : dispo / plus dispo</li>
-      <li>Un prix : si O alors = gratuit</li>
-    </ul>
+    <h1>Ajouter une fringue à <%= @vide_dressing.name %></h1>
     <%= simple_form_for [@user, @vide_dressing, @vide_dressing_item] do |f| %>
       <%= f.error_notification %>
 
       <%= f.input :name, placeholder: "nom" %>
+      <%= f.input :gender, placeholder: "genre", collection: VideDressingItem::GENDER %>
       <%= f.input :category, placeholder: "categorie", collection: VideDressingItem::CATEGORY %>
+
+      <%= f.input :price, placeholder: "prix" %>
 
       <%= f.input :photos, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
       <%= f.button :submit %>
