@@ -17,6 +17,9 @@ Rails.application.routes.draw do
     member do
       get 'dressing', to: "users#dressing"
     end
+    member do
+      get 'cart', to: "users#cart"
+    end
   end
   namespace :all do
     resources :vide_dressings, only: :index

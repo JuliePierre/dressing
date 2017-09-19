@@ -42,4 +42,8 @@ class UsersController < ApplicationController
     # ici c'est mon dressing perso
     # le dressing visible par tous les autres est directement sur la show d'un user dans l'onglet dressing
   end
+
+  def cart
+
+  end
 end
