@@ -1,4 +1,5 @@
 class VideDressingItemsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [ :show]
   def new
     @user = User.find(params[:user_id])
     @vide_dressing = VideDressing.find(params[:vide_dressing_id])
@@ -15,6 +16,10 @@ class VideDressingItemsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @item = VideDressingItem.find(params[:id])
   end
 
   private

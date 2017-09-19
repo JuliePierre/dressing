@@ -55,3 +55,21 @@
     font-size: 3rem;
   }
 }
+#vide-dressing-item-container {
+  display: flex;
+  justify-content: space-between;
+  .item-main-picture {
+    flex: 0 0 50%;
+  }
+  .item-infos-container {
+    flex: 0 0 50%;
+    display: flex;
+    justify-content: space-between;
+    .item-other-pictures {
+      flex: 0 0 20%;
+    }
+    .item-infos {
+      flex: 0 0 80%;
+    }
+  }
+}

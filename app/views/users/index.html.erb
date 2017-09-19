@@ -1,7 +1,7 @@
 <div class="main-body">
   <div class="page-title bg-grey">
     <div class="container">
-      <h1>All users</h1>
+      <h1>Tous les membres</h1>
     </div>
   </div>
   <div class="container">
@@ -10,8 +10,8 @@
         <% for user in @users %>
           <div class="col s12 l3">
             <div class="user-card">
-              <% avatar_url = user.facebook_picture_url || image_path('fake-avatar.jpg') %>
-              <%= image_tag(avatar_url, class: 'user-card-picture') %>
+              <% avatar_url = user.facebook_picture_url || image_path('someone_icon.png') %>
+              <%= image_tag(avatar_url, class: 'user_avatar') %>
               <% if user == current_user %>
                 <p>Me</p>
               <% else %>
@@ -29,7 +29,7 @@
                   <% friendship = Friendship.where('user_id = ? AND friend_id = ?', user.id, current_user.id).first %>
                   <%= link_to "Accepter", friendship_path(friendship), method: :patch %>
                 <% else %>
-                  <%= link_to "Send invitation", friendships_path(:friend_id => user), :method => :post %>
+                  <%= link_to "Inviter", friendships_path(:friend_id => user), :method => :post %>
                 <% end %>
               <% end %>
               <div class="clear"></div>

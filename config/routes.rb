@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show] do
     resources :dressing_items, only: [ :new, :create, :index ]
     resources :vide_dressings, only: [ :new, :create, :index, :show, :update ] do
-      resources :vide_dressing_items, only: [ :new, :create ]
+      resources :vide_dressing_items, only: [ :new, :create, :show ]
     end
     member do
       get 'dashboard', to: "users#dashboard"
