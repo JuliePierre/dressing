@@ -1,1 +1,25 @@
 // Your footer style
+#footer {
+  margin-top: 4rem;
+  background-color: $b-bg-grey;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  &.full-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .footer-infos {
+    span {
+      margin-right: 1rem;
+    }
+  }
+}
+.footer-first-line {
+  font-weight: 500;
+}
+.footer-copyright {
+  font-weight: 400;
+  font-size: 0.8rem;
+}

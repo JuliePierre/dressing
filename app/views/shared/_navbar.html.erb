@@ -13,7 +13,8 @@
           <!-- Dropdown Structure -->
             <ul id='dropdown1' class='dropdown-content'>
               <li><%= link_to 'Mon compte', dashboard_user_path(current_user) %></li>
-              <li><%= link_to "Mes vide dressings", user_vide_dressings_path(current_user) %>
+              <li><%= link_to "Mes vide dressings", user_vide_dressings_path(current_user) %></li>
+              <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete %></li>
             </ul>
         <% else %>
           <li><%= link_to 'Log in', new_user_session_path %></li>

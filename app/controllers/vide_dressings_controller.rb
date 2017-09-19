@@ -1,4 +1,6 @@
 class VideDressingsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [ :show ]
+
   def new
     @user = current_user
     @vide_dressing = VideDressing.new
