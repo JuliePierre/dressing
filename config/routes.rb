@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resources :vide_dressings, only: :index
   end
 
-  resources :shopping_carts, only: [ :create, :show ]
+  resources :shopping_carts, only: [ :show ]
   post "/users/:user_id/vide_dressings/:vide_dressing_id/vide_dressing_items/:id/add_to_cart", to: "vide_dressing_items#add_to_cart", as: :add_to_cart
 
   resources :friendships
