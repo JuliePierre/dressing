@@ -24,6 +24,7 @@ gem 'jquery-fileupload-rails'
 gem 'coffee-rails'
 
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'acts_as_shopping_cart', '~> 0.4.0'
 
 group :development, :test do
   gem 'binding_of_caller'

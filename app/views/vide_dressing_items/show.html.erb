@@ -5,9 +5,9 @@
       <div class="sub-nav-menu">
         <span class="sub-nav-item"><%= link_to 'Accueil', root_path %></span>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        <span class="sub-nav-item"><%= link_to "Les vide-dressings de #{@item.vide_dressing.user.first_name}", user_path(@item.vide_dressing.user) %></span>
+        <span class="sub-nav-item"><%= link_to "Les vide-dressings de #{@owner.first_name}", user_path(@owner) %></span>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        <span class="sub-nav-item"><%= link_to @item.vide_dressing.name, user_vide_dressing_path(@item.vide_dressing.user, @item.vide_dressing) %></span>
+        <span class="sub-nav-item"><%= link_to @vide_dressing.name, user_vide_dressing_path(@owner, @vide_dressing) %></span>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
         <span class="sub-nav-item"><%= @item.name %></span>
       </div>
@@ -27,7 +27,7 @@
             <% end %>
           <% end %>
           <% unless current_user.nil? %>
-            <% if current_user == @item.vide_dressing.user %>
+            <% if current_user == @owner %>
               <div class="add-item-card">
                 <%= link_to "#" do %>
                   <i class="material-icons">add_box</i>
@@ -41,7 +41,7 @@
           <p><%= @item.gender %></p>
           <p><%= @item.category %></p>
           <p><%= @item.price %>€</p>
-          <div class="btn highlight-btn">Ca m'intéresse</div>
+          <%= link_to "Ca m'intéresse", add_to_cart_path(@owner, @vide_dressing, @item), method: :post %>
         </div>
       </div>
     </div>

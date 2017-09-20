@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170919154410) do
+ActiveRecord::Schema.define(version: 20170920151634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,25 @@ ActiveRecord::Schema.define(version: 20170919154410) do
     t.index ["user_id"], name: "index_proposals_on_user_id", using: :btree
   end
 
+  create_table "shopping_cart_items", force: :cascade do |t|
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.integer  "quantity"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.integer  "price_cents",    default: 0,     null: false
+    t.string   "price_currency", default: "USD", null: false
+  end
+
+  create_table "shopping_carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_shopping_carts_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -154,6 +173,7 @@ ActiveRecord::Schema.define(version: 20170919154410) do
   add_foreign_key "proposals", "missing_items"
   add_foreign_key "proposals", "outfits"
   add_foreign_key "proposals", "users"
+  add_foreign_key "shopping_carts", "users"
   add_foreign_key "vide_dressing_items", "vide_dressings"
   add_foreign_key "vide_dressings", "users"
 end

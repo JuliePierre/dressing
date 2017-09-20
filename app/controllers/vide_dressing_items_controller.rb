@@ -20,6 +20,21 @@ class VideDressingItemsController < ApplicationController
 
   def show
     @item = VideDressingItem.find(params[:id])
+    @vide_dressing = @item.vide_dressing
+    @owner = @item.vide_dressing.user
+  end
+
+  def add_to_cart
+    @item = VideDressingItem.find(params[:id])
+    # le current user a-t-il déjà un panier ou faut-il le créer ?
+    if current_user.shopping_cart.nil?
+      @shopping_cart = ShoppingCart.new
+      @shopping_cart.user = current_user
+      @shopping_cart.save
+    else
+      @shopping_cart = current_user.shopping_cart
+    end
+    @shopping_cart.add(@item, @item.price)
   end
 
   private
