@@ -1,3 +1,21 @@
+// commun à toutes les cards
+.card-description {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+.card-description h2 {
+  font-size: 24px;
+  color: white;
+}
+.card-description p {
+  font-size: 14px;
+  opacity: 0.7;
+  font-weight: lighter;
+  color: white;
+}
+//
+
 .banner-card {
   background-color: white;
   border-radius: 2px;
@@ -6,5 +24,64 @@
   text-align: center;
   h5 {
     margin-bottom: 1rem;
+  }
+}
+// vide-dressing items
+.card-large {
+  width: 1000px;
+  height: 100%;
+  position: relative;
+  margin-bottom: 2rem;
+  .card-large-picture {
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: cover;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    display: inline-block;
+    width: 50%;
+    height: 20rem;
+  }
+  .card-large-infos {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    background-color: white;
+    display: inline-block;
+    vertical-align: top;
+    width: 49%;
+    height: 20rem;
+    .card-large-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      padding: 3.125rem;
+      width: 100%;
+      padding-bottom: 6.25rem;
+      height: 23.125rem;
+      .card-large-text {
+        text-align: center;
+      }
+      .btn-container {
+        display: flex;
+        justify-content: space-around;
+      }
+      h2 {
+        font-size: 1.3125rem;
+        margin-bottom: 1.25rem;
+      }
+      .b-btn {
+        flex: 0 0 15%;
+      }
+    }
   }
 }
