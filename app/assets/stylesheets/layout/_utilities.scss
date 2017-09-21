@@ -4,9 +4,84 @@
  * Feel free to change them and create your own
  * ------------------------------------- */
 
+// Polices
+body {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 400;
+  color: $b-green;
+}
+
+h1, h2, h5, {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+h3, h4 {
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  line-height: 1.6;
+  text-transform: uppercase;
+  letter-spacing: .25em;
+  font-weight: 400;
+  font-size: 1.875rem;
+}
+// sous-titres oranges
+h5 {
+  font-weight: 400;
+  line-height: 2.3;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .24em;
+  color: $b-orange;
+  display: inline;
+  font-size: .75rem;
+  background-image: linear-gradient(top,#d5b096,#97461a);
+}
+
+// légendes vertes
+h4 {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4em;
+  font-size: .875rem;
+}
+p {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin-bottom: 1.25rem;
+  font-size: .875rem;
+  line-height: 1.6;
+}
+
+a {
+  color: $b-green;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color .25s ease,opacity .25s ease,border .25s ease;
+  &:hover {
+    outline: none;
+  }
+}
+
 // Containers
 .main-body {
-  margin-top: 80px;
+  margin-top: 3.125rem;
+  border-left: 3.125rem solid #fff;
+  border-right: 3.125rem solid #fff;
+  &:after {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 15;
+    width: 100%;
+    height: 3.125rem;
+    background-color: #fff;
+  }
 }
 .container {
   padding-right: 15px;

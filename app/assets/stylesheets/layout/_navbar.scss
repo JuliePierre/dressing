@@ -1,40 +1,37 @@
 nav {
+  font-family: 'Roboto', sans-serif;
   position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 200;
   background-color: white;
-  height: 80px;
-  line-height: 80px;
-  @media (max-width: 375px) {
-    height: 60px;
-    line-height: 60px;
-  }
+  height: 3.125rem;
+  line-height: 1.5;
+  text-align: center;
+  box-shadow: none;
   .nav-wrapper {
     padding: 0;
   }
-  ul a {
-    color: #000;
+  ul li a {
     text-transform: uppercase;
-    letter-spacing: 0.1rem;
+    letter-spacing: .24em;
+    font-size: .75rem;
+    font-weight: 700;
+    color: $b-green;
+    display: inline-block;
+    padding: 1.375em 1.25rem 1.29688em;
     &:hover {
       background-color: transparent;
-      color: $b-red;
-    }
-  }
-  a {
-    color: #000;
-  }
-  .brand-logo {
-    color: black;
-    font-size: 20px;
-    font-style: italic;
-    letter-spacing: 0.1rem;
-    @media (max-width: 320px) {
-      font-size: 15px;
+      color: $b-olive;
     }
   }
 }
-
+#navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
 // Dropdown
 #dropdown-navbar {
   li {
