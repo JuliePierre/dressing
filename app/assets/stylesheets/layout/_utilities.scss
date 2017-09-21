@@ -34,10 +34,11 @@ h5 {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .24em;
-  color: $b-orange;
-  display: inline;
   font-size: .75rem;
-  background-image: linear-gradient(top,#d5b096,#97461a);
+  color: $b-orange;
+  background-image: -webkit-linear-gradient(top,#d5b096,#97461a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 // légendes vertes

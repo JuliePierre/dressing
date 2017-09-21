@@ -59,15 +59,15 @@
       <% end %>
     </div>
     <% if current_user.id == @outfit.user_id %>
-      <div class="btn highlight-btn" id="add-picture-button">Modifier la photo</div>
-      <a class="btn highlight-btn" href="#add-to-dressing">Add to my dressing</a>
+      <div class="btn" id="add-picture-button">Modifier la photo</div>
+      <a class="btn" href="#add-to-dressing">Add to my dressing</a>
       <!-- Modal Structure -->
         <div id="add-to-dressing" class="modal">
           <div class="modal-content">
             <%= render 'shared/new-dressing-item-form', user: current_user, dressing_item: @dressing_item, outfit: @outfit %>
           </div>
           <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close btn highlight-btn">Agree</a>
+            <a href="#!" class="modal-action modal-close btn">Agree</a>
           </div>
         </div>
       <!-- End of modal Structure -->
