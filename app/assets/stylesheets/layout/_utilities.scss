@@ -6,7 +6,7 @@
 
 // Polices
 body {
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Lora', serif;
   font-weight: 400;
   color: $b-green;
 }
@@ -26,6 +26,20 @@ h1 {
   letter-spacing: .25em;
   font-weight: 400;
   font-size: 1.875rem;
+}
+// identique au h1 mais sans le nom pour le ref
+h2 {
+  font-weight: 400;
+  line-height: 1.6;
+  text-transform: uppercase;
+  letter-spacing: .25em;
+  font-size: 1.875rem;
+}
+h3 {
+  font-weight: 400;
+  line-height: 1.5;
+  font-style: italic;
+  font-size: 1.3125rem;
 }
 // sous-titres oranges
 h5 {
@@ -49,7 +63,7 @@ h4 {
   font-size: .875rem;
 }
 p {
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Lora', serif;
   font-weight: 400;
   letter-spacing: 0;
   margin-bottom: 1.25rem;
@@ -105,7 +119,6 @@ a {
 .last-container {
   margin-bottom: 5rem;
 }
-
 .relative {
   position: relative;
 }

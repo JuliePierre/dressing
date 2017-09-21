@@ -21,6 +21,9 @@
   padding: 0 .625rem;
   background-color: hsla(82,14%,70%,.5);
   transition: .25s ease;
+  &:hover {
+    background-color: $b-olive;
+  }
 }
 
 .banner-card-btn {

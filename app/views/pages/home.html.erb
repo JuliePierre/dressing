@@ -8,52 +8,60 @@
     </div>
   </div>
 
+  <div class="bg-grey">
   <div class="container">
-    <h2 class="text-center">Comment ça marche ?</h2>
-    <div id="presentation-container">
-      <div class="presentation-item">
-        <%= image_tag 'social_network.png' %>
-        <h4 class="text-center presentation-text">
-          Créer un compte et constituer un réseau social.
-        </h4>
-      </div>
-      <div class="presentation-item">
-        <%= image_tag 'dressing_icon.png' %>
-        <h4 class="text-center presentation-text">
-          Découvrir les vide-dressings publics des utilisatrices et avoir accès à tous ceux de ses amies.
-        </h4>
-      </div>
-      <div class="presentation-item">
-        <%= image_tag 'favorite_icon.png' %>
-        <h4 class="text-center presentation-text">
-          Entrer en contact avec le propriétaire pour lui montrer un intérêt.
-        </h4>
+    <div class="b-section">
+      <h2 class="text-center">Comment ça marche ?</h2>
+      <div id="presentation-container">
+        <div class="presentation-item">
+          <%= image_tag 'network_icon.png' %>
+          <h3 class="text-center">
+            Créer un compte et constituer un réseau social.
+          </h3>
+        </div>
+        <div class="presentation-item">
+          <%= image_tag 'dressing_icon.png' %>
+          <h3 class="text-center">
+            Découvrir les vide-dressings publics des utilisatrices et avoir accès à tous ceux de ses amies.
+          </h3>
+        </div>
+        <div class="presentation-item">
+          <%= image_tag 'heart_icon.png' %>
+          <h3 class="text-center">
+            Entrer en contact avec le propriétaire pour lui montrer un intérêt.
+          </h3>
+        </div>
       </div>
     </div>
+
   </div>
 
   <div class="container">
-    <h2 class="text-center">Les nouveaux vide-dressings</h2>
-    <div id="nouveautes-container">
-      <% @nouveautes.each do |item| %>
-        <% bg = ["dressing1_k4v8xj.jpg", "dressing_homme_fujdl0.jpg", "dressing2_n97toz.jpg"].sample %>
-        <div class="nouveautes-item-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path bg %>');">
-          <div class="card-description">
-            <h2><%= item.name %></h2>
+    <div class="b-section">
+      <h2 class="text-center">Les nouveaux vide-dressings</h2>
+      <div id="nouveautes-container">
+        <% @nouveautes.each do |item| %>
+          <% bg = ["dressing1_k4v8xj.jpg", "dressing_homme_fujdl0.jpg", "dressing2_n97toz.jpg"].sample %>
+          <div class="nouveautes-item-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path bg %>');">
+            <div class="card-description">
+              <h2><%= item.name %></h2>
+            </div>
+            <%= link_to "", user_vide_dressing_path(item.user, item), class: 'card-link' %>
           </div>
-          <%= link_to "", user_vide_dressing_path(item.user, item), class: 'card-link' %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 
   <div class="container text-center">
-    <h2 class="text-center">Crée ton vide-dressing</h2>
-    <% if current_user %>
-      <%= link_to "Je crée mon vide-dressing", new_user_vide_dressing_path(current_user), class: "btn" %>
-    <% else %>
-      <%= link_to "Je crée mon vide-dressing", new_user_session_path, class: "btn" %>
-    <% end %>
+    <div class="b-section">
+      <h2 class="text-center">Crée ton vide-dressing</h2>
+      <% if current_user %>
+        <%= link_to "Je crée mon vide-dressing", new_user_vide_dressing_path(current_user), class: "b-btn" %>
+      <% else %>
+        <%= link_to "Je crée mon vide-dressing", new_user_session_path, class: "b-btn" %>
+      <% end %>
+    </div>
   </div>
-
 </div>
+  </div>
