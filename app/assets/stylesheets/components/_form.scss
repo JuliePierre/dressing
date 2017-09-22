@@ -22,10 +22,10 @@
 }
 
 // Ecraser les variables de materialize qui ne sont pas accessibles via les variables sass
-input.string, input.password, input.email, input.url, input.number, textarea.materialize-textarea {
+input.string, input.password, input.email, input.url, input.number, textarea.materialize-textarea, input.select-dropdown {
   background-color: white !important;
-  border-bottom: 1px solid $b-orange;
-  padding: 0 2rem;
+  border-bottom: 1px solid $b-orange !important;
+  padding: 0 2rem !important;
   box-sizing: inherit;
   &:focus {
     border-bottom: 1px solid $b-orange;
@@ -44,4 +44,27 @@ form .input-field {
 input[type=password] {
   padding: 0 2rem;
   box-sizing: inherit;
+}
+
+// vide-dressing-forms
+// à gauche
+.card-form-infos {
+  padding: 2rem 4rem;
+}
+//  à droite
+.add-card-picture {
+  background-color: white;
+}
+#add-card-picture-link {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  i {
+    font-size: 4rem;
+    cursor: pointer;
+  }
+}
+#vide_dressing_photo {
+  display: none;
 }

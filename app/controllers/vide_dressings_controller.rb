@@ -33,6 +33,6 @@ class VideDressingsController < ApplicationController
   private
 
   def vide_dressing_params
-    params.require(:vide_dressing).permit(:name, :status)
+    params.require(:vide_dressing).permit(:name, :status, :photo)
   end
 end

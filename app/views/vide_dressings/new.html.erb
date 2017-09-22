@@ -1,20 +1,29 @@
 <! Etape 1 de la création d'un vide dressing : le nom et la date de fin >
-<div class="main-body">
-  <div class="container">
-    <h1>Nouveau vide dressing</h1>
-    <p>A compléter</p>
+<div class="main-body full-page">
+  <div class="bg-grey full-height">
+    <div class="container">
+      <div class="b-section">
+        <h2 class="text-center">Nouveau vide dressing</h2>
+        <%= simple_form_for [@user, @vide_dressing] do |f| %>
+          <%= f.error_notification %>
 
-    <! formulaire de création >
-    <%= simple_form_for [@user, @vide_dressing] do |f| %>
-      <%= f.error_notification %>
+          <div class="card-large">
+            <div class="card-large-infos card-form-infos">
+              <div class="card-form-container">
+                <%= f.input :name, placeholder: "Nom du vide-dressing" %>
+                <%= f.input :status, collection: VideDressing::STATUS %>
+              </div>
+            </div>
+            <div class="card-large-picture add-card-picture">
+              <%= f.input :photo, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
+              <div id="add-card-picture-link"><i class="material-icons">add_box</i></div>
+            </div>
+            <%= f.button :submit, value: "Créer mon vide-dressing", class: "b-btn" %>
+          </div>
 
-      <%= f.input :name %>
-      <%= f.input :status, collection: VideDressing::STATUS %>
-
-      <%= f.button :submit %>
-    <% end %>
-
-
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 
