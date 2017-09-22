@@ -22,11 +22,15 @@
 }
 
 // Ecraser les variables de materialize qui ne sont pas accessibles via les variables sass
-input.string {
-  background-color: #ECEBF1 !important;
-  border-bottom: none !important;
+input.string, input.password, input.email, input.url, input.number, textarea.materialize-textarea {
+  background-color: white !important;
+  border-bottom: 1px solid $b-orange;
   padding: 0 2rem;
   box-sizing: inherit;
+  &:focus {
+    border-bottom: 1px solid $b-orange;
+    box-shadow: none !important;
+  }
 }
 label.optional, label.required {
   display: none !important;

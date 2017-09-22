@@ -1,27 +1,29 @@
 <div class="main-body">
-  <div class="container">
-    <div class="row">
-      <div class="col s12 m6 offset-m3 l4 offset-l4">
-        <h2>Créer un compte</h2>
+  <div class="bg-grey full-height">
+    <div class="container">
+      <div class="b-section">
+        <h2 class="text-center">Créer un compte</h2>
+        <div class="register-form-container">
+          <div class="small-container">
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= f.error_notification %>
+            <div class="form-inputs">
+              <%= f.input :first_name, required: true, autofocus: true, placeholder: "Prénom" %>
+              <%= f.input :last_name, required: true, autofocus: true, placeholder: "Nom" %>
+              <%= f.input :email, required: true, autofocus: true, placeholder: "Email" %>
+              <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), placeholder: "Mot de passe" %>
+              <%= f.input :password_confirmation, required: true, placeholder: "Confirmer mot de passe" %>
+            </div>
 
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= f.error_notification %>
+            <div class="form-actions">
+              <%= f.button :submit, "Enregistrer", class: "b-btn" %>
+            </div>
+          <% end %>
 
-          <div class="form-inputs">
-            <%= f.input :email, required: true, autofocus: true, placeholder: "Votre email" %>
-            <%= f.input :first_name, required: true, autofocus: true, placeholder: "Votre prénom" %>
-            <%= f.input :last_name, required: true, autofocus: true, placeholder: "Votre nom" %>
-            <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), placeholder: "Mot de passe" %>
-            <%= f.input :password_confirmation, required: true, placeholder: "Confirmer mot de passe" %>
+          <div class="signing-links">
+            <%= render "devise/shared/links" %>
           </div>
-
-          <div class="form-actions">
-            <%= f.button :submit, "Enregistrer" %>
-          </div>
-        <% end %>
-
-        <div class="signing-links">
-          <%= render "devise/shared/links" %>
+        </div>
         </div>
       </div>
     </div>

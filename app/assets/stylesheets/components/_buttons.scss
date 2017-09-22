@@ -1,4 +1,5 @@
 .b-btn {
+  color: $b-green;
   margin-bottom: 1.25rem;
   font-family: 'Roboto', sans-serif;
   display: inline-block;
@@ -21,7 +22,12 @@
   padding: 0 .625rem;
   background-color: hsla(82,14%,70%,.5);
   transition: .25s ease;
+  box-shadow: none;
   &:hover {
+    background-color: $b-olive;
+    box-shadow: none;
+  }
+  &:focus {
     background-color: $b-olive;
   }
 }

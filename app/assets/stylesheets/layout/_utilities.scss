@@ -39,7 +39,7 @@ h3 {
   font-weight: 400;
   line-height: 1.5;
   font-style: italic;
-  font-size: 1.3125rem;
+  font-size: 1rem;
 }
 // sous-titres oranges
 h5 {
@@ -78,6 +78,7 @@ a {
   transition: color .25s ease,opacity .25s ease,border .25s ease;
   &:hover {
     outline: none;
+    color: $b-olive;
   }
 }
 
@@ -98,6 +99,9 @@ a {
     background-color: #fff;
   }
 }
+.main-body.full-page {
+  height: calc(100vh - 3.125rem);
+}
 .container {
   padding-right: 15px;
   padding-left: 15px;
@@ -114,7 +118,7 @@ a {
   }
 }
 .small-container {
-    width: 150px;
+  width: 350px;
 }
 .last-container {
   margin-bottom: 5rem;

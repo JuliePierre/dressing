@@ -1,28 +1,42 @@
 <div class="main-body">
-  <!-- Sous-navigation -->
-  <div class="sub-nav">
-    <div class="sub-nav-container">
-      <div class="sub-nav-menu">
-        <span class="sub-nav-item"><%= link_to 'Accueil', root_path %></span>
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        <span class="sub-nav-item">Les vide-dressings publics</span>
+
+  <div class="bg-grey">
+    <!-- Sous-navigation -->
+    <div class="sub-nav">
+      <div class="sub-nav-container">
+        <div class="sub-nav-menu">
+          <%= link_to 'Accueil', root_path %>
+          <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          <span class="sub-nav-item">Les vide-dressings publics</span>
+        </div>
       </div>
     </div>
+    <!-- Sous-navigation -->
+    <div class="container">
+      <div class="vide-dressings-container">
+        <% @vide_dressings.each do |item| %>
+          <% bg = ["dressing1_k4v8xj.jpg", "dressing_homme_fujdl0.jpg", "dressing2_n97toz.jpg"].sample %>
+            <div class="card-large">
+              <div class="card-large-picture" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path bg %>');">
+                <%= link_to "", user_vide_dressing_path(item.user, item), class: 'card-link' %>
+              </div>
+              <div class="card-large-infos">
+                <div class="card-large-container">
+                  <div class="card-large-text">
+                    <h2><%= item.name %></h2>
+                    <h5><%= item.user.first_name %> <%= item.user.last_name %></h5>
+                    <p><%= pluralize item.vide_dressing_items.size, "articles" %></p>
+                  </div>
+                  <div class="btn-container">
+                    <%= link_to "Voir", user_vide_dressing_path(item.user, item), class: 'b-btn' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
   </div>
-  <!-- Sous-navigation -->
-  <div class="container">
-    <div class="vide-dressings-container">
-      <% @vide_dressings.each do |vide_dressing| %>
-        <% bg = ["dressing1_k4v8xj.jpg", "dressing_homme_fujdl0.jpg", "dressing2_n97toz.jpg"].sample %>
-        <div class="vide-dressing-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-         url('<%= cl_image_path bg, height: 300, width: 400, crop: :fill %>')">
-          <div class="card-description">
-            <h2><%= vide_dressing.name %></h2>
-            <p>En cours</p>
-          </div>
-          <%= link_to "", user_vide_dressing_path(vide_dressing.user, vide_dressing), class: "card-link" %>
-        </div>
-      <% end %>
-    </div>
+
   </div>
+
 </div>
