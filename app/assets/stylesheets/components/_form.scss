@@ -22,7 +22,7 @@
 }
 
 // Ecraser les variables de materialize qui ne sont pas accessibles via les variables sass
-input.string, input.password, input.email, input.url, input.number, textarea.materialize-textarea, input.select-dropdown {
+input.string, input.password, input.email, input.url, input.number, textarea.materialize-textarea, input.select-dropdown, input.numeric {
   background-color: white !important;
   border-bottom: 1px solid $b-orange !important;
   padding: 0 2rem !important;
@@ -67,4 +67,10 @@ input[type=password] {
 }
 #vide_dressing_photo {
   display: none;
+}
+.flex-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-bottom: 6.25rem;
 }

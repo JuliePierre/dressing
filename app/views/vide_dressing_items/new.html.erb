@@ -1,18 +1,27 @@
-<div class="main-body">
-  <div class="container">
-    <h1>Ajouter une fringue à <%= @vide_dressing.name %></h1>
-    <%= simple_form_for [@user, @vide_dressing, @vide_dressing_item] do |f| %>
-      <%= f.error_notification %>
+<div class="main-body full-page">
+  <div class="bg-grey full-height">
+    <div class="container">
+      <div class="b-section">
+        <h2 class="text-center">Ajouter une fringue</h2>
+          <div class="flex-form-container">
+          <div class="small-container">
+      <%= simple_form_for [@user, @vide_dressing, @vide_dressing_item] do |f| %>
+        <%= f.error_notification %>
 
-      <%= f.input :name, placeholder: "nom" %>
-      <%= f.input :gender, placeholder: "genre", collection: VideDressingItem::GENDER %>
-      <%= f.input :category, placeholder: "categorie", collection: VideDressingItem::CATEGORY %>
+        <%= f.input :name, placeholder: "Nom" %>
+        <%= f.input :gender, placeholder: "Genre", collection: VideDressingItem::GENDER %>
+        <%= f.input :category, placeholder: "Categorie", collection: VideDressingItem::CATEGORY %>
 
-      <%= f.input :price, placeholder: "prix" %>
+        <%= f.input :price, placeholder: "Prix" %>
 
-      <%= f.input :photos, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
-      <%= f.button :submit %>
-    <% end %>
+        <%= f.input :photos, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
+        <%= f.button :submit, class: 'b-btn' %>
+      <% end %>
+      </div>
+    </div>
+    </div>
+    </div>
+
   </div>
 </div>
 

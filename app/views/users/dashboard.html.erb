@@ -40,7 +40,9 @@
         <div><%= link_to "Mes informations personnelles", edit_user_registration_path %></div> <! devrait rediriger vers edit d'un user !>
         <div><%= link_to "Mon profil", user_path(@user) %></div> <! devrait rediriger vers la page publique d'un user !>
         <div><%= link_to "Voir mes amis", users_path %></div>
-        <div><%= link_to "Voir mon panier", shopping_cart_path(@user.shopping_cart) %></div>
+        <% unless @user.shopping_cart.nil? %>
+          <div><%= link_to "Voir mon panier", shopping_cart_path(@user.shopping_cart) %></div>
+        <% end %>
       </div>
     </div>
   </div>

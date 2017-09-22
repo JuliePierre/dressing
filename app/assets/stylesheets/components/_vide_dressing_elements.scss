@@ -37,29 +37,29 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  min-height: 10rem;
   i {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 }
 #vide-dressing-item-container {
   display: flex;
   justify-content: space-between;
-  .item-main-picture {
-    flex: 0 0 50%;
-    img {
-      max-width: 100%;
-      height: auto;
+  .item-pictures {
+    flex: 0 0 65%;
+    display: flex;
+    justify-content: space-between;
+    .item-main-picture {
+      flex: 0 0 65%;
+      img {
+        max-width: 100%;
+      }
+    }
+    .item-other-pictures {
+      flex: 0 0 30%;
     }
   }
   .item-infos-container {
-    flex: 0 0 50%;
-    display: flex;
-    justify-content: space-between;
-    .item-other-pictures {
-      flex: 0 0 20%;
-    }
-    .item-infos {
-      flex: 0 0 70%;
-    }
+    flex: 0 0 30%;
   }
 }
