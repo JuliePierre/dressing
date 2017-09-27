@@ -1,61 +1,99 @@
 <div class="main-body">
-  <div class="container">
-    <div id="user-presentation-container">
-      <div class="user-infos">
-        <h2><%= @user.first_name %> <%= @user.last_name %></h2>
-      </div>
-      <div class="user-metrics">
-        <div class="user-metrics-item">
-          <div class="user-metrics-icon">
-            <%= @user_friends.size %>
+  <div class="bg-grey">
+    <div class="container">
+      <div class="b-section">
+        <div id="user-intro-container">
+          <div class="user-picture">
+            <% avatar_url = @user.facebook_picture_url || image_path('someone_icon.png') %>
+            <%= image_tag(avatar_url, class: 'user-picture') %>
+            <% if @user.is_friend_with?(current_user) %>
+              <p>Vous êtes ami(e)s</p>
+            <% elsif %>
+              <%= link_to "Inviter", friendships_path(:friend_id => @user), :method => :post, class: 'b-btn invite-btn' %>
+            <% end %>
           </div>
-          <p>amis</p>
-        </div>
-        <div class="user-metrics-item">
-          <div class="user-metrics-icon">
-            <%= @user.vide_dressings.size %>
+          <div class="user-infos">
+            <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+            <h5>Inscrit(e) depuis le <%= @user.created_at.strftime('%d/%m/%Y') %></h5>
           </div>
-          <p>vide-dressings</p>
-        </div>
-      </div>
-      <% avatar_url = @user.facebook_picture_url || image_path('fake-avatar.jpg') %>
-      <%= image_tag(avatar_url, class: 'user_avatar') %>
-    </div>
-  </div>
-
-  <div class="container">
-    <h2>Les vide-dressings de <%= @user.first_name %></h2>
-    <div class="vide-dressings-container">
-      <% @public_vide_dressings.each do |vide_dressing| %>
-        <% bg = ["dressing1_k4v8xj.jpg", "dressing_homme_fujdl0.jpg", "dressing2_n97toz.jpg"].sample %>
-        <div class="vide-dressing-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-         url('<%= cl_image_path bg, height: 300, width: 400, crop: :fill %>')">
-          <div class="card-description">
-            <h2><%= vide_dressing.name %></h2>
-            <p>En cours</p>
-          </div>
-          <%= link_to "", user_vide_dressing_path(@user, vide_dressing), class: "card-link" %>
-        </div>
-      <% end %>
-    </div>
-    <% if current_user %>
-      <% if (current_user == @user) | current_user.is_friend_with?(@user) %>
-        <h2>Vide-dressings privés</h2>
-        <div class="vide-dressings-container">
-          <% @private_vide_dressings.each do |vide_dressing| %>
-            <% bg = ["dressing1_k4v8xj.jpg", "dressing_homme_fujdl0.jpg", "dressing2_n97toz.jpg"].sample %>
-            <div class="vide-dressing-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-             url('<%= cl_image_path bg, height: 300, width: 400, crop: :fill %>')">
-              <div class="card-description">
-                <h2><%= vide_dressing.name %></h2>
-                <p>En cours</p>
-              </div>
-              <%= link_to "", user_vide_dressing_path(@user, vide_dressing), class: "card-link" %>
+          <div class="user-details">
+            <div class="user-metrics-item">
+              <%= pluralize @user_friends.size, "ami" %>
             </div>
-          <% end %>
+            <div class="user-metrics-item">
+              <%= pluralize @user.vide_dressings.size, "vide-dressing" %>
+            </div>
+          </div>
         </div>
-      <% end %>
-    <% end %>
+      </div>
+      <div class="b-section">
+        <h2>Les vide-dressings de <%= @user.first_name %></h2>
+        <% if @public_vide_dressings.size == 0 %>
+          <p><%= @user.first_name %> n'a aucun vide-dressing public en cours.</p>
+        <% else %>
+          <div class="vide-dressings-container">
+            <% @public_vide_dressings.each do |item| %>
+              <% bg = ["dressing1_k4v8xj.jpg", "dressing_homme_fujdl0.jpg", "dressing2_n97toz.jpg"].sample %>
+              <div class="card-large">
+                <div class="card-large-picture" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path bg %>');">
+                  <%= link_to "", user_vide_dressing_path(item.user, item), class: 'card-link' %>
+                </div>
+                <div class="card-large-infos">
+                  <div class="card-large-container">
+                    <div class="card-large-text">
+                      <h2><%= item.name %></h2>
+                      <h5><%= item.user.first_name %> <%= item.user.last_name %></h5>
+                      <p><%= pluralize item.vide_dressing_items.size, "article" %></p>
+                    </div>
+                    <div class="btn-container">
+                      <%= link_to "Voir", user_vide_dressing_path(item.user, item), class: 'b-btn' %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="b-section last-container">
+        <h2>Les vide-dressings privés de <%= @user.first_name %></h2>
+        <% if current_user %>
+          <% if (current_user == @user) | current_user.is_friend_with?(@user) %>
+            <% if @private_vide_dressings.size == 0 %>
+              <p><%= @user.first_name %> n'a aucun vide-dressing privé en cours.</p>
+            <% else %>
+              <div class="vide-dressings-container">
+                <% @private_vide_dressings.each do |item| %>
+                  <% bg = ["dressing1_k4v8xj.jpg", "dressing_homme_fujdl0.jpg", "dressing2_n97toz.jpg"].sample %>
+                  <div class="card-large">
+                    <div class="card-large-picture" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path bg %>');">
+                      <%= link_to "", user_vide_dressing_path(item.user, item), class: 'card-link' %>
+                    </div>
+                    <div class="card-large-infos">
+                      <div class="card-large-container">
+                        <div class="card-large-text">
+                          <h2><%= item.name %></h2>
+                          <h5><%= item.user.first_name %> <%= item.user.last_name %></h5>
+                          <p><%= pluralize item.vide_dressing_items.size, "article" %></p>
+                        </div>
+                        <div class="btn-container">
+                          <%= link_to "Voir", user_vide_dressing_path(item.user, item), class: 'b-btn' %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          <% else %>
+            <p>Vous ne pouvez pas voir les vide-dressings privés des membres avec lesquels vous n'êtes pas amis.</p>
+          <%= link_to "Inviter", friendships_path(:friend_id => @user), :method => :post, class: 'b-btn' %>
+          <% end %>
+        <% else %>
+          <p>Vous ne pouvez pas voir les vide-dressings privés si vous n'êtes pas enregistré sur le site et amis avec cette personne.</p>
+          <%= link_to "Log in", new_user_session_path %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
 </div>

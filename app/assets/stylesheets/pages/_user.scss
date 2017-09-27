@@ -3,26 +3,6 @@
   align-items: center;
   justify-content: space-between;
 }
-.user-metrics {
-  display: flex;
-  justify-content: space-around;
-  flex: 0 0 30%;
-}
-.user-metrics-item {
-  flex: 0 0 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-.user-metrics-icon {
-  background-color: $b-yellow;
-  padding: 1rem 2rem;
-  border-radius: 50px;
-  display: inline-block;
-  color: white;
-}
-
 // page index des users
 .user-section h2 {
   padding-left: 0.75rem;
@@ -53,5 +33,40 @@
     &:hover {
       opacity: 0.4;
     }
+  }
+}
+
+// page show d'un user
+#user-intro-container {
+  display: flex;
+  justify-content: space-between;
+}
+.user-picture {
+  flex: 0 0 20%;
+}
+.user-infos {
+  flex: 0 0 40%;
+  h2 {
+    margin-bottom: 0;
+  }
+}
+.user-details {
+  flex: 0 0 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  .user-metrics {
+    display: flex;
+    justify-content: space-around;
+    flex: 0 0 30%;
+  }
+  .user-metrics-item {
+    background-color: #bb8462;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    display: inline-block;
+    color: white;
+    margin-bottom: 0.75rem;
   }
 }

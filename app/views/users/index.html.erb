@@ -10,7 +10,7 @@
             <% @friends.each do |user| %>
               <div class="user-card">
                 <% avatar_url = user.facebook_picture_url || image_path('someone_icon.png') %>
-                <%= image_tag(avatar_url, class: 'user_avatar') %>
+                <%= image_tag(avatar_url, class: 'user-avatar') %>
                 <h1><%= user.first_name %> <%= user.last_name %></h1>
                 <h5><%= user.email %></h5>
                 <%= link_to "", user_path(user), class: 'card-link user-card-link' %>
@@ -28,7 +28,7 @@
             <% @friend_requests.each do |user| %>
               <div class="user-card">
                 <% avatar_url = user.facebook_picture_url || image_path('someone_icon.png') %>
-                <%= image_tag(avatar_url, class: 'user_avatar') %>
+                <%= image_tag(avatar_url, class: 'user-avatar') %>
                 <h1><%= user.first_name %> <%= user.last_name %></h1>
                 <h5><%= user.email %></h5>
                 <p>Attend votre réponse</p>
@@ -48,7 +48,7 @@
             <% @friend_invitations.each do |user| %>
               <div class="user-card">
                 <% avatar_url = user.facebook_picture_url || image_path('someone_icon.png') %>
-                <%= image_tag(avatar_url, class: 'user_avatar') %>
+                <%= image_tag(avatar_url, class: 'user-avatar') %>
                 <h1><%= user.first_name %> <%= user.last_name %></h1>
                 <h5><%= user.email %></h5>
                 <p>Invitation envoyée</p>
@@ -66,7 +66,7 @@
             <% @all_other_users.each do |user| %>
               <div class="user-card">
                 <% avatar_url = user.facebook_picture_url || image_path('someone_icon.png') %>
-                <%= image_tag(avatar_url, class: 'user_avatar') %>
+                <%= image_tag(avatar_url, class: 'user-avatar') %>
                 <h1><%= user.first_name %> <%= user.last_name %></h1>
                 <h5><%= user.email %></h5>
                 <%= link_to "Inviter", friendships_path(:friend_id => user), :method => :post, class: 'b-btn' %>
