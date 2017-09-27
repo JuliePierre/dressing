@@ -1,39 +1,77 @@
 <div class="main-body">
-  <div class="page-title bg-grey">
+  <div class="bg-grey">
     <div class="container">
-      <h1>Tous les membres</h1>
-    </div>
-  </div>
-  <div class="container">
-    <div class="padded">
-      <div class="row">
-        <% for user in @users %>
-          <div class="col s12 l3">
-            <div class="user-card">
-              <% avatar_url = user.facebook_picture_url || image_path('someone_icon.png') %>
-              <%= image_tag(avatar_url, class: 'user_avatar') %>
-              <% if user == current_user %>
-                <p>Me</p>
-              <% else %>
-                <p><%= user.email %></p>
-              <% end %>
-              <% if user == current_user %>
-                <span><%= user.email %></span>
-              <% else %>
-                <% if current_user.is_friend_with?(user) %>
-                  <i class="fa fa-check-square-o" aria-hidden="true"></i> Friend
-                <% elsif current_user.friend_invitations.include?(user) %>
-                  <span>Invitation envoyée</span>
-                <% elsif current_user.pending_friend_requests.include?(user) %>
-                  <span>Attend votre réponse</span>
-                  <% friendship = Friendship.where('user_id = ? AND friend_id = ?', user.id, current_user.id).first %>
-                  <%= link_to "Accepter", friendship_path(friendship), method: :patch %>
-                <% else %>
-                  <%= link_to "Inviter", friendships_path(:friend_id => user), :method => :post %>
-                <% end %>
-              <% end %>
-              <div class="clear"></div>
-            </div>
+      <div class="b-section user-section">
+        <h2 class="no-margin">Mes amis</h2>
+        <% if @friends.size == 0 %>
+          <p>Vous n'avez pas encore d'amis. Vous pouvez envoyer des invitations aux membres du réseau ci-dessous.</p>
+        <% else %>
+          <div id="friend-users-container" class="users-container">
+            <% @friends.each do |user| %>
+              <div class="user-card">
+                <% avatar_url = user.facebook_picture_url || image_path('someone_icon.png') %>
+                <%= image_tag(avatar_url, class: 'user_avatar') %>
+                <h1><%= user.first_name %> <%= user.last_name %></h1>
+                <h5><%= user.email %></h5>
+                <%= link_to "", user_path(user), class: 'card-link user-card-link' %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="b-section user-section">
+        <h2 class="no-margin">Invitations en attente de votre réponse</h2>
+        <% if @friend_requests.size == 0 %>
+          <p>Vous n'avez aucune demande d'amis en attente.</p>
+        <% else %>
+          <div id="friend-requests-container" class="users-container">
+            <% @friend_requests.each do |user| %>
+              <div class="user-card">
+                <% avatar_url = user.facebook_picture_url || image_path('someone_icon.png') %>
+                <%= image_tag(avatar_url, class: 'user_avatar') %>
+                <h1><%= user.first_name %> <%= user.last_name %></h1>
+                <h5><%= user.email %></h5>
+                <p>Attend votre réponse</p>
+                <% friendship = Friendship.where('user_id = ? AND friend_id = ?', user.id, current_user.id).first %>
+                <%= link_to "Accepter", friendship_path(friendship), method: :patch, class: 'b-btn' %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="b-section user-section">
+        <h2 class="no-margin">Invitations envoyées et sans réponse</h2>
+        <% if @friend_invitations.size == 0 %>
+          <p>Vous n'avez aucune demande d'amis en attente.</p>
+        <% else %>
+          <div id="friend-invitations-container" class="users-container">
+            <% @friend_invitations.each do |user| %>
+              <div class="user-card">
+                <% avatar_url = user.facebook_picture_url || image_path('someone_icon.png') %>
+                <%= image_tag(avatar_url, class: 'user_avatar') %>
+                <h1><%= user.first_name %> <%= user.last_name %></h1>
+                <h5><%= user.email %></h5>
+                <p>Invitation envoyée</p>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="b-section user-section">
+        <h2 class="no-margin">Tous les utilisateurs</h2>
+        <% if @all_other_users.size == 0 %>
+          <p>Invroyable ! Vous êtes déjà ami avec tout le monde.</p>
+        <% else %>
+          <div id="all-users-container" class="users-container last-container">
+            <% @all_other_users.each do |user| %>
+              <div class="user-card">
+                <% avatar_url = user.facebook_picture_url || image_path('someone_icon.png') %>
+                <%= image_tag(avatar_url, class: 'user_avatar') %>
+                <h1><%= user.first_name %> <%= user.last_name %></h1>
+                <h5><%= user.email %></h5>
+                <%= link_to "Inviter", friendships_path(:friend_id => user), :method => :post, class: 'b-btn' %>
+              </div>
+            <% end %>
           </div>
         <% end %>
       </div>

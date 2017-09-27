@@ -2,7 +2,23 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :show ]
 
   def index
-    @users = User.all
+    @friends = current_user.accepted_friends
+    @friends_ids = []
+    @friends.each do |user|
+      @friends_ids << user.id
+    end
+    @friend_invitations = current_user.friend_invitations
+    @friend_invitations_ids = []
+    @friend_invitations.each do |user|
+      @friend_invitations_ids << user.id
+    end
+    @friend_requests = current_user.pending_friend_requests
+    @friend_requests_ids = []
+    @friend_requests.each do |user|
+      @friend_requests_ids << user.id
+    end
+    @all_users = User.where.not(id: current_user.id)
+    @all_other_users = @all_users.reject { |user| (@friends_ids.include?(user.id) | @friend_invitations_ids.include?(user.id) | @friend_requests_ids.include?(user.id)) }
   end
 
   def show

@@ -22,3 +22,36 @@
   display: inline-block;
   color: white;
 }
+
+// page index des users
+.user-section h2 {
+  padding-left: 0.75rem;
+}
+.users-container {
+  margin-top: 3.125rem;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.user-card {
+  background-color: white;
+  margin: 0 0.75rem 1.5rem 0.75rem;
+  padding: 3.125rem;
+  width: 18rem;
+  text-align: center;
+  position: relative;
+  h1 {
+    font-size: .75rem;
+    margin-top: 0.75rem;
+  }
+  h5 {
+    font-size: .6rem;
+    margin-bottom: 0.75rem;
+  }
+  .user-card-link {
+    background: $b-olive;
+    &:hover {
+      opacity: 0.4;
+    }
+  }
+}

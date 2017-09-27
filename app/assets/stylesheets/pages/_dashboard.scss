@@ -10,7 +10,7 @@
   align-items: center;
 }
 .dashboard-introduction-icon {
-  background-color: $b-yellow;
+  background-color: $b-orange;
   padding: 1rem 2rem;
   border-radius: 50px;
   display: inline-block;
@@ -23,6 +23,16 @@
 }
 .dashboard-card {
   flex: 0 0 48%;
-  background-color: $b-bg-grey;
-  padding: 1rem 2rem;
+  background-color: white;
+  padding: 3.125rem;
+  border-radius: 2px;
+  h2 {
+    font-size: 1.3125rem;
+    margin-bottom: 1.25rem;
+  }
+  .dashboard-infos-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
 }

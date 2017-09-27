@@ -1,5 +1,5 @@
-<div class="main-body full-page">
-  <div class="bg-grey full-height">
+<div class="main-body">
+  <div class="bg-grey">
     <% if @vide_dressing.photo.nil? %>
       <% bg = ["dressing1_k4v8xj.jpg", "dressing_homme_fujdl0.jpg", "dressing2_n97toz.jpg"].sample %>
     <% else %>
@@ -20,7 +20,7 @@
     </div>
   </div>
   <!-- Sous-navigation -->
-  <div class="container">
+  <div class="container last-container">
     <div id="vide-dressing-elements-container">
       <% unless @vide_dressing.vide_dressing_items.size == 0 %>
         <% @vide_dressing.vide_dressing_items.each do |item| %>

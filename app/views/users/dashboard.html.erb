@@ -1,48 +1,56 @@
 <div class="main-body">
-  <div class="page-title bg-grey">
+  <div class="bg-grey">
     <div class="container">
-      <h1>Mon compte</h1>
-      <p>Bienvenue <%= @user.first_name %> !</p>
-      <p>Ceci est votre espace personnel. Vous pouvez modifier les paramètres de votre compte.</p>
-    </div>
-  </div>
-  <div class="container">
-    <div id="dashboard-introduction-container">
-      <div class="dashboard-introduction-item">
-        <p>Vous êtes membre depuis le :</p>
-        <div class="dashboard-introduction-icon">
-          <%= @user.created_at.strftime('%d/%m/%Y') %>
-        </div>
-      </div>
-      <div class="dashboard-introduction-item">
-        <p>Votre réseau :</p>
-        <div class="dashboard-introduction-icon">
-          <%= pluralize @actual_friends.size, "ami" %>
-        </div>
-      </div>
-      <div class="dashboard-introduction-item">
-        <p>Vous avez créé :</p>
-        <div class="dashboard-introduction-icon">
-          <%= pluralize @user.vide_dressings.size, "vide-dressing" %>
-        </div>
+      <div class="b-section">
+        <h2>Mon compte</h2>
+        <p>Bienvenue <%= @user.first_name %> !</p>
+        <p>Ceci est votre espace personnel. Vous pouvez modifier les paramètres de votre compte.</p>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <div id="dashboard-cards-container">
-      <div class="dashboard-card">
-        <h4>Mes vide dressing</h4>
-        <div><%= link_to "Vide-dressings en cours", user_vide_dressings_path(@user) %></div>
-        <div><%= link_to "Créer un nouveau vide-dressing", new_user_vide_dressing_path(@user) %></div>
+    <div class="container">
+      <div id="dashboard-introduction-container">
+        <div class="dashboard-introduction-item">
+          <p>Vous êtes membre depuis le :</p>
+          <div class="dashboard-introduction-icon">
+            <%= @user.created_at.strftime('%d/%m/%Y') %>
+          </div>
+        </div>
+        <div class="dashboard-introduction-item">
+          <p>Votre réseau :</p>
+          <div class="dashboard-introduction-icon">
+            <%= pluralize @actual_friends.size, "ami" %>
+          </div>
+        </div>
+        <div class="dashboard-introduction-item">
+          <p>Vous avez créé :</p>
+          <div class="dashboard-introduction-icon">
+            <%= pluralize @user.vide_dressings.size, "vide-dressing" %>
+          </div>
+        </div>
       </div>
-      <div class="dashboard-card">
-        <h4>Paramètres du compte</h4>
-        <div><%= link_to "Mes informations personnelles", edit_user_registration_path %></div> <! devrait rediriger vers edit d'un user !>
-        <div><%= link_to "Mon profil", user_path(@user) %></div> <! devrait rediriger vers la page publique d'un user !>
-        <div><%= link_to "Voir mes amis", users_path %></div>
-        <% unless @user.shopping_cart.nil? %>
-          <div><%= link_to "Voir mon panier", shopping_cart_path(@user.shopping_cart) %></div>
-        <% end %>
+    </div>
+    <div class="container last-container">
+      <div id="dashboard-cards-container">
+        <div class="dashboard-card">
+          <h2>Mes vide dressing</h2>
+          <div><%= link_to "Vide-dressings en cours", user_vide_dressings_path(@user) %></div>
+          <div><%= link_to "Créer un nouveau vide-dressing", new_user_vide_dressing_path(@user) %></div>
+        </div>
+        <div class="dashboard-card">
+          <h2>Paramètres du compte</h2>
+          <div class="dashboard-infos-container">
+            <div>
+              <div><%= link_to "Mes informations personnelles", edit_user_registration_path %></div> <! devrait rediriger vers edit d'un user !>
+              <div><%= link_to "Ma page publique", user_path(@user) %></div> <! devrait rediriger vers la page publique d'un user !>
+            </div>
+            <div>
+              <div><%= link_to "Mon réseau", users_path %></div>
+              <% unless @user.shopping_cart.nil? %>
+                <div><%= link_to "Mon panier", shopping_cart_path(@user.shopping_cart) %></div>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
