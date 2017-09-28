@@ -6,7 +6,6 @@
         <li><%= link_to "Accueil", root_path %></li>
         <% if current_user %>
           <li><%= link_to 'Mon compte', dashboard_user_path(current_user) %></li>
-          <li><%= link_to "Mes vide dressings", user_vide_dressings_path(current_user) %></li>
           <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
         <% else %>
           <li><%= link_to 'Log in', new_user_session_path %></li>

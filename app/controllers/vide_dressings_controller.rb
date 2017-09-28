@@ -17,11 +17,6 @@ class VideDressingsController < ApplicationController
     end
   end
 
-  def index
-    @user = User.find(params[:user_id])
-    @vide_dressings = @user.vide_dressings
-  end
-
   def show
     @user = User.find(params[:user_id])
     @vide_dressing = VideDressing.find(params[:id])

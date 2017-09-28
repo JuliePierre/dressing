@@ -4,24 +4,31 @@
     <div class="container">
       <div class="b-section">
         <h2 class="text-center">Nouveau vide dressing</h2>
-        <%= simple_form_for [@user, @vide_dressing] do |f| %>
-          <%= f.error_notification %>
+        <div class="flex-form-container">
+          <%= simple_form_for [@user, @vide_dressing] do |f| %>
+            <%= f.error_notification %>
 
-          <div class="card-large">
-            <div class="card-large-infos card-form-infos">
-              <div class="card-form-container">
-                <%= f.input :name, placeholder: "Nom du vide-dressing" %>
-                <%= f.input :status, collection: VideDressing::STATUS %>
+            <div class="card-large">
+              <div class="card-large-infos card-form-infos">
+                <div class="card-form-container">
+                  <%= f.input :name, placeholder: "Nom du vide-dressing" %>
+                  <%#= f.input :status, collection: VideDressing::STATUS %>
+                  <select class="select optional initialized" name="vide_dressing[status]" id="vide_dressing_status">
+                    <option value="" class="select-placeholder">Choisissez le statut</option>
+                    <option value="Public">Public</option>
+                    <option value="Privé">Privé</option>
+                  </select>
+                </div>
               </div>
+              <div class="card-large-picture add-card-picture">
+                <%= f.input :photo, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
+                <div id="add-card-picture-link"><i class="material-icons">add_box</i></div>
+              </div>
+              <%= f.button :submit, value: "Créer mon vide-dressing", class: "b-btn" %>
             </div>
-            <div class="card-large-picture add-card-picture">
-              <%= f.input :photo, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
-              <div id="add-card-picture-link"><i class="material-icons">add_box</i></div>
-            </div>
-            <%= f.button :submit, value: "Créer mon vide-dressing", class: "b-btn" %>
-          </div>
 
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

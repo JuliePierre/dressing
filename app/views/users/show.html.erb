@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="b-section">
-        <h2>Les vide-dressings de <%= @user.first_name %></h2>
+        <h2 class="text-center">Les vide-dressings de <%= @user.first_name %></h2>
         <% if @public_vide_dressings.size == 0 %>
           <p><%= @user.first_name %> n'a aucun vide-dressing public en cours.</p>
         <% else %>
@@ -56,7 +56,7 @@
         <% end %>
       </div>
       <div class="b-section last-container">
-        <h2>Les vide-dressings privés de <%= @user.first_name %></h2>
+        <h2 class="text-center">Les vide-dressings privés de <%= @user.first_name %></h2>
         <% if current_user %>
           <% if (current_user == @user) | current_user.is_friend_with?(@user) %>
             <% if @private_vide_dressings.size == 0 %>
