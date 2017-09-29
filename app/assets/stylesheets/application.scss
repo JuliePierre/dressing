@@ -7,9 +7,11 @@
 @import 'materialize';
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "dropzone/dropzone";
 
 // Your CSS
 @import "layout/index";
 @import "components/index";
 @import "pages/index";
 @import "vendor/index";
+

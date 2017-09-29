@@ -1,16 +1,15 @@
 <! Etape 1 de la création d'un vide dressing : le nom et la date de fin >
-<div class="main-body full-page">
-  <div class="bg-grey full-height">
+<div class="main-body">
+  <div class="bg-grey">
     <div class="container">
       <div class="b-section">
         <h2 class="text-center">Nouveau vide dressing</h2>
         <div class="flex-form-container">
-          <%= simple_form_for [@user, @vide_dressing] do |f| %>
+          <%= simple_form_for [@user, @vide_dressing], html: { class: "form dropzone" } do |f| %>
             <%= f.error_notification %>
-
-            <div class="card-large">
+<!--             <div class="card-large">
               <div class="card-large-infos card-form-infos">
-                <div class="card-form-container">
+                <div class="card-form-container"> -->
                   <%= f.input :name, placeholder: "Nom du vide-dressing" %>
                   <%#= f.input :status, collection: VideDressing::STATUS %>
                   <select class="select optional initialized" name="vide_dressing[status]" id="vide_dressing_status">
@@ -18,26 +17,19 @@
                     <option value="Public">Public</option>
                     <option value="Privé">Privé</option>
                   </select>
-                </div>
-              </div>
-              <div class="card-large-picture add-card-picture">
-                <%= f.input :photo, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
-                <div id="add-card-picture-link"><i class="material-icons">add_box</i></div>
-              </div>
+                  <%= f.hidden_field :photo %>
+<!--                 </div>
+              </div> -->
+                <!-- <div class="card-large-picture add-card-picture">
+                  <%#= f.input :photo, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
+                  <div id="add-card-picture-link"><i class="material-icons">add_box</i></div>
+                </div> -->
+              <%#= f.input :photo, as: :attachinary, placeholder: "photo" %>
               <%= f.button :submit, value: "Créer mon vide-dressing", class: "b-btn" %>
-            </div>
-
+ <!--            </div> -->
           <% end %>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<%= content_for(:after_js) do %>
-  <script>
-    $(document).ready(function() {
-        $('select').material_select();
-      });
-  </script>
-<% end %>
