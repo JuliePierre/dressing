@@ -1,27 +1,46 @@
-<div class="main-body full-page">
-  <div class="bg-grey full-height">
+<div class="main-body">
+  <div class="bg-grey">
     <div class="container">
       <div class="b-section">
-        <h2 class="text-center">Ajouter une fringue</h2>
+        <h2 class="text-center">Proposer une pièce</h2>
           <div class="flex-form-container">
-          <div class="small-container">
-      <%= simple_form_for [@user, @vide_dressing, @vide_dressing_item] do |f| %>
-        <%= f.error_notification %>
+            <div id="add-item-container" class="bg-white">
+            <%= simple_form_for [@user, @vide_dressing, @vide_dressing_item], html: { id: "new-vide-dressing-form" } do |f| %>
+              <%= f.error_notification %>
 
-        <%= f.input :name, placeholder: "Nom" %>
-        <%= f.input :gender, placeholder: "Genre", collection: VideDressingItem::GENDER %>
-        <%= f.input :category, placeholder: "Categorie", collection: VideDressingItem::CATEGORY %>
+              <%= f.input :name, placeholder: "Nom" %>
+              <select class="select optional initialized" name="vide_dressing_item[gender]" id="vide_dressing_item_gender">
+                <option value="" class="select-placeholder">Genre</option>
+                <option value="Homme">Homme</option>
+                <option value="Femme">Femme</option>
+              </select>
+              <select class="select optional initialized" name="vide_dressing_item[category]" id="vide_dressing_item_category">
+                <option value="" class="select-placeholder">Catégorie</option>
+                <option value="Robe">Robe</option>
+                <option value="Top">Top</option>
+                <option value="Veste">Veste</option>
+                <option value="Pantalon">Pantalon</option>
+                <option value="Jupe">Jupe</option>
+                <option value="Combinaison">Combinaison</option>
+                <option value="Blouse">Blouse</option>
+                <option value="Manteau">Manteau</option>
+                <option value="Chaussures">Chaussures</option>
+                <option value="Chapeau">Chapeau</option>
+                <option value="Pochette">Pochette</option>
+                <option value="Bandeau">Bandeau</option>
+                <option value="Collier">Collier</option>
+              </select>
+              <%#= f.input :gender, placeholder: "Genre", collection: VideDressingItem::GENDER %>
+              <%#= f.input :category, placeholder: "Categorie", collection: VideDressingItem::CATEGORY %>
 
-        <%= f.input :price, placeholder: "Prix" %>
+              <%= f.input :price, placeholder: "Prix" %>
 
-        <%= f.input :photos, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
-        <%= f.button :submit, class: 'b-btn' %>
-      <% end %>
+              <%= f.button :submit, class: 'b-btn', value: "Valider et poursuivre" %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
-    </div>
-    </div>
-
   </div>
 </div>
 

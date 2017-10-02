@@ -2,7 +2,7 @@ class VideDressingItem < ApplicationRecord
   CATEGORY = %w(Robe Top Veste Pantalon Jupe Combinaison Blouse Manteau Chaussures Chapeau Pochette Bandeau Collier)
   GENDER = ["Homme", "Femme"]
 
-  has_attachments :photos, maximum: 3
+  has_attachments :photos, maximum: 4
 
   belongs_to :vide_dressing
 

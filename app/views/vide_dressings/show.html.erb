@@ -1,11 +1,19 @@
 <div class="main-body">
   <div class="bg-grey">
-    <% if @vide_dressing.photo.nil? %>
-      <% bg = "dressing2_n97toz.jpg" %>
-    <% else %>
-      <% bg = @vide_dressing.photo.path %>
-    <% end %>
-    <div class="vide-dressing-banner" style="background-image: url('<%= cl_image_path bg, height: 300, width: 1350, crop: :fill %>')">
+    <div class="container">
+      <div class="b-section">
+        <div class="vide-dressing-intro">
+          <% if @vide_dressing.photo.nil? %>
+            <%= cl_image_tag("dressing2_vtjhvf.jpg", width: 400, height: 250, crop: :fill) %>
+          <% else %>
+            <%= cl_image_tag @vide_dressing.photo.path %>
+          <% end %>
+          <div class="intro-infos">
+            <h2><%= @vide_dressing.name %></h2>
+            <p>Créé par <%= @vide_dressing.user.first_name %> <%= @vide_dressing.user.last_name %></p>
+          </div>
+        </div>
+      </div>
     </div>
   <!-- Sous-navigation -->
   <div class="sub-nav">

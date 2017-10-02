@@ -13,7 +13,7 @@ class VideDressingItemsController < ApplicationController
     @vide_dressing = VideDressing.find(params[:vide_dressing_id])
     @vide_dressing_item.vide_dressing = @vide_dressing
     if @vide_dressing_item.save
-      redirect_to user_vide_dressing_path(@user, @vide_dressing)
+      redirect_to edit_user_vide_dressing_vide_dressing_item_path(@user, @vide_dressing, @vide_dressing_item)
     else
       render :new
     end
@@ -23,6 +23,35 @@ class VideDressingItemsController < ApplicationController
     @item = VideDressingItem.find(params[:id])
     @vide_dressing = @item.vide_dressing
     @owner = @item.vide_dressing.user
+  end
+
+  def edit
+    @item = VideDressingItem.find(params[:id])
+    @vide_dressing = @item.vide_dressing
+    @owner = @item.vide_dressing.user
+  end
+
+  def update
+    if params[:file]
+      file = Cloudinary::Uploader.upload(params[:file]["0"])
+      @json = { file: file }
+      return render json: @json
+    end
+
+    @item = VideDressingItem.find(params[:id])
+    @vide_dressing = @item.vide_dressing
+    @owner = @item.vide_dressing.user
+
+    urls = params["vide_dressing_item"]["photos"].split(" ")
+    urls.delete_at(0)
+
+    if @item.save
+      @item.photo_urls = urls # Upload happens here
+      redirect_to user_vide_dressing_vide_dressing_item_path(@owner, @vide_dressing, @item)
+    else
+      render :edit
+    end
+
   end
 
   def add_to_cart

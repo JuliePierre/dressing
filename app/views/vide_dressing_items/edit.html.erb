@@ -1,0 +1,15 @@
+<div class="main-body">
+  <div class="bg-grey">
+    <div class="container">
+      <div class="b-section">
+        <h2 class="text-center">Ajouter photos</h2>
+        <%= simple_form_for [@owner, @vide_dressing, @item], html: { id: "pictures-dropzone", class: "form dropzone dz-clickable" } do |f| %>
+          <%= f.error_notification %>
+          <%= f.hidden_field :photos %>
+          <%= f.button :submit, value: "Valider ces photos", class: "b-btn" %>
+            <!-- <div id="remove-pictures" class="hidden b-btn">Modifier la photo</div> -->
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

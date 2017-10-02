@@ -37,9 +37,6 @@ class VideDressingsController < ApplicationController
     @vide_dressing = VideDressing.find(params[:id])
   end
 
-  def update
-  end
-
   private
 
   def vide_dressing_params
