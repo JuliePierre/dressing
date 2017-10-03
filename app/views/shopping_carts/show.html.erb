@@ -1,9 +1,41 @@
 <div class="main-body">
-  <div class="container">
-    <h1>Mon panier</h1>
-    <% @cart.shopping_cart_items.each do |element| %>
-      <% item = VideDressingItem.find(element.item_id) %>
-      <p><%= item.name %> - <%= item.category %></p>
-    <% end %>
+  <div class="bg-grey">
+    <div class="b-section">
+      <h2 class="text-center">Mon panier</h2>
+      <div class="container">
+        <div id="cart-container">
+          <div class="cart-card">
+<!--             <div class="cart-card-intro">
+              <h2>Mon panier</h2>
+            </div> -->
+            <div class="cart-card-items">
+              <% @cart.shopping_cart_items.each do |element| %>
+              <% item = VideDressingItem.find(element.item_id) %>
+              <div class="cart-item-card">
+                <div class="cart-item-card-picture">
+                  <%= cl_image_tag(item.photos[0].path, height: 240, width: 160, crop: :fill) %>
+                </div>
+                <div class="cart-item-card-infos">
+                  <h2><%= item.name %></h2>
+                  <h5><%= item.gender %></h5>
+                  <h5><%= item.category %></h5>
+                </div>
+                <div class="cart-item-card-price">
+                  <p class="small-price"><%= item.price %> €</p>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="cart-recap">
+            <div class="intro">
+              <h2>Récapitulatif</h2>
+              <p><%= pluralize @cart.shopping_cart_items.size, "article" %></p>
+              <h3>Total : <%= @cart.cart_price %> €</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
