@@ -3,6 +3,7 @@ class CreateFriendships < ActiveRecord::Migration[5.0]
     create_table :friendships do |t|
       t.integer :user_id
       t.integer :friend_id
+      t.boolean :is_accepted
 
       t.timestamps
     end

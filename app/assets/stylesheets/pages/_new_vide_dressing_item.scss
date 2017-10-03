@@ -13,3 +13,15 @@
   align-items: center;
   justify-content: space-around;
 }
+#add-pictures-container {
+  width: 1000px;
+  display: flex;
+  justify-content: space-around;
+  padding: 3.125rem;
+}
+#pictures-dropzone {
+  width: 1000px;
+}
+.form-inputs-container {
+  width: 350px;
+}

@@ -3,6 +3,7 @@ class CreateVideDressings < ActiveRecord::Migration[5.0]
     create_table :vide_dressings do |t|
       t.references :user, foreign_key: true
       t.string :name
+      t.string :status
 
       t.timestamps
     end

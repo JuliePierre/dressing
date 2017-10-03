@@ -1,9 +1,0 @@
-<h4>Add this outfit to your dressing</h4>
-
-<%= simple_form_for [user, dressing_item] do |f| %>
-  <%= f.input :name, placeholder: 'Give it a name' %>
-  <%= f.input :category, collection: DressingItem::CATEGORY %>
-
-  <%= f.hidden_field :outfit_id, value: outfit.id %>
-  <%= f.button :submit %>
-<% end %>

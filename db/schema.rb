@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171003134017) do
+ActiveRecord::Schema.define(version: 20170920150854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,64 +30,12 @@ ActiveRecord::Schema.define(version: 20171003134017) do
     t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
   end
 
-  create_table "ceremonies", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_ceremonies_on_user_id", using: :btree
-  end
-
-  create_table "dressing_items", force: :cascade do |t|
-    t.string   "name"
-    t.string   "category"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_dressing_items_on_user_id", using: :btree
-  end
-
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
     t.boolean  "is_accepted"
-  end
-
-  create_table "missing_items", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "missing_items_outfits", id: false, force: :cascade do |t|
-    t.integer "outfit_id"
-    t.integer "missing_item_id"
-    t.index ["missing_item_id"], name: "index_missing_items_outfits_on_missing_item_id", using: :btree
-    t.index ["outfit_id"], name: "index_missing_items_outfits_on_outfit_id", using: :btree
-  end
-
-  create_table "outfits", force: :cascade do |t|
-    t.string   "name"
-    t.string   "occasion"
-    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "ceremony_id"
-    t.index ["user_id"], name: "index_outfits_on_user_id", using: :btree
-  end
-
-  create_table "proposals", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "outfit_id"
-    t.integer  "missing_item_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "name"
-    t.index ["missing_item_id"], name: "index_proposals_on_missing_item_id", using: :btree
-    t.index ["outfit_id"], name: "index_proposals_on_outfit_id", using: :btree
-    t.index ["user_id"], name: "index_proposals_on_user_id", using: :btree
   end
 
   create_table "shopping_cart_items", force: :cascade do |t|
@@ -103,9 +51,9 @@ ActiveRecord::Schema.define(version: 20171003134017) do
   end
 
   create_table "shopping_carts", force: :cascade do |t|
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
     t.index ["user_id"], name: "index_shopping_carts_on_user_id", using: :btree
   end
 
@@ -137,44 +85,24 @@ ActiveRecord::Schema.define(version: 20171003134017) do
     t.integer  "vide_dressing_id"
     t.string   "name"
     t.string   "category"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
     t.float    "price"
     t.string   "gender"
     t.string   "color"
     t.string   "size"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.index ["vide_dressing_id"], name: "index_vide_dressing_items_on_vide_dressing_id", using: :btree
   end
 
   create_table "vide_dressings", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
+    t.string   "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "status"
     t.index ["user_id"], name: "index_vide_dressings_on_user_id", using: :btree
   end
 
-  create_table "votes", force: :cascade do |t|
-    t.string   "votable_type"
-    t.integer  "votable_id"
-    t.string   "voter_type"
-    t.integer  "voter_id"
-    t.boolean  "vote_flag"
-    t.string   "vote_scope"
-    t.integer  "vote_weight"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
-    t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
-  end
-
-  add_foreign_key "ceremonies", "users"
-  add_foreign_key "dressing_items", "users"
-  add_foreign_key "outfits", "users"
-  add_foreign_key "proposals", "missing_items"
-  add_foreign_key "proposals", "outfits"
-  add_foreign_key "proposals", "users"
   add_foreign_key "shopping_carts", "users"
   add_foreign_key "vide_dressing_items", "vide_dressings"
   add_foreign_key "vide_dressings", "users"

@@ -39,6 +39,12 @@ class VideDressingsController < ApplicationController
     @vide_dressing = VideDressing.find(params[:id])
   end
 
+  def destroy
+    @vide_dressing = VideDressing.find(params[:id])
+    @vide_dressing.destroy
+    redirect_to dashboard_user_path(current_user)
+  end
+
   private
 
   def vide_dressing_params

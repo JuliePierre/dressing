@@ -29,13 +29,17 @@
       <div class="b-section">
         <h2 class="text-center">Les vide-dressings de <%= @user.first_name %></h2>
         <% if @public_vide_dressings.size == 0 %>
-          <p><%= @user.first_name %> n'a aucun vide-dressing public en cours.</p>
+          <p class="text-center"><%= @user.first_name %> n'a aucun vide-dressing public en cours.</p>
         <% else %>
           <div class="vide-dressings-container">
             <% @public_vide_dressings.each do |item| %>
-              <% bg = ["dressing1_k4v8xj.jpg", "dressing_homme_fujdl0.jpg", "dressing2_n97toz.jpg"].sample %>
+              <% if item.photo.nil? %>
+                <% bg = "dressing2_vtjhvf.jpg" %>
+              <% else %>
+                <% bg = item.photo.path %>
+              <% end %>
               <div class="card-large">
-                <div class="card-large-picture" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path bg %>');">
+                <div class="card-large-picture" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path(bg, height: 300, width: 500); %>');">
                   <%= link_to "", user_vide_dressing_path(item.user, item), class: 'card-link' %>
                 </div>
                 <div class="card-large-infos">
@@ -60,7 +64,7 @@
         <% if current_user %>
           <% if (current_user == @user) | current_user.is_friend_with?(@user) %>
             <% if @private_vide_dressings.size == 0 %>
-              <p><%= @user.first_name %> n'a aucun vide-dressing privé en cours.</p>
+              <p class="text-center"><%= @user.first_name %> n'a aucun vide-dressing privé en cours.</p>
             <% else %>
               <div class="vide-dressings-container">
                 <% @private_vide_dressings.each do |item| %>

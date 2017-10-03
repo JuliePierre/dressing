@@ -1,8 +1,0 @@
-<%= simple_form_for(outfit) do |f| %>
-  <%= f.error_notification %>
-
-  <%= f.input :photos, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
-
-
-  <%= f.button :submit, class: 'btn'  %>
-<% end %>

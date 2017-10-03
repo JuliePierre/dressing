@@ -13,6 +13,11 @@
             <p>Créé par <%= @vide_dressing.user.first_name %> <%= @vide_dressing.user.last_name %> le <%= @vide_dressing.created_at.strftime('%e %b %Y') %></p>
             <p><%= pluralize @vide_dressing.vide_dressing_items.size, "pièce" %></p>
           </div>
+          <% if current_user == @user %>
+            <div class="delete-link-container">
+              <%= link_to "Supprimer ce vide-dressing", user_vide_dressing_path(@user, @vide_dressing), method: :delete, class: "b-btn" %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>

@@ -1,6 +1,0 @@
-<% if @ceremony.errors.any? %>
-  flash("Impossible de créer la cérémonie. Veuillez vérifier qu'elle n'existe pas déjà.");
-<% else %>
-  var ceremony = $('#ceremony_name').val();
-  $('#outfit_ceremony').val(ceremony);
-<% end %>

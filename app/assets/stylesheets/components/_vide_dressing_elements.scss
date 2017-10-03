@@ -73,8 +73,14 @@
 }
 .vide-dressing-intro {
   display: flex;
+  justify-content: space-between;
   .intro-infos {
     margin-left: 2rem;
+    flex: 0 0 35%;
+  }
+  .delete-link-container {
+    display: flex;
+    align-items: flex-end;
   }
 }
 .price {
