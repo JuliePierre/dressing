@@ -30,19 +30,19 @@ $(function() {
     // });
   };
 
-
   // item
-
   if (document.getElementById('pictures-dropzone')) {
     var myDropzone = new Dropzone("#pictures-dropzone", {
       paramName: "file",
       capture: "camera",
       acceptedFiles: 'image/*',
+      previewsContainer: "#itemDropzonePreview",
       uploadMultiple: "true",
-    });
-
-    myDropzone.on("success", function(file, json) {
-      console.log("success");
+      resizeWidth: "1000",
+      resizeHeight: "1400",
+      resizeMethod: "crop",
+      thumbnailWidth: "250",
+      thumbnailHeight: "350",
     });
     myDropzone.on("success", function(file, json) {
       var jsonUrl = json["file"]["url"];

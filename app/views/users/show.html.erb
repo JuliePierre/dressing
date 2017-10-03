@@ -8,7 +8,7 @@
             <%= image_tag(avatar_url, class: 'user-picture') %>
             <% if @user.is_friend_with?(current_user) %>
               <p>Vous êtes ami(e)s</p>
-            <% elsif %>
+            <% elsif @user != current_user %>
               <%= link_to "Inviter", friendships_path(:friend_id => @user), :method => :post, class: 'b-btn invite-btn' %>
             <% end %>
           </div>

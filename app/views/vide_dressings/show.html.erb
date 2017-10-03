@@ -10,7 +10,8 @@
           <% end %>
           <div class="intro-infos">
             <h2><%= @vide_dressing.name %></h2>
-            <p>Créé par <%= @vide_dressing.user.first_name %> <%= @vide_dressing.user.last_name %></p>
+            <p>Créé par <%= @vide_dressing.user.first_name %> <%= @vide_dressing.user.last_name %> le <%= @vide_dressing.created_at.strftime('%e %b %Y') %></p>
+            <p><%= pluralize @vide_dressing.vide_dressing_items.size, "pièce" %></p>
           </div>
         </div>
       </div>
@@ -21,7 +22,7 @@
       <div class="sub-nav-menu">
         <span class="sub-nav-item"><%= link_to 'Accueil', root_path %></span>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        <span class="sub-nav-item"><%= link_to @user.first_name, user_path(@user) %></span>
+        <span class="sub-nav-item"><%= link_to "#{@user.first_name} #{@user.last_name}", user_path(@user) %></span>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
         <span class="sub-nav-item"><%= @vide_dressing.name %></span>
       </div>

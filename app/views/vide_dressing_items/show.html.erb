@@ -6,7 +6,7 @@
       <div class="sub-nav-menu">
         <span class="sub-nav-item"><%= link_to 'Accueil', root_path %></span>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        <span class="sub-nav-item"><%= link_to "Les vide-dressings de #{@owner.first_name}", user_path(@owner) %></span>
+        <span class="sub-nav-item"><%= link_to "#{@owner.first_name} #{@owner.last_name}", user_path(@owner) %></span>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
         <span class="sub-nav-item"><%= link_to @vide_dressing.name, user_vide_dressing_path(@owner, @vide_dressing) %></span>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
@@ -19,21 +19,12 @@
     <div id="vide-dressing-item-container">
       <div class="item-pictures">
         <div class="item-main-picture">
-          <%= cl_image_tag @item.photos[0].path %>
+          <%= cl_image_tag(@item.photos[0].path, width: 500, height: 700) %>
         </div>
         <div class="item-other-pictures">
           <% if @item.photos.size > 1 %>
             <% @item.photos[1..@item.photos.length-1].each do |photo| %>
-              <%= cl_image_tag photo.path %>
-            <% end %>
-          <% end %>
-          <% unless current_user.nil? %>
-            <% if current_user == @owner %>
-              <div class="add-item-card">
-                <%= link_to "#" do %>
-                  <i class="material-icons">add_box</i>
-                <% end %>
-              </div>
+              <%= cl_image_tag(photo.path, height: 345) %>
             <% end %>
           <% end %>
         </div>
@@ -41,10 +32,15 @@
       <div class="item-infos-container">
         <div class="item-infos">
           <h2><%= @item.name %></h2>
-          <p><%= @item.gender %></p>
-          <p><%= @item.category %></p>
-          <p><%= @item.price %>€</p>
-          <%= link_to "Ca m'intéresse", add_to_cart_path(@owner, @vide_dressing, @item), remote: true, method: :post, class: 'b-btn' %>
+          <p class="price"><%= @item.price %>€</p>
+          <h5><%= @item.gender %></h5>
+          <h5><%= @item.category %></h5>
+          <br>
+          <% if current_user == @owner %>
+            <%= link_to "Modifier", edit_user_vide_dressing_vide_dressing_item_path(@owner, @vide_dressing, @item), class: 'b-btn' %>
+          <% else %>
+            <%= link_to "Ca m'intéresse", add_to_cart_path(@owner, @vide_dressing, @item), remote: true, method: :post, class: 'b-btn' %>
+          <% end %>
         </div>
       </div>
     </div>
