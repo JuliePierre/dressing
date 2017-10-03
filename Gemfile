@@ -26,6 +26,7 @@ gem 'dropzonejs-rails'
 
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'acts_as_shopping_cart', '~> 0.4.0'
+gem 'friendly_id', '~> 5.1.0'
 
 
 group :development, :test do

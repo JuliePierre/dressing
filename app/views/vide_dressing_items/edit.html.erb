@@ -8,6 +8,9 @@
           <%= f.input :name, placeholder: "Nom" %>
           <%= f.input :gender, placeholder: "Genre", collection: VideDressingItem::GENDER %>
           <%= f.input :category, placeholder: "Categorie", collection: VideDressingItem::CATEGORY %>
+          <%= f.input :color, placeholder: "Couleur" %>
+          <%= f.input :size, placeholder: "Taille" %>
+          <%= f.input :price, placeholder: "Prix" %>
           <%= f.hidden_field :photos %>
           <div class="dz-default dz-message">
             <span>Cliquez ici pour choisir ou prendre les photos (Mininum : 450 * 670)</span>

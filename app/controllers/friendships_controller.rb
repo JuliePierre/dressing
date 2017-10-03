@@ -7,11 +7,16 @@ class FriendshipsController < ApplicationController
     else
       @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
       if @friendship.save
-        flash[:notice] = "Added friend."
-        redirect_to dashboard_user_path(current_user)
+        respond_to do |format|
+          format.html { redirect_to dashboard_user_path(current_user) }
+          format.js  # <-- will render `app/views/friendships/create.js.erb`
+        end
       else
-        flash[:notice] = "Unable to add friend."
-        redirect_to user_path(current_user)
+        respond_to do |format|
+          format.html { redirect_to user_path(current_user) }
+          format.js  # <-- idem
+        end
+
       end
     end
   end

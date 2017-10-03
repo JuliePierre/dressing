@@ -32,7 +32,8 @@
               </select>
               <%#= f.input :gender, placeholder: "Genre", collection: VideDressingItem::GENDER %>
               <%#= f.input :category, placeholder: "Categorie", collection: VideDressingItem::CATEGORY %>
-
+              <%= f.input :color, placeholder: "Couleur" %>
+              <%= f.input :size, placeholder: "Taille" %>
               <%= f.input :price, placeholder: "Prix" %>
 
               <%= f.button :submit, class: 'b-btn', value: "Valider et poursuivre" %>

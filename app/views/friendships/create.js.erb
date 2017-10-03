@@ -1,0 +1,6 @@
+<% if @friendship.errors.any? %>
+   Materialize.toast("Impossible d'ajouter cette personne pour le moment, veuillez ré-essayer plus tard", 2000) // 4000 is the duration of the toast
+<% else %>
+  Materialize.toast("Demande envoyée", 2000) // 4000 is the duration of the toast
+<% end %>
+
