@@ -25,7 +25,9 @@ class VideDressingsController < ApplicationController
     url = params["vide_dressing"]["photo"]
 
     if @vide_dressing.save
-      @vide_dressing.photo_url = url # Upload happens here
+      unless url.blank?
+        @vide_dressing.photo_url = url # Upload happens here
+      end
       redirect_to user_vide_dressing_path(@user, @vide_dressing)
     else
       render :new
