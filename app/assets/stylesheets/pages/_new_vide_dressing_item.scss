@@ -3,9 +3,15 @@
   display: flex;
   justify-content: space-around;
   padding: 3.125rem;
+  @media (max-width: $small-screen) {
+    width: 100%;
+  }
 }
 #new-vide-dressing-form {
   width: 350px;
+  @media (max-width: $small-screen) {
+    width: 175px;
+  }
 }
 #picture-one-container {
   width: 100%;
@@ -21,7 +27,13 @@
 }
 #pictures-dropzone {
   width: 1000px;
+  @media (max-width: $small-screen) {
+    width: 100%;
+  }
 }
 .form-inputs-container {
   width: 350px;
+  @media (max-width: $small-screen) {
+    width: 175px;
+  }
 }

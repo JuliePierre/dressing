@@ -31,6 +31,9 @@
   &:focus {
     background-color: $b-olive;
   }
+  @media (max-width: $small-screen) {
+    font-size: 0.55rem;
+  }
 }
 
 .banner-card-btn {
