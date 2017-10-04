@@ -1,7 +1,9 @@
 <nav>
   <div class="container">
     <div id="navigation">
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse">
+        <p>Menu</p>
+      </a>
       <ul class="hide-on-med-and-down">
         <li><%= link_to "Accueil", root_path %></li>
         <% if current_user %>
@@ -15,6 +17,7 @@
   </div>
 </nav>
 <ul class="side-nav" id="mobile-demo">
+  <li><%= link_to "Accueil", root_path %></li>
   <% if current_user %>
     <li><%= link_to 'Mon compte', dashboard_user_path(current_user) %></li>
   <% else %>

@@ -47,6 +47,9 @@
   h5 {
     margin-bottom: 1rem;
   }
+  @media (max-width: $small-screen) {
+    margin: 0 4rem 0 4rem;
+  }
 }
 // vide-dressing items
 .card-large {
@@ -66,6 +69,10 @@
     display: inline-block;
     width: 50%;
     height: 20rem;
+    @media (max-width: $small-screen) {
+      width: 100%;
+      height: 15rem;
+    }
   }
   .card-large-infos {
     border-top-right-radius: 2px;
@@ -80,6 +87,10 @@
     vertical-align: top;
     width: 49%;
     height: 20rem;
+    @media (max-width: $small-screen) {
+      width: 100%;
+      height: auto;
+    }
     .card-large-container {
       width: 100%;
       display: flex;
@@ -90,6 +101,10 @@
       width: 100%;
       padding-bottom: 6.25rem;
       height: 23.125rem;
+      @media (max-width: $small-screen) {
+        height: auto;
+        padding: 1rem
+      }
       .card-large-text {
         text-align: center;
       }
@@ -100,6 +115,15 @@
       h2 {
         font-size: 1.3125rem;
         margin-bottom: 1.25rem;
+        @media (max-width: $small-screen) {
+          margin-bottom: 0.25rem;
+        }
+        p {
+          @media (max-width: $small-screen) {
+            margin-top: 0.25rem;
+            margin-bottom: 0.75rem;
+          }
+        }
       }
       .b-btn {
         flex: 0 0 15%;
