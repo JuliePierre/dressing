@@ -15,6 +15,10 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  @media (max-width: $small-screen) {
+    height: 200px;
+    flex: 0 0 100%;
+  }
 }
 .vide-dressings-container {
   margin-top: 2rem;
@@ -33,6 +37,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  @media (max-width: $small-screen) {
+    flex: 0 0 100%;
+  }
 }
 .add-item-card {
   background-color: $b-blue-light;
@@ -43,6 +50,9 @@
   width: auto;
   i {
     font-size: 3rem;
+  }
+  @media (max-width: $small-screen) {
+    height: 200px;
   }
 }
 #vide-dressing-item-container {
@@ -74,6 +84,7 @@
 .vide-dressing-intro {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   .intro-infos {
     margin-left: 2rem;
     flex: 0 0 35%;
@@ -81,6 +92,14 @@
   .delete-link-container {
     display: flex;
     align-items: flex-end;
+  }
+  img {
+    width: 400px;
+    height: 250px;
+    @media (max-width: $small-screen) {
+      max-width: 100%;
+      height: auto;
+    }
   }
 }
 .price {

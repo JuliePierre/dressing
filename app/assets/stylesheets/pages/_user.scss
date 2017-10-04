@@ -40,14 +40,30 @@
 #user-intro-container {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
-.user-picture {
+.user-picture-container {
   flex: 0 0 20%;
+  @media (max-width: $small-screen) {
+    flex: 0 0 45%;
+  }
+  img {
+    @media (max-width: $small-screen) {
+      width: 100%;
+      height: auto;
+    }
+  }
 }
 .user-infos {
   flex: 0 0 40%;
   h2 {
     margin-bottom: 0;
+    @media (max-width: $small-screen) {
+      font-size: 1rem;
+    }
+  }
+  @media (max-width: $small-screen) {
+    flex: 0 0 45%;
   }
 }
 .user-details {
@@ -56,6 +72,10 @@
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-end;
+  @media (max-width: $small-screen) {
+    flex: 0 0 100%;
+    align-items: flex-start;
+  }
   .user-metrics {
     display: flex;
     justify-content: space-around;

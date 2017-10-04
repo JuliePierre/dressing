@@ -3,7 +3,7 @@
     <div class="container">
       <div class="b-section">
         <div id="user-intro-container">
-          <div class="user-picture">
+          <div class="user-picture-container">
             <% avatar_url = @user.facebook_picture_url || image_path('someone_icon.png') %>
             <%= image_tag(avatar_url, class: 'user-picture') %>
             <% if @user.is_friend_with?(current_user) %>
