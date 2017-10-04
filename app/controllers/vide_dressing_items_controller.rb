@@ -54,6 +54,14 @@ class VideDressingItemsController < ApplicationController
 
   end
 
+  def destroy
+    @vide_dressing_item = VideDressingItem.find(params[:id])
+    @vide_dressing = @vide_dressing_item.vide_dressing
+    @owner = @vide_dressing.user
+    @vide_dressing_item.destroy
+    redirect_to user_vide_dressing_path(@owner, @vide_dressing)
+  end
+
   def add_to_cart
     @item = VideDressingItem.find(params[:id])
     @vide_dressing = @item.vide_dressing

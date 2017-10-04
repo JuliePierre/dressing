@@ -40,6 +40,7 @@
           <br>
           <% if current_user == @owner %>
             <%= link_to "Modifier", edit_user_vide_dressing_vide_dressing_item_path(@owner, @vide_dressing, @item), class: 'b-btn' %>
+            <%= link_to "Supprimer", user_vide_dressing_vide_dressing_item_path(@owner, @vide_dressing, @item), method: :delete, class: 'b-btn' %>
           <% else %>
             <%= link_to "Ca m'intéresse", add_to_cart_path(@owner, @vide_dressing, @item), remote: true, method: :post, class: 'b-btn' %>
           <% end %>
