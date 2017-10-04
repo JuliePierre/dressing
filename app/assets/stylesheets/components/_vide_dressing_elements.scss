@@ -88,6 +88,13 @@
   .intro-infos {
     margin-left: 2rem;
     flex: 0 0 35%;
+    @media (max-width: $small-screen) {
+      margin-left: 0;
+      flex: 0 0 100%;
+      h2 {
+        margin-bottom: 1.5rem;
+      }
+    }
   }
   .delete-link-container {
     display: flex;
@@ -97,8 +104,9 @@
     width: 400px;
     height: 250px;
     @media (max-width: $small-screen) {
-      max-width: 100%;
-      height: auto;
+      width: 100%;
+      height: 100%;
+      margin-bottom: 3.125rem;
     }
   }
 }
