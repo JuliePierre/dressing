@@ -49,6 +49,9 @@
               <h2><%= item.name %></h2>
               <p><%= item.category %></p>
             </div>
+            <div class="card-price">
+              <p><%= item.price %> €</p>
+            </div>
             <%= link_to "", user_vide_dressing_vide_dressing_item_path(@user, @vide_dressing, item), class: 'card-link' %>
             <% if current_user == @user %>
               <div class="vide-dressing-item-card-icon">
