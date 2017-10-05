@@ -47,7 +47,7 @@ class VideDressingItemsController < ApplicationController
     urls = params["vide_dressing_item"]["photos"].split(" ")
     urls.delete_at(0)
 
-    if @item.save
+    if @item.update(vide_dressing_item_params)
       @item.photo_urls = urls # Upload happens here
       redirect_to user_vide_dressing_vide_dressing_item_path(@owner, @vide_dressing, @item)
     else
