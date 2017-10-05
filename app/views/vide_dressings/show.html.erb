@@ -50,7 +50,11 @@
               <p><%= item.category %></p>
             </div>
             <div class="card-price">
-              <p><%= item.price %> €</p>
+              <% if item.price == 0 %>
+                <p>gratuit</p>
+              <% else %>
+                <p><%= item.price %> €</p>
+              <% end %>
             </div>
             <%= link_to "", user_vide_dressing_vide_dressing_item_path(@user, @vide_dressing, item), class: 'card-link' %>
             <% if current_user == @user %>
