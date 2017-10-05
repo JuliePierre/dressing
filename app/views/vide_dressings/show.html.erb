@@ -50,6 +50,12 @@
               <p><%= item.category %></p>
             </div>
             <%= link_to "", user_vide_dressing_vide_dressing_item_path(@user, @vide_dressing, item), class: 'card-link' %>
+            <% if current_user == @user %>
+              <div class="vide-dressing-item-card-icon">
+                <i class="material-icons">favorite_border</i>
+                <h2><%= item.number_of_users_interested %></h2>
+              </div>
+            <% end %>
           </div>
         <% end %>
       <% end %>

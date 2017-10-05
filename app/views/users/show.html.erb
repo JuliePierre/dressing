@@ -4,8 +4,12 @@
       <div class="b-section">
         <div id="user-intro-container">
           <div class="user-picture-container">
-            <% avatar_url = @user.facebook_picture_url || image_path('someone_icon.png') %>
-            <%= image_tag(avatar_url, class: 'user-picture') %>
+            <% if @user.profile_picture.nil? %>
+              <% avatar_url = @user.facebook_picture_url || image_path('someone_icon.png') %>
+              <%= image_tag(avatar_url, class: 'user-picture') %>
+            <% else %>
+              <%= cl_image_tag @user.profile_picture.path %>
+            <% end %>
             <% if @user.is_friend_with?(current_user) %>
               <p>Vous êtes ami(e)s</p>
             <% elsif @user != current_user %>
@@ -34,7 +38,7 @@
           <div class="vide-dressings-container">
             <% @public_vide_dressings.each do |item| %>
               <% if item.photo.nil? %>
-                <% bg = "dressing2_vtjhvf.jpg" %>
+                <% bg = "dg4gaietgwflohnmddv0.jpg" %>
               <% else %>
                 <% bg = item.photo.path %>
               <% end %>
@@ -68,7 +72,11 @@
             <% else %>
               <div class="vide-dressings-container">
                 <% @private_vide_dressings.each do |item| %>
-                  <% bg = ["dressing1_k4v8xj.jpg", "dressing_homme_fujdl0.jpg", "dressing2_n97toz.jpg"].sample %>
+                  <% if item.photo.nil? %>
+                    <% bg = "dg4gaietgwflohnmddv0.jpg" %>
+                  <% else %>
+                    <% bg = item.photo.path %>
+                  <% end %>
                   <div class="card-large">
                     <div class="card-large-picture" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path bg %>');">
                       <%= link_to "", user_vide_dressing_path(item.user, item), class: 'card-link' %>

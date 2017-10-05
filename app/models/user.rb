@@ -18,6 +18,8 @@ class User < ApplicationRecord
 
   has_one :shopping_cart, dependent: :destroy
 
+  has_attachment :profile_picture
+
   validates :first_name, presence: true
   validates :last_name, presence: true
 

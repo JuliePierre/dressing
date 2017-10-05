@@ -23,6 +23,8 @@ class VideDressingItemsController < ApplicationController
     @item = VideDressingItem.find(params[:id])
     @vide_dressing = @item.vide_dressing
     @owner = @item.vide_dressing.user
+
+    @users_interested = @item.users_interested
   end
 
   def edit

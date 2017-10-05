@@ -35,12 +35,16 @@
           <p class="price"><%= @item.price %>€</p>
           <h5><%= @item.gender %></h5>
           <h5><%= @item.category %></h5>
-          <p><%= @item.color %></p>
-          <p><%= @item.size %></p>
+          <p>Couleur : <%= @item.color %></p>
+          <p>Taille : <%= @item.size %></p>
           <br>
           <% if current_user == @owner %>
             <%= link_to "Modifier", edit_user_vide_dressing_vide_dressing_item_path(@owner, @vide_dressing, @item), class: 'b-btn' %>
             <%= link_to "Supprimer", user_vide_dressing_vide_dressing_item_path(@owner, @vide_dressing, @item), method: :delete, class: 'b-btn' %>
+            <p>Dans le panier de :</p>
+            <% @users_interested.each do |user| %>
+              <p><%= link_to "#{user.first_name} #{user.last_name}", user_path(user) %></p>
+            <% end %>
           <% else %>
             <%= link_to "Ca m'intéresse", add_to_cart_path(@owner, @vide_dressing, @item), remote: true, method: :post, class: 'b-btn' %>
           <% end %>

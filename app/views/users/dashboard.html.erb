@@ -59,7 +59,7 @@
           <% unless @user.vide_dressings.size == 0 %>
             <% @user.vide_dressings.each do |vide_dressing| %>
               <% if vide_dressing.photo.nil? %>
-                <% bg = "dressing2_vtjhvf.jpg" %>
+                <% bg = "dg4gaietgwflohnmddv0.jpg" %>
               <% else %>
                 <% bg = vide_dressing.photo.path %>
               <% end %>
@@ -70,6 +70,16 @@
                 </div>
                 <div class="vide-dressing-card-description">
                   <h2><%= vide_dressing.name %></h2>
+                </div>
+                <div class="vide-dressing-card-icons">
+                  <div class="vide-dressing-card-icon">
+                    <%= image_tag "cintre.png" %>
+                    <h2><%= vide_dressing.vide_dressing_items.size %></h2>
+                  </div>
+                  <div class="vide-dressing-card-icon">
+                    <i class="material-icons">favorite_border</i>
+                    <h2><%= vide_dressing.marks_of_interest %></h2>
+                  </div>
                 </div>
                 <%= link_to "", user_vide_dressing_path(@user, vide_dressing), class: "card-link" %>
               </div>
