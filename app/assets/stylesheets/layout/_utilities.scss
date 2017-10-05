@@ -144,7 +144,12 @@ a {
   align-items: center;
   justify-content: space-around;
 }
-
+.space-between {
+  justify-content: space-between;
+}
+.flex-start {
+  align-items: flex-start;
+}
 .center-align {
   text-align: center;
 }

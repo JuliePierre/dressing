@@ -2,9 +2,16 @@
   <div class="bg-grey">
     <div class="container">
       <div class="b-section">
-        <h2>Mon compte</h2>
-        <p>Bienvenue <%= @user.first_name %> !</p>
-        <p>Ceci est votre espace personnel. Vous pouvez modifier les paramètres de votre compte.</p>
+        <div class="flexbox space-between flex-start">
+          <div>
+            <h2>Mon compte</h2>
+            <p>Bienvenue <%= @user.first_name %> !</p>
+            <p>Ceci est votre espace personnel. Vous pouvez modifier les paramètres de votre compte.</p>
+          </div>
+          <div>
+            <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "b-btn" %>
+          </div>
+        </div>
       </div>
     </div>
     <div class="container">
