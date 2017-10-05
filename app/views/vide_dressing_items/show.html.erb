@@ -19,11 +19,15 @@
     <div id="vide-dressing-item-container">
       <div class="item-pictures">
         <div class="item-main-picture">
-          <%= cl_image_tag(@item.photos[0].path, width: 500, height: 700) %>
+          <% if @item.photos.size == 0 %>
+            <p>Le propriétaire n'a pas encore fourni de photos</p>
+          <% else %>
+            <%= cl_image_tag(@item.photos[@item.photos.length - 1].path, width: 500, height: 700) %>
+          <% end %>
         </div>
         <div class="item-other-pictures">
           <% if @item.photos.size > 1 %>
-            <% @item.photos[1..@item.photos.length-1].each do |photo| %>
+            <% @item.photos[0..@item.photos.length-2].each do |photo| %>
               <%= cl_image_tag(photo.path, height: 345) %>
             <% end %>
           <% end %>

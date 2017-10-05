@@ -38,10 +38,10 @@
     <div id="vide-dressing-elements-container">
       <% unless @vide_dressing.vide_dressing_items.size == 0 %>
         <% @vide_dressing.vide_dressing_items.each do |item| %>
-          <% if item.photos[0].nil? %>
+          <% if item.photos.size == 0 %>
             <% picture = "dress_icon_sfq079.png" %>
           <% else %>
-            <% picture = item.photos[0].path %>
+            <% picture = item.photos[item.photos.length - 1].path %>
           <% end %>
           <div class="vide-dressing-item-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
          url('<%= cl_image_path picture, height: 350, width: 260, crop: :fill %>')">
