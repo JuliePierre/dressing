@@ -64,6 +64,9 @@
   position: relative;
   @media (max-width: $small-screen) {
     flex: 0 0 100%;
+    margin: 0 0 1rem 0;
+    height: 300px;
+    width: auto;
   }
 }
 .add-item-card {
