@@ -10,6 +10,7 @@
               <div class="flex-form-container">
                 <div class="form-inputs-container">
                   <%= f.input :name, placeholder: "Nom" %>
+                  <%= f.input :description, placeholder: "Description", as: :text %>
                   <%= f.input :gender, placeholder: "Genre", collection: VideDressingItem::GENDER %>
                   <%= f.input :category, placeholder: "Categorie", collection: VideDressingItem::CATEGORY %>
                   <%= f.input :color, placeholder: "Couleur" %>

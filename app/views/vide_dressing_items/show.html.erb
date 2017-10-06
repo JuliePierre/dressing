@@ -41,13 +41,18 @@
           <% end %>
           <h5><%= @item.gender %></h5>
           <h5><%= @item.category %></h5>
+          <br>
           <p>Couleur : <%= @item.color %></p>
           <p>Taille : <%= @item.size %></p>
+          <br>
+          <p><%= @item.description %></p>
           <br>
           <% if current_user == @owner %>
             <%= link_to "Modifier", edit_user_vide_dressing_vide_dressing_item_path(@owner, @vide_dressing, @item), class: 'b-btn' %>
             <%= link_to "Supprimer", user_vide_dressing_vide_dressing_item_path(@owner, @vide_dressing, @item), method: :delete, class: 'b-btn' %>
-            <p>Dans le panier de :</p>
+            <br>
+            <br>
+            <h4>Dans le panier de</h4>
             <% if @users_interested.size == 0 %>
               <p>personne pour l'instant</p>
             <% else %>

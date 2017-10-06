@@ -129,6 +129,14 @@
     @media (max-width: $small-screen) {
       flex: 0 0 100%;
     }
+    .item-infos {
+      h2 {
+        font-size: 1.325rem;
+      }
+      p {
+        margin: 0;
+      }
+    }
   }
 }
 .vide-dressing-intro {

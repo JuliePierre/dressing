@@ -86,6 +86,6 @@ class VideDressingItemsController < ApplicationController
   private
 
   def vide_dressing_item_params
-    params.require(:vide_dressing_item).permit(:name, :category, :price, :gender, :color, :size, photos: [])
+    params.require(:vide_dressing_item).permit(:name, :description, :category, :price, :gender, :color, :size, photos: [])
   end
 end
