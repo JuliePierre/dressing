@@ -8,7 +8,7 @@
             <p>Bienvenue <%= @user.first_name %> !</p>
             <p>Ceci est votre espace personnel. Vous pouvez modifier les paramètres de votre compte.</p>
           </div>
-          <div style="width: 100%;">
+          <div class="mobile-full-width">
             <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "b-btn" %>
           </div>
         </div>

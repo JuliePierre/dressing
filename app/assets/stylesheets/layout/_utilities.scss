@@ -179,6 +179,11 @@ a {
 .full-screen {
   height: calc(100vh - 64px);
 }
+.mobile-full-width {
+  @media (max-width: $small-screen) {
+    width: 100%;
+  }
+}
 
 // Cards
 .card-link {
