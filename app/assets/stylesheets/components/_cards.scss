@@ -80,6 +80,9 @@
   align-items: center;
   margin-right: 2rem;
   justify-content: space-around;
+  @media (max-width: $small-scren {
+    margin-right: 0.5rem;
+  }
   img {
     height: 2rem;
   }
