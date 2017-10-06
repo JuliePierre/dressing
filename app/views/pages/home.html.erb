@@ -1,6 +1,6 @@
 <div class="main-body">
 
-  <div id="homepage-banner" style="background-image: linear-gradient(rgba(235, 235, 232, 0.3), rgba(0,0,0,0.2)), url(<%= image_path 'home-banner.jpg'%>);">
+  <div id="homepage-banner" style="background-image: linear-gradient(rgba(233, 222, 250, 0.2), rgba(193, 223, 196, 0.2)), url(<%= image_path 'home-banner.jpg'%>);">
     <div class="banner-card">
       <h1>Swaplab</h1>
       <h5>Le premier vide-dressing entre copines</h5>
@@ -50,7 +50,7 @@
                 <% bg = item.photo.path %>
               <% end %>
               <div class="card-large">
-                <div class="card-large-picture" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path bg %>');">
+                <div class="card-large-picture" style="background-image: linear-gradient(rgba(233, 222, 250, 0.2), rgba(193, 223, 196, 0.2)), url('<%= cl_image_path bg %>');">
                   <%= link_to "", user_vide_dressing_path(item.user, item), class: 'card-link' %>
                 </div>
                 <div class="card-large-infos">

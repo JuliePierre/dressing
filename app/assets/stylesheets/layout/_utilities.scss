@@ -193,11 +193,11 @@ a {
   right: 0;
   width: 100%;
   z-index: 2;
-  background: black;
+  background: $b-beige;
   opacity: 0;
 }
 .card-link:hover {
-  opacity: 0.1;
+  opacity: 0.4;
 }
 
 .rounded {

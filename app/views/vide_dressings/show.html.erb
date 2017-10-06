@@ -44,8 +44,7 @@
             <% picture = item.photos[item.photos.length - 1].path %>
           <% end %>
           <div class="vide-dressing-item-card-container">
-            <div class="vide-dressing-item-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-           url('<%= cl_image_path picture, height: 350, width: 260, crop: :fill %>')">
+            <div class="vide-dressing-item-card" style="background-image: linear-gradient(rgba(218, 212, 236, 0.2), rgba(253, 214, 189, 0.2)), url('<%= cl_image_path picture, height: 350, width: 260, crop: :fill %>')">
               <div class="card-description">
                 <h2><%= item.name %></h2>
                 <p><%= item.category %></p>
