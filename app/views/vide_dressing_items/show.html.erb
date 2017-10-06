@@ -36,7 +36,11 @@
       <div class="item-infos-container">
         <div class="item-infos">
           <h2><%= @item.name %></h2>
-          <p class="price"><%= @item.price %>€</p>
+          <% if @item.price == 0 %>
+            <p class="small-price"><%= @item.price %>€</p>
+          <% else %>
+            <p class="price"><%= @item.price %>€</p>
+          <% end %>
           <h5><%= @item.gender %></h5>
           <h5><%= @item.category %></h5>
           <p>Couleur : <%= @item.color %></p>

@@ -10,8 +10,8 @@
           <% end %>
           <div class="intro-infos">
             <h2><%= @vide_dressing.name %></h2>
-            <p>Créé par <%= @vide_dressing.user.first_name %> <%= @vide_dressing.user.last_name %> le <%= @vide_dressing.created_at.strftime('%e %b %Y') %></p>
-            <p><%= pluralize @vide_dressing.vide_dressing_items.size, "pièce" %></p>
+            <h5>Créé par <%= @vide_dressing.user.first_name %> <%= @vide_dressing.user.last_name %> le <%= @vide_dressing.created_at.strftime('%e %b %Y') %></h5>
+            <h4><%= pluralize @vide_dressing.vide_dressing_items.size, "pièce" %></h4>
           </div>
           <% if current_user == @user %>
             <div class="delete-link-container">
@@ -43,34 +43,38 @@
           <% else %>
             <% picture = item.photos[item.photos.length - 1].path %>
           <% end %>
-          <div class="vide-dressing-item-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-         url('<%= cl_image_path picture, height: 350, width: 260, crop: :fill %>')">
-            <div class="card-description">
-              <h2><%= item.name %></h2>
-              <p><%= item.category %></p>
-            </div>
-            <div class="card-price">
-              <% if item.price == 0 %>
-                <p class="small-card-price">gratuit</p>
-              <% else %>
-                <p><%= item.price %> €</p>
+          <div class="vide-dressing-item-card-container">
+            <div class="vide-dressing-item-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+           url('<%= cl_image_path picture, height: 350, width: 260, crop: :fill %>')">
+              <div class="card-description">
+                <h2><%= item.name %></h2>
+                <p><%= item.category %></p>
+              </div>
+              <div class="card-price">
+                <% if item.price == 0 %>
+                  <p class="small-card-price">gratuit</p>
+                <% else %>
+                  <p><%= item.price %> €</p>
+                <% end %>
+              </div>
+              <%= link_to "", user_vide_dressing_vide_dressing_item_path(@user, @vide_dressing, item), class: 'card-link' %>
+              <% if current_user == @user %>
+                <div class="vide-dressing-item-card-icon">
+                  <i class="material-icons">favorite_border</i>
+                  <h2><%= item.number_of_users_interested %></h2>
+                </div>
               <% end %>
             </div>
-            <%= link_to "", user_vide_dressing_vide_dressing_item_path(@user, @vide_dressing, item), class: 'card-link' %>
-            <% if current_user == @user %>
-              <div class="vide-dressing-item-card-icon">
-                <i class="material-icons">favorite_border</i>
-                <h2><%= item.number_of_users_interested %></h2>
-              </div>
-            <% end %>
           </div>
         <% end %>
       <% end %>
       <% if @user == current_user %>
-        <div class="vide-dressing-item-card add-item-card">
-          <%= link_to new_user_vide_dressing_vide_dressing_item_path(@user, @vide_dressing) do %>
-            <i class="material-icons">add_box</i>
-          <% end %>
+        <div class="vide-dressing-item-card-container">
+          <div class="vide-dressing-item-card add-item-card">
+            <%= link_to new_user_vide_dressing_vide_dressing_item_path(@user, @vide_dressing) do %>
+              <i class="material-icons">add_box</i>
+            <% end %>
+          </div>
         </div>
       <% end %>
     </div>
