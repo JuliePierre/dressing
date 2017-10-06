@@ -34,7 +34,6 @@
   padding-left: 2rem;
   padding-right: 2rem;
   @media (max-width: $small-screen) {
-    display: block;
     margin-bottom: 3.125rem;
   }
   i {
@@ -65,5 +64,8 @@
     color: $b-green;
     font-family: 'Roboto', sans-serif;
     display: inline-block;
+    @media (max-width: $small-screen) {
+      display: block;
+    }
   }
 }
