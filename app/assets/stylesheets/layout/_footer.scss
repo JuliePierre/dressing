@@ -2,12 +2,13 @@
 #footer-wrapper {
   padding-right: 3.125rem;
   padding-left: 3.125rem;
+  background-color: $primary-color;
 }
 #footer {
   padding: 2.5rem 0 3.125rem;
   max-width: 62.5rem;
   margin: 0 auto;
-  background-color: #fff;
+  color: $b-primary-text;
 }
 .footer-infos {
     p {

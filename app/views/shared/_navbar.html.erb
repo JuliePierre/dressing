@@ -1,17 +1,19 @@
 <nav>
   <div class="container">
     <div id="navigation">
+      <div id="brand-logo">Swaplab</div>
       <a href="#" data-activates="mobile-demo" class="button-collapse">
         <p>Menu</p>
       </a>
       <ul class="hide-on-med-and-down">
-        <li><%= link_to "Accueil", root_path %></li>
+        <li><%= link_to "Lèche-vitrine", all_vide_dressings_path %></li>
+        <li><%= link_to "A propos", root_path %></li>
+        <li><span class="navbar-menu-element">|</span></li>
         <% if current_user %>
-          <li><%= link_to "Vide-dressings", all_vide_dressings_path %></li>
-          <li><%= link_to "Créer", new_user_vide_dressing_path(current_user) %></li>
           <li><%= link_to 'Mon compte', dashboard_user_path(current_user) %></li>
+          <li><%= link_to 'Se déconnecter', destroy_user_session_path(current_user), method: :delete %></li>
         <% else %>
-          <li><%= link_to 'Log in', new_user_session_path %></li>
+          <li><%= link_to 'Se connecter', new_user_session_path %></li>
         <% end %>
       </ul>
     </div>

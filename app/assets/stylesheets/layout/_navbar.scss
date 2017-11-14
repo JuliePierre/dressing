@@ -5,36 +5,52 @@ nav {
   left: 0;
   width: 100%;
   z-index: 200;
-  background-color: white;
-  height: 3.125rem;
+  background-color: $primary-color;
+  height: 5rem;
   line-height: 1.5;
   text-align: center;
   box-shadow: none;
   .nav-wrapper {
     padding: 0;
   }
+  .container {
+    height: 100%;
+  }
   ul li a {
     text-transform: uppercase;
     letter-spacing: .24em;
     font-size: .75rem;
     font-weight: 700;
-    color: $b-green;
+    color: $b-primary-text;
     display: inline-block;
-    padding: 1.375em 1.25rem 1.29688em;
+    padding: 1.375em 1.25rem 1.3em;
     &:hover {
       background-color: transparent;
-      color: $b-olive;
+      color: $b-primary-text;
     }
   }
 }
 #navigation {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  height: 100%;
   .button-collapse p {
     color: $b-green;
   }
 }
+#brand-logo {
+  font-family: 'Indie Flower', cursive;
+  font-size: 32px;
+}
+.navbar-menu-element {
+  font-size: .75rem;
+  font-weight: 700;
+  color: white;
+  display: inline-block;
+  padding: 1.375em  0.75em 1.3em;
+}
+
 // Dropdown
 #dropdown-navbar {
   li {

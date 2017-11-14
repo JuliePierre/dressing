@@ -1,3 +1,25 @@
+// user forms : log in / register
+.user-form-container {
+  display: flex;
+  justify-content: space-around;
+}
+.user-form {
+  background-color: $b-bg-grey-light;
+  border-top: 4px solid $secondary-color;
+  color: rgba(0,0,0,0.87);
+  padding: 5em 5em;
+  h2 {
+    margin-bottom: 2em;
+  }
+  a {
+    color: rgba(0,0,0,0.87);
+  }
+  .btn {
+    width: 100%;
+    height: 3rem;
+  }
+}
+
 .simple_form {
   text-align: center;
 }
@@ -23,20 +45,25 @@
 
 // Ecraser les variables de materialize qui ne sont pas accessibles via les variables sass
 input.string, input.password, input.email, input.url, input.number, textarea.materialize-textarea, input.select-dropdown, input.numeric {
-  background-color: white !important;
-  border-bottom: 1px solid $b-orange !important;
+  background-color: $b-bg-grey;
   padding: 0 2rem !important;
   box-sizing: inherit;
+  border-bottom: none !important;
+  color: rgba(0,0,0,0.87) !important;
   &:focus {
-    border-bottom: 1px solid $b-orange;
+    border-bottom: none !important;
     box-shadow: none !important;
   }
 }
+input::placeholder {
+  color: rgba(0,0,0,0.54) !important;
+}
+//
 label.optional, label.required {
   display: none !important;
 }
 input.btn {
-  margin-top: 2rem;
+  margin-top: 2em;
 }
 form .input-field {
   width: 100%;

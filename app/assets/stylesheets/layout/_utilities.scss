@@ -8,7 +8,7 @@
 body {
   font-family: 'Lora', serif;
   font-weight: 400;
-  color: $b-green;
+  color: $b-primary-text;
 }
 
 h1, h2, h5, {
@@ -49,10 +49,7 @@ h5 {
   text-transform: uppercase;
   letter-spacing: .24em;
   font-size: .75rem;
-  color: $b-orange;
-  background-image: -webkit-linear-gradient(top,#d5b096,#97461a);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: $primary-color;
 }
 
 // légendes vertes
@@ -72,7 +69,7 @@ p {
 }
 
 a {
-  color: $b-green;
+  color: $b-primary-text;
   text-decoration: none;
   cursor: pointer;
   transition: color .25s ease,opacity .25s ease,border .25s ease;
@@ -84,9 +81,9 @@ a {
 
 // Containers
 .main-body {
-  margin-top: 3.125rem;
-  border-left: 3.125rem solid #fff;
-  border-right: 3.125rem solid #fff;
+  margin-top: 5rem;
+  border-left: 3.125rem solid $primary-color;
+  border-right: 3.125rem solid $primary-color;
   @media (min-width: small-screen-up) {
     &:after {
       content: "";
@@ -105,7 +102,7 @@ a {
   }
 }
 .main-body.full-page {
-  height: calc(100vh - 3.125rem);
+  height: calc(100vh - 5rem);
 }
 .container {
   padding-right: 15px;
@@ -131,7 +128,9 @@ a {
 .relative {
   position: relative;
 }
-
+.top-padded-container {
+  padding-top: 5em;
+}
 // Paddings
 .padded {
   padding-top: 5em;
@@ -163,7 +162,7 @@ a {
   background: $b-bg-grey;
 }
 .bg-blue {
-  background: #00a3e1;
+  background: $primary-color;
 }
 .bg-dark-blue {
   background: #3b5998;

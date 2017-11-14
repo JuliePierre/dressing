@@ -1,5 +1,5 @@
 .b-btn {
-  color: $b-green;
+  color: $b-secondary-text;
   margin-bottom: 1.25rem;
   font-family: 'Roboto', sans-serif;
   display: inline-block;
@@ -20,16 +20,16 @@
   height: 2.5rem;
   line-height: 2.625rem;
   padding: 0 .625rem;
-  background-color: hsla(82,14%,70%,.5);
+  background-color: $secondary-color;
   transition: .25s ease;
   box-shadow: none;
   &:hover {
-    background-color: $b-olive;
+    background-color: rgba(150, 48, 25, 0.5);
     box-shadow: none;
-    color: $b-green;
+    color: white;
   }
   &:focus {
-    background-color: $b-olive;
+    background-color: rgba(150, 48, 25, 0.5);
   }
   @media (max-width: $small-screen) {
     font-size: 0.55rem;
