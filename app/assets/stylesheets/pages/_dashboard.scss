@@ -15,8 +15,13 @@
   flex: 1 0 auto;
 }
 .tab-content {
-  position: relative;
   height: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.tab-container {
+  flex: 0 0 80%;
+  position: relative;
 }
 .dashboard-links-card {
   background-color: $b-bg-grey-light;
