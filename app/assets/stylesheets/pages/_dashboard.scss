@@ -1,57 +1,129 @@
-#dashboard-introduction-container {
+// NEW DASHBOARD
+.dashboard-container {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
 }
-.dashboard-introduction-item {
-  flex: 0 0 30%;
+.subnav-left {
+  height: 100vh;
+  width: 200px;
+  background-color: $b-light-blue;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  @media (max-width: $small-screen) {
-    flex: 0 0 100%;
-  }
+  flex-direction: column;
+  padding: 3.125em 0;
 }
-.dashboard-introduction-icon {
-  background-color: $b-orange;
-  padding: 1rem 2rem;
-  border-radius: 50px;
-  display: inline-block;
-  color: white;
+.dashboard-content-right {
+  flex: 1 0 auto;
 }
-#dashboard-cards-container {
-  margin-top: 4rem;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+.tab-content {
+  position: relative;
+  height: 100%;
 }
-.dashboard-card {
-  flex: 0 0 48%;
-  background-color: white;
-  padding: 3.125rem;
-  border-radius: 2px;
-  @media (max-width: $small-screen) {
-    flex: 0 0 100%;
-    margin-bottom: 1.325rem;
-  }
-  h2 {
-    font-size: 1.3125rem;
-    margin-bottom: 1.25rem;
-  }
-  .dashboard-infos-container {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
+.dashboard-links-card {
+  background-color: $b-bg-grey-light;
+  padding: 3.125em 2em;
+  position: absolute;
+  width: 350px;
+  height: 225px;
+}
+.dashboard-links-card.top-left {
+  left: 6em;
+  top: 6em;
+}
+.dashboard-links-card.top-right {
+  right: 6em;
+  top: 6em;
+}
+.dashboard-links-card.bottom-left {
+  left: 6em;
+  bottom: 6em;
+}
+.dashboard-links-card.bottom-right {
+  right: 6em;
+  bottom: 6em;
 }
 
-// partie présentant les vide-dressings
-.mes-vide-dressings-container {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+
+// subnav tabs
+.subnav-tabs-container {
+  margin-top: 2em;
+  text-align: center;
+  width: 100%;
 }
-.vide-dressing-card {
-  margin: 0 0.75rem 1.5rem 0.75rem;
+.subnav-tab {
+  width: 100%;
+  padding: 0 2em;
+  background-color: $b-bg-grey-light;
+  margin-bottom: 0.2em;
+  height: 4em;
+  font-size: 1rem;
+  line-height: 4rem;
+  a {
+    color: rgba(0,0,0,0.80);
+  }
 }
+// DASHBOARD CARDS
+.dashboard-links-card {
+  background-color: $b-bg-grey-light;
+  padding: 3.125em 2em;
+}
+
+
+// OLD DASHBOARD, présent que dans old dashboard.html.erb
+
+// #dashboard-introduction-container {
+//   display: flex;
+//   align-items: flex-start;
+//   justify-content: space-between;
+//   flex-wrap: wrap;
+// }
+// .dashboard-introduction-item {
+//   flex: 0 0 30%;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   @media (max-width: $small-screen) {
+//     flex: 0 0 100%;
+//   }
+// }
+// .dashboard-introduction-icon {
+//   background-color: $b-orange;
+//   padding: 1rem 2rem;
+//   border-radius: 50px;
+//   display: inline-block;
+//   color: white;
+// }
+// #dashboard-cards-container {
+//   margin-top: 4rem;
+//   display: flex;
+//   justify-content: space-between;
+//   flex-wrap: wrap;
+// }
+// .dashboard-card {
+//   flex: 0 0 48%;
+//   background-color: white;
+//   padding: 3.125rem;
+//   border-radius: 2px;
+//   @media (max-width: $small-screen) {
+//     flex: 0 0 100%;
+//     margin-bottom: 1.325rem;
+//   }
+//   h2 {
+//     font-size: 1.3125rem;
+//     margin-bottom: 1.25rem;
+//   }
+//   .dashboard-infos-container {
+//     display: flex;
+//     align-items: flex-start;
+//     justify-content: space-between;
+//   }
+// }
+
+// // partie présentant les vide-dressings
+// .mes-vide-dressings-container {
+//   display: flex;
+//   align-items: center;
+//   flex-wrap: wrap;
+// }
+// .vide-dressing-card {
+//   margin: 0 0.75rem 1.5rem 0.75rem;
+// }

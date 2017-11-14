@@ -1,15 +1,60 @@
-<div class="main-body">
+<div class="main-body dashboard-container">
+  <div class="subnav-left">
+      <% avatar_url = current_user.facebook_picture_url || image_path('someone_icon.png') %>
+      <%= image_tag(avatar_url, class: 'user-avatar') %>
+      <h3><%= current_user.first_name.capitalize + " " + current_user.last_name.capitalize %></h3>
+      <div class="subnav-tabs-container" id="subnav-tabs">
+        <ul class="subnav-tabs">
+          <li class="tab subnav-tab"><a href="#tab-moncompte" class="active">Mon compte</a></li>
+          <li class="tab subnav-tab"><a href="#tab-monprofil">Mon profil</a></li>
+          <li class="tab subnav-tab"><a href="#tab-monreseau">Mon reseau</a></li>
+          <li class="tab subnav-tab"><a href="#tab-mondressing">Mon dressing</a></li>
+        </ul>
+      </div>
+  </div>
+  <div class="dashboard-content-right bg-grey">
+    <div class="full-height">
+
+      <!-- TAB MON COMPTE -->
+      <div class="tab-content" id="tab-moncompte">
+        <div class="dashboard-links-card top-left">
+          <h1>top-left</h1>
+        </div>
+        <div class="dashboard-links-card top-right">
+          <h1>top-right</h1>
+        </div>
+        <div class="dashboard-links-card bottom-right">
+          <h1>bottom-right</h1>
+        </div>
+        <div class="dashboard-links-card bottom-left">
+          <h1>bottom-left</h1>
+        </div>
+
+
+
+
+
+
+      </div>
+      <div class="tab-content" id="tab-monprofil"><h2>Mon profil</h2></div>
+      <div class="tab-content" id="tab-monreseau"><h2>Mon réseau</h2></div>
+      <div class="tab-content" id="tab-mondressing"><p>Mon dressing</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="main-body">
   <div class="bg-grey">
     <div class="container">
       <div class="b-section">
         <div class="flexbox space-between flex-start">
           <div>
             <h2>Mon compte</h2>
-            <p>Bienvenue <%= @user.first_name %> !</p>
+            <p>Bienvenue <%#= @user.first_name %> !</p>
             <p>Ceci est votre espace personnel. Vous pouvez modifier les paramètres de votre compte.</p>
           </div>
           <div class="mobile-full-width">
-            <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "b-btn" %>
+            <%#= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "b-btn" %>
           </div>
         </div>
       </div>
@@ -19,19 +64,19 @@
         <div class="dashboard-introduction-item">
           <p>Vous êtes membre depuis le :</p>
           <div class="dashboard-introduction-icon">
-            <%= @user.created_at.strftime('%d/%m/%Y') %>
+            <%#= @user.created_at.strftime('%d/%m/%Y') %>
           </div>
         </div>
         <div class="dashboard-introduction-item">
           <p>Votre réseau :</p>
           <div class="dashboard-introduction-icon">
-            <%= pluralize @actual_friends.size, "ami" %>
+            <%#= pluralize @actual_friends.size, "ami" %>
           </div>
         </div>
         <div class="dashboard-introduction-item">
           <p>Vous avez créé :</p>
           <div class="dashboard-introduction-icon">
-            <%= pluralize @user.vide_dressings.size, "vide-dressing" %>
+            <%#= pluralize @user.vide_dressings.size, "vide-dressing" %>
           </div>
         </div>
       </div>
@@ -40,20 +85,20 @@
       <div id="dashboard-cards-container">
         <div class="dashboard-card">
           <h2>Mes vide dressings</h2>
-          <div><%= link_to "Ma page publique", user_path(@user) %></div>
-          <div><%= link_to "Créer un nouveau vide-dressing", new_user_vide_dressing_path(@user) %></div>
+          <div><%#= link_to "Ma page publique", user_path(@user) %></div>
+          <div><%#= link_to "Créer un nouveau vide-dressing", new_user_vide_dressing_path(@user) %></div>
         </div>
         <div class="dashboard-card">
           <h2>Paramètres du compte</h2>
           <div class="dashboard-infos-container">
             <div>
-              <div><%= link_to "Mes informations personnelles", edit_user_registration_path %></div> <! devrait rediriger vers edit d'un user !>
-              <div><%= link_to "Mon réseau", users_path %></div>
+              <div><%#= link_to "Mes informations personnelles", edit_user_registration_path %></div> <! devrait rediriger vers edit d'un user !>
+              <div><%#= link_to "Mon réseau", users_path %></div>
             </div>
             <div>
-              <% unless @user.shopping_cart.nil? %>
-                <div><%= link_to "Voir mon panier", shopping_cart_path(@user.shopping_cart) %></div>
-              <% end %>
+              <%# unless @user.shopping_cart.nil? %>
+                <div><%#= link_to "Voir mon panier", shopping_cart_path(@user.shopping_cart) %></div>
+              <%# end %>
             </div>
           </div>
         </div>
@@ -63,37 +108,45 @@
       <div class="b-section">
         <h2 class="text-center">Mes vide-dressings</h2>
         <div class="mes-vide-dressings-container">
-          <% unless @user.vide_dressings.size == 0 %>
-            <% @user.vide_dressings.each do |vide_dressing| %>
-              <% if vide_dressing.photo.nil? %>
-                <% bg = "dg4gaietgwflohnmddv0.jpg" %>
-              <% else %>
-                <% bg = vide_dressing.photo.path %>
-              <% end %>
+          <%# unless @user.vide_dressings.size == 0 %>
+            <%# @user.vide_dressings.each do |vide_dressing| %>
+              <%# if vide_dressing.photo.nil? %>
+                <%# bg = "dg4gaietgwflohnmddv0.jpg" %>
+              <%# else %>
+                <%# bg = vide_dressing.photo.path %>
+              <%# end %>
               <div class="vide-dressing-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-               url('<%= cl_image_path bg, height: 300, width: 400, crop: :fill %>')">
+               url('<%#= cl_image_path bg, height: 300, width: 400, crop: :fill %>')">
                 <div class="card-sticker">
-                  <h5><%= vide_dressing.status %></h5>
+                  <h5><%#= vide_dressing.status %></h5>
                 </div>
                 <div class="vide-dressing-card-description">
-                  <h2><%= vide_dressing.name %></h2>
+                  <h2><%#= vide_dressing.name %></h2>
                 </div>
                 <div class="vide-dressing-card-icons">
                   <div class="vide-dressing-card-icon">
-                    <%= image_tag "cintre.png" %>
-                    <h2><%= vide_dressing.vide_dressing_items.size %></h2>
+                    <%#= image_tag "cintre.png" %>
+                    <h2><%#= vide_dressing.vide_dressing_items.size %></h2>
                   </div>
                   <div class="vide-dressing-card-icon">
                     <i class="material-icons">favorite_border</i>
-                    <h2><%= vide_dressing.marks_of_interest %></h2>
+                    <h2><%#= vide_dressing.marks_of_interest %></h2>
                   </div>
                 </div>
-                <%= link_to "", user_vide_dressing_path(@user, vide_dressing), class: "card-link" %>
+                <%#= link_to "", user_vide_dressing_path(@user, vide_dressing), class: "card-link" %>
               </div>
-            <% end %>
-          <% end %>
+            <%# end %>
+          <%# end %>
         </div>
       </div>
     </div>
   </div>
 </div>
+ -->
+<% content_for(:after_js) do %>
+  <script>
+    $(document).ready(function(){
+      $('ul.subnav-tabs').tabs();
+    });
+  </script>
+<% end %>
