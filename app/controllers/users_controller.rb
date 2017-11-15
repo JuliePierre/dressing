@@ -36,6 +36,13 @@ class UsersController < ApplicationController
   end
 
   def dashboard
+    # Utilité du dressing = le user gère son compte depuis cette page
+    # Il peut gérer :
+    # - son compte et ses informations personnelles
+    # - son réseau
+    # - son dressing : c'est ici qu'il peut ajouter / supprimer des fringues
+    # le dressing visible par les autres sera sur la page show d'un user
+
     @user = current_user
     #@user_outfits = Outfit.where(" outfits.user_id = ? ", @user.id)
 
@@ -50,16 +57,11 @@ class UsersController < ApplicationController
 
     # pour l'affichage des demandes provenant du current_user encore en attente
     @friend_invitations = @user.friend_invitations
-
   end
 
   def dressing
     @dressing = current_user.dressing_items
     # ici c'est mon dressing perso
     # le dressing visible par tous les autres est directement sur la show d'un user dans l'onglet dressing
-  end
-
-  def cart
-
   end
 end

@@ -6,9 +6,9 @@
       <div class="subnav-tabs-container" id="subnav-tabs">
         <ul class="subnav-tabs">
           <li class="tab subnav-tab"><a href="#tab-moncompte" class="active">Mon compte</a></li>
-          <li class="tab subnav-tab"><a href="#tab-monprofil">Mon profil</a></li>
-          <li class="tab subnav-tab"><a href="#tab-monreseau">Mon reseau</a></li>
-          <li class="tab subnav-tab"><a href="#tab-mondressing">Mon dressing</a></li>
+          <li id="monprofil-link" class="tab subnav-tab"><a href="#tab-monprofil">Mon profil</a></li>
+          <li id="monreseau-link" class="tab subnav-tab"><a href="#tab-monreseau">Mon reseau</a></li>
+          <li id="mondressing-link" class="tab subnav-tab"><a href="#tab-mondressing">Mon dressing</a></li>
         </ul>
       </div>
   </div>
@@ -16,30 +16,89 @@
     <div class="full-height">
 
       <!-- TAB MON COMPTE -->
-      <div class="tab-content" id="tab-moncompte">
-        <div class="tab-container">
-          <div class="dashboard-links-card top-left">
-            <h1>top-left</h1>
+      <div class="tab-page" id="tab-moncompte">
+        <div class="dashboard-content-header">
+          <h2>Mon compte</h2>
+        </div>
+        <div class="tab-content">
+          <div class="dashboard-links-card">
+            <h3>Mon profil</h3>
+            <p>Prénom : <%= current_user.first_name %></p>
+            <p>Nom : <%= current_user.last_name %></p>
+            <p>Email : <%= current_user.email %></p>
+            <div id="link-to-monprofil">Modifier</div>
           </div>
-          <div class="dashboard-links-card top-right">
-            <h1>top-right</h1>
+          <div class="dashboard-links-card">
+            <h3>Mon réseau</h3>
+            <p>Vous avez <%= pluralize @actual_friends.size, "ami" %></p>
+            <p>Vous avez <%= pluralize @pending_requests.size, "invitation" %> en attente</p>
+            <div id="link-to-monreseau">Gérer</div>
           </div>
-          <div class="dashboard-links-card bottom-right">
-            <h1>bottom-right</h1>
+          <div class="dashboard-links-card">
+            <h3>Mon dressing</h3>
+            <p>Vous avez mis en ligne x produits</p>
+            <div id="link-to-mondressing">Gérer</div>
           </div>
-          <div class="dashboard-links-card bottom-left">
-            <h1>bottom-left</h1>
+          <div class="dashboard-links-card">
+            <h3>Mon panier</h3>
+            <% if current_user.shopping_cart.nil? %>
+              <p>Votre panier est vide</p>
+              <%= link_to "Commencez votre lèche-vitrine", all_vide_dressings_path %>
+            <% else %>
+              <p>Vous avez ajouté x produits à votre panier</p>
+              <%= link_to "Accéder", shopping_cart_path(current_user.shopping_cart) %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-page" id="tab-monprofil">
+        <div class="dashboard-content-header">
+          <h2>Mon profil</h2>
+        </div>
+        <div class="user-form-container">
+          <div class="user-form">
+            <h2 class="text-center">Mettre à jour</h2>
+            <%= simple_form_for(current_user, as: :user, url: session_path(:user)) do |f| %>
+              <%= f.error_notification %>
+              <div class="form-inputs">
+                <%= f.input :email, required: false, autofocus: true, placeholder: "Votre email" %>
+                <%= f.input :first_name, required: true, autofocus: true %>
+                <%= f.input :last_name, required: true, autofocus: true %>
+                <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false, placeholder: "password" %>
+                <%= f.input :password_confirmation, required: false, placeholder: "confirm password" %>
+                <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true, placeholder: "current password" %>
+              </div>
+
+              <div class="form-actions">
+                <%= f.button :submit, "Mettre à jour", class: "b-btn" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="tab-page" id="tab-monreseau">
+        <div id="network-subnav-container">
+          <ul class="network-subnav-tabs">
+            <li class="tab network-subnav-tab"><a href="#tab-mesamis" class="active">Mes amis</a></li>
+            <li id="notifications-link" class="tab network-subnav-tab"><a href="#tab-notifications">Invitations</a></li>
+            <li id="ajouter-link" class="tab network-subnav-tab"><a href="#tab-ajouter">Ajouter</a></li>
+          </ul>
+        </div>
+        <div class="content">
+          <div id="tab-mesamis">
+            <h1>Mes amis contenu</h1>
+          </div>
+          <div id="tab-notifications">
+            <h1>Invitations en attente</h1>
+          </div>
+          <div id="tab-ajouter">
+            <h1>Ajouter des amis</h1>
           </div>
         </div>
 
-
-
-
-
       </div>
-      <div class="tab-content" id="tab-monprofil"><h2>Mon profil</h2></div>
-      <div class="tab-content" id="tab-monreseau"><h2>Mon réseau</h2></div>
-      <div class="tab-content" id="tab-mondressing"><p>Mon dressing</p></div>
+      <div class="tab-page" id="tab-mondressing"><p>Mon dressing</p></div>
     </div>
   </div>
 </div>
@@ -148,6 +207,7 @@
   <script>
     $(document).ready(function(){
       $('ul.subnav-tabs').tabs();
+      $('ul.network-subnav-tabs').tabs();
     });
   </script>
 <% end %>

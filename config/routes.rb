@@ -14,9 +14,9 @@ Rails.application.routes.draw do
     member do
       get 'dashboard', to: "users#dashboard"
     end
-    member do
-      get 'cart', to: "users#cart"
-    end
+    # member do
+    #   get 'cart', to: "users#cart"
+    # end
   end
   namespace :all do
     resources :vide_dressings, only: :index
