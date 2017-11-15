@@ -1,10 +1,56 @@
 <div class="main-body">
-  <div class="container">
-    <%= simple_form_for(@dressing_item) do |f| %>
-      <%= f.input :name %>
+  <div class="bg-grey">
+    <div class="container">
+      <div class="b-section">
+        <h2 class="text-center">Proposer une pièce</h2>
+          <div class="flex-form-container">
+            <div id="add-item-container" class="bg-white">
+            <%= simple_form_for @dressing_item, html: { id: "new-dressing-item-form", multipart: true } do |f| %>
+              <%= f.error_notification %>
 
-      <%= f.input :photos, as: :attachinary, :input_html => {:accept => "image/*", :capture => "capture"} %>
-      <%= f.submit %>
-    <% end %>
+              <%= f.input :name, placeholder: "Nom" %>
+              <%= f.input :description, placeholder: "Description", as: :text %>
+              <select class="select optional initialized" name="dressing_item[gender]" id="dressing_item_gender">
+                <option value="" class="select-placeholder">Genre</option>
+                <option value="Homme">Homme</option>
+                <option value="Femme">Femme</option>
+              </select>
+              <select class="select optional initialized" name="dressing_item[category]" id="dressing_item_category">
+                <option value="" class="select-placeholder">Catégorie</option>
+                <option value="Robe">Robe</option>
+                <option value="Top">Top</option>
+                <option value="Veste">Veste</option>
+                <option value="Pantalon">Pantalon</option>
+                <option value="Jupe">Jupe</option>
+                <option value="Combinaison">Combinaison</option>
+                <option value="Blouse">Blouse</option>
+                <option value="Manteau">Manteau</option>
+                <option value="Chaussures">Chaussures</option>
+                <option value="Chapeau">Chapeau</option>
+                <option value="Pochette">Pochette</option>
+                <option value="Bandeau">Bandeau</option>
+                <option value="Collier">Collier</option>
+              </select>
+              <%= f.input :color, placeholder: "Couleur" %>
+              <%= f.input :size, placeholder: "Taille" %>
+              <%= f.input :price, placeholder: "Prix" %>
+
+              <%= f.file_field :photos, multiple: true %>
+              <%= f.hidden_field :photos_cache %>
+
+              <%= f.button :submit, class: 'b-btn', value: "Valider" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<%= content_for(:after_js) do %>
+  <script>
+    $(document).ready(function() {
+        $('select').material_select();
+      });
+  </script>
+<% end %>

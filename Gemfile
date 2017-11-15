@@ -10,7 +10,6 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'redis'
 gem 'cloudinary'
-gem 'attachinary', github: 'assembler/attachinary'
 
 gem 'sass-rails'
 gem 'jquery-rails'
@@ -22,6 +21,8 @@ gem 'autoprefixer-rails'
 
 gem 'jquery-fileupload-rails'
 gem 'coffee-rails'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+
 gem 'dropzonejs-rails'
 
 gem 'acts_as_votable', '~> 0.10.0'

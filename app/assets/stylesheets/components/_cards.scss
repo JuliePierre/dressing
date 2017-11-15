@@ -52,53 +52,6 @@
     font-size: 1rem;
   }
 }
-.vide-dressing-card-description {
-  position: absolute;
-  bottom: 15px;
-  left: 30px;
-  h2 {
-    margin-bottom: 0 !important;
-    font-size: 24px;
-    color: white;
-    @media (max-width: $small-screen) {
-      font-size: 1rem;
-    }
-  }
-}
-.vide-dressing-card-icons {
-  position: absolute;
-  top: 15px;
-  right: 30px;
-  display: flex;
-  @media (max-width: $small-screen) {
-    right: 15px;
-  }
-}
-.vide-dressing-card-icon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 2rem;
-  justify-content: space-around;
-  @media (max-width: $small-screen) {
-    margin-right: 0.5rem;
-  }
-  img {
-    height: 2rem;
-  }
-  h2 {
-    color: white;
-    margin-bottom: 0;
-    font-size: 1rem;
-  }
-  i {
-    font-size: 2.5rem;
-    line-height: 2rem;
-    color: white;
-  }
-}
-//
-
 .banner-card {
   background-color: white;
   border-radius: 2px;
@@ -112,7 +65,10 @@
     margin: 0 4rem 0 4rem;
   }
 }
-// vide-dressing items
+
+// PRODUCT CARDS
+
+// LARGE CARDS
 .card-large {
   width: 1000px;
   height: 100%;

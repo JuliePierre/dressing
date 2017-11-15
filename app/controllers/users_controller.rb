@@ -26,13 +26,6 @@ class UsersController < ApplicationController
     #metrics / nombre d'amis
     @user_friends = @user.accepted_friends
     @friend_requests = @user.friendship_requests
-
-    #vide-dressings
-    @public_vide_dressings = @user.vide_dressings.where('status = ?', 'Public')
-    @private_vide_dressings = @user.vide_dressings.where('status = ?', 'Privé')
-
-    # @user_outfits = Outfit.where(" outfits.user_id = ? ", @user.id)
-    # @user_dressing_items = @user.dressing_items
   end
 
   def dashboard
@@ -43,23 +36,23 @@ class UsersController < ApplicationController
     # - son dressing : c'est ici qu'il peut ajouter / supprimer des fringues
     # le dressing visible par les autres sera sur la page show d'un user
 
-    @user = current_user
-    #@user_outfits = Outfit.where(" outfits.user_id = ? ", @user.id)
-
     #nouveau dashboard
 
     # nombre total d'amis
-    @actual_friends = @user.accepted_friends
+    @actual_friends = current_user.accepted_friends
 
     # pour l'affichage des friend requests : provenant d'autres users
-    @pending_requests = @user.pending_friend_requests
-    # @friendship_requests = @user.friendship_requests
+    @pending_requests = current_user.pending_friend_requests
+    # @friendship_requests = current_user.friendship_requests
 
     # pour l'affichage des demandes provenant du current_user encore en attente
-    @friend_invitations = @user.friend_invitations
+    @friend_invitations = current_user.friend_invitations
 
     # pour l'affichage du réseau restant
-    @not_yet_friends = @user.not_yet_friends
+    @not_yet_friends = current_user.not_yet_friends
+
+    # pour l'affichage du dressing
+    @dressing_items = current_user.dressing_items
   end
 
   def dressing

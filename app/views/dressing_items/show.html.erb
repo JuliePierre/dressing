@@ -1,0 +1,57 @@
+<div class="main-body">
+  <div class="bg-grey">
+
+  <div class="container last-container">
+    <div id="vide-dressing-item-container">
+      <div class="item-pictures">
+        <div class="item-main-picture">
+          <% if @pictures.size == 0 %>
+            <p>Le propriétaire n'a pas encore fourni de photos</p>
+          <% else %>
+            <%= cl_image_tag @pictures[0], width: 500, height: 700 %>
+          <% end %>
+        </div>
+        <div class="item-other-pictures">
+          <% if @pictures.size > 1 %>
+            <% @pictures[1..@pictures.length - 1].each do |photo| %>
+              <%= cl_image_tag photo %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="item-infos-container">
+        <div class="item-infos">
+          <h2><%= @dressing_item.name %></h2>
+          <% if @dressing_item.price == 0 %>
+            <p class="small-price"><%= @dressing_item.price %>€</p>
+          <% else %>
+            <p class="price"><%= @dressing_item.price %>€</p>
+          <% end %>
+          <h5><%= @dressing_item.gender %></h5>
+          <h5><%= @dressing_item.category %></h5>
+          <br>
+          <p>Couleur : <%= @dressing_item.color %></p>
+          <p>Taille : <%= @dressing_item.size %></p>
+          <br>
+          <p><%= @dressing_item.description %></p>
+          <br>
+          <% if current_user == @owner %>
+            <br>
+            <br>
+            <h4>Dans le panier de</h4>
+            <% if @users_interested.size == 0 %>
+              <p>personne pour l'instant</p>
+            <% else %>
+              <% @users_interested.each do |user| %>
+                <p><%= link_to "#{user.first_name} #{user.last_name}", user_path(user) %></p>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= link_to "Ca m'intéresse", add_to_cart_path(@owner, @dressing_item), remote: true, method: :post, class: 'b-btn' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

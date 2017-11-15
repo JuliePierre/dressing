@@ -43,7 +43,7 @@
             <h3>Mon panier</h3>
             <% if current_user.shopping_cart.nil? %>
               <p>Votre panier est vide</p>
-              <%= link_to "Commencez votre lèche-vitrine", all_vide_dressings_path %>
+              <%= link_to "Commencez votre lèche-vitrine", dressing_items_path %>
             <% else %>
               <p>Vous avez ajouté x produits à votre panier</p>
               <%= link_to "Accéder", shopping_cart_path(current_user.shopping_cart) %>
@@ -52,6 +52,7 @@
         </div>
       </div>
 
+      <!-- TAB MON PROFIL -->
       <div class="tab-page" id="tab-monprofil">
         <div class="dashboard-content-header">
           <h2>Mon profil</h2>
@@ -78,6 +79,8 @@
           </div>
         </div>
       </div>
+
+      <!-- TAB MON RESEAU -->
       <div class="tab-page" id="tab-monreseau">
         <div id="network-subnav-container">
           <ul class="network-subnav-tabs">
@@ -142,9 +145,26 @@
             </div>
           </div>
         </div>
-
       </div>
-      <div class="tab-page" id="tab-mondressing"><p>Mon dressing</p></div>
+
+      <!-- TAB MON DRESSING -->
+      <div class="tab-page" id="tab-mondressing">
+        <div class="dashboard-content-header">
+          <h2>Mon dressing</h2>
+          <%= link_to "Ajouter", new_dressing_item_path %>
+        </div>
+        <div class="tab-content">
+          <div class="flexbox">
+            <% @dressing_items.each do |item| %>
+              <% unless item.photos.size == 0 %>
+                <div class="dressing-item-card" style="background-image: linear-gradient(rgba(233, 222, 250, 0.2), rgba(193, 223, 196, 0.2)), url(<%= cl_image_path item.photos[0] %>);">
+                  <%= item.name %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

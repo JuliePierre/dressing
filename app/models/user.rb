@@ -5,11 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook]
 
-  has_many :outfits, dependent: :destroy
-  has_many :proposals, dependent: :destroy
-  has_many :ceremonies
   has_many :dressing_items, dependent: :destroy
-  has_many :vide_dressings, dependent: :destroy
 
   # Logique de réseau social : many to many relations entre les users, table de jointure = friendships
   has_many :friendships, dependent: :destroy
@@ -18,8 +14,6 @@ class User < ApplicationRecord
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
   has_one :shopping_cart, dependent: :destroy
-
-  has_attachment :profile_picture
 
   validates :first_name, presence: true
   validates :last_name, presence: true

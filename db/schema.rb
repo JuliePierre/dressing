@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171115114306) do
+ActiveRecord::Schema.define(version: 20171115161714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,22 @@ ActiveRecord::Schema.define(version: 20171115114306) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
+  end
+
+  create_table "dressing_items", force: :cascade do |t|
+    t.string   "name"
+    t.string   "category"
+    t.float    "price"
+    t.string   "gender"
+    t.string   "color"
+    t.string   "size"
+    t.string   "description"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.json     "photos"
+    t.json     "pictures_urls"
+    t.index ["user_id"], name: "index_dressing_items_on_user_id", using: :btree
   end
 
   create_table "friendships", force: :cascade do |t|
@@ -82,30 +98,6 @@ ActiveRecord::Schema.define(version: 20171115114306) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "vide_dressing_items", force: :cascade do |t|
-    t.integer  "vide_dressing_id"
-    t.string   "name"
-    t.string   "category"
-    t.float    "price"
-    t.string   "gender"
-    t.string   "color"
-    t.string   "size"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.string   "description"
-    t.index ["vide_dressing_id"], name: "index_vide_dressing_items_on_vide_dressing_id", using: :btree
-  end
-
-  create_table "vide_dressings", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.string   "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_vide_dressings_on_user_id", using: :btree
-  end
-
+  add_foreign_key "dressing_items", "users"
   add_foreign_key "shopping_carts", "users"
-  add_foreign_key "vide_dressing_items", "vide_dressings"
-  add_foreign_key "vide_dressings", "users"
 end

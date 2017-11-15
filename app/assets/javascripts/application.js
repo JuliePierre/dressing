@@ -3,7 +3,6 @@
 //= require materialize
 //= require jquery-fileupload/basic
 //= require cloudinary/jquery.cloudinary
-//= require attachinary
 //= require dropzone
 //= require_tree .
 
