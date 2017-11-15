@@ -198,12 +198,13 @@
 
 // USER CARDS
 .user-card {
-  background-color: $b-bg-grey-light;
+  background-color: transparent;
   margin: 0 0.75em 1.5em 0.75em;
-  padding: 3.125em 1.5em;
+  // padding: 3.125em 1.5em;
   width: 15em;
   text-align: center;
   position: relative;
+  color: rgba(0,0,0,0.87);
   h1 {
     font-size: .75rem;
     margin-top: 0.75rem;

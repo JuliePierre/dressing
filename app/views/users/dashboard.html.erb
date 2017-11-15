@@ -88,14 +88,14 @@
         </div>
         <div class="network-content">
           <div id="tab-mesamis">
-            <h2>Mes amis</h2>
             <div class="flexbox space-between">
               <% if @actual_friends.size == 0 %>
                 <p>Vous n'avez pas encore d'ami</p>
               <% else %>
                 <% @actual_friends.each do |user| %>
                   <div class="user-card">
-                    <% avatar_url = user.facebook_picture_url || image_path('someone_icon.png') %>
+                    <% image = user.gender == "male" ? 'boy.png' : 'girl.png' %>
+                    <% avatar_url = user.facebook_picture_url || image_path(image) %>
                     <%= image_tag(avatar_url, class: 'user-avatar') %>
                     <h1><%= user.first_name %> <%= user.last_name %></h1>
                     <h5><%= user.email %></h5>
@@ -104,9 +104,9 @@
                 <% end %>
               <% end %>
             </div>
+            <div id="link-to-ajouter" class="b-btn">Chercher de nouveaux amis</div>
           </div>
           <div id="tab-notifications">
-            <h1>Invitations en attente</h1>
             <div class="flexbox space-between">
               <% @pending_requests.each do |user| %>
                 <div class="user-card">
@@ -125,7 +125,8 @@
             <div class="flexbox space-between">
               <% @not_yet_friends.each do |user| %>
                 <div class="user-card">
-                  <% avatar_url = user.facebook_picture_url || image_path('someone_icon.png') %>
+                  <% image = user.gender == "male" ? 'boy.png' : 'girl.png' %>
+                  <% avatar_url = user.facebook_picture_url || image_path(image) %>
                   <%= image_tag(avatar_url, class: 'user-avatar') %>
                   <h1><%= user.first_name %> <%= user.last_name %></h1>
                   <h5><%= user.email %></h5>

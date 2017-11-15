@@ -3,6 +3,7 @@
   display: flex;
 }
 .subnav-left {
+  flex: 0 0 auto;
   width: 200px;
   background-color: $b-light-blue;
   display: flex;
