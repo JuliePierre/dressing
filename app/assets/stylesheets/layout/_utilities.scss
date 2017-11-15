@@ -140,14 +140,18 @@ a {
 //flexbox
 .flexbox {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
   flex-wrap: wrap;
 }
-.space-between {
+.flexbox.center {
+  align-items: center;
+}
+.flexbox.space-between {
   justify-content: space-between;
 }
-.flex-start {
+.flexbox.space-around {
+  justify-content: space-around;
+}
+.flexbox.flex-start {
   align-items: flex-start;
 }
 .center-align {

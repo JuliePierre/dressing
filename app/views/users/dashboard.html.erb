@@ -65,6 +65,7 @@
                 <%= f.input :email, required: false, autofocus: true, placeholder: "Votre email" %>
                 <%= f.input :first_name, required: true, autofocus: true %>
                 <%= f.input :last_name, required: true, autofocus: true %>
+                <%= f.input :gender, required: true, autofocus: true, placeholder: "Genre", collection: [ [ "Homme", "male" ], [ "Femme", "female" ] ] %>
                 <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false, placeholder: "password" %>
                 <%= f.input :password_confirmation, required: false, placeholder: "confirm password" %>
                 <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true, placeholder: "current password" %>
@@ -80,20 +81,63 @@
       <div class="tab-page" id="tab-monreseau">
         <div id="network-subnav-container">
           <ul class="network-subnav-tabs">
-            <li class="tab network-subnav-tab"><a href="#tab-mesamis" class="active">Mes amis</a></li>
-            <li id="notifications-link" class="tab network-subnav-tab"><a href="#tab-notifications">Invitations</a></li>
+            <li id="mesamis-link" class="tab network-subnav-tab"><a href="#tab-mesamis" class="active">Mes amis</a></li>
+            <li id="notifications-link" class="tab network-subnav-tab"><a href="#tab-notifications">Invitations <span class="notification-pin">( <%= @pending_requests.size %> )</span></a></li>
             <li id="ajouter-link" class="tab network-subnav-tab"><a href="#tab-ajouter">Ajouter</a></li>
           </ul>
         </div>
-        <div class="content">
+        <div class="network-content">
           <div id="tab-mesamis">
-            <h1>Mes amis contenu</h1>
+            <h2>Mes amis</h2>
+            <div class="flexbox space-between">
+              <% if @actual_friends.size == 0 %>
+                <p>Vous n'avez pas encore d'ami</p>
+              <% else %>
+                <% @actual_friends.each do |user| %>
+                  <div class="user-card">
+                    <% avatar_url = user.facebook_picture_url || image_path('someone_icon.png') %>
+                    <%= image_tag(avatar_url, class: 'user-avatar') %>
+                    <h1><%= user.first_name %> <%= user.last_name %></h1>
+                    <h5><%= user.email %></h5>
+                    <%= link_to "", user_path(user), class: 'card-link user-card-link' %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
           </div>
           <div id="tab-notifications">
             <h1>Invitations en attente</h1>
+            <div class="flexbox space-between">
+              <% @pending_requests.each do |user| %>
+                <div class="user-card">
+                  <% avatar_url = user.facebook_picture_url || image_path('girl.png') %>
+                  <%= image_tag(avatar_url, class: 'user-avatar') %>
+                  <h1><%= user.first_name %> <%= user.last_name %></h1>
+                  <h5><%= user.email %></h5>
+                  <% friendship = Friendship.where('user_id = ? AND friend_id = ?', user.id, current_user.id).first %>
+                  <%= link_to "Accepter", friendship_path(friendship), method: :patch, class: 'b-btn' %>
+                </div>
+              <% end %>
+            </div>
           </div>
           <div id="tab-ajouter">
-            <h1>Ajouter des amis</h1>
+            <div class="flexbox space-between">
+              <% @not_yet_friends.each do |user| %>
+                <div class="user-card">
+                  <% avatar_url = user.facebook_picture_url || image_path('someone_icon.png') %>
+                  <%= image_tag(avatar_url, class: 'user-avatar') %>
+                  <h1><%= user.first_name %> <%= user.last_name %></h1>
+                  <h5><%= user.email %></h5>
+                  <% if @pending_requests.include?(user) %>
+                    <p>Attend votre réponse</p>
+                  <% elsif @friend_invitations.include?(user) %>
+                    <p>En attente de sa confirmation</p>
+                  <% else %>
+                    <%= link_to "Inviter", friendships_path(:friend_id => user), :method => :post, class: 'b-btn' %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
 
@@ -208,6 +252,7 @@
     $(document).ready(function(){
       $('ul.subnav-tabs').tabs();
       $('ul.network-subnav-tabs').tabs();
+      $('select').material_select();
     });
   </script>
 <% end %>

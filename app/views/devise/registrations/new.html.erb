@@ -9,6 +9,7 @@
             <div class="form-inputs">
               <%= f.input :first_name, required: true, autofocus: true, placeholder: "Prénom" %>
               <%= f.input :last_name, required: true, autofocus: true, placeholder: "Nom" %>
+              <%= f.input :gender, required: true, autofocus: true, placeholder: "Genre", collection: [ [ "Homme", "male" ], [ "Femme", "female" ] ] %>
               <%= f.input :email, required: true, autofocus: true, placeholder: "Email" %>
               <%= f.input :password, required: true, hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length), placeholder: "Mot de passe" %>
               <%= f.input :password_confirmation, required: true, placeholder: "Confirmer mot de passe" %>
@@ -26,3 +27,11 @@
     </div>
   </div>
 </div>
+
+<% content_for(:after_js) do %>
+  <script>
+    $(document).ready(function(){
+      $('select').material_select();
+    });
+  </script>
+<% end %>

@@ -62,6 +62,10 @@
   background-color: $secondary-color;
   will-change: left, right;
 }
+// CONTENU RESEAU
+.network-content {
+  padding: 3.125em 3.125em;
+}
 
 // CARDS
 .dashboard-links-card {
@@ -95,7 +99,7 @@
     color: rgba(0,0,0,0.87);
   }
 }
-
+// NOTIFICATIONS
 
 // OLD DASHBOARD, présent que dans old dashboard.html.erb
 

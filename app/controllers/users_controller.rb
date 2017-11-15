@@ -53,10 +53,13 @@ class UsersController < ApplicationController
 
     # pour l'affichage des friend requests : provenant d'autres users
     @pending_requests = @user.pending_friend_requests
-    @friendship_requests = @user.friendship_requests
+    # @friendship_requests = @user.friendship_requests
 
     # pour l'affichage des demandes provenant du current_user encore en attente
     @friend_invitations = @user.friend_invitations
+
+    # pour l'affichage du réseau restant
+    @not_yet_friends = @user.not_yet_friends
   end
 
   def dressing

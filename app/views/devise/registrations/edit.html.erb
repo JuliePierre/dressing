@@ -12,6 +12,7 @@
           <%= f.input :email, required: true, autofocus: true %>
           <%= f.input :first_name, required: true, autofocus: true %>
           <%= f.input :last_name, required: true, autofocus: true %>
+          <%= f.input :gender, required: true, autofocus: true, placeholder: "Genre", collection: [ [ "Homme", "male" ], [ "Femme", "female" ] ] %>
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
           <% end %>
@@ -35,3 +36,11 @@
   </div>
 </div>
 </div>
+
+<% content_for(:after_js) do %>
+  <script>
+    $(document).ready(function(){
+      $('select').material_select();
+    });
+  </script>
+<% end %>

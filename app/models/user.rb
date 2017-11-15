@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  GENDER = ["Homme", "Femme"]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -85,6 +86,7 @@ class User < ApplicationRecord
   end
 
   # user.pending_friend_requests = les requêtes faites par d'autres ==> le user est l'autre et le friend est le user
+  # renvoie un tableau de users, pas de friendships, ni d'ids
   def pending_friend_requests
     pending_friend_requests = []
     self.friendship_requests.each do |friendship|
@@ -98,4 +100,13 @@ class User < ApplicationRecord
     return self.all_friends_ids.include?(user.id)
   end
 
+  def not_yet_friends
+    not_friends = []
+    User.all.each do |user|
+      unless self.is_friend_with?(user) || self == user
+        not_friends << user
+      end
+    end
+    return not_friends
+  end
 end

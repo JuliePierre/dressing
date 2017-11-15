@@ -195,3 +195,28 @@
     }
   }
 }
+
+// USER CARDS
+.user-card {
+  background-color: $b-bg-grey-light;
+  margin: 0 0.75em 1.5em 0.75em;
+  padding: 3.125em 1.5em;
+  width: 15em;
+  text-align: center;
+  position: relative;
+  h1 {
+    font-size: .75rem;
+    margin-top: 0.75rem;
+    color: rgba(0,0,0,0.87);
+  }
+  h5 {
+    font-size: .6rem;
+    margin-bottom: 0.75rem;
+  }
+  .user-card-link {
+    background: $secondary-color;
+    &:hover {
+      opacity: 0.2;
+    }
+  }
+}
