@@ -9,6 +9,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'redis'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'cloudinary'
 
 gem 'sass-rails'
@@ -21,7 +22,6 @@ gem 'autoprefixer-rails'
 
 gem 'jquery-fileupload-rails'
 gem 'coffee-rails'
-gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'acts_as_shopping_cart', '~> 0.4.0'

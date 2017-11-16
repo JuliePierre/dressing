@@ -4,7 +4,6 @@ class DressingItem < ApplicationRecord
 
   mount_uploaders :photos, PhotoUploader
 
-
   belongs_to :user
 
   validates :category, inclusion: { in: CATEGORY, allow_blank: false }

@@ -158,9 +158,9 @@
           <div class="flexbox">
             <% @dressing_items.each do |item| %>
               <% unless item.photos.size == 0 %>
-                <div class="dressing-item-card" style="background-image: linear-gradient(rgba(233, 222, 250, 0.2), rgba(193, 223, 196, 0.2)), url(<%= cl_image_path item.photos[0] %>);">
-                  <%= item.name %>
-                </div>
+<!--                 <div class="dressing-item-card" style="background-image: linear-gradient(rgba(233, 222, 250, 0.2), rgba(193, 223, 196, 0.2)), url(<%#= cl_image_path item.photos[0] %>);">
+                  <%#= item.name %>
+                </div> -->
               <% end %>
             <% end %>
           </div>
