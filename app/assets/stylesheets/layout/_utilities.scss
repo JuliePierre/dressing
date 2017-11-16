@@ -142,6 +142,9 @@ a {
   display: flex;
   flex-wrap: wrap;
 }
+.flexbox.flex-column {
+  flex-direction: column;
+}
 .flexbox.center {
   align-items: center;
 }

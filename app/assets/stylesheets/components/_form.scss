@@ -105,11 +105,55 @@
 .bubble.active {
   background-color: $secondary-color;
 }
+// STEP2 : DETAILS
+#form-step2 .flexbox div {
+  flex: 0 0 48%;
+  .dressing_item_description {
+    height: 100%;
+    margin-top: 0;
+  }
+}
+#form-step2 .flexbox div.input-field {
+  margin: 0;
+  flex: 0 0 auto;
+  input {
+    margin: 0;
+  }
+}
+#form-details-container {
+  height: 12rem;
+  margin-bottom: 3.125em;
+}
+#dressing_item_description {
+  height: 100%;
+  margin-bottom: 0;
+}
+
+// STEP3 : PHOTOS
+#dressing_item_photos {
+  display: none;
+}
+input.filename {
+  border: none !important;
+}
+
 
 // Ecraser les variables de materialize qui ne sont pas accessibles via les variables sass
-input.string, input.password, input.email, input.url, input.number, textarea.materialize-textarea, input.select-dropdown, input.numeric {
+input.string, input.password, input.email, input.url, input.number, input.select-dropdown, input.numeric {
   background-color: $b-bg-grey;
   padding: 0 2rem !important;
+  box-sizing: inherit;
+  border-bottom: none !important;
+  color: rgba(0,0,0,0.87) !important;
+  &:focus {
+    border-bottom: none !important;
+    box-shadow: none !important;
+  }
+}
+textarea.materialize-textarea {
+  padding: 1rem 2rem !important;
+  line-height: 1rem;
+  background-color: $b-bg-grey;
   box-sizing: inherit;
   border-bottom: none !important;
   color: rgba(0,0,0,0.87) !important;
@@ -130,7 +174,31 @@ input.string, input.password, input.email, input.url, input.number, textarea.mat
 .select-placeholder {
   color: rgba(0,0,0,0.54);
 }
+
+// RADIO BUTTONS GENDER
+[type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
+  padding-left: 0;
+  height: 100%;
+}
+[type="radio"]:not(:checked) + label:before, [type="radio"]:not(:checked) + label:after {
+  display: none;
+}
+[type="radio"]:checked + label:after, [type="radio"]:checked + label:before {
+  display: none;
+}
+[type="radio"]:not(:checked) + label img {
+  height: 80px;
+}
+[type="radio"]:checked + label img {
+  height: 80px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+
 input::placeholder {
+  color: rgba(0,0,0,0.54) !important;
+}
+textarea::placeholder {
   color: rgba(0,0,0,0.54) !important;
 }
 //

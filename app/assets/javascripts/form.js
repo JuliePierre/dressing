@@ -17,4 +17,13 @@ $(document).ready(function() {
     var obj = ".bubble" + "." + actualId;
     $(obj).removeClass('active');
   });
+
+  $('#ajouter-photos-btn').on('click', function() {
+    $('#dressing_item_photos').trigger('click');
+  });
+
+  $('#dressing_item_photos').change(function() {
+      var val = ($(this).val() != "") ? ($(this)[0].files.length + " fichier choisi(s)") : "Aucun fichier choisi";
+      $('.filename').attr('placeholder', val);
+  });
 });
