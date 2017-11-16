@@ -30,14 +30,21 @@
 
               <!-- STEP 1 -->
               <div id="form-step1" class="form-step">
-                <h2>Etape 1</h2>
+                <h2>Général</h2>
                 <%= f.input :name, placeholder: "Nom" %>
+
+
                 <!-- input gender -->
-                <select class="select optional initialized" name="dressing_item[gender]" id="dressing_item_gender">
+                <%= f.collection_radio_buttons :gender, [['female', 'Femme'] ,["male", 'Homme']], :first, :last %>
+<!--                 <select class="select optional initialized" name="dressing_item[gender]" id="dressing_item_gender">
                   <option value="" class="select-placeholder">Genre</option>
                   <option value="Homme">Homme</option>
                   <option value="Femme">Femme</option>
-                </select>
+                </select> -->
+
+
+
+
                 <!-- input category -->
                 <select class="select optional initialized" name="dressing_item[category]" id="dressing_item_category">
                   <option value="" class="select-placeholder">Catégorie</option>
@@ -60,7 +67,7 @@
                 </div>
               </div>
               <div id="form-step2" class="form-step">
-                <h2>Etape 2</h2>
+                <h2>Détails</h2>
                 <%= f.input :description, placeholder: "Description", as: :text %>
                 <%= f.input :color, placeholder: "Couleur" %>
                 <%= f.input :size, placeholder: "Taille" %>
@@ -71,7 +78,7 @@
                 </div>
               </div>
               <div id="form-step3" class="form-step">
-                <h2>Etape 3</h2>
+                <h2>Photos</h2>
                 <%= f.file_field :photos, multiple: true %>
                 <%= f.hidden_field :photos_cache %>
                 <div class="form-buttons">

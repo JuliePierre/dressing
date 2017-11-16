@@ -1,6 +1,6 @@
 class DressingItem < ApplicationRecord
   CATEGORY = %w(Robe Top Veste Pantalon Jupe Combinaison Blouse Manteau Chaussures Chapeau Pochette Bandeau Collier)
-  GENDER = ["Homme", "Femme"]
+  GENDER = ["male", "female"]
 
   mount_uploaders :photos, PhotoUploader
 

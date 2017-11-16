@@ -27,7 +27,8 @@
 
 // DRESSING ITEM FORMS
 #add-item-container {
-  width: 1000px;
+  border-top: 4px solid $secondary-color;
+  flex: 0 0 60%;
   display: flex;
   justify-content: space-around;
   padding: 3.125rem;
@@ -96,7 +97,7 @@
   left: 0;
 }
 .bubble.form-step2 {
-  left: 50%;
+  left: 47%;
 }
 .bubble.form-step3 {
   right: 0;
@@ -116,6 +117,18 @@ input.string, input.password, input.email, input.url, input.number, textarea.mat
     border-bottom: none !important;
     box-shadow: none !important;
   }
+}
+// SELECT DROPDOWN
+.select-wrapper input.select-dropdown {
+  background-color: $b-bg-grey;
+}
+.select-wrapper span.caret {
+  z-index: 100;
+  color: $secondary-color;
+  right: 15px;
+}
+.select-placeholder {
+  color: rgba(0,0,0,0.54);
 }
 input::placeholder {
   color: rgba(0,0,0,0.54) !important;
