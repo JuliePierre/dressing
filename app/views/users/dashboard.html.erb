@@ -87,6 +87,7 @@
             <li id="mesamis-link" class="tab network-subnav-tab"><a href="#tab-mesamis" class="active">Mes amis</a></li>
             <li id="notifications-link" class="tab network-subnav-tab"><a href="#tab-notifications">Invitations <span class="notification-pin">( <%= @pending_requests.size %> )</span></a></li>
             <li id="ajouter-link" class="tab network-subnav-tab"><a href="#tab-ajouter">Ajouter</a></li>
+            <div class="indicator" style="right: 1050px; left: 30px;"></div>
           </ul>
         </div>
         <div class="network-content">
@@ -149,9 +150,9 @@
 
       <!-- TAB MON DRESSING -->
       <div class="tab-page" id="tab-mondressing">
-        <div class="dashboard-content-header">
+        <div class="dashboard-content-header flexbox space-between">
           <h2>Mon dressing</h2>
-          <%= link_to "Ajouter", new_dressing_item_path %>
+          <%= link_to "Ajouter", new_dressing_item_path, class: "b-btn" %>
         </div>
         <div class="tab-content">
           <div class="flexbox">

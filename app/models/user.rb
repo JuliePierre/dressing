@@ -18,11 +18,10 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  acts_as_voter
-
   def self.find_for_facebook_oauth(auth)
     user_params = auth.slice(:provider, :uid)
     user_params.merge! auth.info.slice(:email, :first_name, :last_name)
+    user_params[:gender] = auth.extra.raw_info[:gender]
     user_params[:facebook_picture_url] = auth.info.image
     user_params[:token] = auth.credentials.token
     user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
