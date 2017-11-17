@@ -21,11 +21,13 @@
         <div class="item-infos-container">
           <div class="item-infos">
             <h2><%= @dressing_item.name %></h2>
+            <p>Créé par <%= link_to "#{@owner.first_name} #{@owner.last_name}", user_path(@owner) %></p>
             <% if @dressing_item.price == 0 %>
               <p class="small-price"><%= @dressing_item.price %>€</p>
             <% else %>
               <p class="price"><%= @dressing_item.price %>€</p>
             <% end %>
+            <br>
             <% genre = @dressing_item.gender == "male" ? "Homme" : "Femme" %>
             <h5><%= genre %></h5>
             <h5><%= @dressing_item.category %></h5>
@@ -35,6 +37,8 @@
             <br>
             <p>Catégorie : <%= @dressing_item.description %></p>
             <br>
+            <p>Description</p>
+            <p><%= @dressing_item.description %></p>
           </div>
         </div>
       </div>

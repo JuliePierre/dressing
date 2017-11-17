@@ -1,71 +1,12 @@
-#user-presentation-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-// page index des users
-.user-section h2 {
-  padding-left: 0.75rem;
-}
-.users-container {
-  margin-top: 3.125rem;
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
+#user-show-container {
 
-
-// page show d'un user
-#user-intro-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
 }
-.user-picture-container {
-  flex: 0 0 20%;
-  @media (max-width: $small-screen) {
-    flex: 0 0 45%;
-  }
-  img {
-    @media (max-width: $small-screen) {
-      width: 100%;
-      height: auto;
-    }
-  }
+#profile-container {
+  flex: 0 0 auto;
+  width: 200px;
+  background-color: $b-light-blue;
+  padding: 3.125em 0;
 }
-.user-infos {
-  flex: 0 0 40%;
-  h2 {
-    margin-bottom: 0;
-    @media (max-width: $small-screen) {
-      font-size: 1rem;
-    }
-  }
-  @media (max-width: $small-screen) {
-    flex: 0 0 45%;
-  }
-}
-.user-details {
-  flex: 0 0 40%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-end;
-  @media (max-width: $small-screen) {
-    flex: 0 0 100%;
-    align-items: flex-start;
-  }
-  .user-metrics {
-    display: flex;
-    justify-content: space-around;
-    flex: 0 0 30%;
-  }
-  .user-metrics-item {
-    background-color: #bb8462;
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    display: inline-block;
-    color: white;
-    margin-bottom: 0.75rem;
-  }
+#user-dressing-container {
+  flex: 1 0 auto;
 }

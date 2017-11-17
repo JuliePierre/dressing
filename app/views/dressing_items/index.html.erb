@@ -1,45 +1,38 @@
 <div class="main-body">
   <div class="bg-grey">
-    <div class="container">
-      <div class="b-section">
-        <div class="vide-dressing-intro">
-          <%= cl_image_tag("dg4gaietgwflohnmddv0.jpg") %>
-        </div>
-      </div>
-    </div>
-  <div class="container last-container">
-    <div id="vide-dressing-elements-container">
-      <% unless @all_items.size == 0 %>
-        <% @all_items.each do |item| %>
-          <% if item.photos.size == 0 %>
-            <% picture = "dress_icon_sfq079.png" %>
-          <% else %>
-            <% picture = item.photos[0].path %>
-          <% end %>
-          <div class="vide-dressing-item-card-container">
-            <div class="vide-dressing-item-card" style="background-image: linear-gradient(rgba(218, 212, 236, 0.1), rgba(253, 214, 189, 0.1)), url('<%= cl_image_path picture, height: 350, width: 260, crop: :fill %>')">
-              <div class="card-description">
-                <h2><%= item.name %></h2>
-                <p><%= item.category %></p>
-              </div>
-              <div class="card-price">
-                <% if item.price == 0 %>
-                  <p class="small-card-price">gratuit</p>
-                <% else %>
-                  <p><%= item.price %> €</p>
-                <% end %>
-              </div>
-              <div class="vide-dressing-item-card-icon">
-                <i class="material-icons">favorite_border</i>
-                <h2><%= item.users_interested.size %></h2>
+    <div class="container last-container">
+      <div id="vide-dressing-elements-container">
+        <% unless @all_items.size == 0 %>
+          <% @all_items.each do |item| %>
+            <% if item.photos.size == 0 %>
+              <% picture = "dress_icon_sfq079.png" %>
+            <% else %>
+              <% picture = item.photos[0].path %>
+            <% end %>
+            <div class="vide-dressing-item-card-container">
+              <div class="vide-dressing-item-card" style="background-image: linear-gradient(rgba(218, 212, 236, 0.1), rgba(253, 214, 189, 0.1)), url('<%= cl_image_path picture, height: 350, width: 260, crop: :fill %>')">
+                <div class="card-description">
+                  <h2><%= item.name %></h2>
+                  <p><%= item.category %></p>
+                </div>
+                <div class="card-price">
+                  <% if item.price == 0 %>
+                    <p class="small-card-price">gratuit</p>
+                  <% else %>
+                    <p><%= item.price %> €</p>
+                  <% end %>
+                </div>
+                <div class="vide-dressing-item-card-icon">
+                  <i class="material-icons">favorite_border</i>
+                  <h2><%= item.users_interested.size %></h2>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
-      <% end %>
-      <% if @user == current_user %>
-      <% end %>
+        <% if @user == current_user %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
 </div>

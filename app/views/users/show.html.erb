@@ -1,31 +1,41 @@
 <div class="main-body">
-  <div class="bg-grey">
-    <div class="container">
-      <div class="b-section">
-        <div id="user-intro-container">
-          <div class="user-picture-container">
-            <% if @user.profile_picture.nil? %>
-              <% avatar_url = @user.facebook_picture_url || image_path('someone_icon.png') %>
-              <%= image_tag(avatar_url, class: 'user-picture') %>
-            <% else %>
-              <%= cl_image_tag @user.profile_picture.path %>
+  <div id="user-show-container" class="flexbox">
+    <div id="profile-container" class="flexbox flex-column center">
+      <% avatar_url = @user.facebook_picture_url || image_path('someone_icon.png') %>
+      <%= image_tag(avatar_url, class: 'user-avatar') %>
+      <h3><%= @user.first_name.capitalize + " " + @user.last_name.capitalize %></h3>
+      <br>
+      <h4>Son réseau</h4>
+      <% if @user_friends.size == 0 %>
+        <p><%= @user.first_name %> n'a pas encore d'ami.</p>
+      <% else %>
+        <div class="flexbox">
+          <% @user.friends.each do |friend| %>
+            <% avatar_url = @user.facebook_picture_url || image_path('someone_icon.png') %>
+            <%= image_tag(avatar_url, class: 'user-avatar small-avatar') %>
+          <% end %>
+        </div>
+      <% end %>
+      <%= image_tag "cintre.png", class: 'small-icon' %>
+      <p><%= pluralize @user.dressing_items.size, "produit" %> mis en ligne</p>
+    </div>
+    <div id="user-dressing-container" class="bg-grey">
+      <div class="dashboard-content-header">
+        <h2>Son dressing</h2>
+      </div>
+      <div class="tab-content">
+        <div class="flexbox">
+          <% @user.dressing_items.each do |item| %>
+            <% unless item.photos.size == 0 %>
+              <div class="dressing-item-container">
+                <div class="dressing-item-card" style="background-image: url(<%= cl_image_path item.photos[0] %>);">
+                  <%= link_to "", dressing_item_path(item), class: "card-link" %>
+                </div>
+                <h2><%= item.name %></h2>
+                <p><%= item.price %> €</p>
+              </div>
             <% end %>
-            <% if @user.is_friend_with?(current_user) %>
-              <p>Vous êtes ami(e)s</p>
-            <% elsif @user != current_user %>
-              <%= link_to "Inviter", friendships_path(:friend_id => @user), :method => :post, class: 'b-btn invite-btn' %>
-            <% end %>
-          </div>
-          <div class="user-infos">
-            <h2><%= @user.first_name %> <%= @user.last_name %></h2>
-            <h5>Inscrit(e) depuis le <%= @user.created_at.strftime('%d/%m/%Y') %></h5>
-          </div>
-          <div class="user-details">
-            <div class="user-metrics-item">
-              <%= pluralize @user_friends.size, "ami" %>
-            </div>
-
-          </div>
+          <% end %>
         </div>
       </div>
     </div>
