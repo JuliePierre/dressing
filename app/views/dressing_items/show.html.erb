@@ -5,17 +5,17 @@
         <% if @pictures.size > 1 %>
           <div id="item-pictures-container" class="flexbox space-between">
             <div class="item-main-picture">
-              <%= cl_image_tag @pictures[0], width: 350, height: 480 %>
+              <%= cl_image_tag @pictures[0], width: 350, height: 480, class: "dressing-picture" %>
             </div>
             <div class="item-other-pictures">
               <% @pictures[1..@pictures.length - 1].each do |photo| %>
-                <%= cl_image_tag photo, width: 100, height: 137 %>
+                <%= cl_image_tag photo, width: 100, height: 137, class: "dressing-picture" %>
               <% end %>
             </div>
           </div>
         <% else %>
           <div id="item-lonely-picture-container" class="flexbox space-around wrap-reverse">
-            <%= cl_image_tag @pictures[0], width: 350, height: 480 %>
+            <%= cl_image_tag @pictures[0], width: 350, height: 480, class: "dressing-picture" %>
           </div>
         <% end %>
         <div class="item-infos-container">
