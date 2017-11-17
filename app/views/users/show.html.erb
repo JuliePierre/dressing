@@ -28,32 +28,6 @@
           </div>
         </div>
       </div>
-      <div class="b-section">
-        <h2 class="text-center">Les vide-dressings de <%= @user.first_name %></h2>
-          <div class="vide-dressings-container">
-            <% @user.dressing_items.each do |item| %>
-              <% if item.photo.nil? %>
-                <% bg = "dg4gaietgwflohnmddv0.jpg" %>
-              <% else %>
-                <% bg = item.photo.path %>
-              <% end %>
-              <div class="card-large">
-                <div class="card-large-picture" style="background-image: linear-gradient(rgba(218, 212, 236, 0.2), rgba(253, 214, 189, 0.2)), url('<%= cl_image_path(bg, height: 300, width: 500); %>');">
-                  <%= link_to "", dressing_item_path(item), class: 'card-link' %>
-                </div>
-                <div class="card-large-infos">
-                  <div class="card-large-container">
-                    <div class="card-large-text">
-                      <h2><%= item.name %></h2>
-                      <h5><%= item.user.first_name %> <%= item.user.last_name %></h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
     </div>
   </div>
 </div>
