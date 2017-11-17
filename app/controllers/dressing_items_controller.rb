@@ -23,7 +23,10 @@ class DressingItemsController < ApplicationController
   end
 
   def index
-
+    @dressing_items = DressingItem.where(nil)
+    filtering_params(params).each do |key, value|
+      @dressing_items = @dressing_items.public_send(key, value) if value.present?
+    end
   end
 
   def show
@@ -71,5 +74,8 @@ class DressingItemsController < ApplicationController
     params.require(:dressing_item).permit(:name, :description, :category, :price, :gender, :color, :size, {photos: []}, :photos_cache)
   end
 
+  def filtering_params(params)
+    params.slice(:gender, :category)
+  end
 
 end
