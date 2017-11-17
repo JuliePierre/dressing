@@ -159,7 +159,7 @@
             <% @dressing_items.each do |item| %>
               <% unless item.photos.size == 0 %>
                 <div class="dressing-item-container">
-                  <div class="dressing-item-card" style="background-image: url(<%= cl_image_path item.photos[0] %>);">
+                  <div class="dressing-item-card" style="background-image: url(<%= cl_image_path item.photos[0], width: 200, height: 280, crop: :fill; %>);">
                     <%= link_to "", dressing_item_path(item), class: "card-link" %>
                   </div>
                   <h2><%= item.name %></h2>

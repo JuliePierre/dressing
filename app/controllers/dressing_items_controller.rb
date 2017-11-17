@@ -23,7 +23,7 @@ class DressingItemsController < ApplicationController
   end
 
   def index
-    @all_items = DressingItem.all
+
   end
 
   def show

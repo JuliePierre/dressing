@@ -6,13 +6,11 @@
 
 // Polices
 body {
-  font-family: 'Lora', serif;
   font-weight: 400;
   color: $b-primary-text;
 }
 
 h1, h2, h5, {
-  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -20,47 +18,46 @@ h3, h4 {
   margin: 0;
   padding: 0;
 }
-h1 {
-  line-height: 1.6;
-  text-transform: uppercase;
-  letter-spacing: .25em;
-  font-weight: 400;
-  font-size: 1.875rem;
-}
+// h1 {
+//   line-height: 1.6;
+//   text-transform: uppercase;
+//   letter-spacing: .25em;
+//   font-weight: 400;
+//   font-size: 1.875rem;
+// }
 // identique au h1 mais sans le nom pour le ref
-h2 {
-  font-weight: 400;
-  line-height: 1.5;
-  text-transform: uppercase;
-  letter-spacing: .25em;
-  font-size: 1.875rem;
-}
-h3 {
-  font-weight: 400;
-  line-height: 1.5;
-  font-style: italic;
-  font-size: 1rem;
-}
+// h2 {
+//   font-weight: 400;
+//   line-height: 1.5;
+//   text-transform: uppercase;
+//   letter-spacing: .25em;
+//   font-size: 1.875rem;
+// }
+// h3 {
+//   font-weight: 400;
+//   line-height: 1.5;
+//   font-style: italic;
+//   font-size: 1rem;
+// }
 // sous-titres oranges
-h5 {
-  font-weight: 400;
-  line-height: 2.3;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .24em;
-  font-size: .75rem;
-  color: $primary-color;
-}
+// h5 {
+//   font-weight: 400;
+//   line-height: 2.3;
+//   font-weight: 700;
+//   text-transform: uppercase;
+//   letter-spacing: .24em;
+//   font-size: .75rem;
+//   color: $primary-color;
+// }
 
 // légendes vertes
-h4 {
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .4em;
-  font-size: .875rem;
-}
+// h4 {
+//   font-weight: 700;
+//   text-transform: uppercase;
+//   letter-spacing: .4em;
+//   font-size: .875rem;
+// }
 p {
-  font-family: 'Lora', serif;
   font-weight: 400;
   letter-spacing: 0;
   margin-bottom: 1.25rem;
