@@ -67,10 +67,27 @@
 }
 
 // PRODUCT CARDS
-.dressing-item-card {
-  height: 300px;
-  width: 200px;
+.dressing-item-container {
   margin-right: 3.125em;
+  max-width: 200px;
+  color: rgba(0,0,0,0.54);
+  p {
+    margin-top: 0;
+    font-size: 1em;
+    font-weight: 700;
+  }
+  h2 {
+    margin-top: 0.75em;
+    letter-spacing: initial;
+    font-size: 1.5em;
+    text-transform: initial;
+  }
+}
+.dressing-item-card {
+  height: 280px;
+  width: 200px;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+  border-radius: 2px;
 }
 
 // LARGE CARDS
