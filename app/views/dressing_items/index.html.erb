@@ -3,7 +3,9 @@
     <div class="container last-container flexbox space-between">
       <div id="filtering">
           <%= form_tag dressing_items_path, method: 'get' do %>
+            <br>
             <h5>Catégorie</h5>
+            <br>
             <% DressingItem::CATEGORY.each do |category| %>
               <% if params["category"].nil? %>
                 <input id="category_<%= category %>" class="filled-in" name="category[]" type="checkbox" value=<%= category %> />
@@ -14,7 +16,9 @@
               <% end %>
               <label for="category_<%= category %>"><%= category %></label>
             <% end %>
+            <br>
             <h5>Genre</h5>
+            <br>
             <% DressingItem::GENDER.each do |gender| %>
               <% if params["gender"].nil? %>
                 <input id="gender_<%= gender %>" class="filled-in" name="gender[]" type="checkbox" value=<%= gender %> />
@@ -27,9 +31,10 @@
             <% end %>
             <%= submit_tag "Chercher", class: "b-btn hidden", id: "filter-btn" %>
           <% end %>
+          <br>
           <div id="reset-btn" class="b-btn">Effacer les filtres</div>
       </div>
-      <div id="all-products-container" class="flexbox center">
+      <div id="all-products-container" class="flexbox">
         <% unless @dressing_items.size == 0 %>
           <% @dressing_items.each do |item| %>
             <% pictures = JSON.parse(item.pictures_urls) %>
