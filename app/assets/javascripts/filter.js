@@ -7,3 +7,9 @@ $('#filtering form label').click(function(event){
   }
   $('#filter-btn').trigger('click');
 });
+$('#reset-btn').click(function(){
+  $('input[type="checkbox"]').each(function(){
+    $(this).prop('checked', false);
+  })
+  $('#filter-btn').trigger('click');
+});

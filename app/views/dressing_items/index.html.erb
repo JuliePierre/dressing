@@ -27,6 +27,7 @@
             <% end %>
             <%= submit_tag "Chercher", class: "b-btn hidden", id: "filter-btn" %>
           <% end %>
+          <div id="reset-btn" class="b-btn">Effacer les filtres</div>
       </div>
       <div id="all-products-container" class="flexbox center">
         <% unless @dressing_items.size == 0 %>
