@@ -25,7 +25,7 @@
               <% end %>
               <label for="gender_<%= gender %>"><%= gender == "male" ? "Homme" : "Femme" %></label>
             <% end %>
-            <%= submit_tag "Chercher", class: "b-btn", id: "filter-btn" %>
+            <%= submit_tag "Chercher", class: "b-btn hidden", id: "filter-btn" %>
           <% end %>
       </div>
       <div id="all-products-container" class="flexbox center">
