@@ -10,6 +10,8 @@ class DressingItem < ApplicationRecord
   validates :gender, inclusion: { in: GENDER, allow_blank: false }
   validates :price, presence: true
 
+  scope :gender, -> (*genders) { where gender: genders }
+  scope :category, -> (*categories) { where category: categories }
 
   def users_interested
     users_interested = []

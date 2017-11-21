@@ -23,9 +23,12 @@ class DressingItemsController < ApplicationController
   end
 
   def index
+    puts "params: #{params}"
     @dressing_items = DressingItem.where(nil)
     filtering_params(params).each do |key, value|
-      @dressing_items = @dressing_items.public_send(key, value) if value.present?
+      if value.present?
+        @dressing_items = @dressing_items.public_send(key, value)
+      end
     end
   end
 

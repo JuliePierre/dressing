@@ -1,12 +1,36 @@
 <div class="main-body">
   <div class="bg-grey">
-    <div class="container last-container">
+    <div class="container last-container flexbox space-between">
       <div id="filtering">
-
+          <%= form_tag dressing_items_path, method: 'get' do %>
+            <h5>Catégorie</h5>
+            <% DressingItem::CATEGORY.each do |category| %>
+              <% if params["category"].nil? %>
+                <input id="category_<%= category %>" class="filled-in" name="category[]" type="checkbox" value=<%= category %> />
+              <% elsif params["category"].include?(category)  %>
+                <input checked="checked" id="category_<%= category %>" class="filled-in" name="category[]" type="checkbox" value=<%= category %> />
+              <% else %>
+                <input id="category_<%= category %>" class="filled-in" name="category[]" type="checkbox" value=<%= category %> />
+              <% end %>
+              <label for="category_<%= category %>"><%= category %></label>
+            <% end %>
+            <h5>Genre</h5>
+            <% DressingItem::GENDER.each do |gender| %>
+              <% if params["gender"].nil? %>
+                <input id="gender_<%= gender %>" class="filled-in" name="gender[]" type="checkbox" value=<%= gender %> />
+              <% elsif params["gender"].include?(gender) %>
+                <input checked="checked" id="gender_<%= gender %>" class="filled-in" name="gender[]" type="checkbox" value=<%= gender %> />
+              <% else %>
+                <input id="gender_<%= gender %>" class="filled-in" name="gender[]" type="checkbox" value=<%= gender %> />
+              <% end %>
+              <label for="gender_<%= gender %>"><%= gender == "male" ? "Homme" : "Femme" %></label>
+            <% end %>
+            <%= submit_tag "Chercher", class: "b-btn", id: "filter-btn" %>
+          <% end %>
       </div>
       <div id="all-products-container" class="flexbox center">
-        <% unless DressingItem.all.size == 0 %>
-          <% DressingItem.all.each do |item| %>
+        <% unless @dressing_items.size == 0 %>
+          <% @dressing_items.each do |item| %>
             <% pictures = JSON.parse(item.pictures_urls) %>
             <% if pictures.size == 0 %>
               <% picture = "dress_icon_sfq079.png" %>
@@ -22,9 +46,9 @@
               </div>
               <h2><%= item.name %></h2>
               <% if item.price == 0 %>
-                <p class="card-price">gratuit</p>
+                <p>gratuit</p>
               <% else %>
-                <p class="card-price"><%= item.price %> €</p>
+                <p><%= item.price %> €</p>
               <% end %>
             </div>
           <% end %>
@@ -33,3 +57,11 @@
     </div>
   </div>
 </div>
+
+<%= content_for(:after_js) do %>
+  <script>
+    $(document).ready(function() {
+        $('select').material_select();
+      });
+  </script>
+<% end %>
