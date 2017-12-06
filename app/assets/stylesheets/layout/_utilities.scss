@@ -79,8 +79,6 @@ a {
 // Containers
 .main-body {
   margin-top: 5rem;
-  border-left: 3.125rem solid $primary-color;
-  border-right: 3.125rem solid $primary-color;
   @media (min-width: small-screen-up) {
     &:after {
       content: "";
@@ -166,7 +164,7 @@ a {
   background: #4a4a4a;
 }
 .bg-grey {
-  background: $b-bg-grey;
+  background: $b-bg-blue-grey;
 }
 .bg-blue {
   background: $primary-color;

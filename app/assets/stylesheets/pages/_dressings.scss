@@ -1,7 +1,9 @@
 #filtering {
   flex: 0 0 20%;
+  position: sticky;
+  top: 65px;
 }
 #all-products-container {
   padding-top: 5em;
-  flex: 1 0 auto;
+  flex: 0 0 80%;
 }

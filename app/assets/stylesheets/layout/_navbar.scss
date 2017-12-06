@@ -4,7 +4,7 @@ nav {
   left: 0;
   width: 100%;
   z-index: 200;
-  background-color: $primary-color;
+  background-color: $b-bg-blue-grey;
   height: 5rem;
   line-height: 1.5;
   text-align: center;
@@ -24,7 +24,7 @@ nav {
     letter-spacing: .24em;
     font-size: .75rem;
     font-weight: 700;
-    color: $b-primary-text;
+    color: $b-text-grey;
     display: inline-block;
     padding: 1.375em 1.25rem 1.3em;
     &:hover {
@@ -45,6 +45,7 @@ nav {
 #brand-logo {
   font-family: 'Indie Flower', cursive;
   font-size: 32px;
+  color: $b-text-grey;
 }
 .navbar-menu-element {
   font-size: .75rem;
