@@ -7,15 +7,15 @@ class DressingItemsController < ApplicationController
   end
 
   def create
+    puts "params : #{params["dressing_item"]["photos"]}"
     @dressing_item = DressingItem.new(dressing_item_params)
-    @dressing_item.save!
-    urls = []
-    @dressing_item.photos.each do |f|
-      urls << f.metadata["url"]
-    end
-    @dressing_item.pictures_urls = JSON.generate(urls)
     @dressing_item.user = current_user
     if @dressing_item.save
+      params["dressing_item"]["photos"].each do |photo|
+        picture = DressingItemPicture.new(dressing_item: @dressing_item)
+        picture.photo = photo
+        picture.save
+      end
       redirect_to dressing_item_path(@dressing_item)
     else
       render :new
@@ -23,7 +23,6 @@ class DressingItemsController < ApplicationController
   end
 
   def index
-    puts "params: #{params}"
     @dressing_items = DressingItem.where(nil)
     filtering_params(params).each do |key, value|
       if value.present?
@@ -35,7 +34,7 @@ class DressingItemsController < ApplicationController
   def show
     @dressing_item = DressingItem.find(params[:id])
     @owner = @dressing_item.user
-    @pictures = JSON.parse(@dressing_item.pictures_urls)
+    @pictures = @dressing_item.dressing_item_pictures
     @users_interested = @dressing_item.users_interested
   end
 
@@ -74,7 +73,7 @@ class DressingItemsController < ApplicationController
   private
 
   def dressing_item_params
-    params.require(:dressing_item).permit(:name, :description, :category, :price, :gender, :color, :size, {photos: []}, :photos_cache)
+    params.require(:dressing_item).permit(:name, :description, :category, :price, :gender, :color, :size, :photos)
   end
 
   def filtering_params(params)

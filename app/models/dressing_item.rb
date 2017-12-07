@@ -2,9 +2,8 @@ class DressingItem < ApplicationRecord
   CATEGORY = %w(Robe Top Veste Pantalon Jupe Combinaison Blouse Manteau Chaussures Chapeau Pochette Bandeau Collier)
   GENDER = ["male", "female"]
 
-  mount_uploaders :photos, PhotoUploader
-
   belongs_to :user
+  has_many :dressing_item_pictures
 
   validates :category, inclusion: { in: CATEGORY, allow_blank: false }
   validates :gender, inclusion: { in: GENDER, allow_blank: false }

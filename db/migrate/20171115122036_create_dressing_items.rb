@@ -8,7 +8,6 @@ class CreateDressingItems < ActiveRecord::Migration[5.0]
       t.string :color
       t.string :size
       t.string :description
-      t.json :pictures_urls
       t.references :user, foreign_key: true
 
       t.timestamps

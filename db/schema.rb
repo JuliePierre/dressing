@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171115153857) do
+ActiveRecord::Schema.define(version: 20171206181150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dressing_item_pictures", force: :cascade do |t|
+    t.integer  "dressing_item_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "photo"
+    t.index ["dressing_item_id"], name: "index_dressing_item_pictures_on_dressing_item_id", using: :btree
+  end
 
   create_table "dressing_items", force: :cascade do |t|
     t.string   "name"
@@ -23,11 +31,9 @@ ActiveRecord::Schema.define(version: 20171115153857) do
     t.string   "color"
     t.string   "size"
     t.string   "description"
-    t.json     "pictures_urls"
     t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.json     "photos"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["user_id"], name: "index_dressing_items_on_user_id", using: :btree
   end
 
@@ -83,6 +89,7 @@ ActiveRecord::Schema.define(version: 20171115153857) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "dressing_item_pictures", "dressing_items"
   add_foreign_key "dressing_items", "users"
   add_foreign_key "shopping_carts", "users"
 end

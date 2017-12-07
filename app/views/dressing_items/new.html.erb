@@ -17,13 +17,8 @@
             <div id="form-step-indicator" class="form-step1">
             </div>
           </div>
-
         </div>
-
-
-
           <div class="flexbox space-around center">
-
             <div id="add-item-container" class="bg-white">
             <%= simple_form_for @dressing_item, html: { id: "new-dressing-item-form", multipart: true } do |f| %>
               <%= f.error_notification %>
@@ -94,7 +89,7 @@
                 <div id="ajouter-photos-btn" class="b-btn">Choisir photos</div>
                 <input type="text" class="filename" placeholder="Aucun fichier choisi"/>
                 <%= f.file_field :photos, multiple: true %>
-                <%= f.hidden_field :photos_cache %>
+                <%#= f.hidden_field :photos_cache %>
                 <div class="form-buttons">
                   <button type="button" class="b-btn b-btn-return">Retour</button>
                 </div>
