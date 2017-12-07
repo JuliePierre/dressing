@@ -5,18 +5,23 @@
  * ------------------------------------- */
 
 // Polices
+// font-family: 'Roboto Mono', monospace;
+// font-family: 'Rubik', sans-serif;
 body {
   font-weight: 400;
-  color: $b-primary-text;
+  color: $b-text-light;
+  font-family: 'Roboto Mono', monospace;
 }
 
 h1, h2, h5, {
   margin: 0;
   padding: 0;
+  font-family: 'Rubik', sans-serif;
 }
 h3, h4 {
   margin: 0;
   padding: 0;
+  font-family: 'Rubik', sans-serif;
 }
 // h1 {
 //   line-height: 1.6;
@@ -39,16 +44,12 @@ h3, h4 {
 //   font-style: italic;
 //   font-size: 1rem;
 // }
-// sous-titres oranges
-// h5 {
-//   font-weight: 400;
-//   line-height: 2.3;
-//   font-weight: 700;
-//   text-transform: uppercase;
-//   letter-spacing: .24em;
-//   font-size: .75rem;
-//   color: $primary-color;
-// }
+// sous-titres catégories
+h5 {
+  font-weight: 500;
+  letter-spacing: 0;
+  font-size: 1.2rem;
+}
 
 // légendes vertes
 // h4 {
@@ -111,7 +112,7 @@ a {
     width: 970px;
   }
   @media (min-width: 1200px) {
-    width: 1200px;
+    width: 1280px;
   }
 }
 .small-container {
@@ -119,6 +120,9 @@ a {
 }
 .last-container {
   padding-bottom: 5rem;
+}
+.first-container {
+  padding-top: 5rem;
 }
 .relative {
   position: relative;
@@ -226,4 +230,7 @@ a {
 }
 .no-margin {
   margin: 0 !important;
+}
+.bold {
+  font-weight: bolder;
 }

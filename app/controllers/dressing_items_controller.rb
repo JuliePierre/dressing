@@ -29,6 +29,13 @@ class DressingItemsController < ApplicationController
         @dressing_items = @dressing_items.public_send(key, value)
       end
     end
+    @nb_criteres_filtre = 0
+    unless params["gender"].nil?
+      @nb_criteres_filtre += params["gender"].size
+    end
+    unless params["category"].nil?
+      @nb_criteres_filtre += params["category"].size
+    end
   end
 
   def show

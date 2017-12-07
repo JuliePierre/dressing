@@ -8,7 +8,7 @@ nav {
   height: 5rem;
   line-height: 1.5;
   text-align: center;
-  box-shadow: none;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
   .nav-wrapper {
     padding: 0;
   }
@@ -24,12 +24,12 @@ nav {
     letter-spacing: .24em;
     font-size: .75rem;
     font-weight: 700;
-    color: $b-text-grey;
+    color: $b-text;
     display: inline-block;
     padding: 1.375em 1.25rem 1.3em;
     &:hover {
       background-color: transparent;
-      color: $b-primary-text;
+      color: $b-text;
     }
   }
 }
@@ -45,7 +45,7 @@ nav {
 #brand-logo {
   font-family: 'Indie Flower', cursive;
   font-size: 32px;
-  color: $b-text-grey;
+  color: $b-text;
 }
 .navbar-menu-element {
   font-size: .75rem;

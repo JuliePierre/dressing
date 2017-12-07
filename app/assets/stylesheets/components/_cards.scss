@@ -69,17 +69,10 @@
 // PRODUCT CARDS
 .dressing-item-container {
   margin-right: 3.125em;
-  color: rgba(0,0,0,0.54);
+  color: $b-text-light;
+  margin-bottom: 3.125em;
   p {
-    margin-top: 0;
-    font-size: 1em;
-    font-weight: 700;
-  }
-  h2 {
-    margin-top: 0.75em;
-    letter-spacing: initial;
-    font-size: 1.5em;
-    text-transform: initial;
+    margin-bottom: 0;
   }
 }
 .dressing-item-card {
@@ -90,6 +83,9 @@
   position: relative;
   background-position: center;
   border: 2px solid rgba(246, 241, 237, 0.5);
+}
+.item-price {
+  font-family: 'Rubik', sans-serif;
 }
 
 // LARGE CARDS

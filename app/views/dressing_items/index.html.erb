@@ -1,24 +1,19 @@
 <div class="main-body">
   <div class="page-header">
-
   </div>
   <div class="bg-grey">
-    <div class="container last-container flexbox space-between flex-start">
+    <div class="container first-container last-container flexbox space-between flex-start">
       <div id="filtering">
+        <p>Filtrer parmi les <%= DressingItem.all.size %> articles</p>
+        <% if @nb_criteres_filtre.size == 0 %>
+          <p>Aucun critère choisi</p>
+        <% elsif @nb_criteres_filtre.size == 1 %>
+          <p><span class="bold">1</span> critère choisi</p>
+        <% else %>
+          <p><span class="bold"><%= @nb_criteres_filtre %></span> critères choisis</p>
+        <% end %>
+        <p id="reset-btn" class="b-btn-underlined">Effacer les filtres</p>
           <%= form_tag dressing_items_path, method: 'get' do %>
-            <br>
-            <h5>Catégorie</h5>
-            <br>
-            <% DressingItem::CATEGORY.each do |category| %>
-              <% if params["category"].nil? %>
-                <input id="category_<%= category %>" class="filled-in" name="category[]" type="checkbox" value=<%= category %> />
-              <% elsif params["category"].include?(category)  %>
-                <input checked="checked" id="category_<%= category %>" class="filled-in" name="category[]" type="checkbox" value=<%= category %> />
-              <% else %>
-                <input id="category_<%= category %>" class="filled-in" name="category[]" type="checkbox" value=<%= category %> />
-              <% end %>
-              <label for="category_<%= category %>"><%= category %></label>
-            <% end %>
             <br>
             <h5>Genre</h5>
             <br>
@@ -34,8 +29,20 @@
             <% end %>
             <%= submit_tag "Chercher", class: "b-btn hidden", id: "filter-btn" %>
           <% end %>
-          <br>
-          <div id="reset-btn" class="b-btn">Effacer les filtres</div>
+            <br>
+            <h5>Catégorie</h5>
+            <br>
+            <% DressingItem::CATEGORY.each do |category| %>
+              <% if params["category"].nil? %>
+                <input id="category_<%= category %>" class="filled-in" name="category[]" type="checkbox" value=<%= category %> />
+              <% elsif params["category"].include?(category)  %>
+                <input checked="checked" id="category_<%= category %>" class="filled-in" name="category[]" type="checkbox" value=<%= category %> />
+              <% else %>
+                <input id="category_<%= category %>" class="filled-in" name="category[]" type="checkbox" value=<%= category %> />
+              <% end %>
+              <label for="category_<%= category %>"><%= category %></label>
+            <% end %>
+            <br>
       </div>
       <div id="all-products-container" class="flexbox">
         <% unless @dressing_items.size == 0 %>
@@ -53,11 +60,13 @@
                   <i class="material-icons">favorite_border</i>
                 </div>
               </div>
-              <h2><%= item.name %></h2>
+              <br>
+              <h5><%= item.name %></h5>
+              <p>Mis en ligne par <%= item.user.first_name %> <%= item.user.last_name %></p>
               <% if item.price == 0 %>
-                <p>gratuit</p>
+                <span class="item-price">gratuit</span>
               <% else %>
-                <p><%= item.price %> €</p>
+                <span class="item-price"><%= item.price %> €</span>
               <% end %>
             </div>
           <% end %>

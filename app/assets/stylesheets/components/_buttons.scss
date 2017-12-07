@@ -1,13 +1,11 @@
 .b-btn {
-  color: $b-secondary-text;
   margin-bottom: 1.25rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Mono', monospace;;
   display: inline-block;
   vertical-align: middle;
   text-align: center;
   cursor: pointer;
   overflow: visible;
-  border: 0;
   border-radius: 2px;
   font-size: .75rem;
   line-height: 2.4;
@@ -20,9 +18,18 @@
   height: 2.5rem;
   line-height: 2.625rem;
   padding: 0 .625rem;
-  background-color: $secondary-color;
   transition: .25s ease;
   box-shadow: none;
+  @media (max-width: $small-screen) {
+    font-size: 0.55rem;
+    display: block;
+  }
+}
+
+.b-btn-colored {
+  color: $b-secondary-text;
+  border: 0;
+  background-color: $secondary-color;
   &:hover {
     background-color: rgba(150, 48, 25, 0.5);
     box-shadow: none;
@@ -31,10 +38,26 @@
   &:focus {
     background-color: rgba(150, 48, 25, 0.5);
   }
-  @media (max-width: $small-screen) {
-    font-size: 0.55rem;
-    display: block;
+}
+
+.b-btn-transparent{
+  color: $secondary-color;
+  border: 2px solid $secondary-color;
+  background-color: transparent;
+  line-height: 2.4rem;
+  &:hover {
+    background-color: rgba(150, 48, 25, 0.5);
+    box-shadow: none;
+    color: $b-text-light;
   }
+  &:focus {
+    background-color: rgba(150, 48, 25, 0.5);
+  }
+}
+
+.b-btn-underlined {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .banner-card-btn {

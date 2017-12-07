@@ -1,3 +1,33 @@
 #filtering [type="checkbox"] + label {
   display: block;
 }
+[type="checkbox"].filled-in:not(:checked) + label:after {
+  height: 16px;
+  width: 16px;
+  background-color: transparent;
+  border: 1px solid;
+  top: 2px;
+  z-index: 0;
+}
+[type="checkbox"].filled-in:checked + label:after {
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid $secondary-color;
+  background-color: $secondary-color;
+  z-index: 0;
+}
+[type="checkbox"].filled-in:checked + label:before {
+  top: 2px;
+  left: 1px;
+  width: 7px;
+  height: 11px;
+  border-top: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  -webkit-transform: rotateZ(37deg);
+  transform: rotateZ(34deg);
+  -webkit-transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
+}
