@@ -1,15 +1,15 @@
 <div class="main-body">
   <div class="bg-grey">
-    <div class="container last-container">
+    <div class="container last-container first-container">
       <div id="dressing-item-container" class="flexbox space-between wrap-reverse">
         <% if @pictures.size > 1 %>
           <div id="item-pictures-container" class="flexbox space-between">
             <div class="item-main-picture">
-              <%= cl_image_tag @pictures[0].photo, width: 350, height: 480, class: "dressing-picture" %>
+              <%= cl_image_tag @pictures[0].photo, class: "dressing-picture" %>
             </div>
             <div class="item-other-pictures">
               <% @pictures[1..@pictures.length - 1].each do |picture| %>
-                <%= cl_image_tag picture.photo, width: 100, height: 137, class: "dressing-picture" %>
+                <%= cl_image_tag picture.photo, class: "dressing-picture" %>
               <% end %>
             </div>
           </div>
@@ -22,23 +22,22 @@
           <div class="item-infos">
             <h2><%= @dressing_item.name %></h2>
             <p>Créé par <%= link_to "#{@owner.first_name} #{@owner.last_name}", user_path(@owner) %></p>
-            <% if @dressing_item.price == 0 %>
-              <p class="small-price"><%= @dressing_item.price %>€</p>
-            <% else %>
-              <p class="price"><%= @dressing_item.price %>€</p>
-            <% end %>
-            <br>
-            <% genre = @dressing_item.gender == "male" ? "Homme" : "Femme" %>
-            <h5><%= genre %></h5>
-            <h5><%= @dressing_item.category %></h5>
-            <br>
-            <p>Couleur : <%= @dressing_item.color %></p>
-            <p>Taille : <%= @dressing_item.size %></p>
-            <br>
-            <p>Catégorie : <%= @dressing_item.description %></p>
-            <br>
-            <p>Description</p>
             <p><%= @dressing_item.description %></p>
+            <% if @dressing_item.price == 0 %>
+              <p class="item-price"><%= @dressing_item.price %>€</p>
+            <% else %>
+              <p class="item-price"><%= @dressing_item.price %>€</p>
+            <% end %>
+            <div class="item-complementary-infos flexbox space-around">
+              <div class="flexbox flex-column space-around center">
+                <span>Couleur</span>
+                <%= @dressing_item.color %>
+              </div>
+              <div class="flexbox flex-column space-around center">
+                <span>Taille</span>
+                <%= @dressing_item.size %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
