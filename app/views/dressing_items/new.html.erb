@@ -65,12 +65,14 @@
                   <%#= f.input :color, placeholder: "Couleur" %>
                   <div class="input-field col dressing_item_color">
                   <h5>Couleur</h5>
-                  <% DressingItem::COLORS.each do |color| %>
-                      <input type="radio" value="<%= color %>" name="dressing_item[color]" id="dressing_item_color_<%= color %>">
-                      <label for="dressing_item_color_<%= color %>">
-                        <div class="color-label" style="background-color: <%= DressingItem::COLORTRANSLATION[color.downcase.to_sym]%>"></div>
-                      </label>
-                    <% end %>
+                  <div class="flexbox space-between">
+                    <% DressingItem::COLORS.each do |color| %>
+                        <input type="radio" value="<%= color %>" name="dressing_item[color]" id="dressing_item_color_<%= color %>">
+                        <label for="dressing_item_color_<%= color %>">
+                          <div class="color-label" style="background-color: <%= DressingItem::COLORTRANSLATION[color.downcase.to_sym]%>"></div>
+                        </label>
+                      <% end %>
+                  </div>
                 </div>
                   <%#= f.input :size, placeholder: "Taille" %>
                 <div class="input-field col dressing_item_size">

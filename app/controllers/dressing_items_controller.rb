@@ -61,7 +61,10 @@ class DressingItemsController < ApplicationController
   end
 
   def add_to_cart
+    p params
+    p params[:id]
     @item = DressingItem.find(params[:id])
+    p @item
     # le current user a-t-il déjà un panier ou faut-il le créer ?
     if current_user.shopping_cart.nil?
       @shopping_cart = ShoppingCart.new
@@ -70,11 +73,12 @@ class DressingItemsController < ApplicationController
     else
       @shopping_cart = current_user.shopping_cart
     end
+    p @shopping_cart
     @shopping_cart.add(@item, @item.price)
-    respond_to do |format|
-      format.html { redirect_to dressing_item_path(@item) }
-      format.js  # <-- will render `app/views/dressing_items/add_to_cart.js.erb`
-    end
+    # respond_to do |format|
+    #   format.html { redirect_to dressing_item_path(@item) }
+    #   format.js  # <-- will render `app/views/dressing_items/add_to_cart.js.erb`
+    # end
   end
 
   private

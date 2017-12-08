@@ -41,4 +41,8 @@ class DressingItem < ApplicationRecord
     end
     return users_interested
   end
+
+  def is_in_cart?(user)
+    return user.shopping_cart.shopping_cart_items.include?(self)
+  end
 end

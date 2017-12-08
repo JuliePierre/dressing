@@ -111,12 +111,15 @@
     flex: 0 0 100%;
   }
   .item-infos {
+    padding-top: 0.125em;
     h2 {
-      margin-top: 0.125em;
       font-size: 3em;
     }
     .item-price {
       font-size: 1.5em;
+    }
+    .fa {
+      font-size: 2em;
     }
   }
   .item-complementary-infos {

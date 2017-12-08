@@ -1,3 +1,24 @@
 .small-icon {
   height: 35px;
 }
+.add-to-cart-icon {
+  .fa-heart {
+    display: none;
+  }
+}
+.add-to-cart-icon:hover {
+  .fa-heart {
+    display: block;
+  }
+  .fa-heart-o {
+    display: none;
+  }
+}
+.add-to-cart-icon.active {
+  .fa-heart {
+    display: block;
+  }
+  .fa-heart-o {
+    display: none;
+  }
+}

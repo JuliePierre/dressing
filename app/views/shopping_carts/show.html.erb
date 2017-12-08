@@ -7,10 +7,12 @@
           <div class="cart-card">
             <div class="cart-card-items">
               <% @cart.shopping_cart_items.each do |element| %>
-              <% item = VideDressingItem.find(element.item_id) %>
+              <% item = DressingItem.find(element.item_id) %>
               <div class="cart-item-card">
                 <div class="cart-item-card-picture">
-                  <%= cl_image_tag(item.photos[0].path, height: 240, width: 160, crop: :fill) %>
+                  <% unless item.dressing_item_pictures.size == 0 %>
+                    <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
+                  <% end %>
                 </div>
                 <div class="cart-item-card-infos">
                   <div>
@@ -20,7 +22,7 @@
                   </div>
                   <div>
                     <p>Nous ne proposons pas la vente en ligne de cet article, nous vous proposons de prendre contact directement avec le ou la propriétaire pour en savoir plus et arranger la vente.</p>
-                    <a href="mailto:<%= item.vide_dressing.user.email %>" target="_blank" class="b-btn">Contacter</a>
+                    <a href="mailto:<%= item.user.email %>" target="_blank" class="b-btn">Contacter</a>
                   </div>
                 </div>
                 <div class="cart-item-card-price">
