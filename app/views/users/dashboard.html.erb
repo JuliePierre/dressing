@@ -2,7 +2,7 @@
   <div class="subnav-left">
       <% avatar_url = current_user.facebook_picture_url || image_path('someone_icon.png') %>
       <%= image_tag(avatar_url, class: 'user-avatar') %>
-      <h3><%= current_user.first_name.capitalize + " " + current_user.last_name.capitalize %></h3>
+      <h4 class="text-center"><%= current_user.first_name.capitalize + " " + current_user.last_name.capitalize %></h4>
       <div class="subnav-tabs-container" id="subnav-tabs">
         <ul class="subnav-tabs">
           <li class="tab subnav-tab"><a href="#tab-moncompte" class="active">Mon compte</a></li>
@@ -18,35 +18,40 @@
       <!-- TAB MON COMPTE -->
       <div class="tab-page" id="tab-moncompte">
         <div class="dashboard-content-header">
-          <h2>Mon compte</h2>
+          <h4>Mon compte</h4>
         </div>
         <div class="tab-content">
           <div class="dashboard-links-card">
-            <h3>Mon profil</h3>
+            <h5>Mon profil</h5>
             <p>Prénom : <%= current_user.first_name %></p>
             <p>Nom : <%= current_user.last_name %></p>
             <p>Email : <%= current_user.email %></p>
-            <div id="link-to-monprofil">Modifier</div>
+            <br>
+            <p class="b-btn-underlined" id="link-to-monprofil">Modifier</p>
           </div>
           <div class="dashboard-links-card">
-            <h3>Mon réseau</h3>
+            <h5>Mon réseau</h5>
             <p>Vous avez <%= pluralize @actual_friends.size, "ami" %></p>
             <p>Vous avez <%= pluralize @pending_requests.size, "invitation" %> en attente</p>
-            <div id="link-to-monreseau">Gérer</div>
+            <br>
+            <p class="b-btn-underlined" id="link-to-monreseau">Gérer</p>
           </div>
           <div class="dashboard-links-card">
-            <h3>Mon dressing</h3>
+            <h5>Mon dressing</h5>
             <p>Vous avez mis en ligne x produits</p>
-            <div id="link-to-mondressing">Gérer</div>
+            <br>
+            <p class="b-btn-underlined" id="link-to-mondressing">Gérer</p>
           </div>
           <div class="dashboard-links-card">
-            <h3>Mon panier</h3>
+            <h5>Mon panier</h5>
             <% if current_user.shopping_cart.nil? %>
               <p>Votre panier est vide</p>
-              <%= link_to "Commencez votre lèche-vitrine", dressing_items_path %>
+              <br>
+              <p><%= link_to "Commencez votre lèche-vitrine", dressing_items_path, class: "b-btn-underlined" %></p>
             <% else %>
               <p>Vous avez ajouté x produits à votre panier</p>
-              <%= link_to "Accéder", shopping_cart_path(current_user.shopping_cart) %>
+              <br>
+              <p><%= link_to "Accéder", shopping_cart_path(current_user.shopping_cart), class: "b-btn-underlined" %></p>
             <% end %>
           </div>
         </div>
@@ -157,9 +162,10 @@
         <div class="tab-content">
           <div class="flexbox">
             <% @dressing_items.each do |item| %>
-              <% unless item.photos.size == 0 %>
+            <% photos = item.dressing_item_pictures %>
+              <% unless photos.size == 0 %>
                 <div class="dressing-item-container">
-                  <div class="dressing-item-card" style="background-image: url(<%= cl_image_path item.photos[0], width: 200, height: 280, crop: :fill; %>);">
+                  <div class="dressing-item-card" style="background-image: url(<%= cl_image_path photos[0].photo, width: 200, height: 280, crop: :fill; %>);">
                     <%= link_to "", dressing_item_path(item), class: "card-link" %>
                   </div>
                   <h2><%= item.name %></h2>

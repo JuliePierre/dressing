@@ -5,23 +5,31 @@
  * ------------------------------------- */
 
 // Polices
-// font-family: 'Roboto Mono', monospace;
+// font-family: 'Cardo', serif;
 // font-family: 'Rubik', sans-serif;
 body {
   font-weight: 400;
   color: $b-text-light;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Lato', sans-serif;
 }
 
 h1, h2, h5, {
   margin: 0;
   padding: 0;
   font-family: 'Rubik', sans-serif;
+  font-weight: 700;
 }
 h3, h4 {
   margin: 0;
   padding: 0;
   font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+}
+h4 {
+  margin: 0.5em 0em;
+}
+h5 {
+  margin-bottom: 1em;
 }
 // h1 {
 //   line-height: 1.6;
