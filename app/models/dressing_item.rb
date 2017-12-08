@@ -29,6 +29,8 @@ class DressingItem < ApplicationRecord
   scope :gender, -> (*genders) { where gender: genders }
   scope :category, -> (*categories) { where category: categories }
 
+  acts_as_votable
+
   def users_interested
     users_interested = []
     all_users = User.all

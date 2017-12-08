@@ -61,10 +61,7 @@ class DressingItemsController < ApplicationController
   end
 
   def add_to_cart
-    p params
-    p params[:id]
     @item = DressingItem.find(params[:id])
-    p @item
     # le current user a-t-il déjà un panier ou faut-il le créer ?
     if current_user.shopping_cart.nil?
       @shopping_cart = ShoppingCart.new
@@ -78,6 +75,26 @@ class DressingItemsController < ApplicationController
     # respond_to do |format|
     #   format.html { redirect_to dressing_item_path(@item) }
     #   format.js  # <-- will render `app/views/dressing_items/add_to_cart.js.erb`
+    # end
+  end
+
+  def add_to_favorite
+    @item = DressingItem.find(params[:id])
+    if current_user.voted_for?(@item)
+      puts "oui le current_user a déjà voté pour"
+    # Cas 1 : déjà liké
+      @item.liked_by current_user
+    else
+      # fonctionne pas !
+      puts "non pas encore voté"
+      # Cas 2 : pas encore liké
+      @item.unliked_by current_user
+    end
+    puts "réponse après : #{@item.liked_by current_user}"
+    redirect_to dressing_item_path(@item)
+    # respond_to do |format|
+    #   format.html { redirect_to dressing_item_path(@item) }
+    #   format.js  # <-- will render `app/views/dressing_items/add_to_favorite.js.erb`
     # end
   end
 
