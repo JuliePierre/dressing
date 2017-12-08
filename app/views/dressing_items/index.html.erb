@@ -30,7 +30,7 @@
             <br>
             <h5>Catégorie</h5>
             <br>
-            <% DressingItem::CATEGORY.each do |category| %>
+            <% DressingItem::CATEGORIES.each do |category| %>
               <% if params["category"].nil? %>
                 <input id="category_<%= category %>" class="filled-in" name="category[]" type="checkbox" value=<%= category %> />
               <% elsif params["category"].include?(category)  %>

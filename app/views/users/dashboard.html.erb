@@ -64,7 +64,6 @@
         </div>
         <div class="user-form-container">
           <div class="user-form">
-            <h2 class="text-center">Mettre à jour</h2>
             <%= simple_form_for(current_user, as: :user, url: session_path(:user)) do |f| %>
               <%= f.error_notification %>
               <div class="form-inputs">
@@ -72,9 +71,9 @@
                 <%= f.input :first_name, required: true, autofocus: true %>
                 <%= f.input :last_name, required: true, autofocus: true %>
                 <%= f.input :gender, required: true, autofocus: true, placeholder: "Genre", collection: [ [ "Homme", "male" ], [ "Femme", "female" ] ] %>
-                <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false, placeholder: "password" %>
-                <%= f.input :password_confirmation, required: false, placeholder: "confirm password" %>
-                <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true, placeholder: "current password" %>
+                <%= f.input :password, autocomplete: "off", hint: "Laissez vide si vous ne voulez pas le modifier", required: false, placeholder: "mot de passe" %>
+                <%= f.input :password_confirmation, required: false, placeholder: "Confirmez votre mot de passe" %>
+                <%= f.input :current_password, hint: "Nous avons besoin de votre mot de passe actuel pour le modifier", required: true, placeholder: "mot de passe actuel" %>
               </div>
 
               <div class="form-actions">
@@ -158,9 +157,9 @@
 
       <!-- TAB MON DRESSING -->
       <div class="tab-page" id="tab-mondressing">
-        <div class="dashboard-content-header flexbox space-between">
-          <h2>Mon dressing</h2>
-          <%= link_to "Ajouter", new_dressing_item_path, class: "b-btn no-margin" %>
+        <div class="dashboard-content-header flexbox space-between center">
+          <h4>Mon dressing</h4>
+          <%= link_to "Ajouter", new_dressing_item_path, class: "b-btn b-btn-transparent no-margin" %>
         </div>
         <div class="tab-content">
           <div class="flexbox">
@@ -168,11 +167,16 @@
             <% photos = item.dressing_item_pictures %>
               <% unless photos.size == 0 %>
                 <div class="dressing-item-container">
-                  <div class="dressing-item-card" style="background-image: url(<%= cl_image_path photos[0].photo, width: 200, height: 280, crop: :fill; %>);">
+                  <div class="dressing-item-card" style="background-image: url(<%= cl_image_path photos[0].photo, width: 260, height: 330, crop: :fill; %>);">
                     <%= link_to "", dressing_item_path(item), class: "card-link" %>
                   </div>
-                  <h2><%= item.name %></h2>
-                  <p><%= item.price %> €</p>
+                  <br>
+                  <h5><%= item.name %></h5>
+                  <% if item.price == 0 %>
+                    <span class="item-price">gratuit</span>
+                  <% else %>
+                    <span class="item-price"><%= item.price %> €</span>
+                  <% end %>
                 </div>
               <% end %>
             <% end %>
@@ -183,106 +187,6 @@
   </div>
 </div>
 
-<!-- <div class="main-body">
-  <div class="bg-grey">
-    <div class="container">
-      <div class="b-section">
-        <div class="flexbox space-between flex-start">
-          <div>
-            <h2>Mon compte</h2>
-            <p>Bienvenue <%#= @user.first_name %> !</p>
-            <p>Ceci est votre espace personnel. Vous pouvez modifier les paramètres de votre compte.</p>
-          </div>
-          <div class="mobile-full-width">
-            <%#= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "b-btn" %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div id="dashboard-introduction-container">
-        <div class="dashboard-introduction-item">
-          <p>Vous êtes membre depuis le :</p>
-          <div class="dashboard-introduction-icon">
-            <%#= @user.created_at.strftime('%d/%m/%Y') %>
-          </div>
-        </div>
-        <div class="dashboard-introduction-item">
-          <p>Votre réseau :</p>
-          <div class="dashboard-introduction-icon">
-            <%#= pluralize @actual_friends.size, "ami" %>
-          </div>
-        </div>
-        <div class="dashboard-introduction-item">
-          <p>Vous avez créé :</p>
-          <div class="dashboard-introduction-icon">
-            <%#= pluralize @user.vide_dressings.size, "vide-dressing" %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div id="dashboard-cards-container">
-        <div class="dashboard-card">
-          <h2>Mes vide dressings</h2>
-          <div><%#= link_to "Ma page publique", user_path(@user) %></div>
-          <div><%#= link_to "Créer un nouveau vide-dressing", new_user_vide_dressing_path(@user) %></div>
-        </div>
-        <div class="dashboard-card">
-          <h2>Paramètres du compte</h2>
-          <div class="dashboard-infos-container">
-            <div>
-              <div><%#= link_to "Mes informations personnelles", edit_user_registration_path %></div> <! devrait rediriger vers edit d'un user !>
-              <div><%#= link_to "Mon réseau", users_path %></div>
-            </div>
-            <div>
-              <%# unless @user.shopping_cart.nil? %>
-                <div><%#= link_to "Voir mon panier", shopping_cart_path(@user.shopping_cart) %></div>
-              <%# end %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container last-container">
-      <div class="b-section">
-        <h2 class="text-center">Mes vide-dressings</h2>
-        <div class="mes-vide-dressings-container">
-          <%# unless @user.vide_dressings.size == 0 %>
-            <%# @user.vide_dressings.each do |vide_dressing| %>
-              <%# if vide_dressing.photo.nil? %>
-                <%# bg = "dg4gaietgwflohnmddv0.jpg" %>
-              <%# else %>
-                <%# bg = vide_dressing.photo.path %>
-              <%# end %>
-              <div class="vide-dressing-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-               url('<%#= cl_image_path bg, height: 300, width: 400, crop: :fill %>')">
-                <div class="card-sticker">
-                  <h5><%#= vide_dressing.status %></h5>
-                </div>
-                <div class="vide-dressing-card-description">
-                  <h2><%#= vide_dressing.name %></h2>
-                </div>
-                <div class="vide-dressing-card-icons">
-                  <div class="vide-dressing-card-icon">
-                    <%#= image_tag "cintre.png" %>
-                    <h2><%#= vide_dressing.vide_dressing_items.size %></h2>
-                  </div>
-                  <div class="vide-dressing-card-icon">
-                    <i class="material-icons">favorite_border</i>
-                    <h2><%#= vide_dressing.marks_of_interest %></h2>
-                  </div>
-                </div>
-                <%#= link_to "", user_vide_dressing_path(@user, vide_dressing), class: "card-link" %>
-              </div>
-            <%# end %>
-          <%# end %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
- -->
 <% content_for(:after_js) do %>
   <script>
     $(document).ready(function(){

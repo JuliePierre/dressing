@@ -1,4 +1,19 @@
 <div class="main-body">
+  <div class="page-sub-header">
+    <div class="container">
+      <!-- Subnavigation -->
+      <div class="page-nav">
+        <div class="page-nav-menu">
+          <div class="page-nav-menu-links">
+            <p class="inline first-nav-element"><%= link_to 'Accueil', root_path %></p>
+            <i class="fa fa-chevron-right inline" aria-hidden="true"></i>
+            <p class="inline"><%= link_to 'Lèche-vitrine', dressing_items_path %></p>
+          </div>
+        </div>
+      </div>
+      <!-- Subnavigation -->
+    </div>
+  </div>
   <div class="bg-grey">
     <div class="container last-container first-container">
       <div id="dressing-item-container" class="flexbox space-between wrap-reverse">
@@ -21,7 +36,7 @@
         <div class="item-infos-container">
           <div class="item-infos">
             <h2><%= @dressing_item.name %></h2>
-            <p>Créé par <%= link_to "#{@owner.first_name} #{@owner.last_name}", user_path(@owner) %></p>
+            <p>Mis en ligne par <%= link_to "#{@owner.first_name} #{@owner.last_name}", user_path(@owner) %></p>
             <p><%= @dressing_item.description %></p>
             <% if @dressing_item.price == 0 %>
               <p class="item-price"><%= @dressing_item.price %>€</p>
@@ -31,11 +46,13 @@
             <div class="item-complementary-infos flexbox space-around">
               <div class="flexbox flex-column space-around center">
                 <span>Couleur</span>
-                <%= @dressing_item.color %>
+                <br>
+                <div class="color-label" style="background-color: <%= DressingItem::COLORTRANSLATION[@dressing_item.color.downcase.to_sym]%>"></div>
               </div>
               <div class="flexbox flex-column space-around center">
                 <span>Taille</span>
-                <%= @dressing_item.size %>
+                <br>
+                <div class="size-label"><%= @dressing_item.size %></div>
               </div>
             </div>
           </div>

@@ -27,16 +27,16 @@
 }
 
 .b-btn-colored {
-  color: $b-secondary-text;
+  color: white;
   border: 0;
   background-color: $secondary-color;
   &:hover {
-    background-color: rgba(150, 48, 25, 0.5);
+    background-color: rgba(161, 182, 197, 0.5) ;
     box-shadow: none;
     color: white;
   }
   &:focus {
-    background-color: rgba(150, 48, 25, 0.5);
+    background-color: rgba(161, 182, 197, 0.5);
   }
 }
 
@@ -46,12 +46,13 @@
   background-color: transparent;
   line-height: 2.4rem;
   &:hover {
-    background-color: rgba(150, 48, 25, 0.5);
+    background-color: rgba(161, 182, 197, 0.5);
     box-shadow: none;
-    color: $b-text-light;
+    color: $b-bg-blue-grey;
   }
   &:focus {
-    background-color: rgba(150, 48, 25, 0.5);
+    background-color: rgba(161, 182, 197, 0.5);
+    color: $b-bg-blue-grey;
   }
 }
 

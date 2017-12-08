@@ -38,6 +38,19 @@
 }
 #tab-monprofil .user-form {
   flex: 0 0 50%;
+  label {
+    display: block !important;
+    top: 0;
+  }
+  .select-wrapper + label {
+    top: -2em;
+  }
+  .select-wrapper {
+    height: 100%;
+  }
+  .input-field {
+    margin-top: 2.5em;
+  }
 }
 // SUBNAV RESEAU
 .network-subnav-tabs {

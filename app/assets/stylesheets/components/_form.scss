@@ -10,7 +10,7 @@
 }
 .user-form {
   background-color: $b-bg-blue-grey;
-  border-top: 4px solid $b-bg-blue-grey;
+  border-top: 4px solid $secondary-color;
   color: rgba(0,0,0,0.87);
   padding: 5em 5em;
   h2 {
@@ -47,13 +47,14 @@
 }
 #steps-indicator {
   margin-bottom: 3.125em;
+  margin-top: 3.125em;
   display: flex;
   justify-content: space-around;
 }
 #form-step-indicator-reference {
   flex: 0 0 60%;
   height: 10px;
-  background-color: $b-bg-blue-grey;
+  background-color: white;
   border-radius: 5px;
   transition: width 1s ease-in-out;
   position: relative;
@@ -65,7 +66,7 @@
 }
 #form-step-indicator {
   height: 10px;
-  background-color: $b-bg-blue-grey;
+  background-color: $secondary-color;
   transition: width 1s ease-in-out;
   position: absolute;
   top: 0;
@@ -87,11 +88,12 @@
   font-size: 1.25em;
   line-height: 1em;
   border-radius: 50px;
-  background-color: $b-bg-blue-grey;
+  background-color: white;
   z-index: 100;
   position: absolute;
   bottom: -15px;
   transition: background-color 1.5s ease-in-out;
+  color: $b-text-light;
 }
 .bubble.form-step1 {
   left: 0;
@@ -103,8 +105,36 @@
   right: 0;
 }
 .bubble.active {
-  background-color: $b-bg-blue-grey;
+  background-color: $secondary-color;
+  color: white;
 }
+.dressing_item_gender, .dressing_item_color {
+  border-top: 1px solid rgba(0,0,0,0.57);
+  border-bottom: 1px solid rgba(0,0,0,0.57);
+  padding: 1em 0;
+}
+.dressing_item_price {
+  margin-top: 2em;
+}
+.dressing_item_category, .dressing_item_size {
+  padding: 1em 0;
+  margin-bottom: 2em;
+}
+#form-step1 .form-buttons {
+  text-align: right;
+}
+#form-step3 .form-buttons {
+  display: flex;
+  justify-content: space-between;
+  input.btn {
+    margin-top: 0;
+  }
+}
+#form-step2 .form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
 // STEP2 : DETAILS
 #form-step2 .flexbox div {
   flex: 0 0 48%;
@@ -121,13 +151,28 @@
   }
 }
 #form-details-container {
-  height: 12rem;
   margin-bottom: 3.125em;
 }
 #dressing_item_description {
-  height: 100%;
+  height: 12em;
   margin-bottom: 0;
 }
+.form-input-width {
+  width: 20em !important;
+}
+// COULEURS
+.color-label {
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  box-shadow: 1px 1px 1px;
+}
+.size-label {
+  box-shadow: 1px 1px 1px;
+  padding: 0.5em 1em;
+  color: $secondary-color;
+}
+
 
 // STEP3 : PHOTOS
 #dressing_item_photos {
@@ -140,7 +185,7 @@ input.filename {
 
 // Ecraser les variables de materialize qui ne sont pas accessibles via les variables sass
 input.string, input.password, input.email, input.url, input.number, input.select-dropdown, input.numeric {
-  background-color: $b-bg-grey;
+  background-color: $b-bg-blue-grey;
   padding: 0 2rem !important;
   box-sizing: inherit;
   border-bottom: none !important;
@@ -152,8 +197,8 @@ input.string, input.password, input.email, input.url, input.number, input.select
 }
 textarea.materialize-textarea {
   padding: 1rem 2rem !important;
-  line-height: 1rem;
-  background-color: $b-bg-grey;
+  line-height: 1.5rem;
+  background-color: $b-bg-blue-grey;
   box-sizing: inherit;
   border-bottom: none !important;
   color: rgba(0,0,0,0.87) !important;
@@ -192,9 +237,10 @@ textarea.materialize-textarea {
 }
 [type="radio"]:checked + label img {
   height: 80px;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
 }
-
+[type="radio"]:checked + label {
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+}
 
 input::placeholder {
   color: rgba(0,0,0,0.54) !important;
@@ -222,4 +268,8 @@ input[type=password] {
 }
 label {
   color: $b-text;
+}
+.help-block {
+  color: $b-text-light;
+  font-size: 0.8em;
 }

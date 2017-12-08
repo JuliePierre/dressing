@@ -1,11 +1,28 @@
 class DressingItem < ApplicationRecord
-  CATEGORY = %w(Robe Top Veste Pantalon Jupe Combinaison Blouse Manteau Chaussures Chapeau Pochette Bandeau Collier)
+  CATEGORIES = %w(Pantalon T-shirt Chemise Blouse Veste Pull Short Jupe Robe Manteau Chapeau Chaussures Accessoire).sort
   GENDER = ["male", "female"]
+  COLORS = %w(Noir Blanc Bleu Rouge Orange Vert Gris Violet Jaune Marron Rose).sort
+  COLORTRANSLATION = {
+    "noir": "black",
+    "blanc": "white",
+    "bleu": "blue",
+    "rouge": "red",
+    "orange": "orange",
+    "vert": "green",
+    "gris": "grey",
+    "violet": "purple",
+    "jaune": "yellow",
+    "marron": "brown",
+    "rose": "pink",
+    "autre": "transparent"
+  }
+  SIZES_OPTION1 = %w(34 36 38 40 42 44 46 48)
+  SIZES_OPTION2 = %w(XXS XS S M L XL XXL)
 
   belongs_to :user
   has_many :dressing_item_pictures
 
-  validates :category, inclusion: { in: CATEGORY, allow_blank: false }
+  validates :category, inclusion: { in: CATEGORIES, allow_blank: false }
   validates :gender, inclusion: { in: GENDER, allow_blank: false }
   validates :price, presence: true
 
