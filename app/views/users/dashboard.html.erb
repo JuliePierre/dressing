@@ -60,7 +60,7 @@
       <!-- TAB MON PROFIL -->
       <div class="tab-page" id="tab-monprofil">
         <div class="dashboard-content-header">
-          <h2>Mon profil</h2>
+          <h4>Mon profil</h4>
         </div>
         <div class="user-form-container">
           <div class="user-form">
@@ -88,6 +88,9 @@
       <!-- TAB MON RESEAU -->
       <div class="tab-page" id="tab-monreseau">
         <div id="network-subnav-container">
+          <div class="dashboard-content-header">
+            <h4>Mon réseau</h4>
+          </div>
           <ul class="network-subnav-tabs">
             <li id="mesamis-link" class="tab network-subnav-tab"><a href="#tab-mesamis" class="active">Mes amis</a></li>
             <li id="notifications-link" class="tab network-subnav-tab"><a href="#tab-notifications">Invitations <span class="notification-pin">( <%= @pending_requests.size %> )</span></a></li>
@@ -99,7 +102,7 @@
           <div id="tab-mesamis">
             <div class="flexbox space-between">
               <% if @actual_friends.size == 0 %>
-                <p>Vous n'avez pas encore d'ami</p>
+                <p>Vous n'avez pas encore d'amis.</p>
               <% else %>
                 <% @actual_friends.each do |user| %>
                   <div class="user-card">
@@ -113,7 +116,7 @@
                 <% end %>
               <% end %>
             </div>
-            <div id="link-to-ajouter" class="b-btn">Chercher de nouveaux amis</div>
+            <p id="link-to-ajouter" class="b-btn-underlined">Chercher de nouveaux amis</p>
           </div>
           <div id="tab-notifications">
             <div class="flexbox space-between">
