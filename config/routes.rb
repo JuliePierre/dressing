@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :shopping_carts, only: [ :show ]
 
+  resources :shopping_cart_items, only: [ :destroy ]
+
   post "/dressing_items/:id/add_to_cart", to: "dressing_items#add_to_cart", as: :add_to_cart
   post "/dressing_items/:id/add_to_favorite", to: "dressing_items#add_to_favorite", as: :add_to_favorite
   patch "/dressing_items/:id/remove_from_favorite", to: "dressing_items#remove_from_favorite", as: :remove_from_favorite

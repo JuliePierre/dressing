@@ -70,28 +70,23 @@ class DressingItemsController < ApplicationController
     else
       @shopping_cart = current_user.shopping_cart
     end
-    p @shopping_cart
     @shopping_cart.add(@item, @item.price)
-    # respond_to do |format|
-    #   format.html { redirect_to dressing_item_path(@item) }
-    #   format.js  # <-- will render `app/views/dressing_items/add_to_cart.js.erb`
-    # end
+    respond_to do |format|
+      format.html { redirect_to dressing_item_path(@item) }
+      format.js  # <-- will render `app/views/dressing_items/add_to_cart.js.erb`
+    end
   end
 
   def add_to_favorite
     @item = DressingItem.find(params[:id])
     @item.liked_by current_user
-    render "dressing_items/show"
-    # respond_to do |format|
-    #   format.html { redirect_to dressing_item_path(@item) }
-    #   format.js  # <-- will render `app/views/dressing_items/add_to_favorite.js.erb`
-    # end
+    redirect_to dressing_item_path(@item)
   end
 
   def remove_from_favorite
     @item = DressingItem.find(params[:id])
     @item.unliked_by current_user
-    render "dressing_items/show"
+    redirect_to dressing_item_path(@item)
   end
 
   private
