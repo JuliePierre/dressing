@@ -53,6 +53,9 @@ class UsersController < ApplicationController
 
     # pour l'affichage du dressing
     @dressing_items = current_user.dressing_items
+
+    # wishlist
+    @wishlist_items = current_user.find_voted_items
   end
 
   def wishlist

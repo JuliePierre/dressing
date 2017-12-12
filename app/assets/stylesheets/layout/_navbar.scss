@@ -26,10 +26,27 @@ nav {
     font-weight: 700;
     color: $b-text;
     display: inline-block;
-    padding: 1.375em 1.25rem 1.3em;
+    padding: 1rem;
     &:hover {
       background-color: transparent;
-      color: $b-text;
+      color: $secondary-color;
+    }
+  }
+  .fa {
+    display: block;
+    height: 100%;
+    font-size: 0.75rem;
+  }
+  .nav-icons {
+    border: 1px solid $b-text;
+    border-radius: 50%;
+    margin-right: 0.75rem;
+    padding: 1rem 0.9rem 1rem 1rem;
+    &:hover {
+      .fa {
+        color: $secondary-color;
+      }
+      border: 1px solid $secondary-color;
     }
   }
 }
@@ -52,7 +69,7 @@ nav {
   font-weight: 700;
   color: white;
   display: inline-block;
-  padding: 1.375em  0.75em 1.3em;
+  padding: 1.375em  1.75em 1.3em 0.75em;
 }
 
 // Dropdown

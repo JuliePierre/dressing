@@ -21,7 +21,7 @@
           <h4>Mon compte</h4>
           <%= link_to 'Se déconnecter', destroy_user_session_path(current_user), method: :delete, class: 'b-btn b-btn-transparent no-margin' %>
         </div>
-        <div class="tab-content">
+        <div class="tab-content no-padding-bottom flexbox space-between">
           <div class="dashboard-links-card">
             <h5>Mon profil</h5>
             <p>Prénom : <%= current_user.first_name %></p>
@@ -43,7 +43,9 @@
             <br>
             <p class="b-btn-underlined" id="link-to-mondressing">Gérer</p>
           </div>
-          <div class="dashboard-links-card">
+        </div>
+        <div class="tab-content no-padding-top flexbox">
+          <div class="dashboard-links-card" style="margin-right: 0.3em;">
             <h5>Mon panier</h5>
             <% if current_user.shopping_cart.nil? %>
               <p>Votre panier est vide</p>
@@ -53,6 +55,18 @@
               <p>Vous avez ajouté x produits à votre panier</p>
               <br>
               <p><%= link_to "Accéder", shopping_cart_path(current_user.shopping_cart), class: "b-btn-underlined" %></p>
+            <% end %>
+          </div>
+          <div class="dashboard-links-card">
+            <h5>Ma wishlist</h5>
+            <% if @wishlist_items.nil? %>
+              <p>Votre wishlist est vide.</p>
+              <br>
+              <p><%= link_to "Commencez votre lèche-vitrine", dressing_items_path, class: "b-btn-underlined" %></p>
+            <% else %>
+              <p>Vous avez ajouté x produits à votre wishlist</p>
+              <br>
+              <p><%= link_to "Voir", wishlist_user_path(current_user), class: "b-btn-underlined" %></p>
             <% end %>
           </div>
         </div>
