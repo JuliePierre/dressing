@@ -1,6 +1,9 @@
 .page-header {
   height: 250px;
   background-color: $b-light-blue;
+  h2 {
+    color: $b-bg-blue-grey;
+  }
 }
 .page-sub-header {
   background-color: $b-bg-beige-grey;
