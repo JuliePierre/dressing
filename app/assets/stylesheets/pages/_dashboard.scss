@@ -107,17 +107,27 @@
 .subnav-tab {
   width: 100%;
   padding: 0 2em;
-  background-color: $b-bg-blue-grey;
   margin-bottom: 0.2em;
   height: 4em;
   font-size: 1rem;
   line-height: 4rem;
+  position: relative;
   a {
+    background-color: $b-bg-blue-grey;
     color: rgba(0,0,0,0.87);
-  }
-  &:hover {
-    background-color: rgba(247, 247, 247, 0.5);
-    cursor: pointer;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    &:hover {
+      background-color: rgba(247, 247, 247, 0.5);
+      cursor: pointer;
+    }
+    &.active {
+      background-color: rgba(247, 247, 247, 0.5);
+      cursor: pointer;
+    }
   }
 }
 #network-subnav-container .dashboard-content-header {
