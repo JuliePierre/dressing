@@ -10,8 +10,21 @@
         <li><%= link_to "A propos", root_path %></li>
         <li><span class="navbar-menu-element">|</span></li>
         <% if current_user %>
-          <li><%= link_to 'Mon compte', dashboard_user_path(current_user) %></li>
-          <li><%= link_to 'Se déconnecter', destroy_user_session_path(current_user), method: :delete %></li>
+          <li>
+            <%= link_to dashboard_user_path(current_user) do %>
+              <i class="fa fa-user" aria-hidden="true"></i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to wishlist_user_path(current_user) do %>
+              <i class="fa fa-heart" aria-hidden="true"></i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to shopping_cart_path(current_user.shopping_cart) do %>
+              <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+            <% end %>
+          </li>
         <% else %>
           <li><%= link_to 'Se connecter', new_user_session_path %></li>
         <% end %>

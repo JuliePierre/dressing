@@ -17,8 +17,9 @@
 
       <!-- TAB MON COMPTE -->
       <div class="tab-page" id="tab-moncompte">
-        <div class="dashboard-content-header">
+        <div class="dashboard-content-header flexbox space-between center">
           <h4>Mon compte</h4>
+          <%= link_to 'Se déconnecter', destroy_user_session_path(current_user), method: :delete, class: 'b-btn b-btn-transparent no-margin' %>
         </div>
         <div class="tab-content">
           <div class="dashboard-links-card">

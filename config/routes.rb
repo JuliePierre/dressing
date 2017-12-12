@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     member do
       get 'dashboard', to: "users#dashboard"
     end
+    member do
+      get 'wishlist', to: "users#wishlist"
+    end
   end
   resources :friendships
 

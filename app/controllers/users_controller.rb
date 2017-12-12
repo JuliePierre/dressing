@@ -55,9 +55,7 @@ class UsersController < ApplicationController
     @dressing_items = current_user.dressing_items
   end
 
-  def dressing
-    @dressing = current_user.dressing_items
-    # ici c'est mon dressing perso
-    # le dressing visible par tous les autres est directement sur la show d'un user dans l'onglet dressing
+  def wishlist
+    @items = current_user.find_voted_items
   end
 end

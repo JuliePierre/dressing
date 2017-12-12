@@ -1,0 +1,55 @@
+<div class="main-body">
+  <div class="page-sub-header">
+    <div class="container">
+      <!-- Subnavigation -->
+      <div class="page-nav">
+        <div class="page-nav-menu">
+          <div class="page-nav-menu-links">
+            <p class="inline first-nav-element"><%= link_to 'Accueil', root_path %></p>
+            <i class="fa fa-chevron-right inline" aria-hidden="true"></i>
+            <p class="inline first-nav-element"><%= link_to 'Mon compte', dashboard_user_path(current_user) %></p>
+            <i class="fa fa-chevron-right inline" aria-hidden="true"></i>
+            <p class="inline">Ma wishlist</p>
+          </div>
+        </div>
+      </div>
+      <!-- Subnavigation -->
+    </div>
+  </div>
+  <div class="bg-grey">
+    <div class="b-section">
+      <div class="container last-container">
+        <div id="all-products-container" class="flexbox">
+          <% if @items.size == 0 %>
+            <p>Vous n'avez aucun article dans votre wishlist pour l'instant.</p>
+          <% else %>
+            <% @items.each do |item| %>
+              <% pictures = item.dressing_item_pictures %>
+              <% if pictures.size == 0 %>
+                <% picture = "dress_icon_sfq079.png" %>
+              <% else %>
+                <% picture = pictures[0].photo %>
+              <% end %>
+              <div class="dressing-item-container">
+                <div class="dressing-item-card" style="background-image: url(<%= cl_image_path picture, width: 260, height: 330, crop: :fill; %>);">
+                  <%= link_to "", dressing_item_path(item), class: "card-link" %>
+                  <div class="vide-dressing-item-card-icon">
+                    <i class="material-icons">favorite_border</i>
+                  </div>
+                </div>
+                <br>
+                <h5><%= item.name %></h5>
+                <p>Mis en ligne par <%= item.user.first_name %> <%= item.user.last_name %></p>
+                <% if item.price == 0 %>
+                  <span class="item-price">gratuit</span>
+                <% else %>
+                  <span class="item-price"><%= item.price %> €</span>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
