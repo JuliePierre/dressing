@@ -1,45 +1,91 @@
 <div class="main-body">
-  <div id="user-show-container" class="flexbox">
-    <div id="profile-container" class="flexbox flex-column center">
-      <% avatar_url = @user.facebook_picture_url || image_path('someone_icon.png') %>
-      <%= image_tag(avatar_url, class: 'user-avatar') %>
-      <h3><%= @user.first_name.capitalize + " " + @user.last_name.capitalize %></h3>
-      <br>
-      <h4>Son réseau</h4>
-      <% if @user_friends.size == 0 %>
-        <p><%= @user.first_name %> n'a pas encore d'ami.</p>
-      <% else %>
-        <div class="flexbox">
-          <% @user.friends.each do |friend| %>
-            <% avatar_url = @user.facebook_picture_url || image_path('someone_icon.png') %>
-            <%= image_tag(avatar_url, class: 'user-avatar small-avatar') %>
-          <% end %>
-        </div>
-      <% end %>
-      <%= image_tag "cintre.png", class: 'small-icon' %>
-      <p><%= pluralize @user.dressing_items.size, "produit" %> mis en ligne</p>
-      <% unless @user == current_user %>
-        <%= link_to "Inviter #{@user.first_name}", friendships_path(:friend_id => @user), :method => :post, class: 'b-btn' %>
-      <% end %>
-    </div>
-    <div id="user-dressing-container" class="bg-grey">
-      <div class="dashboard-content-header">
-        <h2>Son dressing</h2>
-      </div>
-      <div class="tab-content">
-        <div class="flexbox">
-          <% @user.dressing_items.each do |item| %>
-            <% unless item.photos.size == 0 %>
-              <div class="dressing-item-container">
-                <div class="dressing-item-card" style="background-image: url(<%= cl_image_path item.photos[0], width: 200, height: 280, crop: :fill; %>);">
-                  <%= link_to "", dressing_item_path(item), class: "card-link" %>
-                </div>
-                <h2><%= item.name %></h2>
-                <p><%= item.price %> €</p>
-              </div>
+  <div class="page-header">
+  </div>
+  <div class="bg-grey">
+    <div class="container first-container last-container flexbox space-between flex-start">
+      <div id="filtering">
+        <p>Filtrer parmi les <%= @dressing_items.size %> articles</p>
+        <% if @nb_criteres_filtre.size == 0 %>
+          <p>Aucun critère choisi</p>
+        <% elsif @nb_criteres_filtre.size == 1 %>
+          <p><span class="bold">1</span> critère choisi</p>
+        <% else %>
+          <p><span class="bold"><%= @nb_criteres_filtre %></span> critères choisis</p>
+        <% end %>
+        <p id="reset-btn" class="b-btn-underlined">Effacer les filtres</p>
+          <%= form_tag dressing_items_path, method: 'get' do %>
+            <br>
+            <h5>Genre</h5>
+            <br>
+            <% DressingItem::GENDER.each do |gender| %>
+              <% if params["gender"].nil? %>
+                <input id="gender_<%= gender %>" class="filled-in" name="gender[]" type="checkbox" value=<%= gender %> />
+              <% elsif params["gender"].include?(gender) %>
+                <input checked="checked" id="gender_<%= gender %>" class="filled-in" name="gender[]" type="checkbox" value=<%= gender %> />
+              <% else %>
+                <input id="gender_<%= gender %>" class="filled-in" name="gender[]" type="checkbox" value=<%= gender %> />
+              <% end %>
+              <label for="gender_<%= gender %>"><%= gender == "male" ? "Homme" : "Femme" %></label>
             <% end %>
+            <br>
+            <h5>Catégorie</h5>
+            <br>
+            <% DressingItem::CATEGORIES.each do |category| %>
+              <% if params["category"].nil? %>
+                <input id="category_<%= category %>" class="filled-in" name="category[]" type="checkbox" value=<%= category %> />
+              <% elsif params["category"].include?(category)  %>
+                <input checked="checked" id="category_<%= category %>" class="filled-in" name="category[]" type="checkbox" value=<%= category %> />
+              <% else %>
+                <input id="category_<%= category %>" class="filled-in" name="category[]" type="checkbox" value=<%= category %> />
+              <% end %>
+              <label for="category_<%= category %>"><%= category %></label>
+            <% end %>
+            <%= submit_tag "Chercher", class: "b-btn hidden", id: "filter-btn" %>
           <% end %>
-        </div>
+      </div>
+      <div id="all-products-container" class="flexbox">
+        <% if @dressing_items.size == 0 %>
+          <p>Aucun article ne correspond à votre recherche.</p>
+        <% else %>
+          <% @dressing_items.each do |item| %>
+            <% pictures = item.dressing_item_pictures %>
+            <% if pictures.size == 0 %>
+              <% picture = "dress_icon_sfq079.png" %>
+            <% else %>
+              <% picture = pictures[0].photo %>
+            <% end %>
+            <div class="dressing-item-container">
+              <div class="dressing-item-card" style="background-image: url(<%= cl_image_path picture, width: 260, height: 330, crop: :fill; %>);">
+                <%= link_to "", dressing_item_path(item), class: "card-link" %>
+                <div class="vide-dressing-item-card-icon">
+                  <% if current_user.voted_for?(item) %>
+                    <div class="add-to-cart-icon active">
+                      <%= link_to remove_from_favorite_path(item), method: :patch do %>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                      <% end %>
+                    </div>
+                  <% else %>
+                    <div class="add-to-cart-icon">
+                      <%= link_to add_to_favorite_path(item), method: :post do %>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <br>
+              <h5><%= item.name %></h5>
+              <p>Mis en ligne par <%= link_to "#{item.user.first_name} #{item.user.last_name}", user_path(item.user), class: 'b-btn-underlined' %></p>
+              <% if item.price == 0 %>
+                <span class="item-price">gratuit</span>
+              <% else %>
+                <span class="item-price"><%= item.price %> €</span>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

@@ -22,10 +22,19 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    #metrics / nombre d'amis
-    @user_friends = @user.accepted_friends
-    @friend_requests = @user.friendship_requests
+    @dressing_items = current_user.dressing_items.where(nil)
+    filtering_params(params).each do |key, value|
+      if value.present?
+        @dressing_items = @dressing_items.public_send(key, value)
+      end
+    end
+    @nb_criteres_filtre = 0
+    unless params["gender"].nil?
+      @nb_criteres_filtre += params["gender"].size
+    end
+    unless params["category"].nil?
+      @nb_criteres_filtre += params["category"].size
+    end
   end
 
   def dashboard
@@ -52,5 +61,11 @@ class UsersController < ApplicationController
 
   def wishlist
     @items = current_user.find_voted_items
+  end
+
+  private
+
+  def filtering_params(params)
+    params.slice(:gender, :category)
   end
 end
