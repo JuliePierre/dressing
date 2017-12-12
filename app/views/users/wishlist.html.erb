@@ -34,8 +34,22 @@
                 <div class="dressing-item-card" style="background-image: url(<%= cl_image_path picture, width: 260, height: 330, crop: :fill; %>);">
                   <%= link_to "", dressing_item_path(item), class: "card-link" %>
                   <div class="vide-dressing-item-card-icon">
-                    <i class="material-icons">favorite_border</i>
-                  </div>
+                  <% if current_user.voted_for?(item) %>
+                    <div class="add-to-cart-icon active">
+                      <%= link_to remove_from_favorite_path(item), method: :patch do %>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                      <% end %>
+                    </div>
+                  <% else %>
+                    <div class="add-to-cart-icon">
+                      <%= link_to add_to_favorite_path(item), method: :post do %>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
                 </div>
                 <br>
                 <h5><%= item.name %></h5>

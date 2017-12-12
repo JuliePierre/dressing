@@ -5,9 +5,8 @@
       <div class="page-nav">
         <div class="page-nav-menu">
           <div class="page-nav-menu-links">
-            <p class="inline first-nav-element"><%= link_to 'Accueil', root_path %></p>
-            <i class="fa fa-chevron-right inline" aria-hidden="true"></i>
-            <p class="inline"><%= link_to 'Lèche-vitrine', dressing_items_path %></p>
+            <i class="fa fa-chevron-left inline" aria-hidden="true"></i>
+            <p class="inline first-nav-element"><%= link_to 'Retour aux articles', dressing_items_path %></p>
           </div>
         </div>
       </div>
@@ -53,7 +52,7 @@
                 </div>
               <% end %>
             </div>
-            <p>Mis en ligne par <%= link_to "#{@owner.first_name} #{@owner.last_name}", user_path(@owner) %></p>
+            <p>Mis en ligne par <%= link_to "#{@owner.first_name} #{@owner.last_name}", user_path(@owner), class: 'b-btn-underlined' %></p>
             <p><%= @dressing_item.description %></p>
             <% if @dressing_item.price == 0 %>
               <p class="item-price">Gratuit</p>

@@ -14,14 +14,13 @@
     margin: 0;
   }
   a, i {
-    color: $b-text-light;
+    color: $b-text-lighter;
   }
   a:hover {
-    color: $b-bg-blue-grey;
+    color: $secondary-color;
   }
   i {
     margin-right: 1em;
-    color: $b-bg-blue-grey;
   }
   .first-nav-element {
     margin-right: 1em;

@@ -29,15 +29,6 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    # Utilité du dressing = le user gère son compte depuis cette page
-    # Il peut gérer :
-    # - son compte et ses informations personnelles
-    # - son réseau
-    # - son dressing : c'est ici qu'il peut ajouter / supprimer des fringues
-    # le dressing visible par les autres sera sur la page show d'un user
-
-    #nouveau dashboard
-
     # nombre total d'amis
     @actual_friends = current_user.accepted_friends
 
@@ -56,6 +47,7 @@ class UsersController < ApplicationController
 
     # wishlist
     @wishlist_items = current_user.find_voted_items
+
   end
 
   def wishlist

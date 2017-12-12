@@ -39,7 +39,7 @@
           </div>
           <div class="dashboard-links-card">
             <h5>Mon dressing</h5>
-            <p>Vous avez mis en ligne x produits</p>
+            <p>Vous avez mis en ligne <%= pluralize @dressing_items.size, "article" %></p>
             <br>
             <p class="b-btn-underlined" id="link-to-mondressing">Gérer</p>
           </div>
@@ -52,7 +52,7 @@
               <br>
               <p><%= link_to "Commencez votre lèche-vitrine", dressing_items_path, class: "b-btn-underlined" %></p>
             <% else %>
-              <p>Vous avez ajouté x produits à votre panier</p>
+              <p>Vous avez ajouté <%= pluralize current_user.shopping_cart.shopping_cart_items.size, "article" %> à votre panier</p>
               <br>
               <p><%= link_to "Accéder", shopping_cart_path(current_user.shopping_cart), class: "b-btn-underlined" %></p>
             <% end %>
@@ -64,7 +64,7 @@
               <br>
               <p><%= link_to "Commencez votre lèche-vitrine", dressing_items_path, class: "b-btn-underlined" %></p>
             <% else %>
-              <p>Vous avez ajouté x produits à votre wishlist</p>
+              <p>Vous avez ajouté <%= pluralize @wishlist_items.size, "article" %> à votre wishlist</p>
               <br>
               <p><%= link_to "Voir", wishlist_user_path(current_user), class: "b-btn-underlined" %></p>
             <% end %>
