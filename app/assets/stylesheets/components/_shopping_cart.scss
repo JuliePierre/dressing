@@ -12,6 +12,9 @@
   flex: 0 0 35%;
   background: white;
   padding: 3.125rem;
+  h4 {
+    margin: 0;
+  }
 }
 .cart-item-card {
   display: flex;
@@ -38,5 +41,14 @@
     font-size: 1em;
     margin-bottom: 0;
     margin-top: 0.5em;
+  }
+}
+.cart-icons {
+  display: flex;
+  .fa {
+    font-size: 1.2em;
+  }
+  a {
+    margin-right: 0.5em;
   }
 }
