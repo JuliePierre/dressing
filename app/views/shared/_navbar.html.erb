@@ -24,8 +24,10 @@
             <% end %>
           </li>
           <li>
-            <%= link_to shopping_cart_path(current_user.shopping_cart), class: "nav-icons" do %>
-              <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+            <% unless current_user.shopping_cart.nil? %>
+              <%= link_to shopping_cart_path(current_user.shopping_cart), class: "nav-icons" do %>
+                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+              <% end %>
             <% end %>
           </li>
         <% else %>
