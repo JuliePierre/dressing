@@ -20,4 +20,13 @@ class LoansController < ApplicationController
       end
     end
   end
+
+  def destroy
+    @loan = Loan.find(params[:id])
+    @loan.destroy
+    respond_to do |format|
+      format.html { redirect_to shopping_cart_path(current_user.shopping_cart) }
+      format.js  # <-- will render `app/views/shopping_cart_items/destroy.js.erb`
+    end
+  end
 end
