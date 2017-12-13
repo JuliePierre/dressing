@@ -21,6 +21,26 @@ class LoansController < ApplicationController
     end
   end
 
+  def update
+    @loan = Loan.find(params[:id])
+    response = params[:answer]
+    if response == "accept"
+      @loan.status = "Current"
+    elsif response == "reject"
+      @loan.status = "Rejected"
+    elsif response == "given-back"
+      @loan.status = "Past"
+    end
+    if @loan.save
+      redirect_to dashboard_user_path(current_user)
+    else
+      respond_to do |format|
+        format.html { redirect_to dashboard_user_path(current_user) }
+        format.js  # <-- will render `app/views/loans/update.js.erb`
+      end
+    end
+  end
+
   def destroy
     @loan = Loan.find(params[:id])
     @loan.destroy

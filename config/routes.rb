@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :friendships
 
   resources :dressing_items do
-    resources :loans, only: [ :create, :destroy ]
+    resources :loans, only: [ :create, :update, :destroy ]
   end
 
   resources :shopping_carts, only: [ :show ]

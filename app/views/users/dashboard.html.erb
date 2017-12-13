@@ -251,11 +251,11 @@
                           <% end %>
                         </div>
                         <div>
-                          <%= link_to dashboard_user_path(current_user), class: "tooltip" do %>
+                          <%= link_to dressing_item_loan_path(item, loan, answer: "accept"), class: "tooltip", method: :patch do %>
                             <i class="fa fa-check accept-icon" aria-hidden="true"></i>
                             <span class="tooltiptext">Accepter</span>
                           <% end %>
-                          <%= link_to dashboard_user_path(current_user), class: "tooltip" do %>
+                          <%= link_to dressing_item_loan_path(item, loan, answer: "reject"), class: "tooltip", method: :patch do %>
                             <i class="fa fa-ban reject-icon" aria-hidden="true"></i>
                             <span class="tooltiptext">Rejeter</span>
                           <% end %>
@@ -286,21 +286,14 @@
                       <div class="cart-item-card-infos loan-item-card-infos flexbox space-between">
                         <div>
                           <h2><%= item.name %></h2>
-                          <p>Demande faite par <%= link_to "#{loan.user.first_name} #{loan.user.last_name}", user_path(loan.user), class: "b-btn-underlined", target: "_blank" %>, le <%= loan.created_at.strftime('%e %b %Y') %></p>
-                          <% if item.price == 0 %>
-                            <span class="item-price">gratuit</span>
-                          <% else %>
-                            <span class="item-price"><%= item.price %> €</span>
-                          <% end %>
+                          <p>Vous avez prêté cet article à <%= link_to "#{loan.user.first_name} #{loan.user.last_name}", user_path(loan.user), class: "b-btn-underlined", target: "_blank" %>, le <%= loan.updated_at.strftime('%e %b %Y') %></p>
+                          <p>Durée du prêt : <%= (Date.today - Date.parse(loan.updated_at.strftime('%Y-%m-%e'))).to_i %> jours</p>
                         </div>
                         <div>
-                          <%= link_to dashboard_user_path(current_user), class: "tooltip" do %>
+                          <p style="display: inline; margin-right: 0.5rem;">Cet article vous a-t-il été rendu ?</p>
+                          <%= link_to dressing_item_loan_path(item, loan, answer: "given-back"), method: :patch, class: "tooltip" do %>
                             <i class="fa fa-check accept-icon" aria-hidden="true"></i>
-                            <span class="tooltiptext">Accepter</span>
-                          <% end %>
-                          <%= link_to dashboard_user_path(current_user), class: "tooltip" do %>
-                            <i class="fa fa-ban reject-icon" aria-hidden="true"></i>
-                            <span class="tooltiptext">Rejeter</span>
+                            <span class="tooltiptext">Oui</span>
                           <% end %>
                         </div>
                       </div>
@@ -329,22 +322,7 @@
                       <div class="cart-item-card-infos loan-item-card-infos flexbox space-between">
                         <div>
                           <h2><%= item.name %></h2>
-                          <p>Demande faite par <%= link_to "#{loan.user.first_name} #{loan.user.last_name}", user_path(loan.user), class: "b-btn-underlined", target: "_blank" %>, le <%= loan.created_at.strftime('%e %b %Y') %></p>
-                          <% if item.price == 0 %>
-                            <span class="item-price">gratuit</span>
-                          <% else %>
-                            <span class="item-price"><%= item.price %> €</span>
-                          <% end %>
-                        </div>
-                        <div>
-                          <%= link_to dashboard_user_path(current_user), class: "tooltip" do %>
-                            <i class="fa fa-check accept-icon" aria-hidden="true"></i>
-                            <span class="tooltiptext">Accepter</span>
-                          <% end %>
-                          <%= link_to dashboard_user_path(current_user), class: "tooltip" do %>
-                            <i class="fa fa-ban reject-icon" aria-hidden="true"></i>
-                            <span class="tooltiptext">Rejeter</span>
-                          <% end %>
+                          <p>Emprûnté par <%= link_to "#{loan.user.first_name} #{loan.user.last_name}", user_path(loan.user), class: "b-btn-underlined", target: "_blank" %></p>
                         </div>
                       </div>
                     </div>
