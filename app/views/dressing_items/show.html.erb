@@ -59,6 +59,14 @@
             <% else %>
               <p class="item-price"><%= @dressing_item.price %>€</p>
             <% end %>
+            <% unless @dressing_item.brand.blank? %>
+              <br>
+              <p>Marque : <%= @dressing_item.brand %></p>
+            <% end %>
+            <% unless @dressing_item.ref.blank? %>
+              <br>
+              <p>Référence : <a href="<%= @dressing_item.ref %>" class="b-btn-underlined" target="_blank">Voir</a></p>
+            <% end %>
             <div class="item-complementary-infos flexbox space-around">
               <div class="flexbox flex-column space-around center">
                 <span>Couleur</span>

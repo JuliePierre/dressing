@@ -92,7 +92,7 @@ class DressingItemsController < ApplicationController
   private
 
   def dressing_item_params
-    params.require(:dressing_item).permit(:name, :description, :category, :price, :gender, :color, :size, :photos)
+    params.require(:dressing_item).permit(:name, :description, :category, :price, :gender, :color, :size, :brand, :ref, :photos)
   end
 
   def filtering_params(params)

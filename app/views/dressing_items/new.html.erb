@@ -62,6 +62,7 @@
               <div id="form-step2" class="form-step">
                 <h4>Détails</h4>
                 <div id="form-details-container">
+                  <%= f.input :brand, placeholder: "Marque" %>
                   <%= f.input :description, placeholder: "Description", as: :text %>
                   <%#= f.input :color, placeholder: "Couleur" %>
                   <div class="input-field col dressing_item_color">
@@ -75,7 +76,6 @@
                       <% end %>
                   </div>
                 </div>
-                  <%#= f.input :size, placeholder: "Taille" %>
                 <div class="input-field col dressing_item_size">
                   <h5>Taille</h5>
                   <% DressingItem::SIZES_OPTION1.each do |size| %>
@@ -98,7 +98,16 @@
                       <input class="number" type="number" name="dressing_item[price]" id="dressing_item_price", placeholder="€--">
                     </div>
                   </div>
-                  <%#= f.input :price, placeholder: "Prix" %>
+                  <div class="input-field col dressing_item_ref flexbox space-between center">
+                    <div class="tooltip">
+                      <h5>Référence</h5>
+                      <span class="tooltiptext">Vous pouvez ajouter un lien vers un site référençant ce produit (le site de la marque) pour donner plus d'informations.</span>
+                    </div>
+
+                    <div>
+                      <input class="number" type="text" name="dressing_item[ref]" id="dressing_item_ref", placeholder="Site web">
+                    </div>
+                  </div>
                 </div>
                 <div class="form-buttons">
                   <button type="button" class="b-btn b-btn-colored b-btn-return"><i class="fa fa-chevron-left" aria-hidden="true"></i> Retour</button>

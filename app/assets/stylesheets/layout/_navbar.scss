@@ -60,9 +60,11 @@ nav {
   }
 }
 #brand-logo {
+  a {
   font-family: 'Indie Flower', cursive;
   font-size: 32px;
   color: $b-text;
+  }
 }
 .navbar-menu-element {
   font-size: .75rem;
