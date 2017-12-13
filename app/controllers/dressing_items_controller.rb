@@ -1,5 +1,3 @@
-require 'JSON'
-
 class DressingItemsController < ApplicationController
 
   def new
