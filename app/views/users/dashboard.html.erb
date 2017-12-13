@@ -7,8 +7,9 @@
         <ul class="subnav-tabs">
           <li class="tab subnav-tab"><a href="#tab-moncompte" class="active">Mon compte</a></li>
           <li id="monprofil-link" class="tab subnav-tab"><a href="#tab-monprofil">Mon profil</a></li>
-          <li id="monreseau-link" class="tab subnav-tab"><a href="#tab-monreseau">Mon reseau</a></li>
+          <li id="monreseau-link" class="tab subnav-tab"><a href="#tab-monreseau">Mon réseau</a></li>
           <li id="mondressing-link" class="tab subnav-tab"><a href="#tab-mondressing">Mon dressing</a></li>
+          <li id="mesprets-link" class="tab subnav-tab"><a href="#tab-mesprets">Mes prêts</a></li>
         </ul>
       </div>
   </div>
@@ -44,8 +45,8 @@
             <p class="b-btn-underlined" id="link-to-mondressing">Gérer</p>
           </div>
         </div>
-        <div class="tab-content no-padding-top flexbox">
-          <div class="dashboard-links-card" style="margin-right: 0.3em;">
+        <div class="tab-content no-padding-top flexbox space-between">
+          <div class="dashboard-links-card">
             <h5>Mon panier</h5>
             <% if current_user.shopping_cart.nil? %>
               <p>Votre panier est vide</p>
@@ -68,6 +69,16 @@
               <br>
               <p><%= link_to "Voir", wishlist_user_path(current_user), class: "b-btn-underlined" %></p>
             <% end %>
+          </div>
+          <div class="dashboard-links-card">
+            <h5>Articles prêtés</h5>
+            <% if @loans.nil? %>
+              <p>Vous ne prêtez actuellement aucun article.</p>
+            <% else %>
+              <p>Vous prêtez actuellement <%= pluralize @loans.size, "article" %>.</p>
+            <% end %>
+            <br>
+            <p class="b-btn-underlined" id="link-to-mesprets">Gérer</p>
           </div>
         </div>
       </div>
@@ -102,7 +113,7 @@
       <!-- TAB MON RESEAU -->
       <div class="tab-page" id="tab-monreseau">
         <div id="network-subnav-container">
-          <div class="dashboard-content-header">
+          <div class="dashboard-content-header underlined">
             <h4>Mon réseau</h4>
           </div>
           <ul class="network-subnav-tabs">
@@ -198,6 +209,152 @@
           </div>
         </div>
       </div>
+
+      <!-- TAB MES PRETS -->
+      <div class="tab-page" id="tab-mesprets">
+        <div id="loans-subnav-container">
+          <div class="dashboard-content-header underlined">
+            <h4>Mes prêts</h4>
+          </div>
+          <ul class="loans-subnav-tabs">
+            <li class="tab loans-subnav-tab"><a href="#tab-demande-de-prets" class="active">Demandes de prêts <span class="notification-pin">( <%= @pending_loans.size %> )</span></a></li>
+            <li class="tab loans-subnav-tab"><a href="#tab-prets-encours">Prêts en cours <span class="notification-pin">( <%= @current_loans.size %> )</span></a></li>
+            <li class="tab loans-subnav-tab"><a href="#tab-prets-passes">Prêts terminés</a></li>
+            <div class="indicator" style="right: 1050px; left: 30px;"></div>
+          </ul>
+        </div>
+        <div class="tab-content">
+          <div id="tab-demande-de-prets">
+            <% if @pending_loans.size == 0 %>
+              <div class="loan-card">
+                <p>Vous n'avez aucune demande en attente de réponse.</p>
+              </div>
+            <% else %>
+              <% @pending_loans.each do |loans| %>
+                <% loans.each do |loan| %>
+                  <% item = loan.dressing_item %>
+                  <div class="loan-card">
+                    <div class="cart-item-card" id="loan-item-card-<%= loan.id %>">
+                      <div class="cart-item-card-picture">
+                        <% unless item.dressing_item_pictures.size == 0 %>
+                          <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
+                        <% end %>
+                      </div>
+                      <div class="cart-item-card-infos loan-item-card-infos flexbox space-between">
+                        <div>
+                          <h2><%= item.name %></h2>
+                          <p>Demande faite par <%= link_to "#{loan.user.first_name} #{loan.user.last_name}", user_path(loan.user), class: "b-btn-underlined", target: "_blank" %>, le <%= loan.created_at.strftime('%e %b %Y') %></p>
+                          <% if item.price == 0 %>
+                            <span class="item-price">gratuit</span>
+                          <% else %>
+                            <span class="item-price"><%= item.price %> €</span>
+                          <% end %>
+                        </div>
+                        <div>
+                          <%= link_to dashboard_user_path(current_user), class: "tooltip" do %>
+                            <i class="fa fa-check accept-icon" aria-hidden="true"></i>
+                            <span class="tooltiptext">Accepter</span>
+                          <% end %>
+                          <%= link_to dashboard_user_path(current_user), class: "tooltip" do %>
+                            <i class="fa fa-ban reject-icon" aria-hidden="true"></i>
+                            <span class="tooltiptext">Rejeter</span>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+          <div id="tab-prets-encours">
+            <% if @current_loans.size == 0 %>
+              <div class="loan-card">
+                <p>Il n'y a aucun prêt en cours.</p>
+              </div>
+            <% else %>
+              <% @current_loans.each do |loans| %>
+                <% loans.each do |loan| %>
+                  <% item = loan.dressing_item %>
+                  <div class="loan-card">
+                    <div class="cart-item-card" id="loan-item-card-<%= loan.id %>">
+                      <div class="cart-item-card-picture">
+                        <% unless item.dressing_item_pictures.size == 0 %>
+                          <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
+                        <% end %>
+                      </div>
+                      <div class="cart-item-card-infos loan-item-card-infos flexbox space-between">
+                        <div>
+                          <h2><%= item.name %></h2>
+                          <p>Demande faite par <%= link_to "#{loan.user.first_name} #{loan.user.last_name}", user_path(loan.user), class: "b-btn-underlined", target: "_blank" %>, le <%= loan.created_at.strftime('%e %b %Y') %></p>
+                          <% if item.price == 0 %>
+                            <span class="item-price">gratuit</span>
+                          <% else %>
+                            <span class="item-price"><%= item.price %> €</span>
+                          <% end %>
+                        </div>
+                        <div>
+                          <%= link_to dashboard_user_path(current_user), class: "tooltip" do %>
+                            <i class="fa fa-check accept-icon" aria-hidden="true"></i>
+                            <span class="tooltiptext">Accepter</span>
+                          <% end %>
+                          <%= link_to dashboard_user_path(current_user), class: "tooltip" do %>
+                            <i class="fa fa-ban reject-icon" aria-hidden="true"></i>
+                            <span class="tooltiptext">Rejeter</span>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+          <div id="tab-prets-passes">
+            <% if @past_loans.size == 0 %>
+              <div class="loan-card">
+                <p>Vous n'avez rien prêté pour l'instant.</p>
+              </div>
+            <% else %>
+              <% @past_loans.each do |loans| %>
+                <% loans.each do |loan| %>
+                  <% item = loan.dressing_item %>
+                  <div class="loan-card">
+                    <div class="cart-item-card" id="loan-item-card-<%= loan.id %>">
+                      <div class="cart-item-card-picture">
+                        <% unless item.dressing_item_pictures.size == 0 %>
+                          <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
+                        <% end %>
+                      </div>
+                      <div class="cart-item-card-infos loan-item-card-infos flexbox space-between">
+                        <div>
+                          <h2><%= item.name %></h2>
+                          <p>Demande faite par <%= link_to "#{loan.user.first_name} #{loan.user.last_name}", user_path(loan.user), class: "b-btn-underlined", target: "_blank" %>, le <%= loan.created_at.strftime('%e %b %Y') %></p>
+                          <% if item.price == 0 %>
+                            <span class="item-price">gratuit</span>
+                          <% else %>
+                            <span class="item-price"><%= item.price %> €</span>
+                          <% end %>
+                        </div>
+                        <div>
+                          <%= link_to dashboard_user_path(current_user), class: "tooltip" do %>
+                            <i class="fa fa-check accept-icon" aria-hidden="true"></i>
+                            <span class="tooltiptext">Accepter</span>
+                          <% end %>
+                          <%= link_to dashboard_user_path(current_user), class: "tooltip" do %>
+                            <i class="fa fa-ban reject-icon" aria-hidden="true"></i>
+                            <span class="tooltiptext">Rejeter</span>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -207,6 +364,7 @@
     $(document).ready(function(){
       $('ul.subnav-tabs').tabs();
       $('ul.network-subnav-tabs').tabs();
+      $('ul.loans-subnav-tabs').tabs();
       $('select').material_select();
     });
   </script>

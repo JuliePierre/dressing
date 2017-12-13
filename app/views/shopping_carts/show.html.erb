@@ -61,7 +61,7 @@
                   <p class="item-price"><%= item.price %> €</p>
                   <p><%= item.description %></p>
                   <p class="small-text">Nous ne proposons pas la vente en ligne de cet article, nous vous proposons de prendre contact directement avec le ou la propriétaire pour en savoir plus et arranger la vente.</p>
-                  <a href="mailto:<%= item.user.email %>" target="_blank" class="b-btn-underlined">Contacter</a>
+                  <p><a href="mailto:<%= item.user.email %>" target="_blank" class="b-btn-underlined">Contacter</a></p>
                 </div>
               </div>
               <% end %>
@@ -98,8 +98,8 @@
           <div id="loans-tabs">
             <ul class="loan-tabs">
               <li class="tab loan-tab"><a href="#tab-pending-loans" class="active">Demandes en attente</a></li>
-              <li class="tab loan-tab"><a href="#tab-current-loans">En cours</a></li>
-              <li id="past-loans-link" class="tab loan-tab"><a href="#tab-past-loans">Passés</a></li>
+              <li class="tab loan-tab"><a href="#tab-current-loans">Emprûnts en cours</a></li>
+              <li id="past-loans-link" class="tab loan-tab"><a href="#tab-past-loans">Emprûnts passés</a></li>
               <div class="indicator" style="right: 1050px; left: 30px;"></div>
             </ul>
           </div>
@@ -120,7 +120,7 @@
                       <p><%= item.description %></p>
                     </div>
                     <div>
-                      <p>Demande faite le <%= loan.created_at.strftime('%e %B %Y') %></p>
+                      <p>Demande faite le <%= loan.created_at.strftime('%e %b %Y') %></p>
                       <p><%= link_to "Annuler ma demande", dressing_item_loan_path(item, loan), method: :delete, class: "b-btn-underlined" %></p>
                     </div>
                   </div>
@@ -149,7 +149,9 @@
                     <p class="item-price"><%= item.price %> €</p>
                     <p><%= item.description %></p>
                     <p class="small-text">Nous ne proposons pas la vente en ligne de cet article, nous vous proposons de prendre contact directement avec le ou la propriétaire pour en savoir plus et arranger la vente.</p>
-                    <a href="mailto:<%= item.user.email %>" target="_blank" class="b-btn-underlined">Contacter</a>
+                    <p>
+                      <a href="mailto:<%= item.user.email %>" target="_blank" class="b-btn-underlined">Contacter</a>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -176,7 +178,7 @@
                     <p class="item-price"><%= item.price %> €</p>
                     <p><%= item.description %></p>
                     <p class="small-text">Nous ne proposons pas la vente en ligne de cet article, nous vous proposons de prendre contact directement avec le ou la propriétaire pour en savoir plus et arranger la vente.</p>
-                    <a href="mailto:<%= item.user.email %>" target="_blank" class="b-btn-underlined">Contacter</a>
+                    <p><a href="mailto:<%= item.user.email %>" target="_blank" class="b-btn-underlined">Contacter</a></p>
                   </div>
                 </div>
               </div>

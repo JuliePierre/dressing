@@ -58,6 +58,25 @@ class UsersController < ApplicationController
     # wishlist
     @wishlist_items = current_user.find_voted_items
 
+    # loans
+    @current_loans = []
+    current_user.dressing_items.each do |item|
+      unless item.loans.status("Current").first.nil?
+        @current_loans << item.loans.status("Current")
+      end
+    end
+    @pending_loans = []
+    current_user.dressing_items.each do |item|
+      unless item.loans.status("Pending").first.nil?
+        @pending_loans << item.loans.status("Pending")
+      end
+    end
+    @past_loans = []
+    current_user.dressing_items.each do |item|
+      unless item.loans.status("Past").first.nil?
+        @past_loans << item.loans.status("Past")
+      end
+    end
   end
 
   def wishlist
