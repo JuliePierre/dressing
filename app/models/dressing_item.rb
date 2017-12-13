@@ -20,6 +20,7 @@ class DressingItem < ApplicationRecord
   SIZES_OPTION2 = %w(XXS XS S M L XL XXL)
 
   belongs_to :user
+  has_many :loans
   has_many :dressing_item_pictures
 
   validates :category, inclusion: { in: CATEGORIES, allow_blank: false }

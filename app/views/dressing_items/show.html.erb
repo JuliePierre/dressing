@@ -81,7 +81,35 @@
             </div>
             <br>
             <br>
-            <%= link_to "Ajouter au panier", add_to_cart_path(@dressing_item), remote: true, method: :post, class: "b-btn b-btn-transparent b-btn-block" %>
+            <%= link_to "J'achète", add_to_cart_path(@dressing_item), remote: true, method: :post, class: "b-btn b-btn-transparent b-btn-block" %>
+              <a class="waves-effect waves-light b-btn b-btn-transparent b-btn-block modal-trigger" href="#modal-add-loan">J'emprûnte</a>
+              <!-- Modal Structure -->
+              <div id="modal-add-loan" class="modal">
+                <div class="modal-content">
+                  <div id="close-modal-add-loan"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>
+                  <!-- Contenu de la modal -->
+                  <div class="cart-item-card">
+                    <div class="cart-item-card-picture">
+                      <% unless @dressing_item.dressing_item_pictures.size == 0 %>
+                        <%= cl_image_tag(@dressing_item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
+                      <% end %>
+                    </div>
+                    <div class="cart-item-card-infos">
+                      <div class="flexbox space-between">
+                        <h2><%= @dressing_item.name %></h2>
+                      </div>
+                      <p>Mis en ligne par <%= link_to "#{@dressing_item.user.first_name} #{@dressing_item.user.last_name}", user_path(@dressing_item.user), class: 'b-btn-underlined' %></p>
+                      <p class="item-price"><%= @dressing_item.price %> €</p>
+                      <p><%= @dressing_item.description %></p>
+                    </div>
+                  </div>
+                  <p>En cliquant sur valider, vous confirmez que vous souhaitez emprûnter cet article à <%= @dressing_item.user.first_name %> <%= @dressing_item.user.last_name %>. Elle en sera informée directement et vous pourrez consulter sa réponse sur la page "Mon panier".</p>
+                </div>
+                <div class="right" style="margin-right: 24px;">
+                <%= link_to "Valider", dressing_item_loans_path(@dressing_item), method: :post, class: "b-btn b-btn-transparent" %>
+                </div>
+              </div>
+              <!-- END Modal Structure -->
           </div>
         </div>
       </div>

@@ -78,4 +78,166 @@
       </div>
     </div>
   </div>
+  <div class="page-sub-header">
+    <div class="container">
+      <!-- Subnavigation -->
+      <div class="page-nav">
+        <div class="page-nav-menu">
+          <div class="page-nav-menu-links">
+            <p class="inline first-nav-element">Mes emprûnts</p>
+          </div>
+        </div>
+      </div>
+      <!-- Subnavigation -->
+    </div>
+  </div>
+  <div class="bg-grey">
+    <div class="b-section">
+      <div class="container last-container">
+        <div id="loans-container">
+          <div id="loans-tabs">
+            <ul class="loan-tabs">
+              <li class="tab loan-tab"><a href="#tab-pending-loans" class="active">Demandes en attente</a></li>
+              <li class="tab loan-tab"><a href="#tab-current-loans">En cours</a></li>
+              <li id="past-loans-link" class="tab loan-tab"><a href="#tab-past-loans">Passés</a></li>
+              <div class="indicator" style="right: 1050px; left: 30px;"></div>
+            </ul>
+          </div>
+          <div id="tab-pending-loans">
+            <% @pending_loans.each do |loan| %>
+              <% item = loan.dressing_item %>
+              <div class="loan-card">
+                <div class="cart-item-card">
+                  <div class="cart-item-card-picture">
+                    <% unless item.dressing_item_pictures.size == 0 %>
+                      <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
+                    <% end %>
+                  </div>
+                  <div class="cart-item-card-infos loan-item-card-infos">
+                    <div class="flexbox space-between">
+                      <h2><%= item.name %></h2>
+                      <div class="cart-icons">
+
+                      </div>
+                    </div>
+                    <p>Mis en ligne par <%= link_to "#{item.user.first_name} #{item.user.last_name}", user_path(item.user), class: 'b-btn-underlined' %></p>
+                    <p><%= item.description %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <% if @pending_loans.size == 0 %>
+              <div class="loan-card">
+                <p>Vous n'avez aucune demande en attente de réponse.</p>
+              </div>
+            <% end %>
+          </div>
+          <div id="tab-current-loans">
+              <% @current_loans.each do |loan| %>
+              <% item = loan.dressing_item %>
+              <div class="loan-card">
+                <div class="cart-item-card">
+                  <div class="cart-item-card-infos loan-item-card-picture">
+                    <% unless item.dressing_item_pictures.size == 0 %>
+                      <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
+                    <% end %>
+                  </div>
+                  <div class="cart-item-card-infos">
+                    <div class="flexbox space-between">
+                      <h2><%= item.name %></h2>
+                      <div class="cart-icons">
+                        <% if current_user.voted_for?(item) %>
+                          <div class="add-to-cart-icon active">
+                            <%= link_to remove_from_favorite_path(item), method: :patch, class: "tooltip" do %>
+                              <i class="fa fa-heart-o" aria-hidden="true"></i>
+                              <i class="fa fa-heart" aria-hidden="true"></i>
+                              <span class="tooltiptext">Supprimer des favoris</span>
+                            <% end %>
+                          </div>
+                        <% else %>
+                          <div class="add-to-cart-icon">
+                            <%= link_to add_to_favorite_path(item), method: :post, class: "tooltip" do %>
+                              <i class="fa fa-heart-o" aria-hidden="true"></i>
+                              <i class="fa fa-heart" aria-hidden="true"></i>
+                              <span class="tooltiptext">Ajouter aux favoris</span>
+                            <% end %>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                    <p>Mis en ligne par <%= link_to "#{item.user.first_name} #{item.user.last_name}", user_path(item.user), class: 'b-btn-underlined' %></p>
+                    <p class="item-price"><%= item.price %> €</p>
+                    <p><%= item.description %></p>
+                    <p class="small-text">Nous ne proposons pas la vente en ligne de cet article, nous vous proposons de prendre contact directement avec le ou la propriétaire pour en savoir plus et arranger la vente.</p>
+                    <a href="mailto:<%= item.user.email %>" target="_blank" class="b-btn-underlined">Contacter</a>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <% if @current_loans.size == 0 %>
+              <div class="loan-card">
+                <p>Vous n'avez aucun emprûnt en cours.</p>
+              </div>
+            <% end %>
+          </div>
+          <div id="tab-past-loans">
+            <% @past_loans.each do |loan| %>
+              <% item = loan.dressing_item %>
+              <div class="loan-card">
+                <div class="cart-item-card">
+                  <div class="cart-item-card-picture">
+                    <% unless item.dressing_item_pictures.size == 0 %>
+                      <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
+                    <% end %>
+                  </div>
+                  <div class="cart-item-card-infos loan-item-card-infos">
+                    <div class="flexbox space-between">
+                      <h2><%= item.name %></h2>
+                      <div class="cart-icons">
+                        <% if current_user.voted_for?(item) %>
+                          <div class="add-to-cart-icon active">
+                            <%= link_to remove_from_favorite_path(item), method: :patch, class: "tooltip" do %>
+                              <i class="fa fa-heart-o" aria-hidden="true"></i>
+                              <i class="fa fa-heart" aria-hidden="true"></i>
+                              <span class="tooltiptext">Supprimer des favoris</span>
+                            <% end %>
+                          </div>
+                        <% else %>
+                          <div class="add-to-cart-icon">
+                            <%= link_to add_to_favorite_path(item), method: :post, class: "tooltip" do %>
+                              <i class="fa fa-heart-o" aria-hidden="true"></i>
+                              <i class="fa fa-heart" aria-hidden="true"></i>
+                              <span class="tooltiptext">Ajouter aux favoris</span>
+                            <% end %>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                    <p>Mis en ligne par <%= link_to "#{item.user.first_name} #{item.user.last_name}", user_path(item.user), class: 'b-btn-underlined' %></p>
+                    <p class="item-price"><%= item.price %> €</p>
+                    <p><%= item.description %></p>
+                    <p class="small-text">Nous ne proposons pas la vente en ligne de cet article, nous vous proposons de prendre contact directement avec le ou la propriétaire pour en savoir plus et arranger la vente.</p>
+                    <a href="mailto:<%= item.user.email %>" target="_blank" class="b-btn-underlined">Contacter</a>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <% if @past_loans.size == 0 %>
+              <div class="loan-card">
+                <p>Vous n'avez pas encore emprûnté d'articles sur Swaplab.</p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<% content_for(:after_js) do %>
+  <script>
+    $(document).ready(function(){
+      $('ul.loan-tabs').tabs();
+    });
+  </script>
+<% end %>

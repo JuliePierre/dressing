@@ -75,6 +75,10 @@ class DressingItemsController < ApplicationController
     end
   end
 
+  def add_to_loans
+    @item = DressingItem.find(params[:id])
+  end
+
   def add_to_favorite
     @item = DressingItem.find(params[:id])
     @item.liked_by current_user
