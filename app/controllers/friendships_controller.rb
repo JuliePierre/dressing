@@ -25,7 +25,7 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.find(params[:id])
     @friendship.is_accepted = true
     if @friendship.save
-      redirect_to users_path
+      redirect_to dashboard_user_path(current_user)
     else
       alert("Nous n'avons pas pu accepter")
     end
@@ -46,7 +46,7 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.find(params[:id])
     @friendship.destroy
     flash[:notice] = "Removed friendship."
-    redirect_to current_user
+    redirect_to dashboard_user_path(current_user)
   end
 
 end

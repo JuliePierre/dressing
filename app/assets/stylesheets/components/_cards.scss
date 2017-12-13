@@ -189,14 +189,15 @@
   text-align: center;
   position: relative;
   color: rgba(0,0,0,0.87);
-  h1 {
-    font-size: .75rem;
-    margin-top: 0.75rem;
-    color: rgba(0,0,0,0.87);
-  }
   h5 {
-    font-size: .6rem;
-    margin-bottom: 0.75rem;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    a {
+      color: $b-text-light;
+      &:hover {
+        color: $secondary-color;
+      }
+    }
   }
   .user-card-link {
     background: $secondary-color;
