@@ -142,7 +142,6 @@
                     <h5>Référence</h5>
                     <span class="tooltiptext">Vous pouvez ajouter un lien vers un site référençant ce produit (le site de la marque) pour donner plus d'informations.</span>
                   </div>
-
                   <div>
                     <input class="number" type="text" name="dressing_item[ref]" id="dressing_item_ref", placeholder="Site web">
                   </div>
@@ -165,23 +164,9 @@
                 </div>
               </div>
             <% end %>
-
           </div>
-
-
-
-
-
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<%= content_for(:after_js) do %>
-  <script>
-    $(document).ready(function() {
-        $('select').material_select();
-      });
-  </script>
-<% end %>

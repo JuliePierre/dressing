@@ -1,0 +1,39 @@
+<div class="main-body">
+  <div class="page-header flexbox space-around center">
+    <h2>Envoyer une demande</h2>
+  </div>
+  <div class="bg-grey">
+    <div class="container">
+      <div class="b-section">
+          <div class="flexbox space-around center">
+            <div id="add-item-container" class="bg-white">
+            <!-- FORM -->
+            <%= simple_form_for @missing_item, html: { id: "new-missing-item-form", multipart: true } do |f| %>
+              <%= f.error_notification %>
+                <h4>Général</h4>
+                <div class="input-field col missing_item_name">
+                  <h5 style="text-align: left;">Nom</h5>
+                  <input class="string" type="text" name="missing_item[name]" id="missing_item_name", placeholder="Ex : Recherche robe 80's">
+                </div>
+                <div class="input-field col missing_item_description">
+                  <h5 style="text-align: left;">Description</h5>
+                  <textarea class="materialize-textarea text optional" name="missing_item[description]" id="missing_item_description", placeholder="Ex : recherche robe des années 80's pour un anniversaire déguisé, de préférence rouge, etc"></textarea>
+                </div>
+                <div class="input-field col missing_item_ref">
+                  <h5 style="text-align: left;">Référence</h5>
+                  <p>Si vous avez un exemple précis en tête, vous pouvez ajouter ici un lien vers le site.</p>
+                  <input class="string" type="text" name="missing_item[ref]" id="missing_item_ref", placeholder="Référence">
+                </div>
+                <h4>Photos</h4>
+                <p>N'hésitez pas à ajouter quelques photos si vous avez des références pour donner un aperçu de ce que vous cherchez.</p>
+                <div id="ajouter-photos-missing-items-btn" class="b-btn b-btn-underlined">Choisir photos</div>
+                <input type="text" class="missing-item-filename" placeholder="Aucun fichier choisi"/>
+                <%= f.file_field :photos, multiple: true %>
+                <%= f.button :submit, class: 'b-btn', value: "Valider" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

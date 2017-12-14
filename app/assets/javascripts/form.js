@@ -26,4 +26,13 @@ $(document).ready(function() {
       var val = ($(this).val() != "") ? ($(this)[0].files.length + " fichier choisi(s)") : "Aucun fichier choisi";
       $('.filename').attr('placeholder', val);
   });
+
+  $('#ajouter-photos-missing-items-btn').on('click', function() {
+    $('#missing_item_photos').trigger('click');
+  });
+
+  $('#missing_item_photos').change(function() {
+      var val = ($(this).val() != "") ? ($(this)[0].files.length + " fichier choisi(s)") : "Aucun fichier choisi";
+      $('.missing-item-filename').attr('placeholder', val);
+  });
 });

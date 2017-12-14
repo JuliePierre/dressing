@@ -1,6 +1,10 @@
 <div class="main-body">
   <div class="page-header flexbox space-around center">
-    <h2>Les pièces à votre disposition</h2>
+    <div>
+      <h2>Les pièces à votre disposition</h2>
+      <p class="text-light">Vous ne trouvez pas votre bonheur parmi les articles proposés ? Demandez directement à vos amis s'ils n'ont pas ça en stock.</p>
+      <%= link_to "Faire une demande", new_missing_item_path ,class: "b-btn b-btn-transparent b-btn-white" %>
+    </div>
   </div>
   <div class="bg-grey">
     <div class="container first-container last-container flexbox space-between flex-start">

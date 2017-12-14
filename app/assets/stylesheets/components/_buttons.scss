@@ -65,6 +65,22 @@
 .b-btn-block {
   display: block;
 }
+.b-btn-white {
+  border: 2px solid $b-bg-blue-grey;
+  color: $b-bg-blue-grey;
+  &:hover {
+    background-color: $b-bg-blue-grey;
+    opacity: 0.4;
+    box-shadow: none;
+    color: $secondary-color;
+  }
+  &:focus {
+    background-color: $b-bg-blue-grey;
+    opacity: 0.4;
+    box-shadow: none;
+    color: $secondary-color;
+  }
+}
 
 .banner-card-btn {
   margin-bottom: 0;

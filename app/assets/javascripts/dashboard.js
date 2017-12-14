@@ -14,6 +14,9 @@ $(document).ready(function(){
   $( "#link-to-mesprets" ).on( "click", function() {
     $( "#mesprets-link a" ).trigger( "click" );
   });
+  $( "#link-to-mesdemandes" ).on( "click", function() {
+    $( "#mesdemandes-link a" ).trigger( "click" );
+  });
   // $( "#monreseau-link" ).on( "click", function() {
   //   $('#mesamis-link a').trigger('click')
   // });

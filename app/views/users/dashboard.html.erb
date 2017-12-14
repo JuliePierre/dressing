@@ -11,6 +11,7 @@
           <li id="monreseau-link" class="tab subnav-tab"><a href="#tab-monreseau">Mon réseau</a></li>
           <li id="mondressing-link" class="tab subnav-tab"><a href="#tab-mondressing">Mon dressing</a></li>
           <li id="mesprets-link" class="tab subnav-tab"><a href="#tab-mesprets">Mes prêts</a></li>
+          <li id="mesdemandes-link" class="tab subnav-tab"><a href="#tab-mesdemandes">Mes demandes</a></li>
         </ul>
       </div>
   </div>
@@ -46,7 +47,7 @@
             <p class="b-btn-underlined" id="link-to-mondressing">Gérer</p>
           </div>
         </div>
-        <div class="tab-content no-padding-top flexbox space-between">
+        <div class="tab-content no-padding-top  no-padding-bottom flexbox space-between">
           <div class="dashboard-links-card">
             <h5>Mon panier</h5>
             <% if current_user.shopping_cart.nil? %>
@@ -80,6 +81,18 @@
             <% end %>
             <br>
             <p class="b-btn-underlined" id="link-to-mesprets">Gérer</p>
+          </div>
+        </div>
+        <div class="tab-content no-padding-top flexbox">
+          <div class="dashboard-links-card">
+            <h5>Mes demandes désespérées</h5>
+            <% if @item_requests.nil? %>
+              <p>Vous n'avez aucune demande en attente de réponse.</p>
+            <% else %>
+              <p>Vous avez actuellement <%= pluralize @item_requests.size, "demande" %> en cours.</p>
+            <% end %>
+            <br>
+            <p class="b-btn-underlined" id="link-to-mesdemandes">Voir</p>
           </div>
         </div>
       </div>
@@ -329,6 +342,37 @@
                   </div>
                 <% end %>
               <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB MES DEMANDES -->
+      <div class="tab-page" id="tab-mesdemandes">
+        <div class="dashboard-content-header">
+          <h4>Mes demandes</h4>
+        </div>
+        <div class="tab-content">
+          <div>
+            <% @item_requests.each do |request| %>
+              <div class="loan-card">
+                <div class="cart-item-card">
+                  <div class="cart-item-card-picture">
+                    <% if request.missing_item_pictures.size > 0 %>
+                      <%= cl_image_tag(request.missing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
+                    <% else %>
+                      <%= image_tag "search-image", class: "search-image" %>
+                    <% end %>
+                  </div>
+                  <div class="cart-item-card-infos loan-item-card-infos flexbox space-between">
+                    <div>
+                      <h2><%= request.name %></h2>
+                      <p>Vous avez envoyé la demande le <%= request.created_at.strftime('%e %b %Y') %></p>
+                      <p>La demande a été envoyée à xx et xx</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <% end %>
           </div>
         </div>

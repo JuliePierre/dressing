@@ -289,3 +289,15 @@ label {
   color: $b-text-light;
   font-size: 0.8em;
 }
+
+// FORM MISSING ITEM
+#missing_item_photos {
+  display: none;
+}
+input.missing-item-filename {
+  border: none !important;
+}
+#missing_item_description {
+  height: 12em;
+  margin-bottom: 0;
+}
