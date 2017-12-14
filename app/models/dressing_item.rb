@@ -48,4 +48,8 @@ class DressingItem < ApplicationRecord
   def is_in_cart?(user)
     return user.shopping_cart.shopping_cart_items.include?(self)
   end
+
+  def is_available_for(user)
+    return self.user.is_friend_with?(user)
+  end
 end

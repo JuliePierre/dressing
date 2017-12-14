@@ -20,7 +20,8 @@ class DressingItemsController < ApplicationController
   end
 
   def index
-    @dressing_items = DressingItem.where(nil)
+    dressing_items = DressingItem.where(nil)
+    @dressing_items = dressing_items.select { |item| item.is_available_for(current_user) }
     filtering_params(params).each do |key, value|
       if value.present?
         @dressing_items = @dressing_items.public_send(key, value)
