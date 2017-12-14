@@ -5,7 +5,6 @@ class DressingItemsController < ApplicationController
   end
 
   def create
-    puts "params : #{params["dressing_item"]["photos"]}"
     @dressing_item = DressingItem.new(dressing_item_params)
     @dressing_item.user = current_user
     if @dressing_item.save

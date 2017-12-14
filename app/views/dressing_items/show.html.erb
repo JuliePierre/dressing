@@ -80,7 +80,16 @@
             </div>
             <br>
             <br>
-            <%= link_to "J'achète", add_to_cart_path(@dressing_item), remote: true, method: :post, class: "b-btn b-btn-transparent b-btn-block" %>
+            <% if @dressing_item.to_sell.blank? %>
+              <p>Cet article n'est pas disponible à la vente.</p>
+            <% end %>
+            <% if @dressing_item.to_lend.blank? %>
+              <p>Le propriétaire de cet article ne désire pas le louer.</p>
+            <% end %>
+            <% unless @dressing_item.to_sell.blank? %>
+              <%= link_to "J'achète", add_to_cart_path(@dressing_item), remote: true, method: :post, class: "b-btn b-btn-transparent b-btn-block" %>
+            <% end %>
+            <% unless @dressing_item.to_lend.blank? %>
               <a class="waves-effect waves-light b-btn b-btn-transparent b-btn-block modal-trigger" href="#modal-add-loan">J'emprûnte</a>
               <!-- Modal Structure -->
               <div id="modal-add-loan" class="modal">
@@ -109,6 +118,7 @@
                 </div>
               </div>
               <!-- END Modal Structure -->
+            <% end %>
           </div>
         </div>
       </div>
