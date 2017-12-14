@@ -49,6 +49,11 @@ nav {
       border: 1px solid $secondary-color;
     }
   }
+  .nav-tooltip {
+    bottom: -3rem;
+    left: -3rem;
+    text-transform: none;
+  }
 }
 #navigation {
   display: flex;
@@ -61,7 +66,7 @@ nav {
 }
 #brand-logo {
   a {
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Lato';
   font-size: 32px;
   color: $b-text;
   }

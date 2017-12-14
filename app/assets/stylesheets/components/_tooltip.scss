@@ -6,11 +6,11 @@
 /* Tooltip text */
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
+    width: max-content;
+    background-color: $secondary-color;
+    color: white;
     text-align: center;
-    padding: 5px 0;
+    padding: 0.5rem 1rem;
     border-radius: 6px;
 
     /* Position the tooltip text - see examples below! */

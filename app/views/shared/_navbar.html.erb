@@ -14,19 +14,22 @@
         <li><span class="navbar-menu-element">|</span></li>
         <% if current_user %>
           <li>
-            <%= link_to dashboard_user_path(current_user), class: "nav-icons" do %>
+            <%= link_to dashboard_user_path(current_user), class: "nav-icons tooltip" do %>
               <i class="fa fa-user" aria-hidden="true"></i>
+              <span class="tooltiptext nav-tooltip">Mon compte</span>
             <% end %>
           </li>
           <li>
-            <%= link_to wishlist_user_path(current_user), class: "nav-icons" do %>
+            <%= link_to wishlist_user_path(current_user), class: "nav-icons tooltip" do %>
               <i class="fa fa-heart" aria-hidden="true"></i>
+              <span class="tooltiptext nav-tooltip">Wishlist</span>
             <% end %>
           </li>
           <li>
             <% unless current_user.shopping_cart.nil? %>
-              <%= link_to shopping_cart_path(current_user.shopping_cart), class: "nav-icons" do %>
+              <%= link_to shopping_cart_path(current_user.shopping_cart), class: "nav-icons tooltip" do %>
                 <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                <span class="tooltiptext nav-tooltip">Panier</span>
               <% end %>
             <% end %>
           </li>
