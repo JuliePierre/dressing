@@ -170,6 +170,25 @@
   color: $b-text-light;
 }
 
+// CHECKBOXES
+.dressing_item_to_sell, .dressing_item_to_rent, .dressing_item_to_lend {
+  height: 5rem;
+  [type="checkbox"] + label:before, [type="checkbox"]:not(.filled-in) + label:after {
+  content: none;
+  }
+  [type="checkbox"] + label {
+    height: auto;
+    line-height: 1rem;
+    position: initial;
+  }
+  [type="checkbox"]:checked + label .fa {
+    color: $secondary-color;
+    border: 1px solid $secondary-color;
+  }
+  h5 {
+    margin-bottom: 0;
+  }
+}
 
 // STEP3 : PHOTOS
 #dressing_item_photos {

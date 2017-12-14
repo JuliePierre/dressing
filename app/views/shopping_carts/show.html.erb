@@ -114,7 +114,7 @@
                     <% end %>
                   </div>
                   <div class="cart-item-card-infos loan-item-card-infos flexbox space-between">
-                    <div>
+                    <div style="flex: 0 0 70%;">
                       <h2><%= item.name %></h2>
                       <p>Mis en ligne par <%= link_to "#{item.user.first_name} #{item.user.last_name}", user_path(item.user), class: 'b-btn-underlined' %></p>
                       <p><%= item.description %></p>
@@ -147,8 +147,7 @@
                     <h2><%= item.name %></h2>
                     <p>Mis en ligne par <%= link_to "#{item.user.first_name} #{item.user.last_name}", user_path(item.user), class: 'b-btn-underlined' %></p>
                     <p class="item-price"><%= item.price %> €</p>
-                    <p><%= item.description %></p>
-                    <p class="small-text">Nous ne proposons pas la vente en ligne de cet article, nous vous proposons de prendre contact directement avec le ou la propriétaire pour en savoir plus et arranger la vente.</p>
+                    <p>Emprûnté depuis le <%= loan.updated_at.strftime('%e %b %Y') %></p>
                     <p>
                       <a href="mailto:<%= item.user.email %>" target="_blank" class="b-btn-underlined">Contacter</a>
                     </p>

@@ -34,8 +34,8 @@
         <% end %>
         <div class="item-infos-container">
           <div class="item-infos">
-            <div class="flexbox space-between center">
-              <h2><%= @dressing_item.name %></h2>
+            <div class="flexbox space-between">
+              <h2 style="flex: 0 0 80%;"><%= @dressing_item.name %></h2>
               <% if current_user.voted_for?(@dressing_item) %>
                 <div class="add-to-cart-icon active">
                   <%= link_to remove_from_favorite_path(@dressing_item), method: :patch do %>
@@ -60,13 +60,12 @@
               <p class="item-price"><%= @dressing_item.price %>€</p>
             <% end %>
             <% unless @dressing_item.brand.blank? %>
-              <br>
-              <p>Marque : <%= @dressing_item.brand %></p>
+              <p class="no-margin">Marque : <%= @dressing_item.brand %></p>
             <% end %>
             <% unless @dressing_item.ref.blank? %>
-              <br>
-              <p>Référence : <a href="<%= @dressing_item.ref %>" class="b-btn-underlined" target="_blank">Voir</a></p>
+              <p class="no-margin">Référence : <a href="<%= @dressing_item.ref %>" class="b-btn-underlined no-margin" target="_blank">Voir</a></p>
             <% end %>
+            <br>
             <div class="item-complementary-infos flexbox space-around">
               <div class="flexbox flex-column space-around center">
                 <span>Couleur</span>

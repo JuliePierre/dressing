@@ -92,22 +92,61 @@
                     </label>
                   <% end %>
                 </div>
-                  <div class="input-field col dressing_item_price flexbox space-between center">
-                    <h5>Prix</h5>
-                    <div>
-                      <input class="number" type="number" name="dressing_item[price]" id="dressing_item_price", placeholder="€--">
-                    </div>
+                <div class="input-field col dressing_item_to_sell flexbox space-between center">
+                  <h5>Je vends :</h5>
+                  <div>
+                    <input class="number" type="checkbox" name="dressing_item[to_sell]" id="dressing_item_to_sell_yes", value="yes">
+                    <label for="dressing_item_to_sell_yes">
+                      <i class="fa fa-check accept-icon" aria-hidden="true"></i>
+                    </label>
+                    <input class="number" type="checkbox" name="dressing_item[to_sell]" id="dressing_item_to_sell_no", value="no">
+                    <label for="dressing_item_to_sell_no">
+                      <i class="fa fa-ban reject-icon" aria-hidden="true"></i>
+                    </label>
                   </div>
-                  <div class="input-field col dressing_item_ref flexbox space-between center">
-                    <div class="tooltip">
-                      <h5>Référence</h5>
-                      <span class="tooltiptext">Vous pouvez ajouter un lien vers un site référençant ce produit (le site de la marque) pour donner plus d'informations.</span>
-                    </div>
+                </div>
+                <div class="input-field col dressing_item_to_rent flexbox space-between center">
+                  <h5>Je loue :</h5>
+                  <div>
+                    <input class="number" type="checkbox" name="dressing_item[to_rent]" id="dressing_item_to_rent_yes", value="yes">
+                    <label for="dressing_item_to_rent_yes">
+                      <i class="fa fa-check accept-icon" aria-hidden="true"></i>
+                    </label>
+                    <input class="number" type="checkbox" name="dressing_item[to_lend]" id="dressing_item_to_lend_no", value="no">
+                    <label for="dressing_item_to_lend_no">
+                      <i class="fa fa-ban reject-icon" aria-hidden="true"></i>
+                    </label>
+                  </div>
+                </div>
+                <div class="input-field col dressing_item_to_lend flexbox space-between center">
+                  <h5>Je prête :</h5>
+                  <div>
+                    <input class="number" type="checkbox" name="dressing_item[to_lend]" id="dressing_item_to_lend_yes", value="yes">
+                    <label for="dressing_item_to_lend_yes">
+                      <i class="fa fa-check accept-icon" aria-hidden="true"></i>
+                    </label>
+                    <input class="number" type="checkbox" name="dressing_item[to_sell]" id="dressing_item_to_sell_no", value="no">
+                    <label for="dressing_item_to_sell_no">
+                      <i class="fa fa-ban reject-icon" aria-hidden="true"></i>
+                    </label>
+                  </div>
+                </div>
+                <div class="input-field col dressing_item_price flexbox space-between center">
+                  <h5>Prix</h5>
+                  <div>
+                    <input class="number" type="number" name="dressing_item[price]" id="dressing_item_price", placeholder="€--">
+                  </div>
+                </div>
+                <div class="input-field col dressing_item_ref flexbox space-between center">
+                  <div class="tooltip">
+                    <h5>Référence</h5>
+                    <span class="tooltiptext">Vous pouvez ajouter un lien vers un site référençant ce produit (le site de la marque) pour donner plus d'informations.</span>
+                  </div>
 
-                    <div>
-                      <input class="number" type="text" name="dressing_item[ref]" id="dressing_item_ref", placeholder="Site web">
-                    </div>
+                  <div>
+                    <input class="number" type="text" name="dressing_item[ref]" id="dressing_item_ref", placeholder="Site web">
                   </div>
+                </div>
                 </div>
                 <div class="form-buttons">
                   <button type="button" class="b-btn b-btn-colored b-btn-return"><i class="fa fa-chevron-left" aria-hidden="true"></i> Retour</button>
