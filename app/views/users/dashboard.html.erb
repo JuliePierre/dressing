@@ -1,6 +1,7 @@
 <div class="main-body dashboard-container">
   <div class="subnav-left">
-      <% avatar_url = current_user.facebook_picture_url || image_path('someone_icon.png') %>
+      <% photo = current_user.gender == "male" ? 'boy.png' : 'girl.png' %>
+      <% avatar_url = current_user.facebook_picture_url || image_path(photo) %>
       <%= image_tag(avatar_url, class: 'user-avatar') %>
       <h4 class="text-center"><%= current_user.first_name.capitalize + " " + current_user.last_name.capitalize %></h4>
       <div class="subnav-tabs-container" id="subnav-tabs">
