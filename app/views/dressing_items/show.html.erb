@@ -90,7 +90,7 @@
               <%= link_to "J'achète", add_to_cart_path(@dressing_item), remote: true, method: :post, class: "b-btn b-btn-transparent b-btn-block" %>
             <% end %>
             <% unless @dressing_item.to_lend.blank? %>
-              <a class="waves-effect waves-light b-btn b-btn-transparent b-btn-block modal-trigger" href="#modal-add-loan">J'emprûnte</a>
+              <a class="waves-effect waves-light b-btn b-btn-transparent b-btn-block modal-trigger" href="#modal-add-loan">J'emprunte</a>
               <!-- Modal Structure -->
               <div id="modal-add-loan" class="modal">
                 <div class="modal-content">
@@ -111,7 +111,7 @@
                       <p><%= @dressing_item.description %></p>
                     </div>
                   </div>
-                  <p>En cliquant sur valider, vous confirmez que vous souhaitez emprûnter cet article à <%= @dressing_item.user.first_name %> <%= @dressing_item.user.last_name %>. Elle en sera informée directement et vous pourrez consulter sa réponse sur la page "Mon panier".</p>
+                  <p>En cliquant sur valider, vous confirmez que vous souhaitez emprunter cet article à <%= @dressing_item.user.first_name %> <%= @dressing_item.user.last_name %>. Elle en sera informée directement et vous pourrez consulter sa réponse sur la page "Mon panier".</p>
                 </div>
                 <div class="right" style="margin-right: 24px;">
                 <%= link_to "Valider", dressing_item_loans_path(@dressing_item), method: :post, class: "b-btn b-btn-transparent" %>

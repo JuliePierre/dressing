@@ -88,7 +88,7 @@
       <div class="page-nav">
         <div class="page-nav-menu">
           <div class="page-nav-menu-links">
-            <p class="inline first-nav-element">Mes emprûnts</p>
+            <p class="inline first-nav-element">Mes emprunts</p>
           </div>
         </div>
       </div>
@@ -102,8 +102,8 @@
           <div id="loans-tabs">
             <ul class="loan-tabs">
               <li class="tab loan-tab"><a href="#tab-pending-loans" class="active">Demandes en attente</a></li>
-              <li class="tab loan-tab"><a href="#tab-current-loans">Emprûnts en cours</a></li>
-              <li id="past-loans-link" class="tab loan-tab"><a href="#tab-past-loans">Emprûnts passés</a></li>
+              <li class="tab loan-tab"><a href="#tab-current-loans">Emprunts en cours</a></li>
+              <li id="past-loans-link" class="tab loan-tab"><a href="#tab-past-loans">Emprunts passés</a></li>
               <div class="indicator" style="right: 1050px; left: 30px;"></div>
             </ul>
           </div>
@@ -151,7 +151,7 @@
                     <h2><%= item.name %></h2>
                     <p>Mis en ligne par <%= link_to "#{item.user.first_name} #{item.user.last_name}", user_path(item.user), class: 'b-btn-underlined' %></p>
                     <p class="item-price"><%= item.price %> €</p>
-                    <p>Emprûnté depuis le <%= loan.updated_at.strftime('%e %b %Y') %></p>
+                    <p>Emprunté depuis le <%= loan.updated_at.strftime('%e %b %Y') %></p>
                     <p>
                       <a href="mailto:<%= item.user.email %>" target="_blank" class="b-btn-underlined">Contacter</a>
                     </p>
@@ -161,7 +161,7 @@
             <% end %>
             <% if @current_loans.size == 0 %>
               <div class="loan-card">
-                <p>Vous n'avez aucun emprûnt en cours.</p>
+                <p>Vous n'avez aucun emprunt en cours.</p>
               </div>
             <% end %>
           </div>
@@ -188,7 +188,7 @@
             <% end %>
             <% if @past_loans.size == 0 %>
               <div class="loan-card">
-                <p>Vous n'avez pas encore emprûnté d'articles sur Swaplab.</p>
+                <p>Vous n'avez pas encore emprunté d'articles sur Swaplab.</p>
               </div>
             <% end %>
           </div>
