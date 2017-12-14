@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @dressing_items = current_user.dressing_items.where(nil)
+    @dressing_items = @user.dressing_items.where(nil)
     filtering_params(params).each do |key, value|
       if value.present?
         @dressing_items = @dressing_items.public_send(key, value)
