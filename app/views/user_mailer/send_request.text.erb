@@ -1,5 +1,13 @@
 Hello <%= @target.first_name %>,
 
-J'ai besoin d'un coup de pouce : <%= @missing_item.description %>
+J'ai besoin d'un coup de pouce, je n'ai rien trouvé qui corresponde à ce que je cherche.
+
+Sujet : <%= @missing_item.name %>
+Plus d'infos : <%= @missing_item.description %>
+Demande de la part de : <%= @user.first_name %> <%= @user.last_name %>
 
 Si tu as une recommandation pour moi, ou ça en stock chez toi, fais-moi signe sur Swaplab :)
+
+
+Vous pourrez retrouver la demande de <%= @user.first_name %> et lui répondre sur la page de votre compte.
+Accédez à votre compte en cliquant ici : <%= dashboard_user_url(@target) %>

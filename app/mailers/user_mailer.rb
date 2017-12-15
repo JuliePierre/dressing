@@ -10,7 +10,8 @@ class UserMailer < ApplicationMailer
   def send_request(user, target, missing_item)
     @missing_item = missing_item
     @target = target.user
-    mail(to: @target.email, subject: "#{user.first_name} #{user.last_name} a besoin d'aide : #{missing_item.name} ")
+    @user = user
+    mail(to: @target.email, subject: "Swaplab | #{user.first_name} #{user.last_name} cherche un article : #{missing_item.name} ")
     # This will render a view in `app/views/user_mailer/send_request!
   end
 end
