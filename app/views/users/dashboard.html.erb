@@ -12,6 +12,7 @@
           <li id="mondressing-link" class="tab subnav-tab"><a href="#tab-mondressing">Mon dressing</a></li>
           <li id="mesprets-link" class="tab subnav-tab"><a href="#tab-mesprets">Mes prêts</a></li>
           <li id="mesdemandes-link" class="tab subnav-tab"><a href="#tab-mesdemandes">Mes demandes</a></li>
+          <li id="demandes-recues-link" class="tab subnav-tab"><a href="#tab-demandes-recues">Demandes reçues</a></
         </ul>
       </div>
   </div>
@@ -349,8 +350,9 @@
 
       <!-- TAB MES DEMANDES -->
       <div class="tab-page" id="tab-mesdemandes">
-        <div class="dashboard-content-header">
+        <div class="dashboard-content-header flexbox space-between center">
           <h4>Mes demandes</h4>
+          <%= link_to "Faire une demande", new_missing_item_path, class: "b-btn b-btn-transparent no-margin" %>
         </div>
         <div class="tab-content">
           <div>
@@ -368,7 +370,82 @@
                     <div>
                       <h2><%= request.name %></h2>
                       <p>Vous avez envoyé la demande le <%= request.created_at.strftime('%e %b %Y') %></p>
-                      <p>La demande a été envoyée à xx et xx</p>
+                      <% unless request.missing_item_targets.blank? %>
+                        <p>La demande a été envoyée à
+                          <% request.missing_item_targets[0..-2].each do |target| %>
+                            <%= link_to "#{target.user.first_name}, ", user_path(target.user) %>
+                          <% end %>
+                          <%= link_to "#{request.missing_item_targets[-1].user.first_name}." %>
+                        </p>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB DEMANDES RECUES -->
+      <div class="tab-page" id="tab-demandes-recues">
+        <div class="dashboard-content-header">
+          <h4>Demandes reçues</h4>
+        </div>
+        <div class="tab-content">
+          <div>
+            <% @received_requests.each do |request| %>
+              <% missing_item = request.missing_item %>
+              <div class="loan-card">
+                <div class="cart-item-card">
+                  <div class="flexbox flex-column center space-around">
+                    <% photo = missing_item.user.gender == "male" ? 'boy.png' : 'girl.png' %>
+                    <% avatar_url = missing_item.user.facebook_picture_url || image_path(photo) %>
+                    <%= image_tag(avatar_url, class: 'user-avatar dashboard-avatar') %>
+                    <p class="no-margin"><%= missing_item.user.first_name %> <%= missing_item.user.last_name %></p>
+                  </div>
+                  <div class="cart-item-card-picture flexbox space-around center">
+                    <% if missing_item.missing_item_pictures.size > 0 %>
+                      <%= cl_image_tag(missing_item.missing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
+                    <% else %>
+                      <%= image_tag "search-image.png", class: "search-image" %>
+                    <% end %>
+                  </div>
+                  <div class="cart-item-card-infos flexbox space-between">
+                    <div>
+                      <h2><%= missing_item.name %></h2>
+                      <p><%= missing_item.description %></p>
+                      <p>Vous avez reçue la demande le <%= missing_item.created_at.strftime('%e %b %Y') %></p>
+                    </div>
+                    <div>
+                      <a class="modal-trigger tooltip" href="#modal-send-reco-<%= missing_item.id %>">
+                        <i class="fa fa-check accept-icon" aria-hidden="true"></i>
+                        <span class="tooltiptext">J'ai</span>
+                      </a>
+
+                      <!-- Modal Structure -->
+                      <div id="modal-send-reco-<%= missing_item.id %>" class="modal-send-reco modal">
+                        <div class="modal-content">
+                          <div class="close-modal-send-reco"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>
+                          <!-- Contenu de la modal -->
+                          <div class="cart-item-card">
+                            <div class="cart-item-card-infos">
+                              <div class="flexbox space-between">
+                                <h2>Formulaire à remplir pour envoyer prop</h2>
+                              </div>
+                            </div>
+                          </div>
+                          <p>En cliquant sur valider, vous confirmez que vous souhaitez emprunter cet article à sera informée directement et vous pourrez consulter sa réponse sur la page "Mon panier".</p>
+                        </div>
+                        <div class="right" style="margin-right: 24px;">
+
+                        </div>
+                      </div>
+                      <!-- END Modal Structure -->
+                      <%= link_to missing_item_target_path(request), method: :delete, class: "tooltip" do %>
+                        <i class="fa fa-ban reject-icon" aria-hidden="true"></i>
+                        <span class="tooltiptext">Je n'ai pas</span>
+                      <% end %>
                     </div>
                   </div>
                 </div>

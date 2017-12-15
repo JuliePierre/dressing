@@ -17,6 +17,9 @@ $(document).ready(function(){
   $( "#link-to-mesdemandes" ).on( "click", function() {
     $( "#mesdemandes-link a" ).trigger( "click" );
   });
+  $( "#link-to-demandes-recues" ).on( "click", function() {
+    $( "#demandes-recues-link a" ).trigger( "click" );
+  });
   // $( "#monreseau-link" ).on( "click", function() {
   //   $('#mesamis-link a').trigger('click')
   // });

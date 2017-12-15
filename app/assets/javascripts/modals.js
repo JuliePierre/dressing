@@ -8,5 +8,11 @@ $("#modal-add-loan .close-modal-add-loan").click(function(){
 });
 
 $("#modal-send-request .close-modal-add-loan").click(function(){
+  console.log("test2");
   $('#modal-send-request').modal('close');
+});
+
+$(".close-modal-send-reco").click(function(){
+  console.log("test");
+  $('.modal-send-reco').modal('close');
 });

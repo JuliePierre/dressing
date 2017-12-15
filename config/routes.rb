@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'missing_item_targets/destroy'
+
   root to: 'pages#home'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
@@ -17,6 +19,8 @@ Rails.application.routes.draw do
   end
 
   resources :missing_items, only: [ :new, :create]
+
+  resources :missing_item_targets, only: [ :destroy ]
 
   resources :shopping_carts, only: [ :show ]
 

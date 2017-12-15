@@ -71,8 +71,10 @@ class UsersController < ApplicationController
         @past_loans << item.loans.status("Past")
       end
     end
-    # demandes d'aide
+    # demandes d'aide envoyées
     @item_requests = current_user.missing_items.status("Pending")
+    # demandes d'aide reçues --> ce sont les demandes, il faut ensuite remonter à l'item
+    @received_requests = MissingItemTarget.where(user_id: current_user.id)
   end
 
   def wishlist
