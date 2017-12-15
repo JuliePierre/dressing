@@ -361,7 +361,7 @@
                     <% if request.missing_item_pictures.size > 0 %>
                       <%= cl_image_tag(request.missing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
                     <% else %>
-                      <%= image_tag "search-image", class: "search-image" %>
+                      <%= image_tag "search-image.png", class: "search-image" %>
                     <% end %>
                   </div>
                   <div class="cart-item-card-infos loan-item-card-infos flexbox space-between">
