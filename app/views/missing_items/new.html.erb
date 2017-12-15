@@ -29,7 +29,44 @@
                 <div id="ajouter-photos-missing-items-btn" class="b-btn b-btn-underlined">Choisir photos</div>
                 <input type="text" class="missing-item-filename" placeholder="Aucun fichier choisi"/>
                 <%= f.file_field :photos, multiple: true %>
-                <%= f.button :submit, class: 'b-btn', value: "Valider" %>
+
+
+                <!-- Modal Trigger -->
+                <a class="b-btn b-btn-colored" href="#modal-send-request">Valider</a>
+                <!-- Modal Structure -->
+                <div id="modal-send-request" class="modal">
+                  <div class="modal-content">
+                    <div class="close-modal-add-loan"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>
+                    <!-- Contenu de la modal -->
+                    <div class="">
+                      <h4>A qui souhaitez vous l'envoyer ?</h4>
+                      <p>Cliquez sur les amis à qui vous souhaitez envoyer la demande.</p>
+                      <p>Si vous souhaitez envoyer la demande à tout votre réseau, celui-ci en sera informé sur le site mais pas par e-mail (nous préférons éviter les spams).</p>
+
+
+                  <%= form_tag missing_items_path, method: 'get' do %>
+                    <% current_user.accepted_friends.each do |friend| %>
+                      <input type="checkbox" value="<%= friend.id %>" name="missing_item_targets[]" id="missing_item_target_<%= friend.id %>">
+                      <label for="missing_item_target_<%= friend.id %>">
+                        <div class="user-card">
+                          <% image = friend.gender == "male" ? 'boy.png' : 'girl.png' %>
+                          <% avatar_url = friend.facebook_picture_url || image_path(image) %>
+                          <%= image_tag(avatar_url, class: 'user-avatar') %>
+                          <h5><%= friend.first_name %> <%= friend.last_name %></h5>
+                        </div>
+                      </label>
+                    <% end %>
+                  <% end %>
+
+
+                    </div>
+                    <p>En cliquant sur valider, vous confirmez que vous souhaitez envoyer un message à vos ami(e)s pour leur demander de l'aide.</p>
+                  </div>
+                  <div class="right" style="margin-right: 24px;">
+                    <%= f.button :submit, class: 'b-btn', value: "Envoyer" %>
+                  </div>
+                </div>
+                <!-- END Modal Structure -->
             <% end %>
           </div>
         </div>

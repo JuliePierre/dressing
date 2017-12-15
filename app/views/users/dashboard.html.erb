@@ -139,7 +139,7 @@
         </div>
         <div class="network-content">
           <div id="tab-mesamis">
-            <div class="flexbox space-between">
+            <div class="flexbox">
               <% if @actual_friends.size == 0 %>
                 <p>Vous n'avez pas encore d'amis.</p>
               <% else %>
@@ -172,7 +172,7 @@
             </div>
           </div>
           <div id="tab-ajouter">
-            <div class="flexbox space-between">
+            <div class="flexbox">
               <% @not_yet_friends.each do |user| %>
                 <div class="user-card">
                   <% image = user.gender == "male" ? 'boy.png' : 'girl.png' %>

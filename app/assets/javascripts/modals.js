@@ -3,6 +3,10 @@ $(document).ready(function(){
   $('.modal').modal();
 });
 
-$("#close-modal-add-loan").click(function(){
+$("#modal-add-loan .close-modal-add-loan").click(function(){
   $('#modal-add-loan').modal('close');
-})
+});
+
+$("#modal-send-request .close-modal-add-loan").click(function(){
+  $('#modal-send-request').modal('close');
+});
