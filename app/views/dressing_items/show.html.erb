@@ -92,9 +92,9 @@
             <% unless @dressing_item.to_lend.blank? %>
               <a class="waves-effect waves-light b-btn b-btn-transparent b-btn-block modal-trigger" href="#modal-add-loan">J'emprunte</a>
               <!-- Modal Structure -->
-              <div id="modal-add-loan" class="modal">
+              <div id="modal-add-loan" class="modal modal-add-loan">
                 <div class="modal-content">
-                  <div class="close-modal-add-loan"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>
+                  <div class="close-modal" data-target="modal-add-loan"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>
                   <!-- Contenu de la modal -->
                   <div class="cart-item-card">
                     <div class="cart-item-card-picture">

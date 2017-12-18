@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171215095151) do
+ActiveRecord::Schema.define(version: 20171218144829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,26 @@ ActiveRecord::Schema.define(version: 20171215095151) do
     t.index ["user_id"], name: "index_missing_items_on_user_id", using: :btree
   end
 
+  create_table "proposal_pictures", force: :cascade do |t|
+    t.integer  "proposal_id"
+    t.string   "photo"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["proposal_id"], name: "index_proposal_pictures_on_proposal_id", using: :btree
+  end
+
+  create_table "proposals", force: :cascade do |t|
+    t.integer  "missing_item_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "description"
+    t.string   "ref"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["missing_item_id"], name: "index_proposals_on_missing_item_id", using: :btree
+    t.index ["user_id"], name: "index_proposals_on_user_id", using: :btree
+  end
+
   create_table "shopping_cart_items", force: :cascade do |t|
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
@@ -154,5 +174,8 @@ ActiveRecord::Schema.define(version: 20171215095151) do
   add_foreign_key "missing_item_targets", "missing_items"
   add_foreign_key "missing_item_targets", "users"
   add_foreign_key "missing_items", "users"
+  add_foreign_key "proposal_pictures", "proposals"
+  add_foreign_key "proposals", "missing_items"
+  add_foreign_key "proposals", "users"
   add_foreign_key "shopping_carts", "users"
 end

@@ -9,15 +9,11 @@ class MissingItemsController < ApplicationController
     @missing_item.status = "Pending"
     @missing_item.user = current_user
     if @missing_item.save
-      p "test pour voir si ça passe par là"
-      p "le missing item : #{@missing_item}"
-      p "les params: #{params["missing_item_targets"]}"
       unless params["missing_item_targets"].nil?
         params["missing_item_targets"].each do |id|
           MissingItemTarget.create(user: User.find(id.to_i), missing_item: @missing_item)
         end
       end
-      p @missing_item.missing_item_targets
       unless params["missing_item"]["photos"].nil?
         params["missing_item"]["photos"].each do |photo|
           picture = MissingItemPicture.new(missing_item: @missing_item)

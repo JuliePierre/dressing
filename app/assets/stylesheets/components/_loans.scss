@@ -34,22 +34,13 @@
 #modal-add-loan .modal-content {
   position: relative;
 }
-.close-modal-add-loan {
+.close-modal {
   position: absolute;
   right: 24px;
   top: 24px;
   cursor: pointer;
   .fa {
     color: $b-text-lighter;
-  }
-}
-.close-modal-send-reco {
-  position: absolute;
-  right: 24px;
-  top: 24px;
-  cursor: pointer;
-  .fa {
-    color: $b-text-lighter;
-    font-size: 2rem;
+    font-size: 2em;
   }
 }

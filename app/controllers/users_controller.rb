@@ -75,6 +75,8 @@ class UsersController < ApplicationController
     @item_requests = current_user.missing_items.status("Pending")
     # demandes d'aide reçues --> ce sont les demandes, il faut ensuite remonter à l'item
     @received_requests = MissingItemTarget.where(user_id: current_user.id)
+    # modal création de proposition
+    @proposal = Proposal.new
   end
 
   def wishlist

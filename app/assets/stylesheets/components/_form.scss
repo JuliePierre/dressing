@@ -301,3 +301,15 @@ input.missing-item-filename {
   height: 12em;
   margin-bottom: 0;
 }
+
+// FORM PROPOSAL
+#proposal_photos {
+  display: none;
+}
+input.proposal-filename {
+  border: none !important;
+}
+#proposal_description {
+  height: 12em;
+  margin-bottom: 0;
+}

@@ -1,0 +1,13 @@
+<div class="cart-item-card">
+  <div class="cart-item-card-picture">
+    <% unless proposal.proposal_pictures.size == 0 %>
+      <%= cl_image_tag(proposal.proposal_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
+    <% end %>
+  </div>
+  <div class="cart-item-card-infos">
+    <div class="flexbox space-between">
+      <h2><%= proposal.name %></h2>
+    </div>
+    <p><%= proposal.description %></p>
+  </div>
+</div>

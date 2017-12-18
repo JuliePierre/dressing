@@ -3,16 +3,7 @@ $(document).ready(function(){
   $('.modal').modal();
 });
 
-$("#modal-add-loan .close-modal-add-loan").click(function(){
-  $('#modal-add-loan').modal('close');
-});
-
-$("#modal-send-request .close-modal-add-loan").click(function(){
-  console.log("test2");
-  $('#modal-send-request').modal('close');
-});
-
-$(".close-modal-send-reco").click(function(){
-  console.log("test");
-  $('.modal-send-reco').modal('close');
+$(".close-modal").click(function(){
+  var target = "." + $(this).data('target');
+  $(target).modal('close');
 });

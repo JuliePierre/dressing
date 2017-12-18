@@ -18,9 +18,12 @@ Rails.application.routes.draw do
     resources :loans, only: [ :create, :update, :destroy ]
   end
 
-  resources :missing_items, only: [ :new, :create]
+  resources :missing_items, only: [ :new, :create ]do
+    resources :proposals, only: [ :create ]
+  end
 
   resources :missing_item_targets, only: [ :destroy ]
+
 
   resources :shopping_carts, only: [ :show ]
 
