@@ -1,22 +1,22 @@
-<%= simple_form_for [missing_item, proposal], html: { id: "new-proposal-form", multipart: true } do |f| %>
+<%= simple_form_for [missing_item, proposal], html: { id: "new-proposal-form-#{missing_item.id}", multipart: true } do |f| %>
   <%= f.error_notification %>
     <div class="input-field col proposal_name">
       <h5 style="text-align: left;">Nom</h5>
-      <input class="string" type="text" name="proposal[name]" id="proposal_name", placeholder="Ex : Robe 80's rouge dentelle">
+      <input class="string" type="text" name="proposal[name]" id="proposal_name_<%= missing_item.id %>", placeholder="Ex : Robe 80's rouge dentelle">
     </div>
     <div class="input-field col proposal_description">
       <h5 style="text-align: left;">Description</h5>
-      <textarea class="materialize-textarea text optional" name="proposal[description]" id="proposal_description", placeholder="Ex : Robe rouge avec dentelles au niveau du col, chaude, idéale pour une soirée déguisée."></textarea>
+      <textarea class="materialize-textarea text optional" name="proposal[description]" id="proposal_description_<%= missing_item.id %>", placeholder="Ex : Robe rouge avec dentelles au niveau du col, chaude, idéale pour une soirée déguisée."></textarea>
     </div>
     <div class="input-field col missing_item_ref">
       <h5 style="text-align: left;">Référence</h5>
       <p>Si elle est en vente en ligne, vous pouvez ajouter ici un lien vers le site.</p>
-      <input class="string" type="text" name="proposal[ref]" id="proposal_ref", placeholder="Référence">
+      <input class="string" type="text" name="proposal[ref]", placeholder="Référence">
     </div>
     <h4>Photos</h4>
     <p>N'hésitez pas à ajouter quelques photos si vous avez des références pour donner un aperçu de ce que vous cherchez.</p>
-    <div id="ajouter-photos-proposal-btn" class="b-btn b-btn-underlined">Choisir photos</div>
-    <input type="text" class="proposal-filename" placeholder="Aucun fichier choisi"/>
-    <%= f.file_field :photos, multiple: true %>
+    <div class="ajouter-photos-proposal-btn b-btn b-btn-underlined" data-id="<%= missing_item.id %>">Choisir photos</div>
+    <input type="text" id="proposal-filename-<%= missing_item.id %>" class="proposal-filename" placeholder="Aucun fichier choisi"/>
+    <%= f.file_field :photos, class: "proposal_photos", id: "proposal_photos_#{missing_item.id}", "data-target": "#{missing_item.id}", multiple: true %>
     <%= f.button :submit, class: 'b-btn b-btn-colored', value: "Valider" %>
 <% end %>

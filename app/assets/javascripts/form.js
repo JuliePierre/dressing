@@ -36,12 +36,14 @@ $(document).ready(function() {
       $('.missing-item-filename').attr('placeholder', val);
   });
 
-  $('#ajouter-photos-proposal-btn').on('click', function() {
-    $('#proposal_photos').trigger('click');
+  $('.ajouter-photos-proposal-btn').on('click', function() {
+    target = "#proposal_photos_" + $(this).data('id');
+    $(target).trigger('click');
   });
 
-  $('#proposal_photos').change(function() {
+  $('.proposal_photos').change(function() {
+      var target = "#proposal-filename-" + $(this).data('target');
       var val = ($(this).val() != "") ? ($(this)[0].files.length + " fichier choisi(s)") : "Aucun fichier choisi";
-      $('.proposal-filename').attr('placeholder', val);
+      $(target).attr('placeholder', val);
   });
 });

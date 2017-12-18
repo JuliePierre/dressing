@@ -388,6 +388,19 @@
                           <%= link_to "#{request.missing_item_targets[-1].user.first_name}." %>
                         </p>
                       <% end %>
+                      <p>Propositions reçues :</p>
+                      <% if request.proposals.size == 0 %>
+                        <p>Aucune proposition reçue pour le moment</p>
+                      <% else %>
+                        <div class="flexbox flex-column center">
+                          <% request.proposals.each do |proposal| %>
+                            <% photo = proposal.user.gender == "male" ? 'boy.png' : 'girl.png' %>
+                            <% avatar_url = proposal.user.facebook_picture_url || image_path(photo) %>
+                            <%= image_tag(avatar_url, class: 'user-avatar dashboard-avatar') %>
+                            <p class="no-margin"><%= proposal.user.first_name %> <%= proposal.user.last_name %></p>
+                          <% end %>
+                        </div>
+                      <% end %>
                     </div>
                   </div>
                 </div>
@@ -449,7 +462,6 @@
                             <p>En cliquant sur valider, <%= missing_item.user.first_name %> sera informé(e) directement de votre proposition.</p>
                           </div>
                           <div class="right" style="margin-right: 24px;">
-
                           </div>
                         </div>
                         <!-- END Modal Structure -->
