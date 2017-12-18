@@ -1,0 +1,9 @@
+Hello <%= @target.first_name %>,
+
+J'ai trouvé ce que tu cherchais !
+
+Sujet : <%= @proposal.name %>
+Plus d'infos : <%= @proposal.description %>
+
+Vous pourrez retrouver la proposition de <%= @user.first_name %> sur la page de votre compte.
+Accédez à votre compte en cliquant ici : <%= dashboard_user_url(@target) %>

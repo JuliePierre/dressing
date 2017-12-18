@@ -13,6 +13,7 @@ class ProposalsController < ApplicationController
           picture.save
         end
       end
+      send_proposal
       redirect_to dashboard_user_path(current_user)
     else
       render :new
@@ -23,6 +24,10 @@ class ProposalsController < ApplicationController
 
   def proposal_params
     params.require(:proposal).permit(:name, :description, :ref, :photos)
+  end
+
+  def send_proposal
+    UserMailer.send_proposal(@proposal.user, @proposal.missing_item.user, @proposal).deliver_now
   end
 
 end
