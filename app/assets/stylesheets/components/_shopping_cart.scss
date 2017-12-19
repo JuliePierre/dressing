@@ -1,17 +1,8 @@
-#cart-container {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-.cart-card {
+.cart-list {
   flex: 0 0 60%;
-  background: white;
-  padding: 3.125rem;
 }
 .cart-recap {
   flex: 0 0 35%;
-  background: white;
-  padding: 3.125rem;
   h4 {
     margin: 0;
   }
@@ -23,7 +14,6 @@
   flex: 0 0 70%;
 }
 .cart-icons {
-  display: flex;
   .fa {
     font-size: 1.2em;
   }

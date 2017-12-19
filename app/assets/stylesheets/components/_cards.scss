@@ -7,7 +7,7 @@
 .item-infos {
   h2 {
     font-size: 2rem;
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
   }
   p {
     font-size: .875rem;
@@ -136,5 +136,17 @@
   }
   .item-links {
     flex: 0 0 30%;
+  }
+}
+.cart-card {
+  .item-picture {
+    flex: 0 0 20%;
+  }
+  .item-infos {
+    flex: 0 0 70%;
+    .item-title {
+      flex: 0 0 80%;
+      margin-bottom: 0;
+    }
   }
 }
