@@ -398,6 +398,19 @@
                             <% avatar_url = proposal.user.facebook_picture_url || image_path(photo) %>
                             <%= image_tag(avatar_url, class: 'user-avatar dashboard-avatar') %>
                             <p class="no-margin"><%= proposal.user.first_name %> <%= proposal.user.last_name %></p>
+                            <a class="modal-trigger b-btn-underlined" href="#modal-see-reco-<%= proposal.id %>-bis">Voir
+                            </a>
+                            <!-- Modal Structure -->
+                            <div id="modal-see-reco-<%= proposal.id %>-bis" class="modal-see-reco modal">
+                              <div class="modal-content">
+                                <div class="close-modal" data-target="modal-see-reco"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>
+                                <!-- Contenu de la modal -->
+                                <div>
+                                  <%= render 'proposals/show', proposal: proposal %>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- END Modal Structure -->
                           <% end %>
                         </div>
                       <% end %>
