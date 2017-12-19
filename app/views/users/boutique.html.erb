@@ -1,0 +1,16 @@
+<div class="dashboard-content-header underlined">
+  <h4>Ma boutique</h4>
+</div>
+<ul class="top-nav-tabs">
+  <li class="tab top-nav-tabs boutique-nav-tabs"><a href="#tab-articles" class="active">Mes articles <span class="notification-pin"></a></li>
+  <li class="tab top-nav-tabs"><a href="#tab-prets-encours">Emprunts <span class="notification-pin">( <%= @pending_loans.size %> )</span></a></li>
+  <div class="indicator" style="right: 1050px; left: 30px;"></div>
+</ul>
+
+<% content_for(:after_js) do %>
+  <script>
+    $(document).ready(function(){
+      $('ul.boutique-nav-tabs').tabs();
+    });
+  </script>
+<% end %>

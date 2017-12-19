@@ -1,18 +1,18 @@
 <div class="main-body dashboard-container">
-  <div class="subnav-left">
+  <div class="sidenav">
       <% photo = current_user.gender == "male" ? 'boy.png' : 'girl.png' %>
       <% avatar_url = current_user.facebook_picture_url || image_path(photo) %>
       <%= image_tag(avatar_url, class: 'user-avatar') %>
       <h4 class="text-center"><%= current_user.first_name.capitalize + " " + current_user.last_name.capitalize %></h4>
-      <div class="subnav-tabs-container" id="subnav-tabs">
-        <ul class="subnav-tabs">
-          <li class="tab subnav-tab"><a href="#tab-moncompte" class="active">Mon compte</a></li>
-          <li id="monprofil-link" class="tab subnav-tab"><a href="#tab-monprofil">Mon profil</a></li>
-          <li id="monreseau-link" class="tab subnav-tab"><a href="#tab-monreseau">Mon réseau</a></li>
-          <li id="mondressing-link" class="tab subnav-tab"><a href="#tab-mondressing">Mon dressing</a></li>
-          <li id="mesprets-link" class="tab subnav-tab"><a href="#tab-mesprets">Mes prêts</a></li>
-          <li id="mesdemandes-link" class="tab subnav-tab"><a href="#tab-mesdemandes">Mes demandes</a></li>
-          <li id="demandes-recues-link" class="tab subnav-tab"><a href="#tab-demandes-recues">Demandes reçues</a></
+      <div class="sidenav-container" id="sidenav-tabs">
+        <ul class="sidenav-tabs">
+          <li class="tab sidenav-tab"><a href="#tab-moncompte" class="active">Mon compte</a></li>
+          <li id="monprofil-link" class="tab sidenav-tab"><a href="#tab-monprofil">Mon profil</a></li>
+          <li id="monreseau-link" class="tab sidenav-tab"><a href="#tab-monreseau">Mon réseau</a></li>
+          <li id="mondressing-link" class="tab sidenav-tab"><a href="#tab-mondressing">Mon dressing</a></li>
+          <li id="mesprets-link" class="tab sidenav-tab"><a href="#tab-mesprets">Mes prêts</a></li>
+          <li id="mesdemandes-link" class="tab sidenav-tab"><a href="#tab-mesdemandes">Mes demandes</a></li>
+          <li id="demandes-recues-link" class="tab sidenav-tab"><a href="#tab-demandes-recues">Demandes reçues</a></
         </ul>
       </div>
   </div>
@@ -47,9 +47,9 @@
 <% content_for(:after_js) do %>
   <script>
     $(document).ready(function(){
-      $('ul.subnav-tabs').tabs();
-      $('ul.network-subnav-tabs').tabs();
-      $('ul.loans-subnav-tabs').tabs();
+      $('ul.sidenav-tabs').tabs();
+      $('ul.network-nav-tabs').tabs();
+      $('ul.loans-nav-tabs').tabs();
       $('select').material_select();
     });
   </script>

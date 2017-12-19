@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show] do
     member do
       get 'dashboard', to: "users#dashboard"
+      get 'boutique', to: "users#boutique"
     end
     member do
       get 'wishlist', to: "users#wishlist"
