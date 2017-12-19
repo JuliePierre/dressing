@@ -1,5 +1,5 @@
 <div class="tab-page" id="tab-moncompte">
-  <div class="dashboard-content-header flexbox space-between center">
+  <div class="content-header dashboard-content-header flexbox space-between center">
     <h4>Mon compte</h4>
     <%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'b-btn b-btn-transparent no-margin' %>
   </div>
@@ -29,6 +29,8 @@
   <div class="tab-content no-padding-top  no-padding-bottom flexbox space-between">
     <div class="dashboard-links-card">
       <h5>Messagerie</h5>
+      <p>Consultez les demandes faites par vos amis et vérifier les réponses à vos demandes.</p>
+      <br>
       <p class="b-btn-underlined" id="link-to-messagerie">Accéder</p>
     </div>
     <div class="dashboard-links-card">

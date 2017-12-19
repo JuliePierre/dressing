@@ -1,99 +1,108 @@
 <div id="tab-emprunts">
-  <!-- Les demandes en attente -->
-  <h5>Demandes en attente</h5>
-  <% if @pending_loans.size == 0 %>
-    <div class="b-card">
-      <p>Vous n'avez aucune demande en attente de réponse.</p>
-    </div>
-  <% else %>
-    <% @pending_loans.each do |loans| %>
-      <% loans.each do |loan| %>
-        <% item = loan.dressing_item %>
-        <div class="b-card loan-card flexbox space-between" id="loan-item-card-<%= loan.id %>">
-          <div class="item-picture">
-            <% unless item.dressing_item_pictures.size == 0 %>
-              <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
-            <% end %>
-          </div>
-          <div class="item-infos">
-            <h2><%= item.name %></h2>
-            <p>Demande faite par <%= link_to "#{loan.user.first_name} #{loan.user.last_name}", user_path(loan.user), class: "b-btn-underlined", target: "_blank" %>, le <%= loan.created_at.strftime('%e %b %Y') %></p>
-            <% if item.price == 0 %>
-              <span class="item-price">gratuit</span>
-            <% else %>
-              <span class="item-price"><%= item.price %> €</span>
-            <% end %>
-          </div>
-          <div class="item-links">
-            <%= link_to dressing_item_loan_path(item, loan, answer: "accept"), class: "tooltip", method: :patch do %>
-              <i class="fa fa-check accept-icon" aria-hidden="true"></i>
-              <span class="tooltiptext">Accepter</span>
-            <% end %>
-            <%= link_to dressing_item_loan_path(item, loan, answer: "reject"), class: "tooltip", method: :patch do %>
-              <i class="fa fa-ban reject-icon" aria-hidden="true"></i>
-              <span class="tooltiptext">Rejeter</span>
-            <% end %>
-          </div>
+  <div class="container b-section">
+    <!-- Les demandes en attente -->
+    <div class="margin-bottom" id="demandes-en-attente">
+      <h5>Demandes en attente</h5>
+      <% if @pending_loans.size == 0 %>
+        <div class="b-card">
+          <p>Vous n'avez aucune demande en attente de réponse.</p>
         </div>
+      <% else %>
+        <% @pending_loans.each do |loans| %>
+          <% loans.each do |loan| %>
+            <% item = loan.dressing_item %>
+            <div class="b-card loan-card flexbox space-between" id="loan-item-card-<%= loan.id %>">
+              <div class="item-picture">
+                <% unless item.dressing_item_pictures.size == 0 %>
+                  <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
+                <% end %>
+              </div>
+              <div class="item-infos">
+                <h2><%= item.name %></h2>
+                <p>Demande faite par <%= link_to "#{loan.user.first_name} #{loan.user.last_name}", user_path(loan.user), class: "b-btn-underlined", target: "_blank" %>, le <%= loan.created_at.strftime('%e %b %Y') %></p>
+                <% if item.price == 0 %>
+                  <span class="item-price">gratuit</span>
+                <% else %>
+                  <span class="item-price"><%= item.price %> €</span>
+                <% end %>
+              </div>
+              <div class="item-links">
+                <%= link_to dressing_item_loan_path(item, loan, answer: "accept"), class: "tooltip", method: :patch do %>
+                  <i class="fa fa-check accept-icon" aria-hidden="true"></i>
+                  <span class="tooltiptext">Accepter</span>
+                <% end %>
+                <%= link_to dressing_item_loan_path(item, loan, answer: "reject"), class: "tooltip", method: :patch do %>
+                  <i class="fa fa-ban reject-icon" aria-hidden="true"></i>
+                  <span class="tooltiptext">Rejeter</span>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       <% end %>
-    <% end %>
-  <% end %>
+    </div>
 
-  <!-- Les emprunts en cours -->
-  <h5>Emprunts en cours</h5>
-  <% if @current_loans.size == 0 %>
-    <div class="b-card">
-      <p>Il n'y a aucun prêt en cours.</p>
-    </div>
-  <% else %>
-    <% @current_loans.each do |loans| %>
-      <% loans.each do |loan| %>
-        <% item = loan.dressing_item %>
-        <div class="b-card loan-card flexbox space-between" id="loan-item-card-<%= loan.id %>">
-          <div class="item-picture">
-            <% unless item.dressing_item_pictures.size == 0 %>
-              <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
-            <% end %>
-          </div>
-          <div class="item-infos">
-            <h2><%= item.name %></h2>
-            <p>Vous avez prêté cet article à <%= link_to "#{loan.user.first_name} #{loan.user.last_name}", user_path(loan.user), class: "b-btn-underlined", target: "_blank" %>, le <%= loan.updated_at.strftime('%e %b %Y') %></p>
-            <p>Durée du prêt : <%= (Date.today - Date.parse(loan.updated_at.strftime('%Y-%m-%e'))).to_i %> jours</p>
-          </div>
-          <div class="item-links">
-            <p style="display: inline; margin-right: 0.5rem;">Cet article vous a-t-il été rendu ?</p>
-            <%= link_to dressing_item_loan_path(item, loan, answer: "given-back"), method: :patch, class: "tooltip" do %>
-              <i class="fa fa-check accept-icon" aria-hidden="true"></i>
-              <span class="tooltiptext">Oui</span>
-            <% end %>
-          </div>
+    <!-- Les emprunts en cours -->
+    <div class="margin-bottom" id="emprunts-en-cours">
+      <h5>Emprunts en cours</h5>
+      <% if @current_loans.size == 0 %>
+        <div class="b-card">
+          <p>Il n'y a aucun prêt en cours.</p>
         </div>
+      <% else %>
+        <% @current_loans.each do |loans| %>
+          <% loans.each do |loan| %>
+            <% item = loan.dressing_item %>
+            <div class="b-card loan-card flexbox space-between" id="loan-item-card-<%= loan.id %>">
+              <div class="item-picture">
+                <% unless item.dressing_item_pictures.size == 0 %>
+                  <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
+                <% end %>
+              </div>
+              <div class="item-infos">
+                <h2><%= item.name %></h2>
+                <p>Vous avez prêté cet article à <%= link_to "#{loan.user.first_name} #{loan.user.last_name}", user_path(loan.user), class: "b-btn-underlined", target: "_blank" %>, le <%= loan.updated_at.strftime('%e %b %Y') %></p>
+                <p>Durée du prêt : <%= (Date.today - Date.parse(loan.updated_at.strftime('%Y-%m-%e'))).to_i %> jours</p>
+              </div>
+              <div class="item-links">
+                <p style="display: inline; margin-right: 0.5rem;">Cet article vous a-t-il été rendu ?</p>
+                <%= link_to dressing_item_loan_path(item, loan, answer: "given-back"), method: :patch, class: "tooltip" do %>
+                  <i class="fa fa-check accept-icon" aria-hidden="true"></i>
+                  <span class="tooltiptext">Oui</span>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       <% end %>
-    <% end %>
-  <% end %>
+    </div>
 
-  <!-- Les emprunts finis -->
-  <h5>Emprunts passés</h5>
-  <% if @past_loans.size == 0 %>
-    <div class="b-card">
-      <p>Vous n'avez rien prêté pour l'instant.</p>
-    </div>
-  <% else %>
-    <% @past_loans.each do |loans| %>
-      <% loans.each do |loan| %>
-        <% item = loan.dressing_item %>
-        <div class="b-card loan-card flexbox space-between" id="loan-item-card-<%= loan.id %>">
-          <div class="item-picture">
-            <% unless item.dressing_item_pictures.size == 0 %>
-              <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
-            <% end %>
-          </div>
-          <div class="item-infos">
-            <h2><%= item.name %></h2>
-            <p>Emprunté par <%= link_to "#{loan.user.first_name} #{loan.user.last_name}", user_path(loan.user), class: "b-btn-underlined", target: "_blank" %></p>
-          </div>
+    <!-- Les emprunts finis -->
+    <div class="margin-bottom" id="emprunts-finis">
+      <h5>Emprunts passés</h5>
+      <% if @past_loans.size == 0 %>
+        <div class="b-card">
+          <p>Vous n'avez rien prêté pour l'instant.</p>
         </div>
+      <% else %>
+        <% @past_loans.each do |loans| %>
+          <% loans.each do |loan| %>
+            <% item = loan.dressing_item %>
+            <div class="b-card loan-card flexbox space-between" id="loan-item-card-<%= loan.id %>">
+              <div class="item-picture">
+                <% unless item.dressing_item_pictures.size == 0 %>
+                  <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
+                <% end %>
+              </div>
+              <div class="item-infos">
+                <h2><%= item.name %></h2>
+                <p>Emprunté par <%= link_to "#{loan.user.first_name} #{loan.user.last_name}", user_path(loan.user), class: "b-btn-underlined", target: "_blank" %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       <% end %>
-    <% end %>
-  <% end %>
+    </div>
+
+  </div>
 </div>

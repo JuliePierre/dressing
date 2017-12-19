@@ -1,5 +1,9 @@
 #loans-navigation {
   margin-bottom: 1em;
+  background-color: white;
+  .loans-nav-tabs {
+    background: white;
+  }
 }
 .loan-item-card-infos {
   flex: 0 0 80% !important;

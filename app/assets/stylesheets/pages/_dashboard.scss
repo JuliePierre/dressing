@@ -5,12 +5,15 @@
 .dashboard-content-right {
   flex: 1 1 auto;
 }
-.dashboard-content-header {
+.content-header {
   background-color: $b-bg-beige-grey;
-  padding: 1.5em 3.125em;
+  padding: 1.5em 0;
   &.underlined {
     border-bottom: 1px solid $b-bg-blue-grey;
   }
+}
+.dashboard-content-header {
+  padding: 1.5em 3.125em;
 }
 
 // CONTENU PROFIL

@@ -1,29 +1,32 @@
 <div id="tab-articles">
-  <div class="tab-content flexbox">
-    <% if @dressing_items.size == 0 %>
+  <% if @dressing_items.size == 0 %>
+    <div class="container b-section">
       <p>Vous n'avez mis aucun article en ligne pour le moment.</p>
-      <%= link_to "Mettre en ligne", new_dressing_item_path, class: 'b-btn b-btn-colored' %>
-    <% else %>
-      <% @dressing_items.each do |item| %>
-        <% pictures = item.dressing_item_pictures %>
-        <% if pictures.size == 0 %>
-          <% picture = "dress_icon_sfq079.png" %>
-        <% else %>
-          <% picture = pictures[0].photo %>
-        <% end %>
-        <div class="dressing-item-container">
-          <div class="dressing-item-card" style="background-image: url(<%= cl_image_path picture, width: 260, height: 330, crop: :fill; %>);">
-            <%= link_to "", dressing_item_path(item), class: "card-link" %>
-          </div>
-          <br>
-          <h5><%= item.name %></h5>
-          <% if item.price == 0 %>
-            <span class="item-price">gratuit</span>
+    </div>
+  <% else %>
+    <div class="container b-section">
+      <div class="flexbox">
+        <% @dressing_items.each do |item| %>
+          <% pictures = item.dressing_item_pictures %>
+          <% if pictures.size == 0 %>
+            <% picture = "dress_icon_sfq079.png" %>
           <% else %>
-            <span class="item-price"><%= item.price %> €</span>
+            <% picture = pictures[0].photo %>
           <% end %>
-        </div>
+          <div class="dressing-item-container">
+            <div class="dressing-item-card" style="background-image: url(<%= cl_image_path picture, width: 260, height: 330, crop: :fill; %>);">
+              <%= link_to "", dressing_item_path(item), class: "card-link" %>
+            </div>
+            <br>
+            <h5><%= item.name %></h5>
+            <% if item.price == 0 %>
+              <span class="item-price">gratuit</span>
+            <% else %>
+              <span class="item-price"><%= item.price %> €</span>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>

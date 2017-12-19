@@ -1,22 +1,21 @@
 <div class="main-body bg-grey">
-  <div class="dashboard-content-header underlined">
+  <div class="content-header underlined">
+    <div class="container flexbox space-between center">
     <h4>Ma boutique</h4>
+    <%= link_to "Mettre en ligne", new_dressing_item_path, class: 'b-btn b-btn-transparent' %>
+  </div>
   </div>
   <ul class="top-nav-tabs boutique-nav-tabs">
-    <li class="tab top-nav-tab boutique-nav-tab"><a href="#tab-articles" class="active">Mes articles <span class="notification-pin"></a></li>
-    <li class="tab top-nav-tab"><a href="#tab-emprunts">Emprunts <span class="notification-pin">( <%= @pending_loans.size %> )</span></a></li>
-    <div class="indicator" style="right: 1050px; left: 30px;"></div>
+    <div class="container">
+      <li class="tab top-nav-tab boutique-nav-tab"><a href="#tab-articles" class="active">Mes articles <span class="notification-pin"></a></li>
+      <li class="tab top-nav-tab"><a href="#tab-emprunts">Emprunts <span class="notification-pin">( <%= @pending_loans.size %> )</span></a></li>
+      <div class="indicator" style="right: 1050px; left: 30px;"></div>
+    </div>
   </ul>
   <!-- TAB MES ARTICLES -->
   <%= render "users/boutique_tabs/articles" %>
   <!-- TAB MES EMPRUNTS -->
   <%= render "users/boutique_tabs/emprunts" %>
-
-
-
-
-
-
 </div>
 <% content_for(:after_js) do %>
   <script>
