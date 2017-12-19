@@ -1,0 +1,28 @@
+<div class="message-card flexbox justify-end">
+  <div class="message-container proposal-container">
+    <div class="prop-card flexbox space-between">
+      <div class="item-picture">
+        <% unless proposal.proposal_pictures.size == 0 %>
+          <%= cl_image_tag(proposal.proposal_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
+        <% end %>
+      </div>
+      <div class="item-infos">
+        <h5><%= proposal.name %></h5>
+        <p><%= proposal.description %></p>
+      </div>
+    </div>
+  </div>
+  <div class="message-user flexbox flex-column center">
+    <% photo = proposal.user.gender == "male" ? 'boy.png' : 'girl.png' %>
+    <% avatar_url = proposal.user.facebook_picture_url || image_path(photo) %>
+    <%= image_tag(avatar_url, class: 'user-avatar dashboard-avatar') %>
+    <p class="no-margin">
+      <% if proposal.user == current_user %>
+        Moi
+      <% else %>
+        <%= proposal.user.first_name %> <%= proposal.user.last_name %>
+      <% end %>
+    </p>
+    <p class="no-margin"><%= proposal.created_at.strftime('%e %b %Y') %></p>
+  </div>
+</div>

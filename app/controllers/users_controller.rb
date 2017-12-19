@@ -72,9 +72,9 @@ class UsersController < ApplicationController
       end
     end
     # demandes d'aide envoyées
-    @item_requests = current_user.missing_items.status("Pending")
+    @item_requests = current_user.missing_items.status("Pending").order(created_at: :desc)
     # demandes d'aide reçues --> ce sont les demandes, il faut ensuite remonter à l'item
-    @received_requests = MissingItemTarget.where(user_id: current_user.id)
+    @received_requests = MissingItemTarget.where(user_id: current_user.id).order(created_at: :desc)
     # modal création de proposition
     @proposal = Proposal.new
   end

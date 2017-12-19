@@ -4,5 +4,5 @@ class Proposal < ApplicationRecord
 
   scope :user, -> (user) { where user_id: user.id }
 
-  has_many :proposal_pictures
+  has_many :proposal_pictures, dependent: :destroy
 end

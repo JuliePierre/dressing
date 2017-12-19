@@ -5,20 +5,11 @@ $(document).ready(function(){
   $( "#link-to-monreseau" ).on( "click", function() {
     $( "#monreseau-link a" ).trigger( "click" );
   });
-  $( "#link-to-mondressing" ).on( "click", function() {
-    $( "#mondressing-link a" ).trigger( "click" );
-  });
   $( "#link-to-ajouter" ).on( "click", function() {
     $( "#ajouter-link a" ).trigger( "click" );
   });
-  $( "#link-to-mesprets" ).on( "click", function() {
-    $( "#mesprets-link a" ).trigger( "click" );
-  });
-  $( "#link-to-mesdemandes" ).on( "click", function() {
-    $( "#mesdemandes-link a" ).trigger( "click" );
-  });
-  $( "#link-to-demandes-recues" ).on( "click", function() {
-    $( "#demandes-recues-link a" ).trigger( "click" );
+  $( "#link-to-messagerie" ).on( "click", function() {
+    $( "#messagerie-link a" ).trigger( "click" );
   });
   // $( "#monreseau-link" ).on( "click", function() {
   //   $('#mesamis-link a').trigger('click')

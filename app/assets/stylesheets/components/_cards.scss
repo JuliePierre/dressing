@@ -124,7 +124,8 @@
     flex: 0 0 20%;
   }
   .item-infos {
-    flex: 0 0 60%;
+    flex: 0 0 55%;
+    text-align: left;
   }
 }
 .loan-card {
@@ -148,5 +149,23 @@
       flex: 0 0 80%;
       margin-bottom: 0;
     }
+  }
+}
+
+// PREVIEW IN MESSAGES
+.request-preview-card {
+  padding: 1.5em;
+  cursor: pointer;
+  &:hover {
+    background: white;
+  }
+  &.active {
+    background: white;
+  }
+  .item-picture {
+    flex: 0 0 20%;
+  }
+  .item-infos {
+    flex: 0 0 70%;
   }
 }

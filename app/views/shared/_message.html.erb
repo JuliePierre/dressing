@@ -1,0 +1,14 @@
+<div class="message-card flexbox">
+  <div class="message-user flexbox flex-column center">
+    <% user = missing_item.user %>
+    <% image = user.gender == "male" ? 'boy.png' : 'girl.png' %>
+    <% avatar_url = user.facebook_picture_url || image_path(image) %>
+    <%= image_tag(avatar_url, class: 'user-avatar small-avatar message-avatar') %>
+    <p class="no-margin"><%= user.first_name %> <%= user.last_name %></p>
+    <p class="no-margin"><%= missing_item.created_at.strftime('%e %b %Y') %></p>
+  </div>
+  <div class="message-container">
+    <h5><%= missing_item.name %></h5>
+    <p><%= missing_item.description %></p>
+  </div>
+</div>

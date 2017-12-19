@@ -1,0 +1,64 @@
+#tab-messagerie {
+  background: $secondary-color;
+}
+#messages-container {
+  flex: 1 1;
+  background-color: white;
+}
+#demandes-recues, #demandes-envoyees {
+  overflow: scroll;
+  width: 100%;
+  padding-bottom: 2em;
+}
+#demandes-recues {
+  border-bottom: 0.2em solid $secondary-color;
+}
+.message-card {
+  margin-bottom: 3.125em;
+}
+.message-container {
+  background: $secondary-color;
+  color: white;
+  display: inline-block;
+  padding: 1.5em 3.125em;
+  border-radius: 5px;
+  position: relative;
+  flex: 0 0 60%;
+}
+.message-container:before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 2em;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-right: 10px solid $secondary-color;
+  border-bottom: 10px solid transparent;
+}
+.proposal-container {
+  background: $b-bg-blue-grey;
+  color: $b-text-light;
+  display: inline-block;
+  padding: 1.5em 1.5em;
+  border-radius: 5px;
+  position: relative;
+}
+.proposal-container:before {
+  content: none;
+}
+.proposal-container:after {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 2em;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-left: 10px solid $b-bg-blue-grey;
+  border-bottom: 10px solid transparent;
+}
+.message-user {
+  margin: 0 1em;
+  flex: 0 0 20%;
+}

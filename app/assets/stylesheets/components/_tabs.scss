@@ -1,4 +1,15 @@
 // SIDENAV TABS
+.sidenav {
+  flex: 0 0 200px;
+  background-color: $secondary-color;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 3.125em 0;
+  h4 {
+    padding: 0 0.5em;
+  }
+}
 .sidenav-container {
   margin-top: 2em;
   text-align: center;
@@ -72,4 +83,28 @@
   a {
     color: rgba(0,0,0,0.87);
   }
+}
+
+// CONTENT
+// TABS CONTENT
+.tab-page {
+  height: 100%;
+}
+.tab-content {
+  padding: 3.125em 3.125em;
+}
+
+// SUBSIDENAV
+.sub-side-nav {
+  flex: 0 0 400px;
+  background-color: $b-bg-blue-grey;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.sub-side-nav-title {
+  text-transform: uppercase;
+  padding: 2em 0;
+  background-color: $b-bg-beige-grey;
+  margin-bottom: 0;
 }

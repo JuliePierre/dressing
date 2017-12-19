@@ -1,20 +1,17 @@
 <div class="main-body dashboard-container">
   <div class="sidenav">
-      <% photo = current_user.gender == "male" ? 'boy.png' : 'girl.png' %>
-      <% avatar_url = current_user.facebook_picture_url || image_path(photo) %>
-      <%= image_tag(avatar_url, class: 'user-avatar') %>
-      <h4 class="text-center"><%= current_user.first_name.capitalize + " " + current_user.last_name.capitalize %></h4>
-      <div class="sidenav-container" id="sidenav-tabs">
-        <ul class="sidenav-tabs">
-          <li class="tab sidenav-tab"><a href="#tab-moncompte" class="active">Mon compte</a></li>
-          <li id="monprofil-link" class="tab sidenav-tab"><a href="#tab-monprofil">Mon profil</a></li>
-          <li id="monreseau-link" class="tab sidenav-tab"><a href="#tab-monreseau">Mon réseau</a></li>
-          <li id="mondressing-link" class="tab sidenav-tab"><a href="#tab-mondressing">Mon dressing</a></li>
-          <li id="mesprets-link" class="tab sidenav-tab"><a href="#tab-mesprets">Mes prêts</a></li>
-          <li id="mesdemandes-link" class="tab sidenav-tab"><a href="#tab-mesdemandes">Mes demandes</a></li>
-          <li id="demandes-recues-link" class="tab sidenav-tab"><a href="#tab-demandes-recues">Demandes reçues</a></
-        </ul>
-      </div>
+    <% photo = current_user.gender == "male" ? 'boy.png' : 'girl.png' %>
+    <% avatar_url = current_user.facebook_picture_url || image_path(photo) %>
+    <%= image_tag(avatar_url, class: 'user-avatar') %>
+    <h4 class="text-center"><%= current_user.first_name.capitalize + " " + current_user.last_name.capitalize %></h4>
+    <div class="sidenav-container" id="sidenav-tabs">
+      <ul class="sidenav-tabs">
+        <li class="tab sidenav-tab"><a href="#tab-moncompte" class="active">Mon compte</a></li>
+        <li id="monprofil-link" class="tab sidenav-tab"><a href="#tab-monprofil">Mon profil</a></li>
+        <li id="monreseau-link" class="tab sidenav-tab"><a href="#tab-monreseau">Mon réseau</a></li>
+        <li id="messagerie-link" class="tab sidenav-tab"><a href="#tab-messagerie">Messagerie</a></li>
+      </ul>
+    </div>
   </div>
   <div class="dashboard-content-right bg-grey">
     <div class="full-height">
@@ -28,17 +25,8 @@
       <!-- TAB MON RESEAU -->
       <%= render "users/dashboard_tabs/mon_reseau" %>
 
-      <!-- TAB MON DRESSING -->
-      <%= render "users/dashboard_tabs/mon_dressing" %>
-
-      <!-- TAB MES PRETS -->
-      <%= render "users/dashboard_tabs/mes_prets" %>
-
-      <!-- TAB MES DEMANDES -->
-      <%= render "users/dashboard_tabs/mes_demandes" %>
-
-      <!-- TAB DEMANDES RECUES -->
-      <%= render "users/dashboard_tabs/demandes_recues" %>
+      <!-- TAB MESSAGERIE -->
+      <%= render "users/dashboard_tabs/messagerie" %>
 
     </div>
   </div>

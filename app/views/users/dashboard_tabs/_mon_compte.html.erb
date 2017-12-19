@@ -20,13 +20,17 @@
       <p class="b-btn-underlined" id="link-to-monreseau">Gérer</p>
     </div>
     <div class="dashboard-links-card">
-      <h5>Mon dressing</h5>
+      <h5>Ma boutique</h5>
       <p>Vous avez mis en ligne <%= pluralize @dressing_items.size, "article" %></p>
       <br>
-      <p class="b-btn-underlined" id="link-to-mondressing">Gérer</p>
+      <%= link_to "Gérer", boutique_user_path(current_user), class: "b-btn-underlined" %>
     </div>
   </div>
   <div class="tab-content no-padding-top  no-padding-bottom flexbox space-between">
+    <div class="dashboard-links-card">
+      <h5>Messagerie</h5>
+      <p class="b-btn-underlined" id="link-to-messagerie">Accéder</p>
+    </div>
     <div class="dashboard-links-card">
       <h5>Mon panier</h5>
       <% if current_user.shopping_cart.nil? %>
@@ -50,38 +54,6 @@
         <br>
         <p><%= link_to "Voir", wishlist_user_path(current_user), class: "b-btn-underlined" %></p>
       <% end %>
-    </div>
-    <div class="dashboard-links-card">
-      <h5>Articles prêtés</h5>
-      <% if @loans.nil? %>
-        <p>Vous ne prêtez actuellement aucun article.</p>
-      <% else %>
-        <p>Vous prêtez actuellement <%= pluralize @loans.size, "article" %>.</p>
-      <% end %>
-      <br>
-      <p class="b-btn-underlined" id="link-to-mesprets">Gérer</p>
-    </div>
-  </div>
-  <div class="tab-content no-padding-top flexbox">
-    <div class="dashboard-links-card">
-      <h5>Mes demandes désespérées</h5>
-      <% if @item_requests.nil? %>
-        <p>Vous n'avez aucune demande en attente de réponse.</p>
-      <% else %>
-        <p>Vous avez actuellement <%= pluralize @item_requests.size, "demande" %> en cours.</p>
-      <% end %>
-      <br>
-      <p class="b-btn-underlined" id="link-to-mesdemandes">Voir</p>
-    </div>
-    <div class="dashboard-links-card">
-      <h5>Demandes reçues</h5>
-      <% if @received_requests.nil? %>
-        <p>Vous n'avez aucune demande en attente de réponse de votre part.</p>
-      <% else %>
-        <p>Vous avez <%= pluralize @received_requests.size, "demande" %> en attente.</p>
-      <% end %>
-      <br>
-      <p class="b-btn-underlined" id="link-to-demandes-recues">Voir</p>
     </div>
   </div>
 </div>

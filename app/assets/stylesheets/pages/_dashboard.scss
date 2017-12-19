@@ -2,17 +2,6 @@
 .dashboard-container {
   display: flex;
 }
-.sidenav {
-  flex: 0 0 200px;
-  background-color: $secondary-color;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 3.125em 0;
-  h4 {
-    padding: 0 0.5em;
-  }
-}
 .dashboard-content-right {
   flex: 1 1 auto;
 }
@@ -22,14 +11,6 @@
   &.underlined {
     border-bottom: 1px solid $b-bg-blue-grey;
   }
-}
-
-// TABS CONTENT
-.tab-page {
-  height: 100%;
-}
-.tab-content {
-  padding: 3.125em 3.125em;
 }
 
 // CONTENU PROFIL

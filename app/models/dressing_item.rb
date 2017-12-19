@@ -20,8 +20,8 @@ class DressingItem < ApplicationRecord
   SIZES_OPTION2 = %w(XXS XS S M L XL XXL)
 
   belongs_to :user
-  has_many :loans
-  has_many :dressing_item_pictures
+  has_many :loans, dependent: :destroy
+  has_many :dressing_item_pictures, dependent: :destroy
 
   validates :category, inclusion: { in: CATEGORIES, allow_blank: false }
   validates :gender, inclusion: { in: GENDER, allow_blank: false }

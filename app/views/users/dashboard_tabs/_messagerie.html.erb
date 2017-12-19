@@ -1,0 +1,123 @@
+<div id="tab-messagerie">
+  <div class="flexbox full-height">
+    <div class="sub-side-nav">
+      <div id="demandes-recues">
+        <h5 class="sub-side-nav-title center">Demandes reçues</h5>
+        <% if @received_requests.size == 0 %>
+          <p class="center">Aucune demande reçue pour le moment</p>
+        <% end %>
+        <% @received_requests.each do |request| %>
+        <% missing_item = request.missing_item %>
+        <% user = missing_item.user %>
+          <div class="request-preview-card flexbox" data-target="request-messages-<%= missing_item.id %>">
+            <div class="item-picture">
+              <% image = user.gender == "male" ? 'boy.png' : 'girl.png' %>
+              <% avatar_url = user.facebook_picture_url || image_path(image) %>
+              <%= image_tag(avatar_url, class: 'user-avatar small-avatar') %>
+            </div>
+            <div class="item-infos">
+              <h5><%= missing_item.name %></h5>
+              <p><%= user.first_name %> <%= user.last_name %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div id="demandes-envoyees">
+        <h5 class="sub-side-nav-title center">Demandes envoyées</h5>
+        <% @item_requests.each do |missing_item| %>
+        <% user = missing_item.user %>
+          <div class="request-preview-card flexbox" data-target="received-messages-<%= missing_item.id %>">
+            <div class="item-picture">
+              <% image = user.gender == "male" ? 'boy.png' : 'girl.png' %>
+              <% avatar_url = user.facebook_picture_url || image_path(image) %>
+              <%= image_tag(avatar_url, class: 'user-avatar small-avatar') %>
+            </div>
+            <div class="item-infos">
+              <h5><%= missing_item.name %></h5>
+              <% unless missing_item.missing_item_targets.blank? %>
+                <p>La demande a été envoyée à
+                  <% missing_item.missing_item_targets[0..-2].each do |target| %>
+                    <%= link_to "#{target.user.first_name}, ", user_path(target.user) %>
+                  <% end %>
+                  <%= link_to "#{missing_item.missing_item_targets[-1].user.first_name}." %>
+                </p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div id="messages-container">
+      <div class="tab-content">
+        <% @received_requests.each do |request| %>
+          <% missing_item = request.missing_item %>
+          <div class="request-messages" id="request-messages-<%= missing_item.id %>">
+            <%= render "shared/message", missing_item: missing_item %>
+          <!-- 2 cas : soit l'utilisateur a déjà répondu à la demande, soit elle est en attente -->
+          <% if missing_item.proposals.user(current_user).first.nil? %>
+            <!-- Cas 1 : encore en attente -->
+            <div class="right message-icons">
+              <!-- pas de proposition à faire -->
+              <%= link_to missing_item_target_path(request), method: :delete, class: "tooltip" do %>
+              <i class="fa fa-ban reject-icon" aria-hidden="true"></i>
+              <span class="tooltiptext">Je n'ai pas</span>
+              <!-- proposer -->
+              <a class="modal-trigger tooltip" href="#modal-send-reco-<%= missing_item.id %>">
+                <i class="fa fa-check accept-icon" aria-hidden="true"></i>
+                <span class="tooltiptext">J'ai</span>
+              </a>
+            <% end %>
+            </div>
+            <!-- Modal Structure -->
+            <div id="modal-send-reco-<%= missing_item.id %>" class="modal-send-reco modal">
+              <div class="modal-content">
+                <div class="close-modal" data-target="modal-send-reco"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>
+                <!-- Contenu de la modal -->
+                <div class="flexbox space-between">
+                  <h2>J'ai ce que tu cherches</h2>
+                </div>
+                <div>
+                  <%= render 'proposals/new', missing_item: missing_item, proposal: @proposal %>
+                </div>
+                <p>En cliquant sur valider, <%= missing_item.user.first_name %> sera informé(e) directement de votre proposition.</p>
+              </div>
+              <div class="right" style="margin-right: 24px;">
+              </div>
+            </div>
+            <!-- END Modal Structure -->
+          <% else %>
+            <!-- Cas 2 : proposition faite -->
+            <%= render "shared/proposal", proposal: missing_item.proposals.user(current_user).first %>
+          <% end %>
+          </div>
+        <% end %>
+        <% @item_requests.each do |missing_item| %>
+          <div class="received-messages" id="received-messages-<%= missing_item.id %>">
+            <%= render "shared/message", missing_item: missing_item %>
+            <% if missing_item.proposals.size == 0 %>
+              <p>Aucune proposition reçue pour le moment</p>
+            <% else %>
+              <% missing_item.proposals.each do |proposal| %>
+                <%= render "shared/proposal", proposal: proposal %>
+              <% end %>
+          <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for(:after_js) do %>
+  <script>
+    $(document).ready(function(){
+      $('.request-preview-card').first().addClass('active')
+      $('.received-messages').hide();
+      $('.request-messages').hide();
+      <% unless @received_requests.first.nil? %>
+        var target = "#request-messages-" + <%= @received_requests.first.missing_item.id %>;
+        $(target).show();
+      <% end %>
+    });
+  </script>
+<% end %>
