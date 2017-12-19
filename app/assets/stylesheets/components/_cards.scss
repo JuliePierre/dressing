@@ -22,6 +22,12 @@
     margin-top: 0.5em;
   }
 }
+.item-links {
+  text-align: right;
+  a {
+    color: $b-text-light;
+  }
+}
 
 // HOME PAGE : BANNER
 .banner-card {
@@ -119,5 +125,16 @@
   }
   .item-infos {
     flex: 0 0 60%;
+  }
+}
+.loan-card {
+  .item-picture {
+    flex: 0 0 20%;
+  }
+  .item-infos {
+    flex: 1 1 50%;
+  }
+  .item-links {
+    flex: 0 0 30%;
   }
 }

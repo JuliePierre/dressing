@@ -167,6 +167,12 @@ a {
 .flexbox.flex-start {
   align-items: flex-start;
 }
+.flexbox.flex-end {
+  align-items: flex-end;
+}
+.flexbox.justify-end {
+  justify-content: flex-end;
+}
 .flexbox.wrap-reverse {
   flex-wrap: wrap-reverse;
 }
