@@ -1,0 +1,68 @@
+<div class="tab-page" id="tab-monreseau">
+  <div id="network-subnav-container">
+    <div class="dashboard-content-header underlined">
+      <h4>Mon réseau</h4>
+    </div>
+    <ul class="network-subnav-tabs">
+      <li id="mesamis-link" class="tab network-subnav-tab"><a href="#tab-mesamis" class="active">Mes amis</a></li>
+      <li id="notifications-link" class="tab network-subnav-tab"><a href="#tab-notifications">Invitations <span class="notification-pin">( <%= @pending_requests.size %> )</span></a></li>
+      <li id="ajouter-link" class="tab network-subnav-tab"><a href="#tab-ajouter">Ajouter</a></li>
+      <div class="indicator" style="right: 1120px; left: 30px;"></div>
+    </ul>
+  </div>
+  <div class="network-content">
+    <div id="tab-mesamis">
+      <div class="flexbox">
+        <% if @actual_friends.size == 0 %>
+          <p>Vous n'avez pas encore d'amis.</p>
+        <% else %>
+          <% @actual_friends.each do |user| %>
+            <div class="user-card">
+              <% image = user.gender == "male" ? 'boy.png' : 'girl.png' %>
+              <% avatar_url = user.facebook_picture_url || image_path(image) %>
+              <%= image_tag(avatar_url, class: 'user-avatar') %>
+              <h5><%= link_to "#{user.first_name} #{user.last_name}", user_path(user) %></h5>
+              <p><%= user.email %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <p id="link-to-ajouter" class="b-btn-underlined">Chercher de nouveaux amis</p>
+    </div>
+    <div id="tab-notifications">
+      <div class="flexbox space-between">
+        <% @pending_requests.each do |user| %>
+          <div class="user-card">
+            <% image = user.gender == "male" ? 'boy.png' : 'girl.png' %>
+            <% avatar_url = user.facebook_picture_url || image_path(image) %>
+            <%= image_tag(avatar_url, class: 'user-avatar') %>
+            <h5><%= user.first_name %> <%= user.last_name %></h5>
+            <p><%= user.email %></p>
+            <% friendship = Friendship.where('user_id = ? AND friend_id = ?', user.id, current_user.id).first %>
+            <%= link_to "Accepter", friendship_path(friendship), method: :patch, class: 'b-btn b-btn-transparent' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div id="tab-ajouter">
+      <div class="flexbox">
+        <% @not_yet_friends.each do |user| %>
+          <div class="user-card">
+            <% image = user.gender == "male" ? 'boy.png' : 'girl.png' %>
+            <% avatar_url = user.facebook_picture_url || image_path(image) %>
+            <%= image_tag(avatar_url, class: 'user-avatar') %>
+            <h5><%= user.first_name %> <%= user.last_name %></h5>
+            <p><%= user.email %></p>
+            <% if @pending_requests.include?(user) %>
+              <p>Attend votre réponse</p>
+            <% elsif @friend_invitations.include?(user) %>
+              <p>En attente de sa confirmation</p>
+            <% else %>
+              <%= link_to "Inviter", friendships_path(:friend_id => user), :method => :post, class: 'b-btn b-btn-transparent' %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

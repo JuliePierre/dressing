@@ -96,13 +96,13 @@
                 <div class="modal-content">
                   <div class="close-modal" data-target="modal-add-loan"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>
                   <!-- Contenu de la modal -->
-                  <div class="cart-item-card">
+                  <div class="flexbox space-between">
                     <div class="cart-item-card-picture">
                       <% unless @dressing_item.dressing_item_pictures.size == 0 %>
                         <%= cl_image_tag(@dressing_item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
                       <% end %>
                     </div>
-                    <div class="cart-item-card-infos">
+                    <div class="item-infos cart-item-card-infos">
                       <div class="flexbox space-between">
                         <h2><%= @dressing_item.name %></h2>
                       </div>

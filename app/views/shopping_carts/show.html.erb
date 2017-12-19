@@ -28,13 +28,13 @@
               <% end %>
               <% @cart.shopping_cart_items.each do |element| %>
               <% item = DressingItem.find(element.item_id) %>
-              <div class="cart-item-card" id="cart-item-card-<%= element.id %>">
+              <div class="flexbox space-between" id="cart-item-card-<%= element.id %>">
                 <div class="cart-item-card-picture">
                   <% unless item.dressing_item_pictures.size == 0 %>
                     <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
                   <% end %>
                 </div>
-                <div class="cart-item-card-infos">
+                <div class="item-infos cart-item-card-infos">
                   <div class="flexbox space-between">
                     <h2><%= item.name %></h2>
                     <div class="cart-icons">
@@ -110,57 +110,53 @@
           <div id="tab-pending-loans">
             <% @pending_loans.each do |loan| %>
               <% item = loan.dressing_item %>
-              <div class="loan-card">
-                <div class="cart-item-card" id="loan-item-card-<%= loan.id %>">
-                  <div class="cart-item-card-picture">
-                    <% unless item.dressing_item_pictures.size == 0 %>
-                      <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
-                    <% end %>
+              <div class="b-card flexbox space-between" id="loan-item-card-<%= loan.id %>">
+                <div class="cart-item-card-picture">
+                  <% unless item.dressing_item_pictures.size == 0 %>
+                    <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
+                  <% end %>
+                </div>
+                <div class="item-infos cart-item-card-infos loan-item-card-infos flexbox space-between">
+                  <div style="flex: 0 0 70%;">
+                    <h2><%= item.name %></h2>
+                    <p>Mis en ligne par <%= link_to "#{item.user.first_name} #{item.user.last_name}", user_path(item.user), class: 'b-btn-underlined' %></p>
+                    <p><%= item.description %></p>
                   </div>
-                  <div class="cart-item-card-infos loan-item-card-infos flexbox space-between">
-                    <div style="flex: 0 0 70%;">
-                      <h2><%= item.name %></h2>
-                      <p>Mis en ligne par <%= link_to "#{item.user.first_name} #{item.user.last_name}", user_path(item.user), class: 'b-btn-underlined' %></p>
-                      <p><%= item.description %></p>
-                    </div>
-                    <div>
-                      <p>Demande faite le <%= loan.created_at.strftime('%e %b %Y') %></p>
-                      <p><%= link_to "Annuler ma demande", dressing_item_loan_path(item, loan), method: :delete, class: "b-btn-underlined" %></p>
-                    </div>
+                  <div>
+                    <p>Demande faite le <%= loan.created_at.strftime('%e %b %Y') %></p>
+                    <p><%= link_to "Annuler ma demande", dressing_item_loan_path(item, loan), method: :delete, class: "b-btn-underlined" %></p>
                   </div>
                 </div>
               </div>
             <% end %>
             <% if @pending_loans.size == 0 %>
-              <div class="loan-card">
+              <div class="b-card">
                 <p>Vous n'avez aucune demande en attente de réponse.</p>
               </div>
             <% end %>
           </div>
           <div id="tab-current-loans">
-              <% @current_loans.each do |loan| %>
+            <% @current_loans.each do |loan| %>
               <% item = loan.dressing_item %>
-              <div class="loan-card">
-                <div class="cart-item-card">
-                  <div class="cart-item-card-picture">
-                    <% unless item.dressing_item_pictures.size == 0 %>
-                      <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
-                    <% end %>
-                  </div>
-                  <div class="cart-item-card-infos loan-item-card-infos">
-                    <h2><%= item.name %></h2>
-                    <p>Mis en ligne par <%= link_to "#{item.user.first_name} #{item.user.last_name}", user_path(item.user), class: 'b-btn-underlined' %></p>
-                    <p class="item-price"><%= item.price %> €</p>
-                    <p>Emprunté depuis le <%= loan.updated_at.strftime('%e %b %Y') %></p>
-                    <p>
-                      <a href="mailto:<%= item.user.email %>" target="_blank" class="b-btn-underlined">Contacter</a>
-                    </p>
-                  </div>
+              <div class="b-card flexbox space-between">
+                <div class="cart-item-card-picture">
+                  <% unless item.dressing_item_pictures.size == 0 %>
+                    <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
+                  <% end %>
+                </div>
+                <div class="item-infos cart-item-card-infos loan-item-card-infos">
+                  <h2><%= item.name %></h2>
+                  <p>Mis en ligne par <%= link_to "#{item.user.first_name} #{item.user.last_name}", user_path(item.user), class: 'b-btn-underlined' %></p>
+                  <p class="item-price"><%= item.price %> €</p>
+                  <p>Emprunté depuis le <%= loan.updated_at.strftime('%e %b %Y') %></p>
+                  <p>
+                    <a href="mailto:<%= item.user.email %>" target="_blank" class="b-btn-underlined">Contacter</a>
+                  </p>
                 </div>
               </div>
             <% end %>
             <% if @current_loans.size == 0 %>
-              <div class="loan-card">
+              <div class="b-card">
                 <p>Vous n'avez aucun emprunt en cours.</p>
               </div>
             <% end %>
@@ -168,26 +164,24 @@
           <div id="tab-past-loans">
             <% @past_loans.each do |loan| %>
               <% item = loan.dressing_item %>
-              <div class="loan-card">
-                <div class="cart-item-card">
-                  <div class="cart-item-card-picture">
-                    <% unless item.dressing_item_pictures.size == 0 %>
-                      <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
-                    <% end %>
-                  </div>
-                  <div class="cart-item-card-infos loan-item-card-infos">
-                    <h2><%= item.name %></h2>
-                    <p>Mis en ligne par <%= link_to "#{item.user.first_name} #{item.user.last_name}", user_path(item.user), class: 'b-btn-underlined' %></p>
-                    <p class="item-price"><%= item.price %> €</p>
-                    <p><%= item.description %></p>
-                    <p class="small-text">Nous ne proposons pas la vente en ligne de cet article, nous vous proposons de prendre contact directement avec le ou la propriétaire pour en savoir plus et arranger la vente.</p>
-                    <p><a href="mailto:<%= item.user.email %>" target="_blank" class="b-btn-underlined">Contacter</a></p>
-                  </div>
+              <div class="b-card flexbox space-between">
+                <div class="cart-item-card-picture">
+                  <% unless item.dressing_item_pictures.size == 0 %>
+                    <%= cl_image_tag(item.dressing_item_pictures[0].photo, height: 240, width: 160, crop: :fill) %>
+                  <% end %>
+                </div>
+                <div class="item-infos cart-item-card-infos loan-item-card-infos">
+                  <h2><%= item.name %></h2>
+                  <p>Mis en ligne par <%= link_to "#{item.user.first_name} #{item.user.last_name}", user_path(item.user), class: 'b-btn-underlined' %></p>
+                  <p class="item-price"><%= item.price %> €</p>
+                  <p><%= item.description %></p>
+                  <p class="small-text">Nous ne proposons pas la vente en ligne de cet article, nous vous proposons de prendre contact directement avec le ou la propriétaire pour en savoir plus et arranger la vente.</p>
+                  <p><a href="mailto:<%= item.user.email %>" target="_blank" class="b-btn-underlined">Contacter</a></p>
                 </div>
               </div>
             <% end %>
             <% if @past_loans.size == 0 %>
-              <div class="loan-card">
+              <div class="b-card">
                 <p>Vous n'avez pas encore emprunté d'articles sur Swaplab.</p>
               </div>
             <% end %>

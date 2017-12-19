@@ -16,32 +16,11 @@
     margin: 0;
   }
 }
-.cart-item-card {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1em;
-}
 .cart-item-card-picture {
   flex: 0 0 20%;
 }
 .cart-item-card-infos {
   flex: 0 0 70%;
-  h2 {
-    font-size: 2rem;
-    margin-bottom: 0;
-  }
-  p {
-    font-size: .875rem;
-    margin-bottom: 0.5em;
-  }
-  a {
-    color: $b-text-light;
-  }
-  .item-price {
-    font-size: 1em;
-    margin-bottom: 0;
-    margin-top: 0.5em;
-  }
 }
 .cart-icons {
   display: flex;

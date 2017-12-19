@@ -1,57 +1,29 @@
-// commun à toutes les cards
-.card-description {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  @media (max-width: $small-screen) {
-    bottom: 5px;
-    left: 20px;
-  }
+// BASIC CARDS
+.b-card {
+  padding: 3.125rem;
+  background-color: white;
 }
-.card-description h2 {
-  font-size: 1rem;
-  color: white;
-}
-.card-description p {
-  font-size: 14px;
-  opacity: 0.7;
-  font-weight: lighter;
-  color: white;
-  width: 70%;
-  display: inline-block;
-}
-.card-price {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  color: white;
-  @media (max-width: $small-screen) {
-    bottom: 5px;
-    right: 20px;
+
+.item-infos {
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 0;
   }
   p {
-    font-size: 1.5rem;
-    font-style: italic;
+    font-size: .875rem;
+    margin-bottom: 0.5em;
   }
-  .small-card-price {
-    font-size: 1rem;
+  a {
+    color: $b-text-light;
   }
-}
-.small-price {
-  font-size: 1.5rem;
-}
-.card-sticker {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: white;
-  padding: 1rem 3rem 2rem 2rem;
-  opacity: 0.8;
-  border-bottom-right-radius: 100%;
-  h5 {
-    font-size: 1rem;
+  .item-price {
+    font-size: 1em;
+    margin-bottom: 0;
+    margin-top: 0.5em;
   }
 }
+
+// HOME PAGE : BANNER
 .banner-card {
   background-color: $b-bg-blue-grey;
   border-radius: 2px;
@@ -96,90 +68,6 @@
   font-family: 'Rubik', sans-serif;
 }
 
-// LARGE CARDS
-.card-large {
-  width: 1000px;
-  height: 100%;
-  position: relative;
-  margin-bottom: 2rem;
-  .card-large-picture {
-    position: relative;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    background-size: cover;
-    border-top-left-radius: 2px;
-    border-bottom-left-radius: 2px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    display: inline-block;
-    width: 50%;
-    height: 20rem;
-    @media (max-width: $small-screen) {
-      width: 100%;
-      height: 15rem;
-    }
-  }
-  .card-large-infos {
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50%;
-    background-color: white;
-    display: inline-block;
-    vertical-align: top;
-    width: 49%;
-    height: 20rem;
-    @media (max-width: $small-screen) {
-      width: 100%;
-      height: auto;
-    }
-    .card-large-container {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      padding: 3.125rem;
-      width: 100%;
-      padding-bottom: 6.25rem;
-      height: 23.125rem;
-      @media (max-width: $small-screen) {
-        height: auto;
-        padding: 1rem
-      }
-      .card-large-text {
-        text-align: center;
-      }
-      .btn-container {
-        display: flex;
-        justify-content: space-around;
-        @media (max-width: $small-screen) {
-          display: initial;
-        }
-      }
-      h2 {
-        font-size: 1.3125rem;
-        margin-bottom: 1.25rem;
-        @media (max-width: $small-screen) {
-          margin-bottom: 0.25rem;
-        }
-        p {
-          @media (max-width: $small-screen) {
-            margin-top: 0.25rem;
-            margin-bottom: 0.75rem;
-          }
-        }
-      }
-      .b-btn {
-        flex: 0 0 15%;
-      }
-    }
-  }
-}
-
 // USER CARDS
 .user-card {
   background-color: transparent;
@@ -207,8 +95,29 @@
   }
 }
 
-// LOAN CARDS
-.loan-card {
-  background-color: white;
-  padding: 3.125rem;
+// DEMANDES RECUES / CARDS A 4 ELEMENTS
+.request-card {
+  .item-user {
+    flex: 0 0 10%;
+  }
+  .item-picture {
+    flex: 0 0 20%;
+  }
+  .item-infos {
+    flex: 0 0 50%;
+  }
+  .item-links {
+    flex: 0 0 20%;
+  }
+  .item-props {
+    flex: 0 0 20%;
+  }
+}
+.prop-card {
+  .item-picture {
+    flex: 0 0 20%;
+  }
+  .item-infos {
+    flex: 0 0 60%;
+  }
 }
