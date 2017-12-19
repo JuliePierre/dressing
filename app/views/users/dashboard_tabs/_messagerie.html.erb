@@ -5,45 +5,50 @@
         <h5 class="sub-side-nav-title center">Demandes reçues</h5>
         <% if @received_requests.size == 0 %>
           <p class="center">Aucune demande reçue pour le moment</p>
-        <% end %>
-        <% @received_requests.each do |request| %>
-        <% missing_item = request.missing_item %>
-        <% user = missing_item.user %>
-          <div class="request-preview-card flexbox" data-target="request-messages-<%= missing_item.id %>">
-            <div class="item-picture">
-              <% image = user.gender == "male" ? 'boy.png' : 'girl.png' %>
-              <% avatar_url = user.facebook_picture_url || image_path(image) %>
-              <%= image_tag(avatar_url, class: 'user-avatar small-avatar') %>
+        <% else %>
+          <% @received_requests.each do |request| %>
+            <% missing_item = request.missing_item %>
+            <% user = missing_item.user %>
+            <div class="request-preview-card flexbox" data-target="request-messages-<%= missing_item.id %>">
+              <div class="item-picture">
+                <% image = user.gender == "male" ? 'boy.png' : 'girl.png' %>
+                <% avatar_url = user.facebook_picture_url || image_path(image) %>
+                <%= image_tag(avatar_url, class: 'user-avatar small-avatar') %>
+              </div>
+              <div class="item-infos">
+                <h5><%= missing_item.name %></h5>
+                <p><%= user.first_name %> <%= user.last_name %></p>
+              </div>
             </div>
-            <div class="item-infos">
-              <h5><%= missing_item.name %></h5>
-              <p><%= user.first_name %> <%= user.last_name %></p>
-            </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
       <div id="demandes-envoyees">
         <h5 class="sub-side-nav-title center">Demandes envoyées</h5>
-        <% @item_requests.each do |missing_item| %>
-        <% user = missing_item.user %>
-          <div class="request-preview-card flexbox" data-target="received-messages-<%= missing_item.id %>">
-            <div class="item-picture">
-              <% image = user.gender == "male" ? 'boy.png' : 'girl.png' %>
-              <% avatar_url = user.facebook_picture_url || image_path(image) %>
-              <%= image_tag(avatar_url, class: 'user-avatar small-avatar') %>
+        <% if @item_requests.size == 0 %>
+          <p class="center">Aucune demande envoyée</p>
+        <% else %>
+          <% @item_requests.each do |missing_item| %>
+          <% user = missing_item.user %>
+            <div class="request-preview-card flexbox" data-target="received-messages-<%= missing_item.id %>">
+              <div class="item-picture">
+                <% image = user.gender == "male" ? 'boy.png' : 'girl.png' %>
+                <% avatar_url = user.facebook_picture_url || image_path(image) %>
+                <%= image_tag(avatar_url, class: 'user-avatar small-avatar') %>
+              </div>
+              <div class="item-infos">
+                <h5><%= missing_item.name %></h5>
+                <% unless missing_item.missing_item_targets.blank? %>
+                  <p>La demande a été envoyée à
+                    <% missing_item.missing_item_targets[0..-2].each do |target| %>
+                      <%= link_to "#{target.user.first_name}, ", user_path(target.user) %>
+                    <% end %>
+                    <%= link_to "#{missing_item.missing_item_targets[-1].user.first_name}." %>
+                  </p>
+                <% end %>
+              </div>
             </div>
-            <div class="item-infos">
-              <h5><%= missing_item.name %></h5>
-              <% unless missing_item.missing_item_targets.blank? %>
-                <p>La demande a été envoyée à
-                  <% missing_item.missing_item_targets[0..-2].each do |target| %>
-                    <%= link_to "#{target.user.first_name}, ", user_path(target.user) %>
-                  <% end %>
-                  <%= link_to "#{missing_item.missing_item_targets[-1].user.first_name}." %>
-                </p>
-              <% end %>
-            </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
     </div>
